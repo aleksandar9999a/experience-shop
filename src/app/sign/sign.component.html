@@ -1,9 +1,9 @@
 <div class="container login-container">
     <div class="row">
-        <form class="col-md-6 login-form-1">
+        <form class="col-md-6 login-form-1" [formGroup]="signInForm" (ngSubmit)="signIn()">
             <h3>Log In</h3>
-            <input type="text" class="form-control form-group" placeholder="Your Email *" />
-            <input type="password" class="form-control form-group" placeholder="Your Password *" />
+            <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email" required/>
+            <input type="password" class="form-control form-group" placeholder="Your Password *" formControlName="password" required/>
             <button type="submit" class="btnSubmit form-group">Sign In</button>
         </form>
         <form class="col-md-6 login-form-2">
