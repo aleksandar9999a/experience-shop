@@ -6,11 +6,11 @@
             <input type="password" class="form-control form-group" placeholder="Your Password *" formControlName="password" required/>
             <button type="submit" class="btnSubmit form-group">Sign In</button>
         </form>
-        <form class="col-md-6 login-form-2">
+        <form class="col-md-6 login-form-2" [formGroup]="signUpForm" (ngSubmit)="signUp()">
             <h3>Registered</h3>
-            <input type="text" class="form-control form-group" placeholder="Your Email *" />
-            <input type="password" class="form-control form-group" placeholder="Your Password *" />
-            <input type="password" class="form-control form-group" placeholder="Confirm Password *" />
+            <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email" required />
+            <input type="password" class="form-control form-group" placeholder="Your Password *" formControlName="password" required />
+            <input type="password" class="form-control form-group" placeholder="Confirm Password *" formControlName="confirmPassword" required />
             <button type="submit" class="btnSubmit form-group">Sign Up</button>
         </form>
     </div>
