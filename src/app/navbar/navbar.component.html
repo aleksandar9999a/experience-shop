@@ -16,6 +16,7 @@
                 <a class="nav-link" routerLink="/about">About</a>
             </li>
         </ul>
-        <button class="btn btn-outline-primary" routerLink="/sign">SignUp/SignIn</button>
+        <button *ngIf="!isHere" class="btn btn-outline-primary" routerLink="/sign">SignUp/SignIn</button>
+        <button *ngIf="isHere" (click)="logOut()" class="btn btn-outline-danger">Log Out</button>
     </div>
 </nav>
