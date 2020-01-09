@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { CreateAdvertisementComponent } from './create-advertisement/create-advertisement.component';
 import { SignComponent } from './sign/sign.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { JumbotronComponent } from './jumbotron/jumbotron.component';
     AboutComponent,
     CreateAdvertisementComponent,
     SignComponent,
-    JumbotronComponent
+    JumbotronComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
