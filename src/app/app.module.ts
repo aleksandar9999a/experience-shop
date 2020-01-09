@@ -11,6 +11,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { AboutComponent } from './about/about.component';
 import { CreateAdvertisementComponent } from './create-advertisement/create-advertisement.component';
 import { SignComponent } from './sign/sign.component';
+import { JumbotronComponent } from './jumbotron/jumbotron.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SignComponent } from './sign/sign.component';
     CatalogComponent,
     AboutComponent,
     CreateAdvertisementComponent,
-    SignComponent
+    SignComponent,
+    JumbotronComponent
   ],
   imports: [
     BrowserModule,
