@@ -16,17 +16,37 @@ export class SignComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   })
-  
+
+  signUpForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+    confirmPassword: new FormControl('')
+  })
+
   constructor(notifierService: NotifierService) { this.notifier = notifierService; }
 
-  signIn(){
-    const {email, password} = this.signInForm.value;
+  signIn() {
+    const { email, password } = this.signInForm.value;
     fire.auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
         this.notifier.notify('success', 'Successful!');
       })
       .catch(err => this.notifier.notify('warning', err.message));
+  }
+
+  signUp() {
+    const { email, password, confirmPassword } = this.signUpForm.value;
+    if (password === confirmPassword) {
+      fire.auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(res => {
+          this.notifier.notify('success', 'Successful!');
+        })
+        .catch(err => this.notifier.notify('warning', err.message));
+    } else {
+      this.notifier.notify('warning', 'Confirm password is wrong!');
+    }
   }
 
   ngOnInit() {
