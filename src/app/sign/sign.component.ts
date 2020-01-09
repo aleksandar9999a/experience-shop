@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { NotifierService } from "angular-notifier";
 
 import fire from '../config/firebase.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign',
@@ -10,7 +11,6 @@ import fire from '../config/firebase.js';
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent implements OnInit {
-  private readonly notifier: NotifierService;
 
   signInForm = new FormGroup({
     email: new FormControl(''),
@@ -23,7 +23,7 @@ export class SignComponent implements OnInit {
     confirmPassword: new FormControl('')
   })
 
-  constructor(notifierService: NotifierService) { this.notifier = notifierService; }
+  constructor(private readonly notifier: NotifierService, private routerService: Router) { }
 
   signIn() {
     const { email, password } = this.signInForm.value;
@@ -31,6 +31,7 @@ export class SignComponent implements OnInit {
       .signInWithEmailAndPassword(email, password)
       .then(res => {
         this.notifier.notify('success', 'Successful!');
+        this.routerService.navigate(['/'])
       })
       .catch(err => this.notifier.notify('warning', err.message));
   }
@@ -42,6 +43,7 @@ export class SignComponent implements OnInit {
         .createUserWithEmailAndPassword(email, password)
         .then(res => {
           this.notifier.notify('success', 'Successful!');
+          this.routerService.navigate(['/']);
         })
         .catch(err => this.notifier.notify('warning', err.message));
     } else {
