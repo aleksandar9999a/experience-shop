@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link"routerLink="/catalog">Catalog</a>
+                <a class="nav-link" routerLink="/catalog">Catalog</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/createAdvertisement">Create Advertisement</a>
@@ -16,7 +16,11 @@
                 <a class="nav-link" routerLink="/about">About</a>
             </li>
         </ul>
-        <button *ngIf="!isHere" class="btn btn-outline-primary borders" routerLink="/sign">SignUp/SignIn</button>
+        <button *ngIf="!isHere" class="btn btn-outline-primary borders" (click)="toggle()">SignUp/SignIn</button>
         <button *ngIf="isHere" (click)="logOut()" class="btn btn-outline-danger borders">Log Out</button>
     </div>
 </nav>
+
+<div [@signState]="signFormState" class="signForm">
+    <app-sign></app-sign>
+</div>
