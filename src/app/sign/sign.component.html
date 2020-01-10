@@ -2,16 +2,25 @@
     <div class="row">
         <form class="col-md-6 login-form-1" [formGroup]="signInForm" (ngSubmit)="signIn()">
             <h3>Log In</h3>
-            <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email" required/>
-            <input type="password" class="form-control form-group" placeholder="Your Password *" formControlName="password" required/>
-            <button type="submit" class="btnSubmit form-group">Sign In</button>
+            <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email"
+                required />
+            <input type="password" class="form-control form-group" placeholder="Your Password *"
+                formControlName="password" required />
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-danger btnSubmit form-group">Sign In</button>
+            </div>
         </form>
         <form class="col-md-6 login-form-2" [formGroup]="signUpForm" (ngSubmit)="signUp()">
             <h3>Registered</h3>
-            <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email" required />
-            <input type="password" class="form-control form-group" placeholder="Your Password *" formControlName="password" required />
-            <input type="password" class="form-control form-group" placeholder="Confirm Password *" formControlName="confirmPassword" required />
-            <button type="submit" class="btnSubmit form-group">Sign Up</button>
+            <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email"
+                required />
+            <input type="password" class="form-control form-group" placeholder="Your Password *"
+                formControlName="password" required />
+            <input type="password" class="form-control form-group" placeholder="Confirm Password *"
+                formControlName="confirmPassword" required />
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-dark btnSubmit form-group">Sign Up</button>
+            </div>
         </form>
     </div>
 </div>
