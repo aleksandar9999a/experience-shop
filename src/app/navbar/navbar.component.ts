@@ -1,32 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { NotifierService } from "angular-notifier";
 import { Router } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SignFormService } from '../services/signForm.service';
 
 import fire from '../config/firebase.js';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
-  animations: [
-    trigger('signState', [
-      state('hide', style({
-        display: 'none',
-        opacity: 0
-      })),
-      state('show', style({
-        opacity: 1,
-        display: 'block'
-      })),
-      transition('hide <=> show', animate('0.5s'))
-    ])
-  ]
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   isHere: boolean;
-  signFormState = 'hide';
-  constructor(private readonly notifier: NotifierService, private routerService: Router) { }
+  signFormState = 'close';
+  
+  constructor(private readonly notifier: NotifierService, private routerService: Router, private signFormService: SignFormService) { }
 
   logOut() {
     fire.auth()
@@ -39,8 +27,8 @@ export class NavbarComponent implements OnInit {
       .catch(err => this.notifier.notify('warning', err.message));
   }
 
-  toggle() {
-    this.signFormState === 'show' ? this.signFormState = 'hide' : this.signFormState = 'show';
+  openSignForm() {
+    this.signFormService.toggle();
   }
 
   ngOnInit() {
@@ -48,7 +36,6 @@ export class NavbarComponent implements OnInit {
       if (user) {
         this.isHere = true;
       }
-      
     })
   }
 
