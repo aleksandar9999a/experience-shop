@@ -16,11 +16,11 @@
                 <a class="nav-link" routerLink="/about">About</a>
             </li>
         </ul>
-        <button *ngIf="!isHere" class="btn btn-outline-primary borders" (click)="toggle()">SignUp/SignIn</button>
+        <button *ngIf="!isHere" class="btn btn-outline-primary borders" (click)="openSignForm()">SignUp/SignIn</button>
         <button *ngIf="isHere" (click)="logOut()" class="btn btn-outline-danger borders">Log Out</button>
     </div>
 </nav>
 
-<div [@signState]="signFormState" class="signForm">
+<div class="signForm">
     <app-sign></app-sign>
 </div>
