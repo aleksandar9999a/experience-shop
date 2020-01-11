@@ -12,10 +12,12 @@ import fire from '../config/firebase.js';
   animations: [
     trigger('signState', [
       state('hide', style({
+        display: 'none',
         opacity: 0
       })),
       state('show', style({
-        opacity: 1
+        opacity: 1,
+        display: 'block'
       })),
       transition('hide <=> show', animate('0.5s'))
     ])
