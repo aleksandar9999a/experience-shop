@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NotifierService } from "angular-notifier";
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SignFormService } from '../services/signForm.service';
 
 import fire from '../config/firebase.js';
 import { Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './sign.component.html',
   styleUrls: ['./sign.component.css'],
   animations: [
-    trigger('close', [
+    trigger('formState', [
       state('open', style({
         display: 'block',
         opacity: 1
@@ -20,12 +21,12 @@ import { Router } from '@angular/router';
         display: 'none',
         opacity: 0
       })),
-      transition('open => close', animate('0.5s'))
+      transition('open <=> close', animate('0.5s'))
     ])
   ]
 })
 export class SignComponent implements OnInit {
-  closeState = 'open';
+  formState: string = 'close';
 
   signInForm = new FormGroup({
     email: new FormControl(''),
@@ -38,7 +39,7 @@ export class SignComponent implements OnInit {
     confirmPassword: new FormControl('')
   })
 
-  constructor(private readonly notifier: NotifierService, private routerService: Router) { }
+  constructor(private readonly notifier: NotifierService, private routerService: Router, private signFormService: SignFormService) { }
 
   signIn() {
     const { email, password } = this.signInForm.value;
@@ -68,11 +69,18 @@ export class SignComponent implements OnInit {
     }
   }
 
-  closeSignForm(){
-    this.closeState = 'close';
+  closeSignForm() {
+    this.signFormService.toggle();
   }
 
   ngOnInit() {
+    this.signFormService.change.subscribe(isOpen => {
+      if (isOpen) {
+        this.formState = 'open';
+      }else{
+        this.formState = 'close';
+      }
+    })
   }
 
 }
