@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NotifierService } from "angular-notifier";
 import { Router } from '@angular/router';
-import { SignFormService } from '../services/signForm.service';
 
-import fire from '../config/firebase.js';
+import { SignFormService } from '../services/signForm.service';
 import { UserService } from '../services/user.service';
+import { CreateFormAnimations } from '../services/createFormAnimations.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +18,8 @@ export class NavbarComponent implements OnInit {
     private readonly notifier: NotifierService,
     private routerService: Router,
     private signFormService: SignFormService,
-    private userService: UserService
+    private userService: UserService,
+    private createFormAnimationsService: CreateFormAnimations
   ) { }
 
   logOut() {
@@ -32,6 +33,10 @@ export class NavbarComponent implements OnInit {
 
   openSignForm() {
     this.signFormService.toggle();
+  }
+
+  openCreateForm() {
+    this.createFormAnimationsService.toggle();
   }
 
   ngOnInit() {
