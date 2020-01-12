@@ -65,7 +65,7 @@ export class SignComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.signFormService.change.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close')
+    this.signFormService.change.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close');
   }
 
 }
