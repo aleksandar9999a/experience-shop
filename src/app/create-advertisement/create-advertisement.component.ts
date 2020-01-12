@@ -13,6 +13,10 @@ export class CreateAdvertisementComponent implements OnInit {
 
   constructor(private createFormAnimationsService: CreateFormAnimations) { }
 
+  close(){
+    this.createFormAnimationsService.toggle();
+  }
+  
   ngOnInit() {
     this.createFormAnimationsService.change.subscribe(isOpen => isOpen ? this.createFormState = 'open' : this.createFormState = 'close');
   }
