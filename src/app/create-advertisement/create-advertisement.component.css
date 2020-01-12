@@ -4,23 +4,24 @@
     height: 100%;
     z-index: 10;
 }
-.card-signin {
+.card-create {
     border: 0;
     border-radius: 1rem;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 1);
   }
   
-  .card-signin .card-title {
-    margin-bottom: 2rem;
+  .card-create .card-title {
+    margin-bottom: 1rem;
     font-weight: 300;
     font-size: 1.5rem;
   }
   
-  .card-signin .card-body {
+  .card-create .card-body {
     padding: 2rem;
+    padding-top: 0;
   }
   
-  .form-signin .btn {
+  .form-create .btn {
     font-size: 80%;
     letter-spacing: .1rem;
     font-weight: bold;
@@ -59,5 +60,5 @@
 }
 
 .title{
-  margin: 10%;
+  margin: 15%;
 }
