@@ -15,6 +15,7 @@ import { SignComponent } from './sign/sign.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { ItemComponent } from './item/item.component';
 import { SignFormService } from './services/signForm.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { SignFormService } from './services/signForm.service';
     NotifierModule,
     BrowserAnimationsModule
   ],
-  providers: [SignFormService],
+  providers: [SignFormService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
