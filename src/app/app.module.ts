@@ -16,6 +16,7 @@ import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { ItemComponent } from './item/item.component';
 import { SignFormService } from './services/signForm.service';
 import { UserService } from './services/user.service';
+import { CreateFormAnimations } from './services/createFormAnimations.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { UserService } from './services/user.service';
     NotifierModule,
     BrowserAnimationsModule
   ],
-  providers: [SignFormService, UserService],
+  providers: [SignFormService, UserService, CreateFormAnimations],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
