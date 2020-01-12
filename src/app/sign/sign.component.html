@@ -1,31 +1,33 @@
-<div class="container login-container" [@formState]="formState" >
-    <div class="row">
-        <form class="col-md-6 login-form-1" [formGroup]="signInForm" (ngSubmit)="signIn()">
-            <div class="formIn">
-                <h3>Log In</h3>
-                <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email"
-                    required />
-                <input type="password" class="form-control form-group" placeholder="Your Password *"
-                    formControlName="password" required />
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-danger btnSubmit form-group">Sign In</button>
+<div class="signForm"  [@formState]="formState">
+    <div class="container login-container">
+        <div class="row">
+            <form class="col-md-6 login-form-1" [formGroup]="signInForm" (ngSubmit)="signIn()">
+                <div class="formIn">
+                    <h3>Log In</h3>
+                    <input type="text" class="form-control form-group" placeholder="Your Email *"
+                        formControlName="email" required />
+                    <input type="password" class="form-control form-group" placeholder="Your Password *"
+                        formControlName="password" required />
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-danger btnSubmit form-group">Sign In</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-        <form class="col-md-6 login-form-2" [formGroup]="signUpForm" (ngSubmit)="signUp()">
-            <button type="button" class="close" (click)="closeSignForm()">&times;</button>
-            <div class="formIn">
-                <h3>Registered</h3>
-                <input type="text" class="form-control form-group" placeholder="Your Email *" formControlName="email"
-                    required />
-                <input type="password" class="form-control form-group" placeholder="Your Password *"
-                    formControlName="password" required />
-                <input type="password" class="form-control form-group" placeholder="Confirm Password *"
-                    formControlName="confirmPassword" required />
-                <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-dark btnSubmit form-group">Sign Up</button>
+            </form>
+            <form class="col-md-6 login-form-2" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+                <button type="button" class="close" (click)="closeSignForm()">&times;</button>
+                <div class="formIn">
+                    <h3>Registered</h3>
+                    <input type="text" class="form-control form-group" placeholder="Your Email *"
+                        formControlName="email" required />
+                    <input type="password" class="form-control form-group" placeholder="Your Password *"
+                        formControlName="password" required />
+                    <input type="password" class="form-control form-group" placeholder="Confirm Password *"
+                        formControlName="confirmPassword" required />
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-dark btnSubmit form-group">Sign Up</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
