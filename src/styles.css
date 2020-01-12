@@ -6,3 +6,8 @@
 @import '~angular-notifier/styles/types/type-info.css';
 @import '~angular-notifier/styles/types/type-success.css';
 @import '~angular-notifier/styles/types/type-warning.css';
+
+.borders{
+    border: none;
+    border-radius: 5rem;
+  }
