@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NotifierService } from "angular-notifier";
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { SignFormService } from '../services/signForm.service';
+import { signAnimations } from './signAnimations';
 
 import fire from '../config/firebase.js';
 import { Router } from '@angular/router';
@@ -11,19 +11,7 @@ import { Router } from '@angular/router';
   selector: 'app-sign',
   templateUrl: './sign.component.html',
   styleUrls: ['./sign.component.css'],
-  animations: [
-    trigger('formState', [
-      state('open', style({
-        display: 'block',
-        opacity: 1
-      })),
-      state('close', style({
-        display: 'none',
-        opacity: 0
-      })),
-      transition('open <=> close', animate('0.5s'))
-    ])
-  ]
+  animations: signAnimations
 })
 export class SignComponent implements OnInit {
   formState: string = 'close';
