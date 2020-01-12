@@ -1,9 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotifierService } from "angular-notifier";
 import { Router } from '@angular/router';
 import { SignFormService } from '../services/signForm.service';
 
 import fire from '../config/firebase.js';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,17 +13,19 @@ import fire from '../config/firebase.js';
 })
 export class NavbarComponent implements OnInit {
   isHere: boolean;
-  signFormState = 'close';
-  
-  constructor(private readonly notifier: NotifierService, private routerService: Router, private signFormService: SignFormService) { }
+
+  constructor(
+    private readonly notifier: NotifierService,
+    private routerService: Router,
+    private signFormService: SignFormService,
+    private userService: UserService
+  ) { }
 
   logOut() {
-    fire.auth()
-      .signOut()
-      .then(res => {
+    this.userService.logOut()
+      .then(_ => {
         this.notifier.notify('success', 'Successful!');
         this.routerService.navigate(['/']);
-        location.reload();
       })
       .catch(err => this.notifier.notify('warning', err.message));
   }
@@ -32,11 +35,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    fire.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.isHere = true;
-      }
-    })
+    this.userService.checkIsHere();
+    this.userService.isUserLogged.subscribe(isHere => this.isHere = isHere);
   }
 
 }
