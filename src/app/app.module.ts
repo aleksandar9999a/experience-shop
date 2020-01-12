@@ -17,6 +17,7 @@ import { ItemComponent } from './item/item.component';
 import { SignFormService } from './services/signForm.service';
 import { UserService } from './services/user.service';
 import { CreateFormAnimations } from './services/createFormAnimations.service';
+import { AdvertisementsService } from './services/advertisements.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,12 @@ import { CreateFormAnimations } from './services/createFormAnimations.service';
     NotifierModule,
     BrowserAnimationsModule
   ],
-  providers: [SignFormService, UserService, CreateFormAnimations],
+  providers: [
+    SignFormService,
+    UserService,
+    CreateFormAnimations,
+    AdvertisementsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
