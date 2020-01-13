@@ -30,7 +30,8 @@ export class CreateAdvertisementComponent implements OnInit {
       Validators.required
     ]),
     image: new FormControl(null, Validators.required),
-    price: new FormControl(null, Validators.required)
+    price: new FormControl(null, Validators.required),
+    type: new FormControl(null, Validators.required)
   })
 
   constructor(
@@ -41,9 +42,8 @@ export class CreateAdvertisementComponent implements OnInit {
 
   async createAdv() {
     if (this.createForm.valid) {
-      let { name, desc, price } = this.createForm.value;
-
-      this.advertisementsService.createAdv(name, desc, this.localImage, price)
+      let { name, desc, price, type } = this.createForm.value;
+      this.advertisementsService.createAdv(name, desc, this.localImage, price, type)
         .then(_ => {
           this.notifier.notify('success', 'Successful created!');
           this.createFormAnimationsService.toggle();
