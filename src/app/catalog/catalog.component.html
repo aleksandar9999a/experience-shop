@@ -1,9 +1,12 @@
 <app-jumbotron></app-jumbotron>
 
 <div class="container itemsContainer">
-    <h1 class="display-5">Advertisement for Sale</h1>
+    <div class="titleContainer">
+        <h1 class="display-5">Advertisement for Sale</h1>
+    </div>
+    
     <div *ngIf="items" class="row justify-content-md-center">
-        <div *ngFor="let item of items;let i=index" class="col-md-4">
+        <div *ngFor="let item of items;let i=index" class="col-md-4 items">
             <app-item [item]="item" *ngIf="i < 20"></app-item>
         </div>
     </div>
