@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class AdvertisementsService {
@@ -9,13 +10,17 @@ export class AdvertisementsService {
     constructor(
         private readonly notifier: NotifierService,
         private firabaseAuth: AngularFireAuth,
-        private firebaseStorage: AngularFireStorage
+        private firebaseStorage: AngularFireStorage,
+        private fireStore: AngularFirestore
     ) { }
 
-    async createAdv(name, desc, image, price) {
+    async createAdv(name, desc, image, price, type) {
         const user = this.firabaseAuth.auth.currentUser;
         let url = await this.uploadImage(image);
-        return 
+
+        const newItem = { creatorUid: user.uid, name, desc, image: url, price, type };
+
+        return await this.fireStore.collection('allItems').add(newItem)
     }
 
     async uploadImage(image) {
