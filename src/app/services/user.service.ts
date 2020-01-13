@@ -1,9 +1,13 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-
-import { fire } from './../config/firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable()
 export class UserService {
+
+    constructor(
+        private fireBaseAuth: AngularFireAuth
+    ) { }
+    
     @Output() isUserLogged: EventEmitter<boolean> = new EventEmitter();
 
     setIsHere(res, userIsHere) {
@@ -12,30 +16,33 @@ export class UserService {
     }
 
     logIn(email, password) {
-        return fire.auth()
+        return this.fireBaseAuth.auth
             .signInWithEmailAndPassword(email, password)
             .then(res => this.setIsHere(res, true));
     }
 
     createUser(email, password) {
-        return fire.auth()
+        return this.fireBaseAuth.auth
             .createUserWithEmailAndPassword(email, password)
             .then(res => this.setIsHere(res, true));
     }
 
     logOut() {
-        return fire.auth().signOut().then(res => this.setIsHere(res, false));
+        return this.fireBaseAuth.auth
+            .signOut()
+            .then(res => this.setIsHere(res, false));
     }
 
     checkIsHere() {
-        fire.auth().onAuthStateChanged(user => {
-            let isHere;
-            if (user) {
-                isHere = true;
-            } else {
-                isHere = false;
-            }
-            this.isUserLogged.emit(isHere);
-        });
+        this.fireBaseAuth.auth
+            .onAuthStateChanged(user => {
+                let isHere;
+                if (user) {
+                    isHere = true;
+                } else {
+                    isHere = false;
+                }
+                this.isUserLogged.emit(isHere);
+            });
     }
 }
