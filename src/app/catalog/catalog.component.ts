@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import fire from '../config/firebase.js';
+import { fire } from '../config/firebase.js';
 
 @Component({
   selector: 'app-catalog',
@@ -14,7 +14,7 @@ export class CatalogComponent implements OnInit {
   ngOnInit() {
     fire.database().ref('/items').once('value').then(snapshot => {
       this.items = Object.values(snapshot.val());
-      
+
     })
   }
 

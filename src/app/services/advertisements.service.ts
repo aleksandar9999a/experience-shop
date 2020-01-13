@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import fire from './../config/firebase';
+import { fire } from './../config/firebase';
 import { NotifierService } from 'angular-notifier';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class AdvertisementsService {
 
         return fire.database()
             .ref(`items/${user.uid}/${lastAdv}`)
-            .set({ name, desc, image: url, price, creatorUid: user.uid})
+            .set({ name, desc, image: url, price, creatorUid: user.uid })
             .catch(err => this.notifier.notify('warning', err.message));
     }
 

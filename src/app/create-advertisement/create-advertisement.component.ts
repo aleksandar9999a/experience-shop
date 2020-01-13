@@ -5,7 +5,6 @@ import { createAdvAnimations } from './create-advertisement.animations';
 import { CreateFormAnimations } from '../services/createFormAnimations.service';
 import { NotifierService } from 'angular-notifier';
 
-import fire from '../config/firebase';
 import { AdvertisementsService } from '../services/advertisements.service';
 
 @Component({

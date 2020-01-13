@@ -1,6 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
-import fire from './../config/firebase';
+import { fire } from './../config/firebase';
 
 @Injectable()
 export class UserService {
