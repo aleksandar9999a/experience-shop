@@ -23,6 +23,7 @@ import { SignFormService } from './services/signForm.service';
 import { UserService } from './services/user.service';
 import { CreateFormAnimations } from './services/createFormAnimations.service';
 import { AdvertisementsService } from './services/advertisements.service';
+import { CatalogService } from './services/catalog.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AdvertisementsService } from './services/advertisements.service';
     SignFormService,
     UserService,
     CreateFormAnimations,
-    AdvertisementsService
+    AdvertisementsService,
+    CatalogService
   ],
   bootstrap: [AppComponent]
 })
