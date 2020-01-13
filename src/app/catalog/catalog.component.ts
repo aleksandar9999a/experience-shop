@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { fire } from '../config/firebase.js';
-
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
@@ -12,10 +10,7 @@ export class CatalogComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    fire.database().ref('/items').once('value').then(snapshot => {
-      this.items = Object.values(snapshot.val());
-
-    })
+    
   }
 
 }
