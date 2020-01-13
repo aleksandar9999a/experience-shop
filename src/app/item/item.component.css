@@ -1,0 +1,15 @@
+.itemDiv{
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 2%;
+    width: 20rem;
+    opacity: 1;
+    padding: 1rem;
+}
+
+.itemDiv:hover {
+    opacity: 0.5;
+  }
+
+.itemImg{
+    height: 20rem;
+}
