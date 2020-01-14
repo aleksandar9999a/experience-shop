@@ -1,14 +1,26 @@
 <div class="detailsForm" [@detailsForm]="detailsFormState">
     <div class="container">
-        <div class="col-lg-5 mx-auto">
+        <div class="col-lg-10 mx-auto">
             <div class="card card-details my-5">
                 <div class="closeDiv">
                     <button type="button" class="close" (click)="close()">&times;</button>
-                    <h5 class="card-title title text-center">Details</h5>
+                    <h5 class="card-title title text-center">{{detailsData.name}}</h5>
                 </div>
                 <div class="card-body">
                     <form class="form-details">
-
+                        <div class="row">
+                            <div class="col-sm">
+                                <img  *ngIf="detailsData.image" src="{{detailsData.image}}" class="card-img itemImg" alt="...">
+                            </div>
+                            <div class="col-sm">
+                                <p class="card-text">{{detailsData.desc}}</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <button class="btn btn-primary btn-lg borders detailsButtons">Edit</button>
+                            <button class="btn btn-danger btn-lg borders detailsButtons">Delete</button>
+                            <button class="btn btn-success btn-lg borders detailsButtons">Add to Shopping Cart</button>
+                        </div>
                     </form>
                 </div>
             </div>

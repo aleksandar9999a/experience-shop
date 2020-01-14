@@ -12,8 +12,8 @@
     
     .card-details .card-title {
       margin-bottom: 1rem;
-      font-weight: 300;
-      font-size: 1.5rem;
+      font-weight: 500;
+      font-size: 3rem;
     }
     
     .card-details .card-body {
@@ -46,19 +46,24 @@
       border-radius: 2rem;
     }
     
-  .adImage{
-      width: 18rem;
-      margin: 2rem;
+  .itemImg{
+      width: 25rem;
   }
   
   .close{
-    margin: 5%;
+    margin: 3%;
   }
   
   .closeDiv{
-    height: 5%;
+    height: 3%;
   }
   
   .title{
-    margin: 15%;
+    padding: 6%;
+  }
+
+  .detailsButtons{
+    margin: 2%;
+    width: 23%;
+    height: 10%;
   }
