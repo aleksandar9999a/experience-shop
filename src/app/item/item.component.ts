@@ -12,8 +12,8 @@ export class ItemComponent implements OnInit {
     private detailsAnimationsService: DetailsFormAnimations
   ) { }
 
-  openDetails(){
-    this.detailsAnimationsService.toggle();
+  openDetails(data){
+    this.detailsAnimationsService.toggle(data);
   }
 
   ngOnInit() {
