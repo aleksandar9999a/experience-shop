@@ -24,6 +24,7 @@ import { UserService } from './services/user.service';
 import { CreateFormAnimations } from './services/createFormAnimations.service';
 import { AdvertisementsService } from './services/advertisements.service';
 import { CatalogService } from './services/catalog.service';
+import { ItemDetailsComponent } from './item-details/item-details.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CatalogService } from './services/catalog.service';
     CreateAdvertisementComponent,
     SignComponent,
     JumbotronComponent,
-    ItemComponent
+    ItemComponent,
+    ItemDetailsComponent
   ],
   imports: [
     BrowserModule,
