@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormAnimations } from '../services/item-details.animations.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-item-details',
@@ -10,14 +11,20 @@ import { DetailsFormAnimations } from '../services/item-details.animations.servi
 })
 export class ItemDetailsComponent implements OnInit {
   detailsFormState: string = 'close';
-  detailsData: object;
+  detailsData;
 
   constructor(
-    private detailsAnimationsService: DetailsFormAnimations
+    private detailsAnimationsService: DetailsFormAnimations,
+    private userService: UserService
   ) { }
 
   close() {
     this.detailsAnimationsService.toggle({});
+  }
+
+  isCreator(){
+    let currentUid = this.userService.getCurrentUid();
+    return currentUid === this.detailsData.creatorUid;
   }
 
   ngOnInit() {
