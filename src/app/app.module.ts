@@ -25,6 +25,7 @@ import { CreateFormAnimations } from './services/createFormAnimations.service';
 import { AdvertisementsService } from './services/advertisements.service';
 import { CatalogService } from './services/catalog.service';
 import { ItemDetailsComponent } from './item-details/item-details.component';
+import { DetailsFormAnimations } from './services/item-details.animations.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
     UserService,
     CreateFormAnimations,
     AdvertisementsService,
-    CatalogService
+    CatalogService,
+    DetailsFormAnimations
   ],
   bootstrap: [AppComponent]
 })
