@@ -33,6 +33,13 @@ export class UserService {
             .then(res => this.setIsHere(res, false));
     }
 
+    getCurrentUid(){
+        if (this.fireBaseAuth.auth.currentUser) {
+            return this.fireBaseAuth.auth.currentUser.uid
+        }
+        return null;
+    }
+
     checkIsHere() {
         this.fireBaseAuth.auth
             .onAuthStateChanged(user => {
