@@ -1,15 +1,18 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DetailsFormAnimations {
 
   isOpen = false;
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
+  @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
+  @Output() changeDataState: BehaviorSubject<Object> = new BehaviorSubject({});
 
-  toggle() {
+  toggle(data) {
     this.isOpen = !this.isOpen;
-    this.change.emit(this.isOpen);
+    this.changeFormState.emit(this.isOpen);
+    this.changeDataState.next(data);
   }
 
 }
