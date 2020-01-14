@@ -10,17 +10,19 @@ import { DetailsFormAnimations } from '../services/item-details.animations.servi
 })
 export class ItemDetailsComponent implements OnInit {
   detailsFormState: string = 'close';
+  detailsData: object;
 
   constructor(
     private detailsAnimationsService: DetailsFormAnimations
   ) { }
 
   close() {
-    this.detailsAnimationsService.toggle();
+    this.detailsAnimationsService.toggle({});
   }
 
   ngOnInit() {
-    this.detailsAnimationsService.change.subscribe(isOpen => isOpen ? this.detailsFormState = 'open' : this.detailsFormState = 'close')
+    this.detailsAnimationsService.changeFormState.subscribe(isOpen => isOpen ? this.detailsFormState = 'open' : this.detailsFormState = 'close');
+    this.detailsAnimationsService.changeDataState.subscribe(data => this.detailsData = data);
   }
 
 }
