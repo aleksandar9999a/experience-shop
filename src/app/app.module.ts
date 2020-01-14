@@ -26,6 +26,7 @@ import { AdvertisementsService } from './services/advertisements.service';
 import { CatalogService } from './services/catalog.service';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { DetailsFormAnimations } from './services/item-details.animations.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DetailsFormAnimations } from './services/item-details.animations.servic
     SignComponent,
     JumbotronComponent,
     ItemComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
