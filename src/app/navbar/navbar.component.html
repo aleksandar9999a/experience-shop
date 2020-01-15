@@ -11,7 +11,7 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/catalog">Catalog</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf="isHere" class="nav-item">
                 <a class="nav-link" (click)="openCreateForm()">Create Advertisement</a>
             </li>
         </ul>
