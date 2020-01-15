@@ -16,7 +16,7 @@
                                 <p class="card-text">{{detailsData.desc}}</p>
                             </div>
                         </div>
-                        <div class="row d-flex justify-content-center">
+                        <div *ngIf="isHere" class="row d-flex justify-content-center">
                             <button *ngIf="isCreator()" class="btn btn-primary btn-lg borders detailsButtons">Edit</button>
                             <button *ngIf="isCreator()" class="btn btn-danger btn-lg borders detailsButtons">Delete</button>
                             <button class="btn btn-success btn-lg borders detailsButtons">Add to Shopping Cart</button>
