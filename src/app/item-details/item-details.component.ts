@@ -12,6 +12,7 @@ import { UserService } from '../services/user.service';
 export class ItemDetailsComponent implements OnInit {
   detailsFormState: string = 'close';
   detailsData;
+  isHere = false;
 
   constructor(
     private detailsAnimationsService: DetailsFormAnimations,
@@ -30,6 +31,7 @@ export class ItemDetailsComponent implements OnInit {
   ngOnInit() {
     this.detailsAnimationsService.changeFormState.subscribe(isOpen => isOpen ? this.detailsFormState = 'open' : this.detailsFormState = 'close');
     this.detailsAnimationsService.changeDataState.subscribe(data => this.detailsData = data);
+    this.userService.isUserLogged.subscribe(isHere => this.isHere = isHere);
   }
 
 }
