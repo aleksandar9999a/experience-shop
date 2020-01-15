@@ -4,7 +4,7 @@
             <div class="card card-create my-5">
                 <div class="closeDiv">
                     <button type="button" class="close" (click)="close()">&times;</button>
-                    <h5 class="card-title title text-center">Create Advertisement</h5>
+                    <h5 class="card-title title text-center">Create Аnnouncement</h5>
                 </div>
                 <div class="card-body">
                     <form class="form-create" [formGroup]="createForm" (ngSubmit)="createAdv()">
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-label-group">
-                            <label>Choose advertisement image</label>
+                            <label>Choose announcement image</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input " id="fileGroup"
                                     (change)="handleChange($event)" formControlName="image">
