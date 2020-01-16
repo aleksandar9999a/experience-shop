@@ -3,6 +3,7 @@ import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from '../services/user.service';
+import { Item } from '../interfaces/item.interface';
 
 @Component({
   selector: 'app-shopping-card',
@@ -12,7 +13,8 @@ import { UserService } from '../services/user.service';
 })
 export class ShoppingCardComponent implements OnInit {
   formState: string = 'close';
-  itemsForBuy;
+  itemsForBuy: Array<Item>;
+  fullPrice: Number;
 
   constructor(
     private shoppingCardService: ShoppingCardService
@@ -24,7 +26,13 @@ export class ShoppingCardComponent implements OnInit {
 
   async ngOnInit() {
     this.shoppingCardService.changeFormState.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close');
-    this.shoppingCardService.getShoppingItems.subscribe(items => this.itemsForBuy = items);
+    this.shoppingCardService.getShoppingItems.subscribe(items => {
+      this.itemsForBuy = items;
+      this.fullPrice = 0;
+      if (this.itemsForBuy.length > 0) {
+        this.fullPrice = this.itemsForBuy.reduce((r, x) => r+=Number(x.price), 0);
+      }
+    });
    
   }
 
