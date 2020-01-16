@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogService } from '../services/catalog.service';
+import { Item } from '../interfaces/item.interface';
 
 @Component({
   selector: 'app-catalog',
@@ -7,7 +8,7 @@ import { CatalogService } from '../services/catalog.service';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
-  items = [];
+  items: Array<Item>;
   constructor(
     private catalogService: CatalogService
   ) { }

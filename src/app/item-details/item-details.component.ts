@@ -4,6 +4,7 @@ import { DetailsFormAnimations } from '../services/item-details.service';
 import { UserService } from '../services/user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotifierService } from 'angular-notifier';
+import { Item } from '../interfaces/item.interface';
 
 @Component({
   selector: 'app-item-details',
@@ -13,7 +14,7 @@ import { NotifierService } from 'angular-notifier';
 })
 export class ItemDetailsComponent implements OnInit {
   detailsFormState: string = 'close';
-  detailsData;
+  detailsData: Item;
   isHere = false;
 
   constructor(
@@ -24,7 +25,7 @@ export class ItemDetailsComponent implements OnInit {
   ) { }
 
   close() {
-    this.detailsAnimationsService.toggle({});
+    this.detailsAnimationsService.toggle();
   }
 
   isCreator() {
