@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { detailsFormAnimations } from './item-details.animations';
-import { DetailsFormAnimations } from '../services/item-details.animations.service';
+import { DetailsFormAnimations } from '../services/item-details.service';
 import { UserService } from '../services/user.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-item-details',
@@ -16,16 +18,33 @@ export class ItemDetailsComponent implements OnInit {
 
   constructor(
     private detailsAnimationsService: DetailsFormAnimations,
-    private userService: UserService
+    private readonly notifier: NotifierService, 
+    private userService: UserService,
+    private fireStore: AngularFirestore
   ) { }
 
   close() {
     this.detailsAnimationsService.toggle({});
   }
 
-  isCreator(){
+  isCreator() {
     let currentUid = this.userService.getCurrentUid();
     return currentUid === this.detailsData.creatorUid;
+  }
+
+  addToShoppingCard() {
+    let currentUid = this.userService.getCurrentUid();
+
+    this.fireStore
+      .collection('userdata')
+      .doc(currentUid)
+      .collection('shoppingCard')
+      .add(this.detailsData)
+      .then(_ => {
+        this.notifier.notify('success', 'Successful!');
+        this.close();
+      })
+      .catch(err => this.notifier.notify('warning', err.message));
   }
 
   ngOnInit() {
