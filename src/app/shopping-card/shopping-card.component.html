@@ -8,7 +8,13 @@
                 </div>
                 <div class="card-body">
                     <form class="form-details">
-                       
+                        <div *ngFor="let item of itemsForBuy;let i=index" class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action ">
+                                <img src="{{item.image}}" class="listImage">
+                                {{item.name}}
+                                <span class="float-right font-weight-bold">{{item.price}}lv.</span>
+                            </button>
+                          </div>
                     </form>
                 </div>
             </div>
