@@ -8,7 +8,7 @@ export class UserService {
         private fireBaseAuth: AngularFireAuth
     ) { }
     
-    @Output() isUserLogged: EventEmitter<boolean> = new EventEmitter();
+    @Output() isUserLogged = new EventEmitter<boolean>();
 
     setIsHere(res, userIsHere) {
         this.isUserLogged.emit(userIsHere);
