@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-shopping-card',
@@ -10,6 +12,7 @@ import { formAnimations } from './shopping-card.animations';
 })
 export class ShoppingCardComponent implements OnInit {
   formState: string = 'close';
+  itemsForBuy;
 
   constructor(
     private shoppingCardService: ShoppingCardService
@@ -19,8 +22,10 @@ export class ShoppingCardComponent implements OnInit {
     this.shoppingCardService.toggle({});
   }
 
-  ngOnInit() {
-    this.shoppingCardService.changeFormState.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close')
+  async ngOnInit() {
+    this.shoppingCardService.changeFormState.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close');
+    this.shoppingCardService.getShoppingItems.subscribe(items => this.itemsForBuy = items);
+   
   }
 
 }
