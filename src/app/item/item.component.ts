@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DetailsFormAnimations } from '../services/item-details.animations.service';
+import { DetailsFormAnimations } from '../services/item-details.service';
 
 @Component({
   selector: 'app-item',
