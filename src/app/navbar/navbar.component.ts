@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { SignFormService } from '../services/signForm.service';
 import { UserService } from '../services/user.service';
 import { CreateFormAnimations } from '../services/createFormAnimations.service';
+import { ShoppingCardService } from '../services/shopping-card.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,8 @@ export class NavbarComponent implements OnInit {
     private routerService: Router,
     private signFormService: SignFormService,
     private userService: UserService,
-    private createFormAnimationsService: CreateFormAnimations
+    private createFormAnimationsService: CreateFormAnimations,
+    private shoppingCardService: ShoppingCardService
   ) { }
 
   logOut() {
@@ -37,6 +39,10 @@ export class NavbarComponent implements OnInit {
 
   openCreateForm() {
     this.createFormAnimationsService.toggle();
+  }
+
+  openShoppingCard(){
+    this.shoppingCardService.toggle({});
   }
 
   ngOnInit() {
