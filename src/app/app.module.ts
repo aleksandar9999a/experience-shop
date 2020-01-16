@@ -25,7 +25,7 @@ import { CreateFormAnimations } from './services/createFormAnimations.service';
 import { AdvertisementsService } from './services/advertisements.service';
 import { CatalogService } from './services/catalog.service';
 import { ItemDetailsComponent } from './item-details/item-details.component';
-import { DetailsFormAnimations } from './services/item-details.animations.service';
+import { DetailsFormAnimations } from './services/item-details.service';
 import { FooterComponent } from './footer/footer.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
 import { ShoppingCardService } from './services/shopping-card.service';
