@@ -27,6 +27,7 @@ import { CatalogService } from './services/catalog.service';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { DetailsFormAnimations } from './services/item-details.animations.service';
 import { FooterComponent } from './footer/footer.component';
+import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FooterComponent } from './footer/footer.component';
     JumbotronComponent,
     ItemComponent,
     ItemDetailsComponent,
-    FooterComponent
+    FooterComponent,
+    ShoppingCardComponent
   ],
   imports: [
     BrowserModule,
