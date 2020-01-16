@@ -28,6 +28,7 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { DetailsFormAnimations } from './services/item-details.animations.service';
 import { FooterComponent } from './footer/footer.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
+import { ShoppingCardService } from './services/shopping-card.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
     CreateFormAnimations,
     AdvertisementsService,
     CatalogService,
-    DetailsFormAnimations
+    DetailsFormAnimations,
+    ShoppingCardService
   ],
   bootstrap: [AppComponent]
 })
