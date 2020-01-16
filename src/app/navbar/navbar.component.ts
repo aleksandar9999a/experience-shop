@@ -13,7 +13,7 @@ import { ShoppingCardService } from '../services/shopping-card.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isHere: boolean;
+  isHere: boolean = false;
 
   constructor(
     private readonly notifier: NotifierService,
@@ -46,7 +46,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.checkIsHere();
     this.userService.isUserLogged.subscribe(isHere => this.isHere = isHere);
   }
 
