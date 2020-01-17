@@ -8,17 +8,32 @@ import { Item } from '../interfaces/item.interface';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
-  items: Array<Item>;
+  items: Array<Item> = [];
+  isItems: boolean = false;
+
   constructor(
     private catalogService: CatalogService
   ) { }
 
+  setNoItems(){
+    this.isItems = false;
+    this.items = [];
+  }
+
+  loadItems(allItems) {
+    if (allItems) {
+      if (allItems.length > 0) {
+        this.items = allItems;
+        this.isItems = true;
+      } else {
+        this.setNoItems();
+      }
+    }
+  }
+
   ngOnInit() {
     this.catalogService.getAllItems();
-    this.catalogService.allItems.subscribe(newItems => {
-      this.items = newItems;
-    })
-    
+    this.catalogService.allItems.subscribe(this.loadItems.bind(this));
   }
 
 }
