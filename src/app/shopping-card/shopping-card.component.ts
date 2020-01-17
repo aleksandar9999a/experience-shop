@@ -4,6 +4,7 @@ import { formAnimations } from './shopping-card.animations';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from '../services/user.service';
 import { Item } from '../interfaces/item.interface';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-shopping-card',
@@ -13,37 +14,52 @@ import { Item } from '../interfaces/item.interface';
 })
 export class ShoppingCardComponent implements OnInit {
   formState: string = 'close';
-  itemsForBuy: Array<Item>;
+  itemsForBuy: Array<Item> = [];
   fullPrice = 0;
+  isHaveProducts: boolean = false;
 
   constructor(
-    private shoppingCardService: ShoppingCardService
+    private shoppingCardService: ShoppingCardService,
+    private readonly notifier: NotifierService
   ) { }
 
-  clearShoppingCard(){
+  clearShoppingCard() {
+    this.setEmptyList();
     this.shoppingCardService.clear();
     this.shoppingCardService.loadShoppingList();
+  }
+
+  buyAllProducts() {
+    this.clearShoppingCard();
+    this.notifier.notify('success', 'You successful buy all products in your card!');
+    this.close();
   }
 
   close() {
     this.shoppingCardService.toggle();
   }
 
-  setEmptyList(){
+  setEmptyList() {
     this.itemsForBuy = [];
     this.fullPrice = 0;
+    this.isHaveProducts = false;
   }
 
-  addItemToList(item){
+  addItemToList(item) {
     const currItem = item.data();
     this.itemsForBuy.push(currItem);
     this.fullPrice += Number(currItem.price);
   }
 
-  loadItems(items){
+  loadItems(items) {
     if (items) {
+      if (items.docs.length > 0) {
+        this.setEmptyList();
+        this.isHaveProducts = true;
+        items.forEach(this.addItemToList.bind(this))
+      }
+    } else {
       this.setEmptyList();
-      items.forEach(this.addItemToList.bind(this))
     }
   }
 
