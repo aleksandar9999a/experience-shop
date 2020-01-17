@@ -10,7 +10,6 @@ export class ShoppingCardService {
     private userService: UserService,
   ) { }
 
-  //shoppingCardRef = this.fireStore.collection('userdata').doc(this.uid).collection('shoppingCard');
   isOpen: boolean = false;
   shoppingList;
 
