@@ -3,7 +3,11 @@
         <h1 class="display-5">Аnnouncements</h1>
     </div>
     
-    <div *ngIf="items" class="row justify-content-md-center">
+    <div *ngIf="!isItems" class="my-5">
+        <h4  class="display-3">Sorry, We don't have announcements...</h4>
+    </div>
+    
+    <div *ngIf="isItems" class="row justify-content-md-center">
         <div *ngFor="let item of items;let i=index" class="col-md-4 items">
             <app-item [item]="item" *ngIf="i < 20"></app-item>
         </div>
