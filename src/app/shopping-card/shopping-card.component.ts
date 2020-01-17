@@ -14,26 +14,42 @@ import { Item } from '../interfaces/item.interface';
 export class ShoppingCardComponent implements OnInit {
   formState: string = 'close';
   itemsForBuy: Array<Item>;
-  fullPrice: Number;
+  fullPrice = 0;
 
   constructor(
     private shoppingCardService: ShoppingCardService
   ) { }
 
+  clearShoppingCard(){
+    this.shoppingCardService.clear();
+    this.shoppingCardService.loadShoppingList();
+  }
+
   close() {
-    this.shoppingCardService.toggle({});
+    this.shoppingCardService.toggle();
+  }
+
+  setEmptyList(){
+    this.itemsForBuy = [];
+    this.fullPrice = 0;
+  }
+
+  addItemToList(item){
+    const currItem = item.data();
+    this.itemsForBuy.push(currItem);
+    this.fullPrice += Number(currItem.price);
+  }
+
+  loadItems(items){
+    if (items) {
+      this.setEmptyList();
+      items.forEach(this.addItemToList.bind(this))
+    }
   }
 
   async ngOnInit() {
     this.shoppingCardService.changeFormState.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close');
-    this.shoppingCardService.getShoppingItems.subscribe(items => {
-      this.itemsForBuy = items;
-      this.fullPrice = 0;
-      if (this.itemsForBuy.length > 0) {
-        this.fullPrice = this.itemsForBuy.reduce((r, x) => r+=Number(x.price), 0);
-      }
-    });
-   
+    this.shoppingCardService.getShoppingItems.subscribe(this.loadItems.bind(this));
   }
 
 }
