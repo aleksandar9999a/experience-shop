@@ -5,36 +5,43 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ShoppingCardService {
-  isOpen = false;
-
   constructor(
     private fireStore: AngularFirestore,
     private userService: UserService,
-  ){}
+  ) { }
+
+  //shoppingCardRef = this.fireStore.collection('userdata').doc(this.uid).collection('shoppingCard');
+  isOpen: boolean = false;
+  shoppingList;
 
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
-  @Output() getShoppingItems = new BehaviorSubject([]);
+  @Output() getShoppingItems = new BehaviorSubject(this.shoppingList);
 
-  async loadShoppingList(){
+  async getShoppingCardRef(uid){
+    return await this.fireStore.collection('userdata').doc(uid).collection('shoppingCard');
+  }
+
+  async loadShoppingList() {
     const uid = await this.userService.getCurrentUid();
-    
-    this.fireStore
-      .collection('userdata')
-      .doc(uid)
-      .collection('shoppingCard')
-      .get()
+    const ref = await this.getShoppingCardRef(uid);
+  
+    ref.get()
       .subscribe(shots => {
-        let newItems = []
-
-        shots.forEach(function (x) {
-          newItems.push(x.data())
-        })
-
-        this.getShoppingItems.next(newItems);
+        this.shoppingList = shots;
+        this.getShoppingItems.next(this.shoppingList);
       });
   }
 
-  toggle(data) {
+  async clear() {
+    const uid = await this.userService.getCurrentUid();
+    const ref = await this.getShoppingCardRef(uid);
+
+    this.shoppingList.forEach(x => {
+      ref.doc(x.id).delete();
+    })
+  }
+
+  toggle() {
     this.isOpen = !this.isOpen;
     this.changeFormState.emit(this.isOpen);
 
