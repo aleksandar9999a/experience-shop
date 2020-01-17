@@ -6,6 +6,7 @@ import { CreateFormAnimations } from '../services/createFormAnimations.service';
 import { NotifierService } from 'angular-notifier';
 
 import { AdvertisementsService } from '../services/advertisements.service';
+import { CatalogService } from '../services/catalog.service';
 
 @Component({
   selector: 'app-create-advertisement',
@@ -37,7 +38,8 @@ export class CreateAdvertisementComponent implements OnInit {
   constructor(
     private createFormAnimationsService: CreateFormAnimations,
     private readonly notifier: NotifierService,
-    private advertisementsService: AdvertisementsService
+    private advertisementsService: AdvertisementsService,
+    private catalogService: CatalogService
   ) { }
 
   async createAdv() {
@@ -47,6 +49,7 @@ export class CreateAdvertisementComponent implements OnInit {
         .then(_ => {
           this.notifier.notify('success', 'Successful created!');
           this.createFormAnimationsService.toggle();
+          this.catalogService.getAllItems();
         });
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!')
