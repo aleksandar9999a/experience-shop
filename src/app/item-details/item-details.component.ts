@@ -22,7 +22,6 @@ export class ItemDetailsComponent implements OnInit {
     private detailsFormService: DetailsFormService,
     private readonly notifier: NotifierService,
     private userService: UserService,
-    private fireStore: AngularFirestore,
     private catalogService: CatalogService
   ) { }
 
