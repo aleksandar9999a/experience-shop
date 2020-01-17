@@ -23,8 +23,8 @@ export class EditFormComponent implements OnInit {
       Validators.minLength(4)
     ]),
     desc: new FormControl(null, [
-      Validators.minLength(8),
-      Validators.maxLength(30),
+      Validators.minLength(6),
+      Validators.maxLength(1000),
       Validators.required
     ]),
     image: new FormControl(null, Validators.required),
