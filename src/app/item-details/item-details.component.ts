@@ -5,6 +5,7 @@ import { NotifierService } from 'angular-notifier';
 import { Item } from '../interfaces/item.interface';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
+import { CatalogService } from '../services/catalog.service';
 
 @Component({
   selector: 'app-item-details',
@@ -18,14 +19,25 @@ export class ItemDetailsComponent implements OnInit {
   isHere = false;
 
   constructor(
-    private detailsAnimationsService: DetailsFormService,
-    private readonly notifier: NotifierService, 
+    private detailsFormService: DetailsFormService,
+    private readonly notifier: NotifierService,
     private userService: UserService,
-    private fireStore: AngularFirestore
+    private fireStore: AngularFirestore,
+    private catalogService: CatalogService
   ) { }
 
   close() {
-    this.detailsAnimationsService.toggle();
+    this.detailsFormService.toggle();
+  }
+
+  deleteItem() {
+    this.detailsFormService.delete(this.detailsData.id)
+      .then(_ => {
+        this.notifier.notify('success', 'Successful delete your announcement!');
+        this.close();
+        this.catalogService.getAllItems();
+      })
+      .catch(err => this.notifier.notify('warning', err.message))
   }
 
   isCreator() {
@@ -49,8 +61,8 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.detailsAnimationsService.changeFormState.subscribe(isOpen => isOpen ? this.detailsFormState = 'open' : this.detailsFormState = 'close');
-    this.detailsAnimationsService.changeDataState.subscribe(data => this.detailsData = data);
+    this.detailsFormService.changeFormState.subscribe(isOpen => isOpen ? this.detailsFormState = 'open' : this.detailsFormState = 'close');
+    this.detailsFormService.changeDataState.subscribe(data => this.detailsData = data);
     this.userService.isUserLogged.subscribe(isHere => this.isHere = isHere);
   }
 
