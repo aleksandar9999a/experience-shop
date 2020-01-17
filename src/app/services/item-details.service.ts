@@ -23,13 +23,22 @@ export class DetailsFormService {
     this.changeDataState.next(data || {});
   }
 
-  async getShoppingCardRef(uid){
+  async getShoppingCardRef(uid) {
     return await this.fireStore.collection('userdata').doc(uid).collection('shoppingCard');
   }
 
-  async delete(id){
+  async delete(id) {
     const uid = await this.userService.getCurrentUid();
     return this.fireStore.collection('allItems').doc(id).delete();
+  }
+
+  async addItemToShoppingCard(item) {
+    const uid = await this.userService.getCurrentUid();
+    return this.fireStore
+      .collection('userdata')
+      .doc(uid)
+      .collection('shoppingCard')
+      .add(item)
   }
 
 }
