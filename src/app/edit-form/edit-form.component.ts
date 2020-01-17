@@ -3,6 +3,8 @@ import { editFormAnimations } from './edit-form.animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditFormService } from '../services/edit-form.service';
 import { Item } from '../interfaces/item.interface';
+import { NotifierService } from 'angular-notifier';
+import { CatalogService } from '../services/catalog.service';
 
 @Component({
   selector: 'app-edit-form',
@@ -13,7 +15,7 @@ import { Item } from '../interfaces/item.interface';
 export class EditFormComponent implements OnInit {
   editFormState: string = 'close';
   currentData: Item;
-  defaultImage = '';
+  defaultImage = null;
   localImageUrl = null;
   localImage = null;
 
@@ -33,7 +35,9 @@ export class EditFormComponent implements OnInit {
   })
 
   constructor(
-    private editFormService: EditFormService
+    private editFormService: EditFormService,
+    private readonly notifier: NotifierService,
+    private catalogService: CatalogService
   ) { }
 
   handleChange(e) {
@@ -45,11 +49,19 @@ export class EditFormComponent implements OnInit {
     }
   }
 
-  editItem(){
-
+  editItem() {
+    const { name, desc, price, type } = this.editForm.value;
+    const image = this.localImage || this.defaultImage;
+    this.editFormService.edit(this.currentData.id, name, desc, image, price, type)
+      .then(_ => {
+        this.notifier.notify('success', 'Successful edited!');
+        this.close();
+        this.catalogService.getAllItems();
+      })
+      .catch(err => this.notifier.notify('warning', err.message));
   }
 
-  loadData(data){
+  loadData(data) {
     this.currentData = data;
     this.defaultImage = data.image;
     this.editForm.patchValue({
@@ -59,7 +71,7 @@ export class EditFormComponent implements OnInit {
       type: data.type
     });
   }
-  
+
   close() {
     this.editFormService.toggle();
   }
