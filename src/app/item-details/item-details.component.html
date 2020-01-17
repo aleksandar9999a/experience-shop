@@ -18,7 +18,7 @@
                         </div>
                         <div *ngIf="isHere" class="row d-flex justify-content-center">
                             <button *ngIf="isCreator()" class="btn btn-primary btn-lg borders detailsButtons">Edit</button>
-                            <button *ngIf="isCreator()" class="btn btn-danger btn-lg borders detailsButtons">Delete</button>
+                            <button *ngIf="isCreator()" class="btn btn-danger btn-lg borders detailsButtons" (click)="deleteItem()">Delete</button>
                             <button *ngIf="!isCreator()" class="btn btn-success btn-lg borders detailsButtons" (click)="addToShoppingCard()">Add to Shopping Cart</button>
                         </div>
                     </form>
