@@ -1,1 +1,63 @@
-<p>edit-form works!</p>
+<div class="editForm" [@editForm]="editFormState">
+    <div class="container">
+        <div class="col-lg-5 mx-auto">
+            <div class="card card-edit my-5">
+                <div class="closeDiv">
+                    <button type="button" class="close" (click)="close()">&times;</button>
+                    <h5 class="card-title title text-center">Edit Аnnouncement</h5>
+                </div>
+                <div class="card-body">
+                    <form class="form-edit" [formGroup]="editForm" (ngSubmit)="editItem()">
+
+                        <div class="form-label-group">
+                            <img src="{{localImageUrl || defaultImage}}" class="rounded mx-auto d-block adImage"
+                                alt="edImage" />
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Аnnouncement name</label>
+                            <input type="text" class="form-control" placeholder="Аnnouncement name"
+                                formControlName="name">
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Description</label>
+                            <input type="text" class="form-control" placeholder="Description" formControlName="desc">
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Price</label>
+                            <input type="text" class="form-control" placeholder="Price" formControlName="price">
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Choose type of announcement</label>
+                            <div class="input-group mb-3">
+                                <select class="custom-select customInput" id="selectGroup" formControlName="type">
+                                    <option value="phone">Phone</option>
+                                    <option value="pc">PC</option>
+                                    <option value="laptop">Laptop</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <label class="input-group-text customInput" for="selectGroup">Options</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Choose announcement image</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input " id="fileGroup"
+                                    (change)="handleChange($event)" formControlName="image">
+                                <label class="custom-file-label customInput" for="fileGroup">Choose file</label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase borders"
+                            type="submit">Edit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
