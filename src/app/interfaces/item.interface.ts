@@ -5,4 +5,5 @@ export interface Item {
     type: string;
     creatorUid: string;
     image: string;
+    id: string;
 }
