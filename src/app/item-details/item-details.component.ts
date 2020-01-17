@@ -46,13 +46,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   addToShoppingCard() {
-    let currentUid = this.userService.getCurrentUid();
-
-    this.fireStore
-      .collection('userdata')
-      .doc(currentUid)
-      .collection('shoppingCard')
-      .add(this.detailsData)
+    this.detailsFormService.addItemToShoppingCard(this.detailsData)
       .then(_ => {
         this.notifier.notify('success', 'Successful!');
         this.close();
