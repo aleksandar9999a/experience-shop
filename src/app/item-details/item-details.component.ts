@@ -6,6 +6,7 @@ import { Item } from '../interfaces/item.interface';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
 import { CatalogService } from '../services/catalog.service';
+import { EditFormService } from '../services/edit-form.service';
 
 @Component({
   selector: 'app-item-details',
@@ -22,11 +23,17 @@ export class ItemDetailsComponent implements OnInit {
     private detailsFormService: DetailsFormService,
     private readonly notifier: NotifierService,
     private userService: UserService,
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private editFormService: EditFormService
   ) { }
 
   close() {
     this.detailsFormService.toggle();
+  }
+
+  openEditForm(){
+    this.editFormService.toggle(this.detailsData);
+    this.close();
   }
 
   deleteItem() {
