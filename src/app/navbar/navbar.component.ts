@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openShoppingCard(){
-    this.shoppingCardService.toggle({});
+    this.shoppingCardService.toggle();
   }
 
   ngOnInit() {
