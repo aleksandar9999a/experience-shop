@@ -28,7 +28,6 @@ export class DetailsFormService {
   }
 
   async delete(id) {
-    const uid = await this.userService.getCurrentUid();
     return this.fireStore.collection('allItems').doc(id).delete();
   }
 
