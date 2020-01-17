@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Item } from '../interfaces/item.interface';
 
 @Injectable()
-export class DetailsFormAnimations {
+export class DetailsFormService {
 
   isOpen = false;
 

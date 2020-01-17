@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { detailsFormAnimations } from './item-details.animations';
-import { DetailsFormAnimations } from '../services/item-details.service';
 import { UserService } from '../services/user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotifierService } from 'angular-notifier';
 import { Item } from '../interfaces/item.interface';
+import { detailsFormAnimations } from './item-details.animations';
+import { DetailsFormService } from '../services/item-details.service';
 
 @Component({
   selector: 'app-item-details',
@@ -18,7 +18,7 @@ export class ItemDetailsComponent implements OnInit {
   isHere = false;
 
   constructor(
-    private detailsAnimationsService: DetailsFormAnimations,
+    private detailsAnimationsService: DetailsFormService,
     private readonly notifier: NotifierService, 
     private userService: UserService,
     private fireStore: AngularFirestore
