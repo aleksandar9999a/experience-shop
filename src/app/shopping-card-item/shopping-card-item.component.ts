@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Item } from '../interfaces/item.interface';
+import { DetailsFormService } from '../services/item-details.service';
 
 @Component({
   selector: 'app-shopping-card-item',
@@ -8,7 +9,13 @@ import { Item } from '../interfaces/item.interface';
 })
 export class ShoppingCardItemComponent implements OnInit {
   @Input('item') item: Item;
-  constructor() { }
+  constructor(
+    private detailsAnimationsService: DetailsFormService
+  ) { }
+
+  openItemDetails(){
+    this.detailsAnimationsService.toggle(this.item);
+  }
 
   ngOnInit() {
   }
