@@ -1,16 +1,19 @@
-.listImage{
-    height: 3rem;
-    padding-right: 2%;
+.listItem{
+    opacity: 100%;
 }
 
-.infoDivElements{
-    padding-right: 2%;
+.listItem:hover{
+    opacity: 70%;
+}
+
+.listImage{
+    height: 3rem;
 }
 
 .price{
-    padding-left: 65%;
+    margin-top: 11%;
 }
 
-.closeItem{
-    padding: 1%;
+.removeBtn{
+    padding: 19%;
 }

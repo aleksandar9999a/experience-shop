@@ -1,10 +1,12 @@
-<a class="list-group-item list-group-item-action clearfix">
-    <div class="d-inline" (click)="openItemDetails()">
+<div class="row d-flex list-group-item list-group-item-action listItem">
+    <div class="col firstCol" (click)="openItemDetails()">
         <img src="{{item.image}}" class="listImage d-inline">
-        <p class="d-inline infoDivElements">{{item.name}}</p>
-        <p class="d-inline price">Price: <span>{{item.price}}lv.</span></p>
+        <p class="d-inline">{{item.name}}</p>
     </div>
-    <div class="d-inline">
-        <button class="close closeItem d-inline" (click)="deleteItem()">&times;</button>
+    <div class="col-md-auto">
+        <p class="price font-weight-bold">Price: <span>{{item.price}}lv.</span></p>
     </div>
-</a>
+    <div class="col col-lg-1" (click)="deleteItem()">
+        <button class="close removeBtn">&times;</button>
+    </div>
+</div>
