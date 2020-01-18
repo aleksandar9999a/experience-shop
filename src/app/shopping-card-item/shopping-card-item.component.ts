@@ -24,7 +24,7 @@ export class ShoppingCardItemComponent implements OnInit {
   deleteItem() {
     this.shoppingCardService.deleteItem(this.item.newId)
       .then(_ => {
-        this.notifier.notify('success', 'You successful detele product from your shopping card!');
+        this.notifier.notify('success', 'You successful delete product from your shopping card!');
         this.shoppingCardService.loadShoppingList();
       })
       .catch(err => this.notifier.notify('warning', err.message));
