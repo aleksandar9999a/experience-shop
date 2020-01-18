@@ -47,6 +47,7 @@ export class ShoppingCardComponent implements OnInit {
 
   addItemToList(item) {
     const currItem = item.data();
+    currItem.newId = item.id;
     this.itemsForBuy.push(currItem);
     this.fullPrice += Number(currItem.price);
   }
@@ -57,6 +58,8 @@ export class ShoppingCardComponent implements OnInit {
         this.setEmptyList();
         this.isHaveProducts = true;
         items.forEach(this.addItemToList.bind(this))
+      }else{
+        this.setEmptyList();
       }
     } else {
       this.setEmptyList();
