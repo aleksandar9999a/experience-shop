@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Item } from '../interfaces/item.interface';
 import { DetailsFormService } from '../services/item-details.service';
+import { ShoppingCardService } from '../services/shopping-card.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-shopping-card-item',
@@ -10,11 +12,22 @@ import { DetailsFormService } from '../services/item-details.service';
 export class ShoppingCardItemComponent implements OnInit {
   @Input('item') item: Item;
   constructor(
-    private detailsAnimationsService: DetailsFormService
+    private detailsAnimationsService: DetailsFormService,
+    private shoppingCardService: ShoppingCardService,
+    private readonly notifier: NotifierService
   ) { }
 
-  openItemDetails(){
+  openItemDetails() {
     this.detailsAnimationsService.toggle(this.item);
+  }
+
+  deleteItem() {
+    this.shoppingCardService.deleteItem(this.item.newId)
+      .then(_ => {
+        this.notifier.notify('success', 'You successful detele product from your shopping card!');
+        this.shoppingCardService.loadShoppingList();
+      })
+      .catch(err => this.notifier.notify('warning', err.message));
   }
 
   ngOnInit() {
