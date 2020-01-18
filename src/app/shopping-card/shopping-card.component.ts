@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { UserService } from '../services/user.service';
 import { Item } from '../interfaces/item.interface';
 import { NotifierService } from 'angular-notifier';
 
