@@ -16,14 +16,14 @@ export class ShoppingCardService {
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
   @Output() getShoppingItems = new BehaviorSubject(this.shoppingList);
 
-  async getShoppingCardRef(uid){
+  async getShoppingCardRef(uid) {
     return await this.fireStore.collection('userdata').doc(uid).collection('shoppingCard');
   }
 
   async loadShoppingList() {
     const uid = await this.userService.getCurrentUid();
     const ref = await this.getShoppingCardRef(uid);
-  
+
     ref.get()
       .subscribe(shots => {
         this.shoppingList = shots;
@@ -40,13 +40,17 @@ export class ShoppingCardService {
     })
   }
 
+  async deleteItem(id) {
+    const uid = await this.userService.getCurrentUid();
+    const ref = await this.getShoppingCardRef(uid);
+
+    return await ref.doc(id).delete();
+  }
+
   toggle() {
     this.isOpen = !this.isOpen;
     this.changeFormState.emit(this.isOpen);
-
-    if (this.isOpen) {
-      this.loadShoppingList();
-    }
+    this.loadShoppingList();
   }
 
 }
