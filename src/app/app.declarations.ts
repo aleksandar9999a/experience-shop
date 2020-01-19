@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { ShoppingCardItemComponent } from './shopping-card-item/shopping-card-item.component';
+import { SearchComponent } from './search/search.component';
 
 
 export const declarations = [
@@ -28,5 +29,6 @@ export const declarations = [
     FooterComponent,
     ShoppingCardComponent,
     ShoppingCardItemComponent,
-    EditFormComponent
+    EditFormComponent,
+    SearchComponent
   ]
