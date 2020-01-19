@@ -1,41 +1,60 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NotifierService } from 'angular-notifier';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
 
     constructor(
-        private fireBaseAuth: AngularFireAuth
+        private fireBaseAuth: AngularFireAuth,
+        private readonly notifier: NotifierService,
+        private routerService: Router
     ) { }
-    
-    @Output() isUserLogged = new EventEmitter<boolean>();
 
-    setIsHere(res, userIsHere) {
+    @Output() isUserLogged: EventEmitter<boolean> = new EventEmitter();
+
+    private setIsHere(res, userIsHere: boolean) {
         this.isUserLogged.emit(userIsHere);
         return res;
     }
 
-    logIn(email, password) {
-        return this.fireBaseAuth.auth
+    logIn(email: string, password: string) {
+        this.fireBaseAuth.auth
             .signInWithEmailAndPassword(email, password)
-            .then(res => this.setIsHere(res, true));
+            .then(res => this.setIsHere(res, true))
+            .then(_ => {
+                this.notifier.notify('success', 'Successful!');
+                this.routerService.navigate(['/catalog'])
+            })
+            .catch(err => this.notifier.notify('warning', err.message));
     }
 
-    createUser(email, password) {
-        return this.fireBaseAuth.auth
+    createUser(email: string, password: string) {
+        this.fireBaseAuth.auth
             .createUserWithEmailAndPassword(email, password)
-            .then(res => this.setIsHere(res, true));
+            .then(res => this.setIsHere(res, true))
+            .then(_ => {
+                this.notifier.notify('success', 'Successful!');
+                this.routerService.navigate(['/catalog'])
+            })
+            .catch(err => this.notifier.notify('warning', err.message));
     }
 
     logOut() {
-        return this.fireBaseAuth.auth
+        this.fireBaseAuth.auth
             .signOut()
-            .then(res => this.setIsHere(res, false));
+            .then(res => this.setIsHere(res, false))
+            .then(_ => {
+                this.notifier.notify('success', 'Successful!');
+                this.routerService.navigate(['/']);
+            })
+            .catch(err => this.notifier.notify('warning', err.message));
     }
 
-    getCurrentUid(){
+    getCurrentUid() {
         if (this.fireBaseAuth.auth.currentUser) {
-            return this.fireBaseAuth.auth.currentUser.uid
+            return this.fireBaseAuth.auth.currentUser.uid;
         }
         return null;
     }
@@ -43,13 +62,11 @@ export class UserService {
     checkIsHere() {
         this.fireBaseAuth.auth
             .onAuthStateChanged(user => {
-                let isHere;
                 if (user) {
-                    isHere = true;
+                    this.isUserLogged.emit(true);
                 } else {
-                    isHere = false;
+                    this.isUserLogged.emit(false);
                 }
-                this.isUserLogged.emit(isHere);
             });
     }
 }
