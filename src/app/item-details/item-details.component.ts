@@ -5,6 +5,7 @@ import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
 import { CatalogService } from '../services/catalog.service';
 import { EditFormService } from '../services/edit-form.service';
+import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
   selector: 'app-item-details',
@@ -21,7 +22,8 @@ export class ItemDetailsComponent implements OnInit {
     private detailsFormService: DetailsFormService,
     private userService: UserService,
     private catalogService: CatalogService,
-    private editFormService: EditFormService
+    private editFormService: EditFormService,
+    private announcementsService: AnnouncementsService
   ) { }
 
   close() {
@@ -34,7 +36,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   deleteItem() {
-    this.detailsFormService.delete(this.detailsData.id)
+    this.announcementsService.delete(this.detailsData.id)
     this.close();
     this.catalogService.getAllItems();
   }
@@ -45,7 +47,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   addToShoppingCard() {
-    this.detailsFormService.addItemToShoppingCard(this.detailsData)
+    this.announcementsService.addItemToShoppingCard(this.detailsData)
     this.close();
   }
 
