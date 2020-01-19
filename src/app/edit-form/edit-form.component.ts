@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditFormService } from '../services/edit-form.service';
 import { Item } from '../interfaces/item.interface';
 import { CatalogService } from '../services/catalog.service';
+import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
   selector: 'app-edit-form',
@@ -35,7 +36,8 @@ export class EditFormComponent implements OnInit {
 
   constructor(
     private editFormService: EditFormService,
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private announcementsService: AnnouncementsService
   ) { }
 
   handleChange(e) {
@@ -50,7 +52,7 @@ export class EditFormComponent implements OnInit {
   editItem() {
     const { name, desc, price, type } = this.editForm.value;
     const image = this.localImage || this.defaultImage;
-    this.editFormService.edit(this.currentData.id, name, desc, image, price, type);
+    this.announcementsService.edit(this.currentData.id, name, desc, image, price, type);
     this.editFormService.toggle();
     this.catalogService.getAllItems();
   }
