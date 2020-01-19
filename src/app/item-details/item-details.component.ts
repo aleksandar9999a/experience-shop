@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { NotifierService } from 'angular-notifier';
 import { Item } from '../interfaces/item.interface';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
@@ -21,7 +19,6 @@ export class ItemDetailsComponent implements OnInit {
 
   constructor(
     private detailsFormService: DetailsFormService,
-    private readonly notifier: NotifierService,
     private userService: UserService,
     private catalogService: CatalogService,
     private editFormService: EditFormService
@@ -31,19 +28,15 @@ export class ItemDetailsComponent implements OnInit {
     this.detailsFormService.toggle();
   }
 
-  openEditForm(){
+  openEditForm() {
     this.editFormService.toggle(this.detailsData);
     this.close();
   }
 
   deleteItem() {
     this.detailsFormService.delete(this.detailsData.id)
-      .then(_ => {
-        this.notifier.notify('success', 'Successful delete your announcement!');
-        this.close();
-        this.catalogService.getAllItems();
-      })
-      .catch(err => this.notifier.notify('warning', err.message))
+    this.close();
+    this.catalogService.getAllItems();
   }
 
   isCreator() {
@@ -53,11 +46,7 @@ export class ItemDetailsComponent implements OnInit {
 
   addToShoppingCard() {
     this.detailsFormService.addItemToShoppingCard(this.detailsData)
-      .then(_ => {
-        this.notifier.notify('success', 'Successful!');
-        this.close();
-      })
-      .catch(err => this.notifier.notify('warning', err.message));
+    this.close();
   }
 
   ngOnInit() {
