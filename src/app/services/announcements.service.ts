@@ -3,6 +3,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { UserService } from './user.service';
+import { Item } from '../interfaces/item.interface';
 
 @Injectable()
 export class AnnouncementsService {
@@ -12,6 +14,7 @@ export class AnnouncementsService {
         private firebaseStorage: AngularFireStorage,
         private firabaseAuth: AngularFireAuth,
         private fireStore: AngularFirestore,
+        private userService: UserService
     ) { }
 
     private async uploadImage(image: any) {
@@ -51,5 +54,22 @@ export class AnnouncementsService {
             })
             .catch(err => this.notifier.notify('warning', err.message));
     }
+
+    delete(id: string) {
+        this.fireStore.collection('allItems').doc(id).delete()
+            .then(_ => {
+                this.notifier.notify('success', 'Successful delete your announcement!');
+            })
+            .catch(err => this.notifier.notify('warning', err.message))
+    }
+
+    addItemToShoppingCard(item: Item) {
+        const uid = this.userService.getCurrentUid();
+        this.fireStore.collection('userdata').doc(uid).collection('shoppingCard').add(item)
+          .then(_ => {
+            this.notifier.notify('success', 'Successful!');
+          })
+          .catch(err => this.notifier.notify('warning', err.message));
+      }
 
 }
