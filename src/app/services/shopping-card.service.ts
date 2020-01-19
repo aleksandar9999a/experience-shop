@@ -1,50 +1,48 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ShoppingCardService {
+  isOpen: boolean;
+  shoppingList;
+
   constructor(
     private fireStore: AngularFirestore,
     private userService: UserService,
   ) { }
 
-  isOpen: boolean = false;
-  shoppingList;
-
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
-  @Output() getShoppingItems = new BehaviorSubject(this.shoppingList);
+  @Output() getShoppingItems: EventEmitter<Object> = new EventEmitter();
 
-  async getShoppingCardRef(uid) {
-    return await this.fireStore.collection('userdata').doc(uid).collection('shoppingCard');
+  private getShoppingCardRef(uid: string) {
+    return this.fireStore.collection('userdata').doc(uid).collection('shoppingCard');
   }
 
-  async loadShoppingList() {
-    const uid = await this.userService.getCurrentUid();
-    const ref = await this.getShoppingCardRef(uid);
+  loadShoppingList() {
+    const uid = this.userService.getCurrentUid();
+    const ref = this.getShoppingCardRef(uid);
 
     ref.get()
       .subscribe(shots => {
         this.shoppingList = shots;
-        this.getShoppingItems.next(this.shoppingList);
+        this.getShoppingItems.emit(this.shoppingList);
       });
   }
 
-  async clear() {
-    const uid = await this.userService.getCurrentUid();
-    const ref = await this.getShoppingCardRef(uid);
+  clear() {
+    const uid = this.userService.getCurrentUid();
+    const ref = this.getShoppingCardRef(uid);
 
-    this.shoppingList.forEach(x => {
+    this.shoppingList.forEach((x: any) => {
       ref.doc(x.id).delete();
     })
   }
 
-  async deleteItem(id) {
-    const uid = await this.userService.getCurrentUid();
-    const ref = await this.getShoppingCardRef(uid);
-
-    return await ref.doc(id).delete();
+  deleteItem(id: string) {
+    const uid = this.userService.getCurrentUid();
+    const ref = this.getShoppingCardRef(uid);
+    return ref.doc(id).delete();
   }
 
   toggle() {
