@@ -12,7 +12,7 @@ export class CatalogService {
 
     @Output() allItems = new BehaviorSubject(this.items);
 
-    createItemsElements(item){
+    private createItemsElements(item: any){
         let newItem = item.data();
         newItem.id = item.id;
         this.items.push(newItem);

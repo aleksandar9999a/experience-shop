@@ -8,19 +8,19 @@ import { Item } from '../interfaces/item.interface';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
-  items: Array<Item> = [];
-  isItems: boolean = false;
+  items: Array<Item>;
+  isItems: boolean;
 
   constructor(
     private catalogService: CatalogService
   ) { }
 
-  setNoItems(){
+  private setNoItems(){
     this.isItems = false;
     this.items = [];
   }
 
-  loadItems(allItems) {
+  private loadItems(allItems: Array<Item>) {
     if (allItems) {
       if (allItems.length > 0) {
         this.items = allItems;
