@@ -28,33 +28,22 @@ export class SignComponent implements OnInit {
   })
 
   constructor(
-    private readonly notifier: NotifierService, 
-    private routerService: Router, 
+    private readonly notifier: NotifierService,
     private signFormService: SignFormService,
     private userService: UserService
     ) { }
 
   signIn() {
     const { email, password } = this.signInForm.value;
-    this.userService.logIn(email, password)
-      .then(_ => {
-        this.closeSignForm();
-        this.notifier.notify('success', 'Successful!');
-        this.routerService.navigate(['/catalog'])
-      })
-      .catch(err => this.notifier.notify('warning', err.message));
+    this.userService.logIn(email, password);
+    this.closeSignForm();
   }
 
   signUp() {
     const { email, password, confirmPassword } = this.signUpForm.value;
     if (password === confirmPassword) {
-      this.userService.createUser(email, password)
-      .then(_ => {
-        this.closeSignForm();
-        this.notifier.notify('success', 'Successful!');
-        this.routerService.navigate(['/catalog'])
-      })
-      .catch(err => this.notifier.notify('warning', err.message));
+      this.userService.createUser(email, password);
+      this.closeSignForm();
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
     }

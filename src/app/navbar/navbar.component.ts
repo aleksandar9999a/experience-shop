@@ -13,11 +13,9 @@ import { ShoppingCardService } from '../services/shopping-card.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isHere: boolean = false;
+  isHere: boolean;
 
   constructor(
-    private readonly notifier: NotifierService,
-    private routerService: Router,
     private signFormService: SignFormService,
     private userService: UserService,
     private createFormAnimationsService: CreateFormAnimations,
@@ -25,12 +23,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   logOut() {
-    this.userService.logOut()
-      .then(_ => {
-        this.notifier.notify('success', 'Successful!');
-        this.routerService.navigate(['/']);
-      })
-      .catch(err => this.notifier.notify('warning', err.message));
+    this.userService.logOut();
   }
 
   openSignForm() {
