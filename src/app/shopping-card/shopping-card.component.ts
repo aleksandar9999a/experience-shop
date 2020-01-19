@@ -12,9 +12,9 @@ import { NotifierService } from 'angular-notifier';
 })
 export class ShoppingCardComponent implements OnInit {
   formState: string = 'close';
-  itemsForBuy: Array<Item> = [];
-  fullPrice = 0;
-  isHaveProducts: boolean = false;
+  itemsForBuy: Array<Item>;
+  fullPrice: number;
+  isHaveProducts: boolean;
 
   constructor(
     private shoppingCardService: ShoppingCardService,
@@ -37,20 +37,20 @@ export class ShoppingCardComponent implements OnInit {
     this.shoppingCardService.toggle();
   }
 
-  setEmptyList() {
+  private setEmptyList() {
     this.itemsForBuy = [];
     this.fullPrice = 0;
     this.isHaveProducts = false;
   }
 
-  addItemToList(item) {
+  private addItemToList(item: any) {
     const currItem = item.data();
     currItem.newId = item.id;
     this.itemsForBuy.push(currItem);
     this.fullPrice += Number(currItem.price);
   }
 
-  loadItems(items) {
+  private loadItems(items: any) {
     if (items) {
       if (items.docs.length > 0) {
         this.setEmptyList();
@@ -64,8 +64,16 @@ export class ShoppingCardComponent implements OnInit {
     }
   }
 
+  private setIsOpen(currState: boolean){
+    if (currState) {
+      this.formState = 'open';
+    }else{
+      this.formState = 'close';
+    }
+  }
+
   async ngOnInit() {
-    this.shoppingCardService.changeFormState.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close');
+    this.shoppingCardService.changeFormState.subscribe(this.setIsOpen.bind(this));
     this.shoppingCardService.getShoppingItems.subscribe(this.loadItems.bind(this));
   }
 
