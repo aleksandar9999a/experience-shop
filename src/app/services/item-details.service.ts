@@ -3,15 +3,17 @@ import { BehaviorSubject } from 'rxjs';
 import { Item } from '../interfaces/item.interface';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable()
 export class DetailsFormService {
 
-  isOpen = false;
+  isOpen: boolean = false;
 
   constructor(
     private fireStore: AngularFirestore,
-    private userService: UserService
+    private userService: UserService,
+    private readonly notifier: NotifierService
   ) { }
 
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
@@ -23,21 +25,21 @@ export class DetailsFormService {
     this.changeDataState.next(data || {});
   }
 
-  async getShoppingCardRef(uid) {
-    return await this.fireStore.collection('userdata').doc(uid).collection('shoppingCard');
+  delete(id: string) {
+    this.fireStore.collection('allItems').doc(id).delete()
+      .then(_ => {
+        this.notifier.notify('success', 'Successful delete your announcement!');
+      })
+      .catch(err => this.notifier.notify('warning', err.message))
   }
 
-  async delete(id) {
-    return this.fireStore.collection('allItems').doc(id).delete();
-  }
-
-  async addItemToShoppingCard(item) {
-    const uid = await this.userService.getCurrentUid();
-    return this.fireStore
-      .collection('userdata')
-      .doc(uid)
-      .collection('shoppingCard')
-      .add(item)
+  addItemToShoppingCard(item: Item) {
+    const uid = this.userService.getCurrentUid();
+    this.fireStore.collection('userdata').doc(uid).collection('shoppingCard').add(item)
+      .then(_ => {
+        this.notifier.notify('success', 'Successful!');
+      })
+      .catch(err => this.notifier.notify('warning', err.message));
   }
 
 }
