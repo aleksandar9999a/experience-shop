@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { createAdvAnimations } from './create-advertisement.animations';
-import { CreateFormAnimations } from '../services/createFormAnimations.service';
+import { CreateFormService } from '../services/createForm.service';
 import { NotifierService } from 'angular-notifier';
 
-import { AdvertisementsService } from '../services/advertisements.service';
 import { CatalogService } from '../services/catalog.service';
+import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
   selector: 'app-create-advertisement',
@@ -36,21 +36,18 @@ export class CreateAdvertisementComponent implements OnInit {
   })
 
   constructor(
-    private createFormAnimationsService: CreateFormAnimations,
+    private createFormService: CreateFormService,
     private readonly notifier: NotifierService,
-    private advertisementsService: AdvertisementsService,
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private announcementsService: AnnouncementsService
   ) { }
 
-  async createAdv() {
+  createAdv() {
     if (this.createForm.valid) {
       let { name, desc, price, type } = this.createForm.value;
-      this.advertisementsService.createAdv(name, desc, this.localImage, price, type)
-        .then(_ => {
-          this.notifier.notify('success', 'Successful created!');
-          this.createFormAnimationsService.toggle();
-          this.catalogService.getAllItems();
-        });
+      this.announcementsService.createAdv(name, desc, this.localImage, price, type);
+      this.createFormService.toggle();
+      this.catalogService.getAllItems();
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!')
     }
@@ -66,15 +63,19 @@ export class CreateAdvertisementComponent implements OnInit {
   }
 
   close() {
-    this.createFormAnimationsService.toggle();
-    this.createForm.value.name = null;
-    this.createForm.value.desc = null;
-    this.createForm.value.image = null;
-    this.localImage = null;
+    this.createFormService.toggle();
+  }
+
+  private setIsOpen(currState: boolean){
+    if (currState) {
+      this.createFormState = 'open';
+    }else{
+      this.createFormState = 'close';
+    }
   }
 
   ngOnInit() {
-    this.createFormAnimationsService.change.subscribe(isOpen => isOpen ? this.createFormState = 'open' : this.createFormState = 'close');
+    this.createFormService.change.subscribe(this.setIsOpen.bind(this));
   }
 
 }
