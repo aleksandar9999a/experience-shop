@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { searchFormAnimations } from './search.animations';
 import { SearchFormService } from '../services/search.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -10,6 +11,14 @@ import { SearchFormService } from '../services/search.service';
 })
 export class SearchComponent implements OnInit {
   formState: string = 'close';
+
+  searchForm = new FormGroup({
+    text: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(4)
+    ])
+  })
+
   constructor(
     private searchFormService: SearchFormService
   ) { }
@@ -24,6 +33,11 @@ export class SearchComponent implements OnInit {
     }else{
       this.formState = 'close';
     }
+  }
+
+  search(){
+    console.log(this.searchForm);
+    
   }
 
   ngOnInit() {
