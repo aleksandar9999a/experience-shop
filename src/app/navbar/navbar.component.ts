@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { SignFormService } from '../services/signForm.service';
 import { UserService } from '../services/user.service';
@@ -17,7 +17,8 @@ export class NavbarComponent implements OnInit {
     private signFormService: SignFormService,
     private userService: UserService,
     private createFormService: CreateFormService,
-    private shoppingCardService: ShoppingCardService
+    private shoppingCardService: ShoppingCardService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   logOut() {
@@ -38,6 +39,7 @@ export class NavbarComponent implements OnInit {
 
   setIsHere(currState: boolean){
     this.isHere = currState;
+    this.changeDetectorRef.detectChanges();
   }
 
   ngOnInit() {
