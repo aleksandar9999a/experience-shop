@@ -64,6 +64,12 @@ export class CreateAdvertisementComponent implements OnInit {
 
   close() {
     this.createFormService.toggle();
+    this.createForm.patchValue({
+      name: null,
+      desc: null,
+      price: null,
+      type: null
+    });
   }
 
   private setIsOpen(currState: boolean){
