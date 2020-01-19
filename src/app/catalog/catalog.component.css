@@ -8,3 +8,8 @@
 .items{
     padding: 1rem;
 }
+
+.loadingSpinner{
+    width: 100%;
+    height: 100%;
+}
