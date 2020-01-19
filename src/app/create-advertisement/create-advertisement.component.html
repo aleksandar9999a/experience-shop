@@ -22,7 +22,8 @@
 
                         <div class="form-label-group">
                             <label>Description</label>
-                            <input type="text" class="form-control" placeholder="Description" formControlName="desc">
+                            <textarea class="form-control" placeholder="Description" formControlName="desc" [rows]="rows" (keyup)="setTextAreaRow($event)"></textarea>
+                            <blockquote class="blockquote">Use Ctrl+ArrowUp or Ctrl+ArrowDown to Resize TextArea</blockquote>
                         </div>
 
                         <div class="form-label-group">
