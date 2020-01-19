@@ -49,10 +49,26 @@ export class ItemDetailsComponent implements OnInit {
     this.close();
   }
 
+  private setIsOpen(currState: boolean){
+    if (currState) {
+      this.detailsFormState = 'open';
+    }else{
+      this.detailsFormState = 'close';
+    }
+  }
+
+  private setData(data: Item){
+    this.detailsData = data;
+  }
+
+  private setIsHere(currState: boolean){
+    this.isHere = currState;
+  }
+
   ngOnInit() {
-    this.detailsFormService.changeFormState.subscribe(isOpen => isOpen ? this.detailsFormState = 'open' : this.detailsFormState = 'close');
-    this.detailsFormService.changeDataState.subscribe(data => this.detailsData = data);
-    this.userService.isUserLogged.subscribe(isHere => this.isHere = isHere);
+    this.detailsFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
+    this.detailsFormService.changeDataState.subscribe(this.setData.bind(this));
+    this.userService.isUserLogged.subscribe(this.setIsHere.bind(this));
   }
 
 }
