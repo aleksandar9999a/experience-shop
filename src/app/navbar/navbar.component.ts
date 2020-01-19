@@ -36,8 +36,13 @@ export class NavbarComponent implements OnInit {
     this.shoppingCardService.toggle();
   }
 
+  setIsHere(currState: boolean){
+    this.isHere = currState;
+  }
+
   ngOnInit() {
-    this.userService.isUserLogged.subscribe(isHere => this.isHere = isHere);
+    this.userService.checkIsHere()
+    this.userService.isUserLogged.subscribe(this.setIsHere.bind(this));
   }
 
 }
