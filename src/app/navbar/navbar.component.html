@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" routerLink="/">Experience Shop</a>
 
-    <button class="navbar-toggler" type="button" (click)="changeNavbarState()" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <button class="navbar-toggler" type="button" (click)="changeNavbarState()" data-toggle="collapse"
+        data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -11,7 +12,13 @@
                 <button class="btn btn-outline-primary borders navbarBtn" routerLink="/catalog">Catalog</button>
             </li>
             <li *ngIf="isHere" class="nav-item">
-                <button class="btn btn-outline-primary borders navbarBtn" (click)="openCreateForm()">Create Аnnouncement</button>
+                <button class="btn btn-outline-primary borders navbarBtn" (click)="openCreateForm()">Create
+                    Аnnouncement</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-outline-info borders">
+                    <span class="fa fa-search" aria-hidden="true"></span>
+                </button>
             </li>
         </ul>
 
@@ -20,7 +27,8 @@
                 <button class="btn btn-outline-primary borders navbarBtn">Profile</button>
             </li>
             <li class="nav-item">
-                <button (click)="openShoppingCard()" class="btn btn-outline-primary borders navbarBtn">Shopping Card</button>
+                <button (click)="openShoppingCard()" class="btn btn-outline-primary borders navbarBtn">Shopping
+                    Card</button>
             </li>
             <li class="nav-item">
                 <button (click)="logOut()" class="btn btn-outline-danger borders">Log Out</button>
