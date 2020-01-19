@@ -19,6 +19,7 @@ export class CreateAdvertisementComponent implements OnInit {
   defaultImage = '../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
+  rows: number = 4;
 
   createForm = new FormGroup({
     name: new FormControl(null, [
@@ -70,6 +71,17 @@ export class CreateAdvertisementComponent implements OnInit {
       price: null,
       type: null
     });
+  }
+
+  setTextAreaRow(e){
+    const key = e.key;
+    const ctrl = e.ctrlKey;
+    
+    if (key === 'ArrowUp' && ctrl) {
+      this.rows++;
+    }else if (key === 'ArrowDown' && ctrl){
+      this.rows--;
+    }
   }
 
   private setIsOpen(currState: boolean){

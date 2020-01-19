@@ -18,6 +18,7 @@ export class EditFormComponent implements OnInit {
   defaultImage = null;
   localImageUrl = null;
   localImage = null;
+  rows: number = 4;
 
   editForm = new FormGroup({
     name: new FormControl(null, [
@@ -70,6 +71,17 @@ export class EditFormComponent implements OnInit {
 
   close() {
     this.editFormService.toggle();
+  }
+
+  setTextAreaRow(e){
+    const key = e.key;
+    const ctrl = e.ctrlKey;
+    
+    if (key === 'ArrowUp' && ctrl) {
+      this.rows++;
+    }else if (key === 'ArrowDown' && ctrl){
+      this.rows--;
+    }
   }
 
   private setIsOpen(currState: boolean){
