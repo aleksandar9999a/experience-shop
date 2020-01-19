@@ -48,7 +48,8 @@
     }
     
   .itemImg{
-      width: 25rem;
+      width: 70%;
+      height: auto;
   }
   
   .close{
@@ -66,5 +67,4 @@
   .detailsButtons{
     margin: 2%;
     width: 23%;
-    height: 10%;
   }
