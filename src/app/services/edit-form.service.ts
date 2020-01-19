@@ -1,9 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { NotifierService } from 'angular-notifier';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Item } from '../interfaces/item.interface';
 
 @Injectable()
