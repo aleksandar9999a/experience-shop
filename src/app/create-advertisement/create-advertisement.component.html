@@ -33,13 +33,13 @@
                         <div class="form-label-group">
                             <label>Choose type of announcement</label>
                             <div class="input-group mb-3">
-                                <select class="custom-select customInput" id="selectGroup" formControlName="type">
+                                <select class="custom-select customInput" id="selectCreateType" formControlName="type">
                                     <option value="phone">Phone</option>
                                     <option value="pc">PC</option>
                                     <option value="laptop">Laptop</option>
                                 </select>
                                 <div class="input-group-append">
-                                    <label class="input-group-text customInput" for="selectGroup">Options</label>
+                                    <label class="input-group-text customInput" for="selectCreateType">Options</label>
                                 </div>
                             </div>
                         </div>
@@ -47,9 +47,9 @@
                         <div class="form-label-group">
                             <label>Choose announcement image</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input " id="fileGroup"
+                                <input type="file" class="custom-file-input " id="selectCreateImg"
                                     (change)="handleChange($event)" formControlName="image">
-                                <label class="custom-file-label customInput" for="fileGroup">Choose file</label>
+                                <label class="custom-file-label customInput" for="selectCreateImg">Choose file</label>
                             </div>
                         </div>
 
