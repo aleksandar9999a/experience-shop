@@ -1,19 +1,19 @@
 import { SignFormService } from './services/signForm.service';
 import { UserService } from './services/user.service';
-import { CreateFormAnimations } from './services/createFormAnimations.service';
-import { AdvertisementsService } from './services/advertisements.service';
+import { CreateFormService } from './services/createForm.service';
 import { CatalogService } from './services/catalog.service';
 import { DetailsFormService } from './services/item-details.service';
 import { ShoppingCardService } from './services/shopping-card.service';
 import { EditFormService } from './services/edit-form.service';
+import { AnnouncementsService } from './services/announcements.service';
 
 export const providers = [
     SignFormService,
     UserService,
-    CreateFormAnimations,
-    AdvertisementsService,
+    CreateFormService,
     CatalogService,
     DetailsFormService,
     ShoppingCardService,
-    EditFormService
+    EditFormService,
+    AnnouncementsService
   ]
