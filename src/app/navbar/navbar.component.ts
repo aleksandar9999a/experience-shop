@@ -12,6 +12,8 @@ import { ShoppingCardService } from '../services/shopping-card.service';
 })
 export class NavbarComponent implements OnInit {
   isHere: boolean;
+  navBarIsOpen: string = 'hide';
+
 
   constructor(
     private signFormService: SignFormService,
@@ -23,6 +25,14 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.userService.logOut();
+  }
+
+  changeNavbarState(){
+    if (this.navBarIsOpen === 'show') {
+      this.navBarIsOpen = 'hide';
+    }else{
+      this.navBarIsOpen = 'show';
+    }
   }
 
   openSignForm() {
