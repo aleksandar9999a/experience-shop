@@ -4,6 +4,7 @@ import { SignFormService } from '../services/signForm.service';
 import { UserService } from '../services/user.service';
 import { CreateFormService } from '../services/createForm.service';
 import { ShoppingCardService } from '../services/shopping-card.service';
+import { SearchFormService } from '../services/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +21,7 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private createFormService: CreateFormService,
     private shoppingCardService: ShoppingCardService,
+    private searchFormService: SearchFormService,
     private zone: NgZone
   ) { }
 
@@ -45,6 +47,10 @@ export class NavbarComponent implements OnInit {
 
   openShoppingCard(){
     this.shoppingCardService.toggle();
+  }
+
+  openSearchForm(){
+    this.searchFormService.toggle();
   }
 
   setIsHere(currState: boolean){
