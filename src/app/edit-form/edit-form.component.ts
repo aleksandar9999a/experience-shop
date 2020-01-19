@@ -3,7 +3,6 @@ import { editFormAnimations } from './edit-form.animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditFormService } from '../services/edit-form.service';
 import { Item } from '../interfaces/item.interface';
-import { NotifierService } from 'angular-notifier';
 import { CatalogService } from '../services/catalog.service';
 
 @Component({
@@ -36,7 +35,6 @@ export class EditFormComponent implements OnInit {
 
   constructor(
     private editFormService: EditFormService,
-    private readonly notifier: NotifierService,
     private catalogService: CatalogService
   ) { }
 
@@ -52,16 +50,12 @@ export class EditFormComponent implements OnInit {
   editItem() {
     const { name, desc, price, type } = this.editForm.value;
     const image = this.localImage || this.defaultImage;
-    this.editFormService.edit(this.currentData.id, name, desc, image, price, type)
-      .then(_ => {
-        this.notifier.notify('success', 'Successful edited!');
-        this.close();
-        this.catalogService.getAllItems();
-      })
-      .catch(err => this.notifier.notify('warning', err.message));
+    this.editFormService.edit(this.currentData.id, name, desc, image, price, type);
+    this.editFormService.toggle();
+    this.catalogService.getAllItems();
   }
 
-  loadData(data) {
+  private loadData(data: Item) {
     this.currentData = data;
     this.defaultImage = data.image;
     this.editForm.patchValue({
@@ -76,8 +70,16 @@ export class EditFormComponent implements OnInit {
     this.editFormService.toggle();
   }
 
+  private setIsOpen(currState: boolean){
+    if (currState) {
+      this.editFormState = 'open';
+    }else{
+      this.editFormState = 'close';
+    }
+  }
+
   ngOnInit() {
-    this.editFormService.change.subscribe(isOpen => isOpen ? this.editFormState = 'open' : this.editFormState = 'close');
+    this.editFormService.change.subscribe(this.setIsOpen.bind(this));
     this.editFormService.changeData.subscribe(this.loadData.bind(this));
   }
 
