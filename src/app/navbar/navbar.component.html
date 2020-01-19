@@ -1,12 +1,11 @@
-<nav class="navbar sticky-top navbar-expand-lg  navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" routerLink="/">Experience Shop</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="changeNavbarState()" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" [ngClass]="navBarIsOpen" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" routerLink="/catalog">Catalog</a>
@@ -27,7 +26,7 @@
                 <button (click)="logOut()" class="btn btn-outline-danger borders">Log Out</button>
             </li>
         </ul>
-        
+
         <button *ngIf="!isHere" class="btn btn-outline-primary borders" (click)="openSignForm()">SignUp/SignIn</button>
     </div>
 </nav>
