@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifierService } from "angular-notifier";
-import { Router } from '@angular/router';
 
 import { SignFormService } from '../services/signForm.service';
 import { UserService } from '../services/user.service';
-import { CreateFormAnimations } from '../services/createFormAnimations.service';
+import { CreateFormService } from '../services/createForm.service';
 import { ShoppingCardService } from '../services/shopping-card.service';
 
 @Component({
@@ -18,7 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private signFormService: SignFormService,
     private userService: UserService,
-    private createFormAnimationsService: CreateFormAnimations,
+    private createFormService: CreateFormService,
     private shoppingCardService: ShoppingCardService
   ) { }
 
@@ -31,7 +29,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openCreateForm() {
-    this.createFormAnimationsService.toggle();
+    this.createFormService.toggle();
   }
 
   openShoppingCard(){
