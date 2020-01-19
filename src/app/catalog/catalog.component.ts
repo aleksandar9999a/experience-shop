@@ -10,6 +10,7 @@ import { Item } from '../interfaces/item.interface';
 export class CatalogComponent implements OnInit {
   items: Array<Item>;
   isItems: boolean;
+  isLoading: boolean = true;
 
   constructor(
     private catalogService: CatalogService
@@ -21,12 +22,15 @@ export class CatalogComponent implements OnInit {
   }
 
   private loadItems(allItems: Array<Item>) {
+
     if (allItems) {
       if (allItems.length > 0) {
         this.items = allItems;
         this.isItems = true;
+        this.isLoading = false;
       } else {
         this.setNoItems();
+        this.isLoading = false;
       }
     }
   }
