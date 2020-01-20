@@ -2,7 +2,7 @@ export interface Item {
     name: string;
     desc: string;
     price: number;
-    type: string;
+    category: string;
     creatorUid: string;
     image: string;
     id: string;
