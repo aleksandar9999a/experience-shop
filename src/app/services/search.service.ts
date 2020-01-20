@@ -1,15 +1,22 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class SearchFormService {
-  isOpen = false;
 
-  constructor() { }
+  constructor(
+    private firestore: AngularFirestore
+  ) { }
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-    this.change.emit(this.isOpen);
+  search(text: string){
+    console.log();
+    this.firestore
+    .collection('allItems', ref => ref.where('name', '>=', text))
+    .get()
+    .subscribe(shots => {
+      console.log(shots);
+  });
+    
+    
   }
 }
