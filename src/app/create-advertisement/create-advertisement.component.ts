@@ -20,6 +20,7 @@ export class CreateAdvertisementComponent implements OnInit {
   localImageUrl = null;
   localImage = null;
   rows: number = 4;
+  isLoading: boolean = false;
 
   createForm = new FormGroup({
     name: new FormControl(null, [
@@ -43,11 +44,13 @@ export class CreateAdvertisementComponent implements OnInit {
     private announcementsService: AnnouncementsService
   ) { }
 
-  createAdv() {
+  async createAdv() {
     if (this.createForm.valid) {
       let { name, desc, price, category } = this.createForm.value;
-      this.announcementsService.createAdv(name, desc, this.localImage, price, category);
+      this.isLoading = true;
+      await this.announcementsService.createAdv(name, desc, this.localImage, price, category);
       this.createFormService.toggle();
+      this.isLoading = false;
       this.catalogService.getAllItems();
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!')

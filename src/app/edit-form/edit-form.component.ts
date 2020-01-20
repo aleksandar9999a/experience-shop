@@ -19,6 +19,7 @@ export class EditFormComponent implements OnInit {
   localImageUrl = null;
   localImage = null;
   rows: number = 4;
+  isLoading: boolean = false;
 
   editForm = new FormGroup({
     name: new FormControl(null, [
@@ -50,11 +51,13 @@ export class EditFormComponent implements OnInit {
     }
   }
 
-  editItem() {
+  async editItem() {
     const { name, desc, price, category } = this.editForm.value;
     const image = this.localImage || this.defaultImage;
-    this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
+    this.isLoading = true;
+    await this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
     this.editFormService.toggle();
+    this.isLoading = false;
     this.catalogService.getAllItems();
   }
 
