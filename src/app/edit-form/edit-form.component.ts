@@ -19,7 +19,7 @@ export class EditFormComponent implements OnInit {
   localImageUrl = null;
   localImage = null;
   rows: number = 4;
-  isLoading: boolean = false;
+  isDisabled: boolean = false;
 
   editForm = new FormGroup({
     name: new FormControl(null, [
@@ -42,23 +42,33 @@ export class EditFormComponent implements OnInit {
     private announcementsService: AnnouncementsService
   ) { }
 
-  handleChange(e) {
-    this.localImage = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(this.localImage);
-    reader.onload = () => {
-      this.localImageUrl = reader.result;
+  previewImg(e) {
+    if (e.target.files[0]) {
+      this.localImage = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.localImage);
+      reader.onload = () => {
+        this.localImageUrl = reader.result;
+      }
     }
   }
 
   async editItem() {
     const { name, desc, price, category } = this.editForm.value;
     const image = this.localImage || this.defaultImage;
-    this.isLoading = true;
+    this.isDisabled = true;
     await this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
     this.editFormService.toggle();
-    this.isLoading = false;
+    this.isDisabled = false;
     this.catalogService.getAllItems();
+  }
+
+  handleChange(){
+    if (this.editForm.invalid) {
+      this.isDisabled = true;
+    }else{
+      this.isDisabled = false;
+    }
   }
 
   private loadData(data: Item) {
@@ -76,21 +86,21 @@ export class EditFormComponent implements OnInit {
     this.editFormService.toggle();
   }
 
-  setTextAreaRow(e){
+  setTextAreaRow(e) {
     const key = e.key;
     const ctrl = e.ctrlKey;
-    
+
     if (key === 'ArrowUp' && ctrl) {
       this.rows++;
-    }else if (key === 'ArrowDown' && ctrl){
+    } else if (key === 'ArrowDown' && ctrl) {
       this.rows--;
     }
   }
 
-  private setIsOpen(currState: boolean){
+  private setIsOpen(currState: boolean) {
     if (currState) {
       this.editFormState = 'open';
-    }else{
+    } else {
       this.editFormState = 'close';
     }
   }

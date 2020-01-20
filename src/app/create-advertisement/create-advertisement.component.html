@@ -7,7 +7,7 @@
                     <h5 class="card-title title text-center">Create Аnnouncement</h5>
                 </div>
                 <div class="card-body">
-                    <form class="form-create" [formGroup]="createForm" (ngSubmit)="createAdv()">
+                    <form class="form-create" [formGroup]="createForm" (ngSubmit)="createAdv()" (change)="handleChange()">
 
                         <div class="form-label-group">
                             <img src="{{localImageUrl || defaultImage}}" class="rounded mx-auto d-block adImage"
@@ -60,13 +60,13 @@
                             <label>Choose announcement image</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input " id="selectCreateImg"
-                                    (change)="handleChange($event)" formControlName="image">
+                                    (change)="previewImg($event)" formControlName="image">
                                 <label class="custom-file-label customInput" for="selectCreateImg">Choose file</label>
                             </div>
                         </div>
 
                         <button class="btn btn-lg btn-primary btn-block text-uppercase borders"
-                            type="submit" [disabled]="isLoading">Create</button>
+                            type="submit" [disabled]="isDisabled">Create</button>
                     </form>
                 </div>
             </div>

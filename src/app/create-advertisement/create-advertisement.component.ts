@@ -20,7 +20,7 @@ export class CreateAdvertisementComponent implements OnInit {
   localImageUrl = null;
   localImage = null;
   rows: number = 4;
-  isLoading: boolean = false;
+  isDisabled: boolean = true;
 
   createForm = new FormGroup({
     name: new FormControl(null, [
@@ -47,17 +47,17 @@ export class CreateAdvertisementComponent implements OnInit {
   async createAdv() {
     if (this.createForm.valid) {
       let { name, desc, price, category } = this.createForm.value;
-      this.isLoading = true;
+      this.isDisabled = true;
       await this.announcementsService.createAdv(name, desc, this.localImage, price, category);
       this.createFormService.toggle();
-      this.isLoading = false;
+      this.isDisabled = false;
       this.catalogService.getAllItems();
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!')
     }
   }
 
-  handleChange(e) {
+  previewImg(e) {
     if (e.target.files[0]) {
       this.localImage = e.target.files[0];
       const reader = new FileReader();
@@ -65,6 +65,14 @@ export class CreateAdvertisementComponent implements OnInit {
       reader.onload = () => {
         this.localImageUrl = reader.result;
       }
+    }
+  }
+
+  handleChange(){
+    if (this.createForm.invalid) {
+      this.isDisabled = true;
+    }else{
+      this.isDisabled = false;
     }
   }
 
