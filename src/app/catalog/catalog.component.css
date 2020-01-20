@@ -1,14 +1,3 @@
-.itemsContainer{
-    text-align: center;
-}
-.titleContainer{
-    padding: 3rem;
-}
-
-.items{
-    padding: 1rem;
-}
-
 .loadingSpinner{
     width: 100%;
     height: 100%;
