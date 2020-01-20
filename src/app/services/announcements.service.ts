@@ -26,15 +26,16 @@ export class AnnouncementsService {
         return await snapshot.ref.getDownloadURL().catch(err => this.notifier.notify('warning', err.message));
     }
 
-    async edit(id: string, name: string, desc: string, image: any, price: number, type: string) {
+    async edit(id: string, name: string, desc: string, image: any, price: number, category: string) {
         let url = image;
+        name = name.toLocaleLowerCase();
 
         if (typeof image === 'object') {
             url = await this.uploadImage(image);
         }
 
         const user = this.firabaseAuth.auth.currentUser;
-        const newItem = { creatorUid: user.uid, name, desc, image: url, price, type };
+        const newItem = { creatorUid: user.uid, name, desc, image: url, price, category };
 
         await this.fireStore.collection('allItems').doc(id).update(newItem)
             .then(_ => {
@@ -43,10 +44,11 @@ export class AnnouncementsService {
             .catch(err => this.notifier.notify('warning', err.message));
     }
 
-    async createAdv(name: string, desc: string, image: any, price: number, type: string) {
+    async createAdv(name: string, desc: string, image: any, price: number, category: string) {
         const user = this.firabaseAuth.auth.currentUser;
+        name = name.toLocaleLowerCase();
         let url = await this.uploadImage(image);
-        const newItem = { creatorUid: user.uid, name, desc, image: url, price, type };
+        const newItem = { creatorUid: user.uid, name, desc, image: url, price, category };
 
         await this.fireStore.collection('allItems').add(newItem)
             .then(_ => {
