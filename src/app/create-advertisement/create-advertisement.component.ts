@@ -65,14 +65,18 @@ export class CreateAdvertisementComponent implements OnInit {
     }
   }
 
-  close() {
-    this.createFormService.toggle();
+  cleanForm(){
     this.createForm.patchValue({
       name: null,
       desc: null,
       price: null,
       category: null
     });
+    this.localImageUrl = '';
+  }
+
+  close() {
+    this.createFormService.toggle();
   }
 
   setTextAreaRow(e) {
@@ -91,6 +95,7 @@ export class CreateAdvertisementComponent implements OnInit {
       this.createFormState = 'open';
     } else {
       this.createFormState = 'close';
+      this.cleanForm();
     }
   }
 
