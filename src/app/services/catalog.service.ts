@@ -32,6 +32,8 @@ export class CatalogService {
     }
 
     searchByNameInAll(name: string) {
+        name = name.toLocaleLowerCase();
+
         this.fireStore
             .collection('allItems', ref => ref.where('name', '>=', name))
             .get()
@@ -39,8 +41,10 @@ export class CatalogService {
     }
 
     searchByNameAndCategory(name: string, category: string) {
+        name = name.toLocaleLowerCase();
+        
         this.fireStore
-            .collection('allItems', ref => ref.where('type', '==', category).where('name', '>=', name))
+            .collection('allItems', ref => ref.where('category', '==', category).where('name', '>=', name))
             .get()
             .subscribe(this.setItems.bind(this));
     }
