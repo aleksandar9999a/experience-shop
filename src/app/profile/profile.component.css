@@ -1,0 +1,45 @@
+.profileForm{
+    position: relative;
+}
+.card-profile {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.3), 0 9px 26px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-profile .card-title {
+    font-weight: 300;
+    font-size: 2rem;
+  }
+  
+  .card-profile .card-body {
+    padding: 1rem;
+    padding-top: 0;
+  }
+
+.title{
+  padding: 3%;
+}
+
+.itemsForm{
+    position: relative;
+}
+.card-items {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.3), 0 9px 26px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-items .card-title {
+    font-weight: 300;
+    font-size: 2rem;
+  }
+  
+  .card-items .card-body {
+    padding: 1rem;
+    padding-top: 0;
+  }
+
+.title{
+  padding: 3%;
+}
