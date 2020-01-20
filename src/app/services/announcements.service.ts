@@ -18,7 +18,9 @@ export class AnnouncementsService {
     ) { }
 
     private async uploadImage(image: any) {
-        const storageRef = this.firebaseStorage.ref(`items/${image.name}`);
+        const d = new Date();
+        const n = d.getTime();
+        const storageRef = this.firebaseStorage.ref(`items/${n}`);
         return await storageRef.put(image).then(this.getUrl).catch(err => this.notifier.notify('warning', err.message));
     }
 
