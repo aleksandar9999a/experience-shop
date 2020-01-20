@@ -55,11 +55,13 @@ export class CreateAdvertisementComponent implements OnInit {
   }
 
   handleChange(e) {
-    this.localImage = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(this.localImage);
-    reader.onload = () => {
-      this.localImageUrl = reader.result;
+    if (e.target.files[0]) {
+      this.localImage = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.localImage);
+      reader.onload = () => {
+        this.localImageUrl = reader.result;
+      }
     }
   }
 
@@ -73,21 +75,21 @@ export class CreateAdvertisementComponent implements OnInit {
     });
   }
 
-  setTextAreaRow(e){
+  setTextAreaRow(e) {
     const key = e.key;
     const ctrl = e.ctrlKey;
-    
+
     if (key === 'ArrowUp' && ctrl) {
       this.rows++;
-    }else if (key === 'ArrowDown' && ctrl){
+    } else if (key === 'ArrowDown' && ctrl) {
       this.rows--;
     }
   }
 
-  private setIsOpen(currState: boolean){
+  private setIsOpen(currState: boolean) {
     if (currState) {
       this.createFormState = 'open';
-    }else{
+    } else {
       this.createFormState = 'close';
     }
   }
