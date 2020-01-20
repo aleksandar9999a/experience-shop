@@ -32,7 +32,7 @@ export class EditFormComponent implements OnInit {
     ]),
     image: new FormControl(null, Validators.required),
     price: new FormControl(null, Validators.required),
-    type: new FormControl(null, Validators.required)
+    category: new FormControl(null, Validators.required)
   })
 
   constructor(
@@ -51,9 +51,9 @@ export class EditFormComponent implements OnInit {
   }
 
   editItem() {
-    const { name, desc, price, type } = this.editForm.value;
+    const { name, desc, price, category } = this.editForm.value;
     const image = this.localImage || this.defaultImage;
-    this.announcementsService.edit(this.currentData.id, name, desc, image, price, type);
+    this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
     this.editFormService.toggle();
     this.catalogService.getAllItems();
   }
@@ -65,7 +65,7 @@ export class EditFormComponent implements OnInit {
       name: data.name,
       desc: data.desc,
       price: data.price,
-      type: data.type
+      category: data.category
     });
   }
 

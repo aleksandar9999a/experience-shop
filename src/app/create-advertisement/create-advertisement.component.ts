@@ -33,7 +33,7 @@ export class CreateAdvertisementComponent implements OnInit {
     ]),
     image: new FormControl(null, Validators.required),
     price: new FormControl(null, Validators.required),
-    type: new FormControl(null, Validators.required)
+    category: new FormControl(null, Validators.required)
   })
 
   constructor(
@@ -45,8 +45,8 @@ export class CreateAdvertisementComponent implements OnInit {
 
   createAdv() {
     if (this.createForm.valid) {
-      let { name, desc, price, type } = this.createForm.value;
-      this.announcementsService.createAdv(name, desc, this.localImage, price, type);
+      let { name, desc, price, category } = this.createForm.value;
+      this.announcementsService.createAdv(name, desc, this.localImage, price, category);
       this.createFormService.toggle();
       this.catalogService.getAllItems();
     } else {
@@ -69,7 +69,7 @@ export class CreateAdvertisementComponent implements OnInit {
       name: null,
       desc: null,
       price: null,
-      type: null
+      category: null
     });
   }
 
