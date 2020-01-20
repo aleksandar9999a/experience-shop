@@ -22,8 +22,10 @@
 
                         <div class="form-label-group">
                             <label>Description</label>
-                            <textarea class="form-control" placeholder="Description" formControlName="desc" [rows]="rows" (keyup)="setTextAreaRow($event)"></textarea>
-                            <blockquote class="blockquote">Use Ctrl+ArrowUp or Ctrl+ArrowDown to Resize TextArea</blockquote>
+                            <textarea class="form-control" placeholder="Description" formControlName="desc"
+                                [rows]="rows" (keyup)="setTextAreaRow($event)"></textarea>
+                            <blockquote class="blockquote">Use Ctrl+ArrowUp or Ctrl+ArrowDown to Resize TextArea
+                            </blockquote>
                         </div>
 
                         <div class="form-label-group">
@@ -35,12 +37,21 @@
                             <label>Choose type of announcement</label>
                             <div class="input-group mb-3">
                                 <select class="custom-select customInput" id="selectCreateType" formControlName="type">
+                                    <option value="all">All</option>
+                                    <option value="pc">Pc</option>
                                     <option value="phone">Phone</option>
-                                    <option value="pc">PC</option>
-                                    <option value="laptop">Laptop</option>
+                                    <option value="tablets">Tablets</option>
+                                    <option value="laptops">Laptops</option>
+                                    <option value="accForPC">Accessories for PC</option>
+                                    <option value="accForPhone">Accessories for Phone</option>
+                                    <option value="audio">Audio technique</option>
+                                    <option value="photo">Photo, video</option>
+                                    <option value="nav">Navigation</option>
+                                    <option value="tv">TVs</option>
                                 </select>
                                 <div class="input-group-append">
-                                    <label class="input-group-text customInput" for="selectCreateType">Options</label>
+                                    <label class="input-group-text customInput"
+                                        for="selectCreateType">Categories</label>
                                 </div>
                             </div>
                         </div>
