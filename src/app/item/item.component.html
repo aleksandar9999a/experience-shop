@@ -1,7 +1,9 @@
-<div class="card itemDiv" (click)="openDetails()">
-    <img src="{{item.image}}" class="card-img-top itemImg" alt="...">
-    <div class="card-body">
-        <h4 class="card-title">{{item.name | uppercase}}</h4>
-        <h5 class="card-text">{{item.price}}lv.</h5>
+<div class="row d-flex list-group-item listItem" (click)="openDetails()">
+    <div class="col my-auto">
+        <img src="{{item.image}}" class="listImage d-inline">
+        <p class="d-inline">{{item.name | uppercase}}</p>
+    </div>
+    <div class="col-md-auto my-auto">
+        <p class="price font-weight-bold">Price: <span>{{item.price}}lv.</span></p>
     </div>
 </div>
