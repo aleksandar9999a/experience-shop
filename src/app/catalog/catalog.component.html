@@ -1,11 +1,10 @@
 <div class="container itemsContainer">
 
+    <app-search></app-search>
+
     <img *ngIf="isLoading" src="./../../assets/images/progresbar.gif" class="loadingSpinner mx-auto">
 
     <div *ngIf="!isLoading">
-        <div class="titleContainer">
-            <h1 class="display-5">Аnnouncements</h1>
-        </div>
 
         <div *ngIf="!isItems" class="my-5">
             <h4 class="display-3">Sorry, We don't have announcements...</h4>
@@ -13,7 +12,7 @@
 
         <div *ngIf="isItems" class="row justify-content-md-center">
             <div *ngFor="let item of items;let i=index" class="col-md-4 items">
-                <app-item [item]="item" *ngIf="i < 20"></app-item>
+                <app-item [item]="item"></app-item>
             </div>
         </div>
     </div>
