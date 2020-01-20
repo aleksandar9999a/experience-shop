@@ -12,21 +12,37 @@ export class CatalogService {
 
     @Output() allItems = new BehaviorSubject(this.items);
 
-    private createItemsElements(item: any){
+    private createItemsElements(item: any) {
         let newItem = item.data();
         newItem.id = item.id;
         this.items.push(newItem);
-      }
-    
+    }
+
+    private setItems(shots: any){
+        this.items = [];
+        shots.forEach(this.createItemsElements.bind(this))
+        this.allItems.next(this.items);
+    }
+
     getAllItems() {
         this.fireStore
             .collection('allItems')
             .get()
-            .subscribe(shots => {
-                this.items = [];
-                shots.forEach(this.createItemsElements.bind(this))
-                this.allItems.next(this.items);
-            });
+            .subscribe(this.setItems.bind(this));
+    }
+
+    searchByNameInAll(name: string) {
+        this.fireStore
+            .collection('allItems', ref => ref.where('name', '>=', name))
+            .get()
+            .subscribe(this.setItems.bind(this));
+    }
+
+    searchByNameAndCategory(name: string, category: string) {
+        this.fireStore
+            .collection('allItems', ref => ref.where('type', '==', category).where('name', '>=', name))
+            .get()
+            .subscribe(this.setItems.bind(this));
     }
 
 }
