@@ -10,7 +10,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   animations: searchFormAnimations
 })
 export class SearchComponent implements OnInit {
-  formState: string = 'close';
 
   searchForm = new FormGroup({
     text: new FormControl(null, [
@@ -23,25 +22,15 @@ export class SearchComponent implements OnInit {
     private searchFormService: SearchFormService
   ) { }
 
-  close(){
-    this.searchFormService.toggle();
-  }
 
-  setFormState(state: boolean){
-    if (state) {
-      this.formState = 'open';
-    }else{
-      this.formState = 'close';
+  search(){
+    if (this.searchForm.status === 'VALID') {
+      const {text} = this.searchForm.value;
+      this.searchFormService.search(text);
     }
   }
 
-  search(){
-    console.log(this.searchForm);
-    
-  }
-
   ngOnInit() {
-    this.searchFormService.change.subscribe(this.setFormState.bind(this))
   }
 
 }
