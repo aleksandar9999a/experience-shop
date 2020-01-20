@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { searchFormAnimations } from './search.animations';
-import { SearchFormService } from '../services/search.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
+import { CatalogService } from '../services/catalog.service';
 
 @Component({
   selector: 'app-search',
@@ -12,21 +12,21 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SearchComponent implements OnInit {
 
   searchForm = new FormGroup({
-    text: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4)
-    ])
+    name: new FormControl(''),
+    category: new FormControl('all')
   })
 
   constructor(
-    private searchFormService: SearchFormService
+    private catalogService: CatalogService
   ) { }
 
 
-  search(){
-    if (this.searchForm.status === 'VALID') {
-      const {text} = this.searchForm.value;
-      this.searchFormService.search(text);
+  search() {
+    const { name, category } = this.searchForm.value;
+    if (category === 'all') {
+        this.catalogService.searchByNameInAll(name);
+    }else{
+      this.catalogService.searchByNameAndCategory(name, category);
     }
   }
 
