@@ -1,8 +1,8 @@
 <div class="myContainer">
-    <div class="col profileForm">
+    <div class="col form">
         <div class="container">
             <div class="col-20">
-                <div class="card card-profile my-3">
+                <div class="card card-form my-3">
                     <div>
                         <h5 class="card-title title text-center my-3">User Info</h5>
                     </div>
@@ -14,17 +14,21 @@
 
 
                         <div *ngIf="!isLoadingUserdata" class="row">
-                            <div class="col-3 itemImg mr-3">
+                            <div *ngIf="!isUnknown" class="col-3 itemImg mr-3">
                                 <img [src]="profileImg" class="card-img itemImg" alt="...">
                             </div>
-                            <div class="col">
+                            <div *ngIf="!isUnknown" class="col">
                                 <p class="card-title">Username</p>
                                 <pre *ngIf="info">{{info.username}}</pre>
                                 <p class="card-title">Summary</p>
                                 <pre *ngIf="info">{{info.summary}}</pre>
                             </div>
+                            <div *ngIf="isUnknown" class="col my-auto">
+                                <p class="text-center no-data">Unknown</p>
+                                <p class="text-center no-data">Please, Edit your user info!</p>
+                            </div>
                         </div>
-                        <div class="row d-flex justify-content-center">
+                        <div class="row d-flex justify-content-center my-3">
                             <button class="btn btn-success btn-lg borders editButtons"
                                 (click)="openEditForm()">Edit</button>
                         </div>
@@ -34,10 +38,10 @@
         </div>
     </div>
 
-    <div class="col itemsForm">
+    <div class="col form">
         <div class="container">
             <div class="col-20">
-                <div class="card card-items">
+                <div class="card card-form">
                     <div>
                         <h5 class="card-title title text-center my-3">Your Items</h5>
                     </div>
@@ -48,8 +52,13 @@
                         </div>
 
                         <div *ngIf="!isLoadingItems">
-                            <div *ngFor="let item of myItems;let i=index" class="list-group">
-                                <app-item [item]="item"></app-item>
+                            <div *ngIf="isItems">
+                                <div *ngFor="let item of myItems;let i=index" class="list-group">
+                                    <app-item [item]="item"></app-item>
+                                </div>
+                            </div>
+                            <div *ngIf="!isItems" class="mb-5">
+                                <p class="text-center no-data">Empty!</p>
                             </div>
                         </div>
                     </div>
