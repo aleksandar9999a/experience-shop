@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../interfaces/item.interface';
-import { UserService } from '../services/user.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Profile } from '../interfaces/profile.interface';
 import { UserDataEditService } from '../services/user-data-edit.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,50 +15,30 @@ export class ProfileComponent implements OnInit {
   profileImg: string = './../../assets/images/unkItem.svg';
 
   constructor(
-    private fireStore: AngularFirestore,
-    private userService: UserService,
-    private userDataEditService: UserDataEditService
+    private userDataEditService: UserDataEditService,
+    private profileService: ProfileService
   ) { }
 
-  private createItemsElements(item: any) {
-    let newItem = item.data();
-    newItem.id = item.id;
-    this.myItems.push(newItem);
-  }
 
-  private setItems(shots: any) {
-    this.myItems = [];
-    shots.forEach(this.createItemsElements.bind(this));
-  }
-
-  private setInfo(shot: any){
-    this.info = shot.data();
+  private setInfo(shot: any) {
+    this.info = shot;
     if (this.info.profileImg) {
       this.profileImg = this.info.profileImg;
     }
   }
 
-  openEditForm(){
+  private setItems(items: Array<Item>){
+    this.myItems = items;
+  }
+
+  openEditForm() {
     this.userDataEditService.toggle(this.info);
   }
 
   ngOnInit() {
-    const uid = this.userService.getCurrentUid();
-    if (uid) {
-      this.fireStore
-            .collection('userdata')
-            .doc(uid)
-            .collection('userdata')
-            .doc('info')
-            .get()
-            .subscribe(this.setInfo.bind(this));
-
-      this.fireStore
-        .collection('allItems', ref => ref.where('creatorUid', '==', uid))
-        .get()
-        .subscribe(this.setItems.bind(this));
-    }
-
+    this.profileService.loadUserdata();
+    this.profileService.getUserdata.subscribe(this.setInfo.bind(this))
+    this.profileService.getUserItems.subscribe(this.setItems.bind(this));
   }
 
 }
