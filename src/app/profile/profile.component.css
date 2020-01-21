@@ -1,3 +1,7 @@
+.myContainer{
+  min-height: 800px;
+}
+
 .profileForm{
     position: relative;
 }

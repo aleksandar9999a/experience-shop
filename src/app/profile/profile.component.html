@@ -1,29 +1,31 @@
-<div class="col profileForm">
-    <div class="container">
-        <div class="col-20">
-            <div class="card card-profile my-3">
-                <div>
-                    <h5 class="card-title title text-center my-3">User Info</h5>
-                </div>
-                <div class="card-body">
+<div class="myContainer">
+    <div class="col profileForm">
+        <div class="container">
+            <div class="col-20">
+                <div class="card card-profile my-3">
+                    <div>
+                        <h5 class="card-title title text-center my-3">User Info</h5>
+                    </div>
+                    <div class="card-body">
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="col itemsForm">
-    <div class="container">
-        <div class="col-20">
-            <div class="card card-items">
-                <div>
-                    <h5 class="card-title title text-center my-3">Your Items</h5>
-                </div>
-                <div class="card-body">
-                    <div *ngIf="myItems">
-                        <div *ngFor="let item of myItems;let i=index" class="list-group">
-                            <app-item [item]="item"></app-item>
+    <div class="col itemsForm">
+        <div class="container">
+            <div class="col-20">
+                <div class="card card-items">
+                    <div>
+                        <h5 class="card-title title text-center my-3">Your Items</h5>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="myItems">
+                            <div *ngFor="let item of myItems;let i=index" class="list-group">
+                                <app-item [item]="item"></app-item>
+                            </div>
                         </div>
                     </div>
                 </div>
