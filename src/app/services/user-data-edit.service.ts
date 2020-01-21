@@ -2,7 +2,6 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Profile } from '../interfaces/profile.interface';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
 import { NotifierService } from 'angular-notifier';
@@ -15,7 +14,6 @@ export class UserDataEditService {
   constructor(
     private readonly notifier: NotifierService,
     private firebaseStorage: AngularFireStorage,
-    private firabaseAuth: AngularFireAuth,
     private fireStore: AngularFirestore,
     private userService: UserService
   ) { }
@@ -54,7 +52,7 @@ export class UserDataEditService {
       .doc(uid)
       .collection('userdata')
       .doc('info')
-      .update(info)
+      .set(info)
       .then(_ => {
         this.notifier.notify('success', 'You successful update your information!');
       })
