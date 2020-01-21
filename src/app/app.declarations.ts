@@ -2,7 +2,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { CatalogComponent } from './catalog/catalog.component';
-import { AboutComponent } from './about/about.component';
 import { CreateAdvertisementComponent } from './create-advertisement/create-advertisement.component';
 import { SignComponent } from './sign/sign.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
@@ -21,7 +20,6 @@ export const declarations = [
     NavbarComponent,
     HomeComponent,
     CatalogComponent,
-    AboutComponent,
     CreateAdvertisementComponent,
     SignComponent,
     JumbotronComponent,
