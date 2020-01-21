@@ -9,7 +9,9 @@
                 <div class="card-body">
                     <form class="form-shopping">
                         <div *ngIf="isHaveProducts" class="list-group">
-                            <app-shopping-card-item *ngFor="let item of itemsForBuy;let i=index" [item]="item"></app-shopping-card-item>
+                            <div *ngFor="let item of itemsForBuy;let i=index">
+                                <app-item [item]="item"></app-item>
+                            </div>
                         </div>
                         <div *ngIf="!isHaveProducts" class="text-center py-4">
                             <h3 class="mb-6">
