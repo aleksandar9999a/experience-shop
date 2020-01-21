@@ -11,7 +11,6 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { FooterComponent } from './footer/footer.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
-import { ShoppingCardItemComponent } from './shopping-card-item/shopping-card-item.component';
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -29,7 +28,6 @@ export const declarations = [
     ItemDetailsComponent,
     FooterComponent,
     ShoppingCardComponent,
-    ShoppingCardItemComponent,
     EditFormComponent,
     SearchComponent,
     ProfileComponent
