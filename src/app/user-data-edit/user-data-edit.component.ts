@@ -3,6 +3,7 @@ import { editProfileAnimations } from './user-data-edit.animations';
 import { Profile } from '../interfaces/profile.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDataEditService } from '../services/user-data-edit.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-user-data-edit',
@@ -32,7 +33,8 @@ export class UserDataEditComponent implements OnInit {
   })
 
   constructor(
-    private userDataEditService: UserDataEditService
+    private userDataEditService: UserDataEditService,
+    private profileService: ProfileService
   ) { }
 
   previewImg(e) {
@@ -76,6 +78,7 @@ export class UserDataEditComponent implements OnInit {
       this.isDisabled = true;
       await this.userDataEditService.updateUserData(username, summary, profileImg)
       this.isDisabled = false;
+      this.profileService.loadUserdata()
       this.userDataEditService.toggle();
     }
   }
