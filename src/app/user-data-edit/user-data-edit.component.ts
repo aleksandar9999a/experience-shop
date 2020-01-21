@@ -12,7 +12,7 @@ import { UserDataEditService } from '../services/user-data-edit.service';
 })
 export class UserDataEditComponent implements OnInit {
   editFormState: string = 'close';
-  previewProfileImg: any = './../../assets/images/unkItem.svg';
+  defaultImage: any = './../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
   rows: number = 4;
@@ -41,7 +41,7 @@ export class UserDataEditComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(this.localImage);
       reader.onload = () => {
-        this.previewProfileImg = reader.result;
+        this.localImageUrl = reader.result;
       }
     }
   }
@@ -69,8 +69,15 @@ export class UserDataEditComponent implements OnInit {
     this.userDataEditService.toggle();
   }
 
-  editProfile(){
-    
+  async editProfile(){
+    if (this.editForm.valid) {
+      const { username, summary } = this.editForm.value;
+      const profileImg = this.localImage || this.defaultImage;
+      this.isDisabled = true;
+      await this.userDataEditService.updateUserData(username, summary, profileImg)
+      this.isDisabled = false;
+      this.userDataEditService.toggle();
+    }
   }
 
   setFormState(state: boolean){
@@ -82,10 +89,13 @@ export class UserDataEditComponent implements OnInit {
   }
 
   setInfo(data: Profile){
-    this.editForm.patchValue(data);
+    this.editForm.patchValue({
+      username: data.username,
+      summary: data.summary
+    });
 
     if (data.profileImg) {
-      this.previewProfileImg = data.profileImg;
+      this.defaultImage = data.profileImg;
     }
   }
 
