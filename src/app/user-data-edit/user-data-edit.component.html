@@ -10,7 +10,7 @@
                     <form class="form-edit" [formGroup]="editForm" (ngSubmit)="editProfile()" (change)="handleChange()">
 
                         <div class="form-label-group">
-                            <img [src]="previewProfileImg" class="rounded mx-auto d-block adImage"
+                            <img src="{{localImageUrl || defaultImage}}" class="rounded mx-auto d-block adImage"
                                 alt="profileImg" />
                         </div>
 
