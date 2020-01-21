@@ -12,6 +12,8 @@ import { ProfileService } from '../services/profile.service';
 export class ProfileComponent implements OnInit {
   myItems: Array<Item>;
   info: Profile;
+  isLoadingUserdata: boolean;
+  isLoadingItems: boolean;
   profileImg: string = './../../assets/images/unkItem.svg';
 
   constructor(
@@ -25,10 +27,12 @@ export class ProfileComponent implements OnInit {
     if (this.info.profileImg) {
       this.profileImg = this.info.profileImg;
     }
+    this.isLoadingUserdata = false;
   }
 
   private setItems(items: Array<Item>){
     this.myItems = items;
+    this.isLoadingItems = false;
   }
 
   openEditForm() {
@@ -37,6 +41,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.profileService.loadUserdata();
+    this.isLoadingItems = true;
+    this.isLoadingUserdata = true;
     this.profileService.getUserdata.subscribe(this.setInfo.bind(this))
     this.profileService.getUserItems.subscribe(this.setItems.bind(this));
   }
