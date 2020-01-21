@@ -1,9 +1,17 @@
-<div class="d-flex list-group-item list-group-item-action" (click)="openDetails()">
-    <div class="col my-auto">
-        <img src="{{item.image}}" class="item-img d-inline mr-2">
-        <p class="d-inline">{{item.name | uppercase}}</p>
-    </div>
-    <div class="col-auto my-auto">
-        <p class="price font-weight-bold">Price: <span>{{item.price}}lv.</span></p>
+<div class="list-group-item list-group-item-action" (click)="openDetails()">
+    <div class="row">
+
+        <div class="col-2 item-img my-auto">
+            <img src="{{item.image}}" class="item-img">
+        </div>
+
+        <div class="col my-auto">
+            <p>{{item.name | uppercase}}</p>
+        </div>
+        
+        <div class="col my-auto">
+            <p class="float-right font-weight-bold">Price: <span>{{item.price}}lv.</span></p>
+        </div>
+
     </div>
 </div>
