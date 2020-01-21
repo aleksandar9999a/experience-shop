@@ -1,16 +1,7 @@
-.listItem{
-    width: 60rem;
-    opacity: 100%;
-}
-
-.listItem:hover{
-    opacity: 70%;
-}
-
-.listImage{
-    height: 6rem;
-}
-
 .price{
     margin-top: 11%;
+}
+
+.item-img{
+    width: 15%;
 }
