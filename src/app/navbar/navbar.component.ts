@@ -54,7 +54,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.checkIsHere()
     this.userService.isUserLogged.subscribe(this.setIsHere.bind(this));
   }
 
