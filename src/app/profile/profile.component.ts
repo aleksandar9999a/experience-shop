@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
   info: Profile;
   isLoadingUserdata: boolean;
   isLoadingItems: boolean;
+  isUnknown: boolean;
+  isItems: boolean;
   profileImg: string = './../../assets/images/unkItem.svg';
 
   constructor(
@@ -23,16 +25,29 @@ export class ProfileComponent implements OnInit {
 
 
   private setInfo(shot: any) {
-    this.info = shot;
-    if (this.info.profileImg) {
-      this.profileImg = this.info.profileImg;
+    if (shot) {
+      this.info = shot;
+      if (this.info.profileImg) {
+        this.profileImg = this.info.profileImg;
+      }
+
+      this.isUnknown = false;
+    } else {
+      this.isUnknown = true;
     }
+
     this.isLoadingUserdata = false;
   }
 
-  private setItems(items: Array<Item>){
+  private setItems(items: Array<Item>) {
     this.myItems = items;
     this.isLoadingItems = false;
+
+    if (this.myItems.length > 0) {
+      this.isItems = true;
+    }else{
+      this.isItems = false;
+    }
   }
 
   openEditForm() {
