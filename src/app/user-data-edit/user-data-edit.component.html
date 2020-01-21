@@ -1,0 +1,47 @@
+<div class="editForm" [@editForm]="editFormState">
+    <div class="container">
+        <div class="col-lg-5 mx-auto">
+            <div class="card card-edit my-5">
+                <div class="closeDiv">
+                    <button type="button" class="close" (click)="close()">&times;</button>
+                    <h5 class="card-title title text-center">Edit Userdata</h5>
+                </div>
+                <div class="card-body">
+                    <form class="form-edit" [formGroup]="editForm" (ngSubmit)="editProfile()" (change)="handleChange()">
+
+                        <div class="form-label-group">
+                            <img [src]="previewProfileImg" class="rounded mx-auto d-block adImage"
+                                alt="profileImg" />
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="Username"
+                                formControlName="username">
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Summary</label>
+                            <textarea class="form-control" placeholder="Summary" formControlName="summary" [rows]="rows"
+                                (keyup)="setTextAreaRow($event)"></textarea>
+                            <blockquote class="blockquote">Use Ctrl+ArrowUp or Ctrl+ArrowDown to Resize TextArea
+                            </blockquote>
+                        </div>
+
+                        <div class="form-label-group">
+                            <label>Choose profile image</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input " id="selectProfileImg"
+                                    (change)="previewImg($event)" formControlName="profileImg">
+                                <label class="custom-file-label customInput" for="selectProfileImg">Choose file</label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase borders"
+                            type="submit" [disabled]="isDisabled">Edit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
