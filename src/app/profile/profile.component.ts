@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../interfaces/item.interface';
 import { UserService } from '../services/user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Profile } from '../interfaces/profile.interface';
 
 @Component({
   selector: 'app-profile',
@@ -10,6 +11,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ProfileComponent implements OnInit {
   myItems: Array<Item>;
+  info: Profile;
+  profileImg: string = './../../assets/images/unkItem.svg';
 
   constructor(
     private fireStore: AngularFirestore,
@@ -27,9 +30,24 @@ export class ProfileComponent implements OnInit {
     shots.forEach(this.createItemsElements.bind(this));
   }
 
+  private setInfo(shot: any){
+    this.info = shot.data();
+    if (this.info.profileImg) {
+      this.profileImg = this.info.profileImg;
+    }
+  }
+
   ngOnInit() {
     const uid = this.userService.getCurrentUid();
     if (uid) {
+      this.fireStore
+            .collection('userdata')
+            .doc(uid)
+            .collection('userdata')
+            .doc('info')
+            .get()
+            .subscribe(this.setInfo.bind(this));
+
       this.fireStore
         .collection('allItems', ref => ref.where('creatorUid', '==', uid))
         .get()
