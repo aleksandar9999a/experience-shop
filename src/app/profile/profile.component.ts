@@ -3,6 +3,7 @@ import { Item } from '../interfaces/item.interface';
 import { UserService } from '../services/user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Profile } from '../interfaces/profile.interface';
+import { UserDataEditService } from '../services/user-data-edit.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private fireStore: AngularFirestore,
-    private userService: UserService
+    private userService: UserService,
+    private userDataEditService: UserDataEditService
   ) { }
 
   private createItemsElements(item: any) {
@@ -35,6 +37,10 @@ export class ProfileComponent implements OnInit {
     if (this.info.profileImg) {
       this.profileImg = this.info.profileImg;
     }
+  }
+
+  openEditForm(){
+    this.userDataEditService.toggle(this.info);
   }
 
   ngOnInit() {
