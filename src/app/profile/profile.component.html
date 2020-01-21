@@ -7,7 +7,20 @@
                         <h5 class="card-title title text-center my-3">User Info</h5>
                     </div>
                     <div class="card-body">
-
+                        <div class="row">
+                            <div class="col-3 itemImg mr-3">
+                                <img [src]="profileImg" class="card-img itemImg" alt="...">
+                            </div>
+                            <div class="col">
+                                <p class="card-title">Username</p>
+                                <pre *ngIf="info">{{info.username}}</pre>
+                                <p class="card-title">Summary</p>
+                                <pre *ngIf="info">{{info.summary}}</pre>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <button class="btn btn-success btn-lg borders editButtons">Edit</button>
+                        </div>
                     </div>
                 </div>
             </div>

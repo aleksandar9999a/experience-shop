@@ -47,3 +47,12 @@
 .title{
   padding: 3%;
 }
+
+.itemImg{
+  width: 100%;
+}
+
+.editButtons{
+  margin: 2%;
+  width: 23%;
+}
