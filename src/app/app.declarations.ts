@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { CreateAdvertisementComponent } from './create-advertisement/create-advertisement.component';
 import { SignComponent } from './sign/sign.component';
-import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { ItemComponent } from './item/item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,7 +21,6 @@ export const declarations = [
     CatalogComponent,
     CreateAdvertisementComponent,
     SignComponent,
-    JumbotronComponent,
     ItemComponent,
     ItemDetailsComponent,
     FooterComponent,
