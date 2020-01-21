@@ -68,3 +68,8 @@
   width: 23%;
   height: 10%;
 }
+
+.noItems{
+  font-weight: 300;
+  font-size: 2rem;
+}
