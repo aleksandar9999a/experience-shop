@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../services/profile.service';
 import { Item } from '../interfaces/item.interface';
+import { UserService } from '../services/user.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-profile',
@@ -11,16 +12,30 @@ export class ProfileComponent implements OnInit {
   myItems: Array<Item>;
 
   constructor(
-    private profileService: ProfileService
+    private fireStore: AngularFirestore,
+    private userService: UserService
   ) { }
 
-  setItems(newItems: Array<Item>){
-    this.myItems = newItems;
+  private createItemsElements(item: any) {
+    let newItem = item.data();
+    newItem.id = item.id;
+    this.myItems.push(newItem);
+  }
+
+  private setItems(shots: any) {
+    this.myItems = [];
+    shots.forEach(this.createItemsElements.bind(this));
   }
 
   ngOnInit() {
-    this.profileService.searchMyItems();
-    this.profileService.getItems.subscribe(this.setItems.bind(this));
+    const uid = this.userService.getCurrentUid();
+    if (uid) {
+      this.fireStore
+        .collection('allItems', ref => ref.where('creatorUid', '==', uid))
+        .get()
+        .subscribe(this.setItems.bind(this));
+    }
+
   }
 
 }
