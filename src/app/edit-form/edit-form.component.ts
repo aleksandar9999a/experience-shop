@@ -3,7 +3,6 @@ import { editFormAnimations } from './edit-form.animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditFormService } from '../services/edit-form.service';
 import { Item } from '../interfaces/item.interface';
-import { CatalogService } from '../services/catalog.service';
 import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
@@ -38,7 +37,6 @@ export class EditFormComponent implements OnInit {
 
   constructor(
     private editFormService: EditFormService,
-    private catalogService: CatalogService,
     private announcementsService: AnnouncementsService
   ) { }
 
@@ -60,7 +58,6 @@ export class EditFormComponent implements OnInit {
     await this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
     this.editFormService.toggle();
     this.isDisabled = false;
-    this.catalogService.getAllItems();
   }
 
   handleChange(){

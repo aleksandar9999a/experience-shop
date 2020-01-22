@@ -4,8 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { createAdvAnimations } from './create-advertisement.animations';
 import { CreateFormService } from '../services/createForm.service';
 import { NotifierService } from 'angular-notifier';
-
-import { CatalogService } from '../services/catalog.service';
 import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
@@ -40,7 +38,6 @@ export class CreateAdvertisementComponent implements OnInit {
   constructor(
     private createFormService: CreateFormService,
     private readonly notifier: NotifierService,
-    private catalogService: CatalogService,
     private announcementsService: AnnouncementsService
   ) { }
 
@@ -51,7 +48,6 @@ export class CreateAdvertisementComponent implements OnInit {
       await this.announcementsService.createAdv(name, desc, this.localImage, price, category);
       this.createFormService.toggle();
       this.isDisabled = false;
-      this.catalogService.getAllItems();
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!')
     }
