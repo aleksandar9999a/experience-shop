@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditFormService } from '../services/edit-form.service';
 import { Item } from '../interfaces/item.interface';
 import { AnnouncementsService } from '../services/announcements.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-edit-form',
@@ -30,14 +31,15 @@ export class EditFormComponent implements OnInit {
       Validators.maxLength(1000),
       Validators.required
     ]),
-    image: new FormControl(null, Validators.required),
+    image: new FormControl(null),
     price: new FormControl(null, Validators.required),
     category: new FormControl(null, Validators.required)
   })
 
   constructor(
     private editFormService: EditFormService,
-    private announcementsService: AnnouncementsService
+    private announcementsService: AnnouncementsService,
+    private readonly notifier: NotifierService
   ) { }
 
   previewImg(e) {
@@ -52,18 +54,25 @@ export class EditFormComponent implements OnInit {
   }
 
   async editItem() {
-    const { name, desc, price, category } = this.editForm.value;
-    const image = this.localImage || this.defaultImage;
-    this.isDisabled = true;
-    await this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
-    this.editFormService.toggle();
-    this.isDisabled = false;
+    if (this.editForm.valid) {
+      const { name, desc, price, category } = this.editForm.value;
+      const image = this.localImage || this.defaultImage;
+      this.isDisabled = true;
+      this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
+      this.editFormService.toggle();
+      this.isDisabled = false;
+    } else {
+      console.log(this.editForm.value);
+      
+      this.notifier.notify('warning', 'Form data is incorrect!')
+    }
+
   }
 
-  handleChange(){
+  handleChange() {
     if (this.editForm.invalid) {
       this.isDisabled = true;
-    }else{
+    } else {
       this.isDisabled = false;
     }
   }
