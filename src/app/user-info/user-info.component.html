@@ -1,0 +1,40 @@
+<div class="col form">
+    <div class="container">
+        <div class="col-20">
+            <div class="card card-form my-3">
+                <div>
+                    <h5 class="card-title title text-center my-3">User Info</h5>
+                </div>
+                <div class="card-body">
+
+                    <div *ngIf="isLoading">
+                        <img src="./../../assets/images/progresbar.gif" class="loadingSpinner mx-auto d-block">
+                    </div>
+
+                    <div *ngIf="!isLoading" class="row">
+                        <div *ngIf="!isUnknown" class="col-3 itemImg mr-3">
+                            <img src="{{profile.profileImg}}" class="card-img itemImg" alt="...">
+                        </div>
+                        <div *ngIf="!isUnknown" class="col">
+                            <p class="card-title">Username</p>
+                            <pre>{{profile.username}}</pre>
+                            <p class="card-title">Summary</p>
+                            <pre>{{profile.summary}}</pre>
+                        </div>
+
+                        <div *ngIf="isUnknown" class="col my-auto pb-5">
+                            <p class="text-center no-data">Unknown</p>
+                            <p class="text-center no-data">Please, Edit your user info!</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!isLoading" class="row d-flex justify-content-center my-3">
+                        <button class="btn btn-success btn-lg borders editButtons"
+                            (click)="openEditForm()">Edit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
