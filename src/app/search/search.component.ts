@@ -23,11 +23,7 @@ export class SearchComponent implements OnInit {
 
   search() {
     const { name, category } = this.searchForm.value;
-    if (category === 'all') {
-        this.catalogService.searchByNameInAll(name);
-    }else{
-      this.catalogService.searchByNameAndCategory(name, category);
-    }
+    this.catalogService.loadCategory(name, category);
   }
 
   ngOnInit() {
