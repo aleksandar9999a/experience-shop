@@ -6,7 +6,6 @@ import { DetailsFormService } from './services/item-details.service';
 import { ShoppingCardService } from './services/shopping-card.service';
 import { EditFormService } from './services/edit-form.service';
 import { AnnouncementsService } from './services/announcements.service';
-import { ProfileService } from './services/profile.service';
 import { UserDataEditService } from './services/user-data-edit.service';
 
 export const providers = [
@@ -18,6 +17,5 @@ export const providers = [
     ShoppingCardService,
     EditFormService,
     AnnouncementsService,
-    ProfileService,
     UserDataEditService
   ]
