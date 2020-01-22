@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogService } from '../services/catalog.service';
 import { Item } from '../interfaces/item.interface';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-catalog',
@@ -8,36 +9,33 @@ import { Item } from '../interfaces/item.interface';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
+
+  private itemsCollection: AngularFirestoreCollection<Item>;
   items: Array<Item>;
-  isItems: boolean;
+  isItems: boolean = false;
   isLoading: boolean = true;
 
   constructor(
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private afs: AngularFirestore
   ) { }
 
-  private setNoItems(){
-    this.isItems = false;
-    this.items = [];
+  setItems(shots: Array<Item>) {
+    this.items = shots;
+    this.items.length > 0 ? this.isItems = true : this.isItems = false;
+    this.isLoading = false;
   }
 
-  private loadItems(allItems: Array<Item>) {
-
-    if (allItems) {
-      if (allItems.length > 0) {
-        this.items = allItems;
-        this.isItems = true;
-        this.isLoading = false;
-      } else {
-        this.setNoItems();
-        this.isLoading = false;
-      }
-    }
+  setSearchFunction(fn?) {
+    this.isLoading = true;
+    this.itemsCollection = this.afs.collection<Item>('allItems', fn);
+    const newItems = this.itemsCollection.valueChanges();
+    newItems.forEach(this.setItems.bind(this));
   }
 
   ngOnInit() {
-    this.catalogService.getAllItems();
-    this.catalogService.allItems.subscribe(this.loadItems.bind(this));
+    this.setSearchFunction();
+    this.catalogService.getItemsFunction.subscribe(this.setSearchFunction.bind(this));
   }
 
 }
