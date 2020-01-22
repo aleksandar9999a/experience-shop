@@ -12,6 +12,8 @@ import { EditFormComponent } from './edit-form/edit-form.component';
 import { SearchComponent } from './search/search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserDataEditComponent } from './user-data-edit/user-data-edit.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { MyItemsComponent } from './my-items/my-items.component';
 
 
 export const declarations = [
@@ -28,5 +30,7 @@ export const declarations = [
     EditFormComponent,
     SearchComponent,
     ProfileComponent,
-    UserDataEditComponent
+    UserDataEditComponent,
+    UserInfoComponent,
+    MyItemsComponent
   ]
