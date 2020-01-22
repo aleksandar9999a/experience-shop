@@ -2,7 +2,10 @@
 
     <app-search></app-search>
 
-    <img *ngIf="isLoading" src="./../../assets/images/progresbar.gif" class="loadingSpinner mx-auto">
+    <div *ngIf="isLoading" class="text-center">
+        <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
+    </div>
+    
 
     <div *ngIf="!isLoading">
 
