@@ -1,52 +1,26 @@
-import { Injectable, Output } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
-import { Item } from '../interfaces/item.interface';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class CatalogService {
-    items: Array<Item>;
-    constructor(
-        private fireStore: AngularFirestore
-    ) { }
 
-    @Output() allItems = new BehaviorSubject(this.items);
+    @Output() getItemsFunction = new EventEmitter();
 
-    private createItemsElements(item: any) {
-        let newItem = item.data();
-        newItem.id = item.id;
-        this.items.push(newItem);
-    }
-
-    private setItems(shots: any){
-        this.items = [];
-        shots.forEach(this.createItemsElements.bind(this))
-        this.allItems.next(this.items);
-    }
-
-    getAllItems() {
-        this.fireStore
-            .collection('allItems')
-            .get()
-            .subscribe(this.setItems.bind(this));
-    }
-
-    searchByNameInAll(name: string) {
+    loadCategory(name: string, category: string){
         name = name.toLocaleLowerCase();
 
-        this.fireStore
-            .collection('allItems', ref => ref.where('name', '>=', name))
-            .get()
-            .subscribe(this.setItems.bind(this));
-    }
+        const searchByName = (ref:any) => ref.where('name', '>=', name);
+        const searchByCategory = (ref:any) => ref.where('category', '==', category);
+        const searchByNameAndCategoty = (ref:any) => ref.where('category', '==', category).where('name', '>=', name);
 
-    searchByNameAndCategory(name: string, category: string) {
-        name = name.toLocaleLowerCase();
-        
-        this.fireStore
-            .collection('allItems', ref => ref.where('category', '==', category).where('name', '>=', name))
-            .get()
-            .subscribe(this.setItems.bind(this));
+        if (category === 'all') {
+            this.getItemsFunction.emit(searchByName);
+        }
+        else if (name && category) {
+            this.getItemsFunction.emit(searchByNameAndCategoty);
+        }
+        else if (category) {
+            this.getItemsFunction.emit(searchByCategory);
+        }
     }
 
 }
