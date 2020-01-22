@@ -48,10 +48,7 @@ export class UserDataEditService {
     const info = { username, summary, profileImg };
 
     await this.fireStore
-      .collection('userdata')
-      .doc(uid)
-      .collection('userdata')
-      .doc('info')
+      .doc(`userdata/${uid}/userdata/info`)
       .set(info)
       .then(_ => {
         this.notifier.notify('success', 'You successful update your information!');
