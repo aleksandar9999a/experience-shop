@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { UserService } from './user.service';
 import { Item } from '../interfaces/item.interface';
 
 @Injectable()
 export class AnnouncementsService {
+    collection: AngularFirestoreCollection<Item>;
 
     constructor(
         private readonly notifier: NotifierService,
@@ -15,7 +16,9 @@ export class AnnouncementsService {
         private firabaseAuth: AngularFireAuth,
         private fireStore: AngularFirestore,
         private userService: UserService
-    ) { }
+    ) {
+        this.collection = this.fireStore.collection('allItems');
+    }
 
     private async uploadImage(image: any) {
         const d = new Date();
@@ -29,17 +32,16 @@ export class AnnouncementsService {
     }
 
     async edit(id: string, name: string, desc: string, image: any, price: number, category: string) {
-        let url = image;
         name = name.toLocaleLowerCase();
 
         if (typeof image === 'object') {
-            url = await this.uploadImage(image);
+            image = await this.uploadImage(image);
         }
 
         const user = this.firabaseAuth.auth.currentUser;
-        const newItem = { creatorUid: user.uid, name, desc, image: url, price, category };
+        const updatedItem = { id, creatorUid: user.uid, name, desc, image, price, category };
 
-        await this.fireStore.collection('allItems').doc(id).update(newItem)
+        await this.collection.doc(id).update(updatedItem)
             .then(_ => {
                 this.notifier.notify('success', 'You successful edit your announcement!');
             })
@@ -47,12 +49,14 @@ export class AnnouncementsService {
     }
 
     async createAdv(name: string, desc: string, image: any, price: number, category: string) {
-        const user = this.firabaseAuth.auth.currentUser;
         name = name.toLocaleLowerCase();
-        let url = await this.uploadImage(image);
-        const newItem = { creatorUid: user.uid, name, desc, image: url, price, category };
 
-        await this.fireStore.collection('allItems').add(newItem)
+        const user = this.firabaseAuth.auth.currentUser;
+        const url = await this.uploadImage(image);
+        const id = this.fireStore.createId();
+        const newItem = { id, creatorUid: user.uid, name, desc, image: url, price, category };
+
+        await this.collection.doc(id).set(newItem)
             .then(_ => {
                 this.notifier.notify('success', 'You successful create new announcement!');
             })
@@ -70,10 +74,10 @@ export class AnnouncementsService {
     addItemToShoppingCard(item: Item) {
         const uid = this.userService.getCurrentUid();
         this.fireStore.collection('userdata').doc(uid).collection('shoppingCard').add(item)
-          .then(_ => {
-            this.notifier.notify('success', 'Successful!');
-          })
-          .catch(err => this.notifier.notify('warning', err.message));
-      }
+            .then(_ => {
+                this.notifier.notify('success', 'Successful!');
+            })
+            .catch(err => this.notifier.notify('warning', err.message));
+    }
 
 }
