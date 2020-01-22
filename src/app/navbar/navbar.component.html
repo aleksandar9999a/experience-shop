@@ -1,17 +1,21 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/">Experience Shop</a>
+<div class="logo" routerLink="/">
+    <img src="./../../assets/images/logo.png" class="w-100">
+</div>
 
-    <button class="navbar-toggler" type="button" (click)="changeNavbarState()" data-toggle="collapse"
+<nav class="navbar navbar-expand-sm navbar-dark p-2 bg-dark">
+    
+    
+    <button class="navbar-toggler ml-auto" type="button" (click)="changeNavbarState()" data-toggle="collapse"
         data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" [ngClass]="navBarIsOpen" id="collapsibleNavbar">
+    <div class="collapse navbar-collapse navbar-panel" [ngClass]="navBarIsOpen" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item mx-2">
                 <button class="btn btn-outline-primary borders navbarBtn" routerLink="/catalog">Catalog</button>
             </li>
-            <li *ngIf="isHere" class="nav-item">
+            <li *ngIf="isHere" class="nav-item mx-2">
                 <button class="btn btn-outline-primary borders navbarBtn" routerLink="/profile">Profile</button>
             </li>
         </ul>
