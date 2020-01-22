@@ -3,7 +3,6 @@ import { UserService } from '../services/user.service';
 import { Item } from '../interfaces/item.interface';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
-import { CatalogService } from '../services/catalog.service';
 import { EditFormService } from '../services/edit-form.service';
 import { AnnouncementsService } from '../services/announcements.service';
 
@@ -21,7 +20,6 @@ export class ItemDetailsComponent implements OnInit {
   constructor(
     private detailsFormService: DetailsFormService,
     private userService: UserService,
-    private catalogService: CatalogService,
     private editFormService: EditFormService,
     private announcementsService: AnnouncementsService
   ) { }
@@ -38,7 +36,6 @@ export class ItemDetailsComponent implements OnInit {
   deleteItem() {
     this.announcementsService.delete(this.detailsData.id)
     this.close();
-    this.catalogService.getAllItems();
   }
 
   isCreator() {
