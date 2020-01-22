@@ -47,7 +47,7 @@ export class UserDataEditService {
     
     const info = { username, summary, profileImg };
 
-    this.fireStore
+    await this.fireStore
       .collection('userdata')
       .doc(uid)
       .collection('userdata')
