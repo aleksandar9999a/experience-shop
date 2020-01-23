@@ -73,7 +73,13 @@ export class AnnouncementsService {
 
     addItemToShoppingCard(item: Item) {
         const uid = this.userService.getCurrentUid();
-        this.fireStore.collection('userdata').doc(uid).collection('shoppingCard').add(item)
+        const id = this.fireStore.createId();
+
+        const newItem = item;
+        newItem.oldId = item.id;
+        newItem.id = id;
+
+        this.fireStore.collection('userdata').doc(uid).collection('shoppingCard').doc(id).set(newItem)
             .then(_ => {
                 this.notifier.notify('success', 'Successful!');
             })
