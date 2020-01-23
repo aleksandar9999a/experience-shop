@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Item } from '../interfaces/item.interface';
 import { UserService } from '../services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-my-items',
@@ -10,7 +11,7 @@ import { UserService } from '../services/user.service';
 })
 export class MyItemsComponent implements OnInit {
   private itemsCollection: AngularFirestoreCollection<Item>;
-  items: Array<Item>;
+  items: Observable<Item[]>;
   isItems = false;
   isLoading = true;
 
@@ -21,13 +22,12 @@ export class MyItemsComponent implements OnInit {
     this.isLoading = true;
     const uid = this.userService.getCurrentUid();
     this.itemsCollection = this.afs.collection<Item>('allItems', (ref: any) => ref.where('creatorUid', '==', uid));
-    const newItems = this.itemsCollection.valueChanges();
-    newItems.forEach(this.setItems.bind(this));
+    this.items = this.itemsCollection.valueChanges();
+    this.items.subscribe(this.setItems.bind(this));
   }
 
   setItems(shots: Array<Item>) {
-    this.items = shots;
-    this.items.length > 0 ? this.isItems = true : this.isItems = false;
+    shots.length > 0 ? this.isItems = true : this.isItems = false;
     this.isLoading = false;
   }
 

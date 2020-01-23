@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CatalogService } from '../services/catalog.service';
 import { Item } from '../interfaces/item.interface';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-catalog',
@@ -11,9 +12,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 export class CatalogComponent implements OnInit {
 
   private itemsCollection: AngularFirestoreCollection<Item>;
-  items: Array<Item>;
+  items: Observable<Item[]>;
   isItems = false;
-  isLoading = true;
+  isLoading = false;
 
   constructor(
     private catalogService: CatalogService,
@@ -21,16 +22,15 @@ export class CatalogComponent implements OnInit {
   ) { }
 
   setItems(shots: Array<Item>) {
-    this.items = shots;
-    this.items.length > 0 ? this.isItems = true : this.isItems = false;
+    shots.length > 0 ? this.isItems = true : this.isItems = false;
     this.isLoading = false;
   }
 
   setSearchFunction(fn?) {
     this.isLoading = true;
     this.itemsCollection = this.afs.collection<Item>('allItems', fn);
-    const newItems = this.itemsCollection.valueChanges();
-    newItems.forEach(this.setItems.bind(this));
+    this.items = this.itemsCollection.valueChanges();
+    this.items.subscribe(this.setItems.bind(this));
   }
 
   ngOnInit() {
