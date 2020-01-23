@@ -29,19 +29,19 @@ export class SignComponent implements OnInit {
     private readonly notifier: NotifierService,
     private signFormService: SignFormService,
     private userService: UserService
-    ) { }
+  ) { }
 
   signIn() {
     const { email, password } = this.signInForm.value;
     this.userService.logIn(email, password);
-    this.closeSignForm();
+    this.signFormService.toggle();
   }
 
   signUp() {
     const { email, password, confirmPassword } = this.signUpForm.value;
     if (password === confirmPassword) {
       this.userService.createUser(email, password);
-      this.closeSignForm();
+      this.signFormService.toggle();
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
     }
@@ -51,8 +51,12 @@ export class SignComponent implements OnInit {
     this.signFormService.toggle();
   }
 
+  setIsOpen(isOpen: boolean) {
+    isOpen ? this.formState = 'open' : this.formState = 'close';
+  }
+
   ngOnInit() {
-    this.signFormService.change.subscribe(isOpen => isOpen ? this.formState = 'open' : this.formState = 'close');
+    this.signFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
   }
 
 }
