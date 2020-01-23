@@ -11,7 +11,7 @@ import { NotifierService } from 'angular-notifier';
   animations: formAnimations
 })
 export class ShoppingCardComponent implements OnInit {
-  formState: string = 'close';
+  formState = 'close';
   itemsForBuy: Array<Item>;
   fullPrice: number;
   isHaveProducts: boolean;
@@ -55,8 +55,8 @@ export class ShoppingCardComponent implements OnInit {
       if (items.docs.length > 0) {
         this.setEmptyList();
         this.isHaveProducts = true;
-        items.forEach(this.addItemToList.bind(this))
-      }else{
+        items.forEach(this.addItemToList.bind(this));
+      } else {
         this.setEmptyList();
       }
     } else {
@@ -64,10 +64,10 @@ export class ShoppingCardComponent implements OnInit {
     }
   }
 
-  private setIsOpen(currState: boolean){
+  private setIsOpen(currState: boolean) {
     if (currState) {
       this.formState = 'open';
-    }else{
+    } else {
       this.formState = 'close';
     }
   }

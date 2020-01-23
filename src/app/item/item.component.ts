@@ -8,12 +8,13 @@ import { Item } from '../interfaces/item.interface';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  @Input('item') item: Item;
+  @Input() item: Item;
+
   constructor(
     private detailsAnimationsService: DetailsFormService
   ) { }
 
-  openDetails(){
+  openDetails() {
     this.detailsAnimationsService.toggle(this.item);
   }
 

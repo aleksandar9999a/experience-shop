@@ -15,22 +15,21 @@ import { UserDataEditComponent } from './user-data-edit/user-data-edit.component
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MyItemsComponent } from './my-items/my-items.component';
 
-
 export const declarations = [
-    AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    CatalogComponent,
-    CreateAdvertisementComponent,
-    SignComponent,
-    ItemComponent,
-    ItemDetailsComponent,
-    FooterComponent,
-    ShoppingCardComponent,
-    EditFormComponent,
-    SearchComponent,
-    ProfileComponent,
-    UserDataEditComponent,
-    UserInfoComponent,
-    MyItemsComponent
-  ]
+  AppComponent,
+  NavbarComponent,
+  HomeComponent,
+  CatalogComponent,
+  CreateAdvertisementComponent,
+  SignComponent,
+  ItemComponent,
+  ItemDetailsComponent,
+  FooterComponent,
+  ShoppingCardComponent,
+  EditFormComponent,
+  SearchComponent,
+  ProfileComponent,
+  UserDataEditComponent,
+  UserInfoComponent,
+  MyItemsComponent
+];

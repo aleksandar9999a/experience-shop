@@ -13,12 +13,12 @@ import { AnnouncementsService } from '../services/announcements.service';
   animations: createAdvAnimations
 })
 export class CreateAdvertisementComponent implements OnInit {
-  createFormState: string = 'close';
+  createFormState = 'close';
   defaultImage = '../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
-  rows: number = 4;
-  isDisabled: boolean = true;
+  rows = 4;
+  isDisabled = true;
 
   createForm = new FormGroup({
     name: new FormControl(null, [
@@ -33,7 +33,7 @@ export class CreateAdvertisementComponent implements OnInit {
     image: new FormControl(null, Validators.required),
     price: new FormControl(null, Validators.required),
     category: new FormControl(null, Validators.required)
-  })
+  });
 
   constructor(
     private createFormService: CreateFormService,
@@ -43,13 +43,13 @@ export class CreateAdvertisementComponent implements OnInit {
 
   async createAdv() {
     if (this.createForm.valid) {
-      let { name, desc, price, category } = this.createForm.value;
+      const { name, desc, price, category } = this.createForm.value;
       this.isDisabled = true;
       await this.announcementsService.createAdv(name, desc, this.localImage, price, category);
       this.createFormService.toggle();
       this.isDisabled = false;
     } else {
-      this.notifier.notify('warning', 'Form data is incorrect!')
+      this.notifier.notify('warning', 'Form data is incorrect!');
     }
   }
 
@@ -60,19 +60,19 @@ export class CreateAdvertisementComponent implements OnInit {
       reader.readAsDataURL(this.localImage);
       reader.onload = () => {
         this.localImageUrl = reader.result;
-      }
+      };
     }
   }
 
-  handleChange(){
+  handleChange() {
     if (this.createForm.invalid) {
       this.isDisabled = true;
-    }else{
+    } else {
       this.isDisabled = false;
     }
   }
 
-  cleanForm(){
+  cleanForm() {
     this.createForm.patchValue({
       name: null,
       desc: null,

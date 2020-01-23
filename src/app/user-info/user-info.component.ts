@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, DocumentChangeAction } from '@angular/fire/firestore';
 import { Profile } from '../interfaces/profile.interface';
 import { UserService } from '../services/user.service';
 import { UserDataEditService } from '../services/user-data-edit.service';
@@ -12,8 +12,8 @@ import { UserDataEditService } from '../services/user-data-edit.service';
 export class UserInfoComponent implements OnInit {
   profileDoc: AngularFirestoreDocument<Profile>;
   profile: Profile;
-  isUnknown: boolean = false;
-  isLoading: boolean = true;
+  isUnknown: boolean;
+  isLoading: boolean;
 
   constructor(
     private afs: AngularFirestore,
@@ -27,7 +27,7 @@ export class UserInfoComponent implements OnInit {
     data.subscribe(this.setData.bind(this));
   }
 
-  setData(shot) {
+  setData(shot: Profile) {
     if (shot !== undefined) {
       this.profile = shot;
       this.isUnknown = false;
@@ -37,7 +37,7 @@ export class UserInfoComponent implements OnInit {
     this.isLoading = false;
   }
 
-  openEditForm(){
+  openEditForm() {
     this.userDataEditService.toggle(this.profile);
   }
 

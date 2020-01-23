@@ -13,7 +13,7 @@ export class ShoppingCardService {
   ) { }
 
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
-  @Output() getShoppingItems: EventEmitter<Object> = new EventEmitter();
+  @Output() getShoppingItems = new EventEmitter();
 
   private getShoppingCardRef(uid: string) {
     return this.fireStore.collection('userdata').doc(uid).collection('shoppingCard');
@@ -36,7 +36,7 @@ export class ShoppingCardService {
 
     this.shoppingList.forEach((x: any) => {
       ref.doc(x.id).delete();
-    })
+    });
   }
 
   deleteItem(id: string) {

@@ -12,6 +12,6 @@ const detailsFormAnimations = [
         })),
         transition('open <=> close', animate('0.5s'))
     ])
-]
+];
 
-export { detailsFormAnimations }
+export { detailsFormAnimations };

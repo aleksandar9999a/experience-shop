@@ -10,14 +10,14 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 export const imports = [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NotifierModule,
-    BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'experienceShop'),
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    AngularFireAuthModule
-  ]
+  BrowserModule,
+  AppRoutingModule,
+  FormsModule,
+  ReactiveFormsModule,
+  NotifierModule,
+  BrowserAnimationsModule,
+  AngularFireModule.initializeApp(environment.firebase, 'experienceShop'),
+  AngularFirestoreModule,
+  AngularFireStorageModule,
+  AngularFireAuthModule
+];

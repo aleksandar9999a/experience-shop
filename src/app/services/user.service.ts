@@ -25,7 +25,7 @@ export class UserService {
             .then(res => this.setIsHere(res, true))
             .then(_ => {
                 this.notifier.notify('success', 'Successful!');
-                this.routerService.navigate(['/catalog'])
+                this.routerService.navigate(['/catalog']);
             })
             .catch(err => this.notifier.notify('warning', err.message));
     }
@@ -36,7 +36,7 @@ export class UserService {
             .then(res => this.setIsHere(res, true))
             .then(_ => {
                 this.notifier.notify('success', 'Successful!');
-                this.routerService.navigate(['/catalog'])
+                this.routerService.navigate(['/catalog']);
             })
             .catch(err => this.notifier.notify('warning', err.message));
     }

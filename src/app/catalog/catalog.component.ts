@@ -12,8 +12,8 @@ export class CatalogComponent implements OnInit {
 
   private itemsCollection: AngularFirestoreCollection<Item>;
   items: Array<Item>;
-  isItems: boolean = false;
-  isLoading: boolean = true;
+  isItems = false;
+  isLoading = true;
 
   constructor(
     private catalogService: CatalogService,

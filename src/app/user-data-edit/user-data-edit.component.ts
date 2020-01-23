@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { editProfileAnimations } from './user-data-edit.animations';
 import { Profile } from '../interfaces/profile.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,12 +11,12 @@ import { UserDataEditService } from '../services/user-data-edit.service';
   animations: editProfileAnimations
 })
 export class UserDataEditComponent implements OnInit {
-  editFormState: string = 'close';
-  defaultImage: any = './../../assets/images/unkItem.svg';
+  editFormState = 'close';
+  defaultImage = './../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
-  rows: number = 4;
-  isDisabled: boolean = false;
+  rows = 4;
+  isDisabled = true;
 
   editForm = new FormGroup({
     username: new FormControl(null, [
@@ -29,7 +29,7 @@ export class UserDataEditComponent implements OnInit {
       Validators.required
     ]),
     profileImg: new FormControl(null),
-  })
+  });
 
   constructor(
     private userDataEditService: UserDataEditService
@@ -42,7 +42,7 @@ export class UserDataEditComponent implements OnInit {
       reader.readAsDataURL(this.localImage);
       reader.onload = () => {
         this.localImageUrl = reader.result;
-      }
+      };
     }
   }
 
@@ -57,38 +57,38 @@ export class UserDataEditComponent implements OnInit {
     }
   }
 
-  handleChange(){
+  handleChange() {
     if (this.editForm.invalid) {
       this.isDisabled = true;
-    }else{
+    } else {
       this.isDisabled = false;
     }
   }
 
-  close(){
+  close() {
     this.userDataEditService.toggle();
   }
 
-  editProfile(){
+  editProfile() {
     if (this.editForm.valid) {
       const { username, summary } = this.editForm.value;
       const profileImg = this.localImage || this.defaultImage;
       this.isDisabled = true;
-      this.userDataEditService.updateUserData(username, summary, profileImg)
+      this.userDataEditService.updateUserData(username, summary, profileImg);
       this.isDisabled = false;
       this.userDataEditService.toggle();
     }
   }
 
-  setFormState(state: boolean){
+  setFormState(state: boolean) {
     if (state) {
       this.editFormState = 'open';
-    }else{
+    } else {
       this.editFormState = 'close';
     }
   }
 
-  setInfo(data: Profile){
+  setInfo(data: Profile) {
     this.editForm.patchValue({
       username: data.username,
       summary: data.summary
@@ -97,11 +97,17 @@ export class UserDataEditComponent implements OnInit {
     if (data.profileImg) {
       this.defaultImage = data.profileImg;
     }
+
+    if (this.editForm.valid) {
+      this.isDisabled = false;
+    } else {
+      this.isDisabled = true;
+    }
   }
 
   ngOnInit() {
-    this.userDataEditService.change.subscribe(this.setFormState.bind(this))
-    this.userDataEditService.changeInfo.subscribe(this.setInfo.bind(this))
+    this.userDataEditService.change.subscribe(this.setFormState.bind(this));
+    this.userDataEditService.changeInfo.subscribe(this.setInfo.bind(this));
   }
 
 }

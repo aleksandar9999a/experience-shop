@@ -19,7 +19,7 @@ export class UserDataEditService {
   ) { }
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();
-  @Output() changeInfo: BehaviorSubject<Object> = new BehaviorSubject({});
+  @Output() changeInfo = new BehaviorSubject({});
 
   toggle(data?: Profile) {
     this.isOpen = !this.isOpen;
@@ -44,7 +44,6 @@ export class UserDataEditService {
     if (typeof profileImg !== 'string') {
       profileImg = await this.uploadImage(profileImg);
     }
-    
     const info = { username, summary, profileImg };
 
     await this.fireStore
@@ -55,5 +54,4 @@ export class UserDataEditService {
       })
       .catch(err => this.notifier.notify('warning', err.message));
   }
-
 }

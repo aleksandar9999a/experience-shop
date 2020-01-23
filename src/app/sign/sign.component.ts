@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { NotifierService } from "angular-notifier";
+import { NotifierService } from 'angular-notifier';
 import { SignFormService } from '../services/signForm.service';
 import { signAnimations } from './signAnimations';
-
-import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -14,18 +12,18 @@ import { UserService } from '../services/user.service';
   animations: signAnimations
 })
 export class SignComponent implements OnInit {
-  formState: string = 'close';
+  formState = 'close';
 
   signInForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
-  })
+  });
 
   signUpForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
     confirmPassword: new FormControl('')
-  })
+  });
 
   constructor(
     private readonly notifier: NotifierService,

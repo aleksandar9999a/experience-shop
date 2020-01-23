@@ -11,16 +11,16 @@ import { UserService } from '../services/user.service';
 export class MyItemsComponent implements OnInit {
   private itemsCollection: AngularFirestoreCollection<Item>;
   items: Array<Item>;
-  isItems: boolean = false;
-  isLoading: boolean = true;
-  
+  isItems = false;
+  isLoading = true;
+
   constructor(
     private afs: AngularFirestore,
     private userService: UserService
-  ) { 
+  ) {
     this.isLoading = true;
     const uid = this.userService.getCurrentUid();
-    this.itemsCollection = this.afs.collection<Item>('allItems', (ref:any) => ref.where('creatorUid', '==', uid));
+    this.itemsCollection = this.afs.collection<Item>('allItems', (ref: any) => ref.where('creatorUid', '==', uid));
     const newItems = this.itemsCollection.valueChanges();
     newItems.forEach(this.setItems.bind(this));
   }

@@ -12,6 +12,6 @@ const editFormAnimations = [
         })),
         transition('open <=> close', animate('0.5s'))
     ])
-]
+];
 
-export { editFormAnimations }
+export { editFormAnimations };

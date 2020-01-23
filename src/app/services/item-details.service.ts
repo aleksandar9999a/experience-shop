@@ -5,7 +5,7 @@ import { Item } from '../interfaces/item.interface';
 @Injectable()
 export class DetailsFormService {
 
-  isOpen: boolean = false;
+  isOpen = false;
 
   constructor() { }
 

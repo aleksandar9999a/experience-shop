@@ -9,7 +9,7 @@ export class EditFormService {
   constructor() { }
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();
-  @Output() changeData: BehaviorSubject<any> = new BehaviorSubject({})
+  @Output() changeData: BehaviorSubject<any> = new BehaviorSubject({});
 
   toggle(data?: Item) {
     this.isOpen = !this.isOpen;

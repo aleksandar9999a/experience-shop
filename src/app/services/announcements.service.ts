@@ -68,7 +68,7 @@ export class AnnouncementsService {
             .then(_ => {
                 this.notifier.notify('success', 'Successful delete your announcement!');
             })
-            .catch(err => this.notifier.notify('warning', err.message))
+            .catch(err => this.notifier.notify('warning', err.message));
     }
 
     addItemToShoppingCard(item: Item) {

@@ -1,18 +1,12 @@
 <div class="container">
-
     <app-search></app-search>
-
     <div *ngIf="isLoading" class="text-center">
         <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
     </div>
-    
-
     <div *ngIf="!isLoading">
-
         <div *ngIf="!isItems" class="container noAnnouncementsContainer">
             <p class="text-center my-5">Sorry, We don't have announcements...</p>
         </div>
-
         <div *ngIf="isItems" class="my-5">
             <div *ngFor="let item of items;let i=index" class="d-flex list-group">
                 <app-item [item]="item"></app-item>

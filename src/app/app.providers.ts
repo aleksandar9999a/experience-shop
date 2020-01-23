@@ -9,13 +9,13 @@ import { AnnouncementsService } from './services/announcements.service';
 import { UserDataEditService } from './services/user-data-edit.service';
 
 export const providers = [
-    SignFormService,
-    UserService,
-    CreateFormService,
-    CatalogService,
-    DetailsFormService,
-    ShoppingCardService,
-    EditFormService,
-    AnnouncementsService,
-    UserDataEditService
-  ]
+  SignFormService,
+  UserService,
+  CreateFormService,
+  CatalogService,
+  DetailsFormService,
+  ShoppingCardService,
+  EditFormService,
+  AnnouncementsService,
+  UserDataEditService
+];

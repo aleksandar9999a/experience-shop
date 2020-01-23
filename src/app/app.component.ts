@@ -8,13 +8,13 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent implements OnInit {
   isHere: boolean;
-  
+
   constructor(
     private userService: UserService,
     private zone: NgZone
   ) { }
 
-  setIsHere(currState: boolean){
+  setIsHere(currState: boolean) {
     this.zone.run(() => {
       this.isHere = currState;
     });

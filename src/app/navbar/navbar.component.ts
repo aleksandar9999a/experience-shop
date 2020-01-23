@@ -12,7 +12,7 @@ import { ShoppingCardService } from '../services/shopping-card.service';
 })
 export class NavbarComponent implements OnInit {
   isHere: boolean;
-  navBarIsOpen: string = 'hide';
+  navBarIsOpen = 'hide';
 
 
   constructor(
@@ -27,10 +27,10 @@ export class NavbarComponent implements OnInit {
     this.userService.logOut();
   }
 
-  changeNavbarState(){
+  changeNavbarState() {
     if (this.navBarIsOpen === 'show') {
       this.navBarIsOpen = 'hide';
-    }else{
+    } else {
       this.navBarIsOpen = 'show';
     }
   }
@@ -43,11 +43,11 @@ export class NavbarComponent implements OnInit {
     this.createFormService.toggle();
   }
 
-  openShoppingCard(){
+  openShoppingCard() {
     this.shoppingCardService.toggle();
   }
 
-  setIsHere(currState: boolean){
+  setIsHere(currState: boolean) {
     this.zone.run(() => {
       this.isHere = currState;
     });

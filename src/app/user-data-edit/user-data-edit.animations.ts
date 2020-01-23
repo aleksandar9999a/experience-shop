@@ -12,6 +12,6 @@ const editProfileAnimations = [
         })),
         transition('open <=> close', animate('0.5s'))
     ])
-]
+];
 
-export { editProfileAnimations }
+export { editProfileAnimations };

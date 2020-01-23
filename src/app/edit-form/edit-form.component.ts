@@ -13,13 +13,13 @@ import { NotifierService } from 'angular-notifier';
   animations: editFormAnimations
 })
 export class EditFormComponent implements OnInit {
-  editFormState: string = 'close';
+  editFormState = 'close';
   currentData: Item;
   defaultImage = null;
   localImageUrl = null;
   localImage = null;
-  rows: number = 4;
-  isDisabled: boolean = false;
+  rows = 4;
+  isDisabled = false;
 
   editForm = new FormGroup({
     name: new FormControl(null, [
@@ -34,7 +34,7 @@ export class EditFormComponent implements OnInit {
     image: new FormControl(null),
     price: new FormControl(null, Validators.required),
     category: new FormControl(null, Validators.required)
-  })
+  });
 
   constructor(
     private editFormService: EditFormService,
@@ -49,7 +49,7 @@ export class EditFormComponent implements OnInit {
       reader.readAsDataURL(this.localImage);
       reader.onload = () => {
         this.localImageUrl = reader.result;
-      }
+      };
     }
   }
 
@@ -62,9 +62,7 @@ export class EditFormComponent implements OnInit {
       this.editFormService.toggle();
       this.isDisabled = false;
     } else {
-      console.log(this.editForm.value);
-      
-      this.notifier.notify('warning', 'Form data is incorrect!')
+      this.notifier.notify('warning', 'Form data is incorrect!');
     }
 
   }

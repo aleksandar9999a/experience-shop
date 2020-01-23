@@ -12,6 +12,6 @@ const signAnimations = [
         })),
         transition('open <=> close', animate('0.5s'))
     ])
-]
+];
 
-export { signAnimations }
+export { signAnimations };

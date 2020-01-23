@@ -13,7 +13,7 @@ import { AnnouncementsService } from '../services/announcements.service';
   animations: detailsFormAnimations
 })
 export class ItemDetailsComponent implements OnInit {
-  detailsFormState: string = 'close';
+  detailsFormState = 'close';
   detailsData: Item;
   isHere = false;
 
@@ -34,33 +34,33 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   deleteItem() {
-    this.announcementsService.delete(this.detailsData.id)
+    this.announcementsService.delete(this.detailsData.id);
     this.close();
   }
 
   isCreator() {
-    let currentUid = this.userService.getCurrentUid();
+    const currentUid = this.userService.getCurrentUid();
     return currentUid === this.detailsData.creatorUid;
   }
 
   addToShoppingCard() {
-    this.announcementsService.addItemToShoppingCard(this.detailsData)
+    this.announcementsService.addItemToShoppingCard(this.detailsData);
     this.close();
   }
 
-  private setIsOpen(currState: boolean){
+  private setIsOpen(currState: boolean) {
     if (currState) {
       this.detailsFormState = 'open';
-    }else{
+    } else {
       this.detailsFormState = 'close';
     }
   }
 
-  private setData(data: Item){
+  private setData(data: Item) {
     this.detailsData = data;
   }
 
-  private setIsHere(currState: boolean){
+  private setIsHere(currState: boolean) {
     this.isHere = currState;
   }
 

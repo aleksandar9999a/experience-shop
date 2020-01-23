@@ -12,6 +12,6 @@ const createAdvAnimations = [
         })),
         transition('open <=> close', animate('0.5s'))
     ])
-]
+];
 
-export { createAdvAnimations }
+export { createAdvAnimations };

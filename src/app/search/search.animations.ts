@@ -12,6 +12,6 @@ const searchFormAnimations = [
         })),
         transition('open <=> close', animate('0.5s'))
     ])
-]
+];
 
-export { searchFormAnimations }
+export { searchFormAnimations };

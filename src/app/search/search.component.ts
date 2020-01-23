@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   searchForm = new FormGroup({
     name: new FormControl(''),
     category: new FormControl('all')
-  })
+  });
 
   constructor(
     private catalogService: CatalogService
