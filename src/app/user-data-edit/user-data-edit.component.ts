@@ -106,7 +106,7 @@ export class UserDataEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userDataEditService.change.subscribe(this.setFormState.bind(this));
+    this.userDataEditService.changeFormState.subscribe(this.setFormState.bind(this));
     this.userDataEditService.changeInfo.subscribe(this.setInfo.bind(this));
   }
 

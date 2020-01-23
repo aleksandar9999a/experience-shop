@@ -1,6 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Profile } from '../interfaces/profile.interface';
-import { BehaviorSubject } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
@@ -8,7 +7,6 @@ import { NotifierService } from 'angular-notifier';
 
 @Injectable()
 export class UserDataEditService {
-
   isOpen = false;
 
   constructor(
@@ -18,13 +16,16 @@ export class UserDataEditService {
     private userService: UserService
   ) { }
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
-  @Output() changeInfo = new BehaviorSubject({});
+  @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
+  @Output() changeInfo: EventEmitter<Profile> = new EventEmitter();
 
   toggle(data?: Profile) {
     this.isOpen = !this.isOpen;
-    this.change.emit(this.isOpen);
-    this.changeInfo.next(data || {});
+    this.changeFormState.emit(this.isOpen);
+
+    if (data) {
+      this.changeInfo.emit(data);
+    }
   }
 
   private async uploadImage(image: any) {
