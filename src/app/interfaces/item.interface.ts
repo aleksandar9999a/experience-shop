@@ -6,5 +6,5 @@ export interface Item {
     creatorUid: string;
     image: string;
     id: string;
-    newId?: string;
+    oldId?: string;
 }
