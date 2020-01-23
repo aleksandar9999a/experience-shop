@@ -5,11 +5,11 @@ export class CreateFormService {
 
   isOpen = false;
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
+  @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
 
   toggle() {
     this.isOpen = !this.isOpen;
-    this.change.emit(this.isOpen);
+    this.changeFormState.emit(this.isOpen);
   }
 
 }

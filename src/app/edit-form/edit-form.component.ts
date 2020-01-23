@@ -110,7 +110,7 @@ export class EditFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.editFormService.change.subscribe(this.setIsOpen.bind(this));
+    this.editFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
     this.editFormService.changeData.subscribe(this.loadData.bind(this));
   }
 

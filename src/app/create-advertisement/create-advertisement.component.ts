@@ -107,7 +107,7 @@ export class CreateAdvertisementComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.createFormService.change.subscribe(this.setIsOpen.bind(this));
+    this.createFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
   }
 
 }
