@@ -23,7 +23,7 @@ export class UserService {
             .signInWithEmailAndPassword(email, password)
             .then(_ => {
                 this.setIsHere(true);
-                this.notifier.notify('success', 'Successful!');
+                this.notifier.notify('success', 'Successful Log In!');
                 this.routerService.navigate(['/catalog']);
             })
             .catch(err => this.notifier.notify('warning', err.message));
@@ -34,7 +34,7 @@ export class UserService {
             .createUserWithEmailAndPassword(email, password)
             .then(_ => {
                 this.setIsHere(true);
-                this.notifier.notify('success', 'Successful!');
+                this.notifier.notify('success', 'Successful Log In!');
                 this.routerService.navigate(['/catalog']);
             })
             .catch(err => this.notifier.notify('warning', err.message));
@@ -45,7 +45,7 @@ export class UserService {
             .signOut()
             .then(_ => {
                 this.setIsHere(false);
-                this.notifier.notify('success', 'Successful!');
+                this.notifier.notify('success', 'Successful Log Out!');
                 this.routerService.navigate(['/']);
             })
             .catch(err => this.notifier.notify('warning', err.message));
