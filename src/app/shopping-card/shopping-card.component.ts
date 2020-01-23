@@ -3,6 +3,9 @@ import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
 import { Item } from '../interfaces/item.interface';
 import { NotifierService } from 'angular-notifier';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { UserService } from '../services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-card',
@@ -13,18 +16,40 @@ import { NotifierService } from 'angular-notifier';
 export class ShoppingCardComponent implements OnInit {
   formState = 'close';
   itemsForBuy: Array<Item>;
-  fullPrice: number;
+  fullPrice = 0;
   isHaveProducts: boolean;
+
+  private itemsCollection: AngularFirestoreCollection<Item>;
+  itemsState: Observable<Item[]>;
 
   constructor(
     private shoppingCardService: ShoppingCardService,
-    private readonly notifier: NotifierService
-  ) { }
+    private readonly notifier: NotifierService,
+    private afs: AngularFirestore,
+    private userService: UserService
+  ) {
+    const uid = this.userService.getCurrentUid();
+    this.itemsCollection = this.afs.collection<Item>(`userdata/${uid}/shoppingCard`);
+    this.itemsState = this.itemsCollection.valueChanges();
+    this.itemsState.forEach(this.setItems.bind(this));
+  }
+
+  setItems(items: Array<Item>) {
+    this.itemsForBuy = items;
+    this.fullPrice = items.reduce((r, x) => r += Number(x.price), 0);
+    if (items.length > 0) {
+      this.isHaveProducts = true;
+    } else {
+      this.isHaveProducts = false;
+    }
+  }
+
+  deleteDoc({ id }) {
+    this.itemsCollection.doc(id).delete();
+  }
 
   clearShoppingCard() {
-    this.setEmptyList();
-    this.shoppingCardService.clear();
-    this.shoppingCardService.loadShoppingList();
+    this.itemsForBuy.map(this.deleteDoc.bind(this));
   }
 
   buyAllProducts() {
@@ -37,33 +62,6 @@ export class ShoppingCardComponent implements OnInit {
     this.shoppingCardService.toggle();
   }
 
-  private setEmptyList() {
-    this.itemsForBuy = [];
-    this.fullPrice = 0;
-    this.isHaveProducts = false;
-  }
-
-  private addItemToList(item: any) {
-    const currItem = item.data();
-    currItem.newId = item.id;
-    this.itemsForBuy.push(currItem);
-    this.fullPrice += Number(currItem.price);
-  }
-
-  private loadItems(items: any) {
-    if (items) {
-      if (items.docs.length > 0) {
-        this.setEmptyList();
-        this.isHaveProducts = true;
-        items.forEach(this.addItemToList.bind(this));
-      } else {
-        this.setEmptyList();
-      }
-    } else {
-      this.setEmptyList();
-    }
-  }
-
   private setIsOpen(currState: boolean) {
     if (currState) {
       this.formState = 'open';
@@ -72,9 +70,8 @@ export class ShoppingCardComponent implements OnInit {
     }
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.shoppingCardService.changeFormState.subscribe(this.setIsOpen.bind(this));
-    this.shoppingCardService.getShoppingItems.subscribe(this.loadItems.bind(this));
   }
 
 }
