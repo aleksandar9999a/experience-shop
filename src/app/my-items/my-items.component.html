@@ -9,13 +9,11 @@
                     <div *ngIf="isLoadingItems">
                         <img src="./../../assets/images/progresbar.gif" class="loadingSpinner mx-auto d-block">
                     </div>
-                    <div *ngIf="!isLoadingItems">
-                        <div *ngIf="isItems">
-                            <div *ngFor="let item of items;" class="list-group">
-                                <app-item [item]="item"></app-item>
-                            </div>
+                    <div>
+                        <div *ngFor="let item of items | async" class="list-group">
+                            <app-item [item]="item"></app-item>
                         </div>
-                        <div *ngIf="!isItems" class="mb-5">
+                        <div *ngIf="!isLoadingItems && !isItems" class="mb-5">
                             <p class="text-center no-data">Empty!</p>
                         </div>
                     </div>
