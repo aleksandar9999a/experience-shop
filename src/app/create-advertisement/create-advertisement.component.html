@@ -20,10 +20,10 @@
                             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
                                 <div *ngIf="name.errors.required">
                                     Name is required.
-                                  </div>
-                                  <div *ngIf="name.errors.minlength">
+                                </div>
+                                <div *ngIf="name.errors.minlength">
                                     Name must be at least 4 characters long.
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-label-group">
@@ -36,13 +36,13 @@
                             <div *ngIf="desc.invalid && (desc.dirty || desc.touched)" class="text-danger">
                                 <div *ngIf="desc.errors.required">
                                     Description is required.
-                                  </div>
-                                  <div *ngIf="desc.errors.minlength">
+                                </div>
+                                <div *ngIf="desc.errors.minlength">
                                     Description must be at least 6 characters long.
-                                  </div>
-                                  <div *ngIf="desc.errors.maxlength">
+                                </div>
+                                <div *ngIf="desc.errors.maxlength">
                                     Description must be at least 1000 characters long.
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-label-group">
@@ -52,7 +52,7 @@
                             <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-danger">
                                 <div *ngIf="price.errors.required">
                                     Price is required.
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-label-group">
@@ -81,7 +81,7 @@
                             <div *ngIf="category.invalid && (category.dirty || category.touched)" class="text-danger">
                                 <div *ngIf="category.errors.required">
                                     Category is required.
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-label-group">
@@ -95,7 +95,7 @@
                             <div *ngIf="image.invalid && (image.dirty || image.touched)" class="text-danger">
                                 <div *ngIf="image.errors.required">
                                     Image is required.
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase borders" type="submit"
