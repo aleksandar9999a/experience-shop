@@ -19,20 +19,7 @@ export class CreateAdvertisementComponent implements OnInit {
   localImage = null;
   rows = 4;
 
-  createForm = new FormGroup({
-    name: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4)
-    ]),
-    desc: new FormControl(null, [
-      Validators.minLength(6),
-      Validators.maxLength(1000),
-      Validators.required
-    ]),
-    image: new FormControl(null, Validators.required),
-    price: new FormControl(null, Validators.required),
-    category: new FormControl(null, Validators.required)
-  });
+  createForm: FormGroup;
 
   constructor(
     private createFormService: CreateFormService,
@@ -61,16 +48,6 @@ export class CreateAdvertisementComponent implements OnInit {
     }
   }
 
-  cleanForm() {
-    this.createForm.patchValue({
-      name: null,
-      desc: null,
-      price: null,
-      category: null
-    });
-    this.localImageUrl = '';
-  }
-
   close() {
     this.createFormService.toggle();
   }
@@ -91,12 +68,32 @@ export class CreateAdvertisementComponent implements OnInit {
       this.createFormState = 'open';
     } else {
       this.createFormState = 'close';
-      this.cleanForm();
+      this.createForm.reset();
     }
   }
 
   ngOnInit() {
     this.createFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
+    this.createForm = new FormGroup({
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(4)
+      ]),
+      desc: new FormControl(null, [
+        Validators.minLength(6),
+        Validators.maxLength(1000),
+        Validators.required
+      ]),
+      image: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required),
+      category: new FormControl(null, Validators.required)
+    });
   }
+
+  get name() { return this.createForm.get('name'); }
+  get desc() { return this.createForm.get('desc'); }
+  get image() { return this.createForm.get('image'); }
+  get price() { return this.createForm.get('price'); }
+  get category() { return this.createForm.get('category'); }
 
 }
