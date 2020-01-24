@@ -12,17 +12,10 @@ export class UserService {
         private routerService: Router
     ) { }
 
-    @Output() isUserLogged: EventEmitter<boolean> = new EventEmitter();
-
-    private setIsHere(userIsHere: boolean) {
-        this.isUserLogged.emit(userIsHere);
-    }
-
     logIn(email: string, password: string) {
         this.fireBaseAuth.auth
             .signInWithEmailAndPassword(email, password)
             .then(_ => {
-                this.setIsHere(true);
                 this.notifier.notify('success', 'Successful Log In!');
                 this.routerService.navigate(['/catalog']);
             })
@@ -33,7 +26,6 @@ export class UserService {
         this.fireBaseAuth.auth
             .createUserWithEmailAndPassword(email, password)
             .then(_ => {
-                this.setIsHere(true);
                 this.notifier.notify('success', 'Successful Log In!');
                 this.routerService.navigate(['/catalog']);
             })
@@ -44,7 +36,6 @@ export class UserService {
         this.fireBaseAuth.auth
             .signOut()
             .then(_ => {
-                this.setIsHere(false);
                 this.notifier.notify('success', 'Successful Log Out!');
                 this.routerService.navigate(['/']);
             })
@@ -58,14 +49,4 @@ export class UserService {
         return null;
     }
 
-    checkIsHere() {
-        this.fireBaseAuth.auth
-            .onAuthStateChanged(user => {
-                if (user) {
-                    this.isUserLogged.emit(true);
-                } else {
-                    this.isUserLogged.emit(false);
-                }
-            });
-    }
 }
