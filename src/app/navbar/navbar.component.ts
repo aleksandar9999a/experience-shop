@@ -1,9 +1,10 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { SignFormService } from '../services/signForm.service';
 import { UserService } from '../services/user.service';
 import { CreateFormService } from '../services/createForm.service';
 import { ShoppingCardService } from '../services/shopping-card.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
     private userService: UserService,
     private createFormService: CreateFormService,
     private shoppingCardService: ShoppingCardService,
-    private zone: NgZone
+    private fireBaseAuth: AngularFireAuth
   ) { }
 
   logOut() {
@@ -47,14 +48,15 @@ export class NavbarComponent implements OnInit {
     this.shoppingCardService.toggle();
   }
 
-  setIsHere(currState: boolean) {
-    this.zone.run(() => {
-      this.isHere = currState;
-    });
-  }
-
   ngOnInit() {
-    this.userService.isUserLogged.subscribe(this.setIsHere.bind(this));
+    this.fireBaseAuth.auth
+      .onAuthStateChanged(user => {
+        if (user) {
+          this.isHere = true;
+        } else {
+          this.isHere = false;
+        }
+      });
   }
 
 }

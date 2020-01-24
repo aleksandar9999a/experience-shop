@@ -1,5 +1,5 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { UserService } from './services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,17 @@ export class AppComponent implements OnInit {
   isHere: boolean;
 
   constructor(
-    private userService: UserService,
-    private zone: NgZone
+    private fireBaseAuth: AngularFireAuth
   ) { }
 
-  setIsHere(currState: boolean) {
-    this.zone.run(() => {
-      this.isHere = currState;
-    });
-  }
-
   ngOnInit() {
-    this.userService.checkIsHere();
-    this.userService.isUserLogged.subscribe(this.setIsHere.bind(this));
+    this.fireBaseAuth.auth
+    .onAuthStateChanged(user => {
+      if (user) {
+        this.isHere = true;
+      } else {
+        this.isHere = false;
+      }
+    });
   }
 }

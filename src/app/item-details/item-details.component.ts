@@ -5,6 +5,7 @@ import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
 import { EditFormService } from '../services/edit-form.service';
 import { AnnouncementsService } from '../services/announcements.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-item-details',
@@ -21,7 +22,8 @@ export class ItemDetailsComponent implements OnInit {
     private detailsFormService: DetailsFormService,
     private userService: UserService,
     private editFormService: EditFormService,
-    private announcementsService: AnnouncementsService
+    private announcementsService: AnnouncementsService,
+    private fireBaseAuth: AngularFireAuth
   ) { }
 
   close() {
@@ -60,14 +62,17 @@ export class ItemDetailsComponent implements OnInit {
     this.detailsData = data;
   }
 
-  private setIsHere(currState: boolean) {
-    this.isHere = currState;
-  }
-
   ngOnInit() {
     this.detailsFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
     this.detailsFormService.changeDataState.subscribe(this.setData.bind(this));
-    this.userService.isUserLogged.subscribe(this.setIsHere.bind(this));
+    this.fireBaseAuth.auth
+      .onAuthStateChanged(user => {
+        if (user) {
+          this.isHere = true;
+        } else {
+          this.isHere = false;
+        }
+      });
   }
 
 }
