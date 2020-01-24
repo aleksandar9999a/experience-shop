@@ -16,7 +16,6 @@ export class UserDataEditComponent implements OnInit {
   localImageUrl = null;
   localImage = null;
   rows = 4;
-  isDisabled = true;
 
   editForm = new FormGroup({
     username: new FormControl(null, [
@@ -57,14 +56,6 @@ export class UserDataEditComponent implements OnInit {
     }
   }
 
-  handleChange() {
-    if (this.editForm.invalid) {
-      this.isDisabled = true;
-    } else {
-      this.isDisabled = false;
-    }
-  }
-
   close() {
     this.userDataEditService.toggle();
   }
@@ -73,9 +64,7 @@ export class UserDataEditComponent implements OnInit {
     if (this.editForm.valid) {
       const { username, summary } = this.editForm.value;
       const profileImg = this.localImage || this.defaultImage;
-      this.isDisabled = true;
       this.userDataEditService.updateUserData(username, summary, profileImg);
-      this.isDisabled = false;
       this.userDataEditService.toggle();
     }
   }
@@ -97,17 +86,15 @@ export class UserDataEditComponent implements OnInit {
     if (data.profileImg) {
       this.defaultImage = data.profileImg;
     }
-
-    if (this.editForm.valid) {
-      this.isDisabled = false;
-    } else {
-      this.isDisabled = true;
-    }
   }
 
   ngOnInit() {
     this.userDataEditService.changeFormState.subscribe(this.setFormState.bind(this));
     this.userDataEditService.changeInfo.subscribe(this.setInfo.bind(this));
   }
+
+  get username() { return this.editForm.get('username'); }
+  get summary() { return this.editForm.get('summary'); }
+  get profileImg() { return this.editForm.get('profileImg'); }
 
 }
