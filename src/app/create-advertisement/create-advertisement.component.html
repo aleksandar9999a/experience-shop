@@ -7,7 +7,7 @@
                     <h5 class="card-title title text-center">Create Аnnouncement</h5>
                 </div>
                 <div class="card-body">
-                    <form class="form-create" [formGroup]="createForm" (ngSubmit)="createAdv()" (change)="handleChange()">
+                    <form class="form-create" [formGroup]="createForm" (ngSubmit)="createAdv()">
                         <div class="form-label-group">
                             <img src="{{localImageUrl || defaultImage}}" class="rounded mx-auto d-block adImage"
                                 alt="adImage" />
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase borders"
-                            type="submit" [disabled]="isDisabled">Create</button>
+                            type="submit" [disabled]="createForm.invalid">Create</button>
                     </form>
                 </div>
             </div>

@@ -18,7 +18,6 @@ export class CreateAdvertisementComponent implements OnInit {
   localImageUrl = null;
   localImage = null;
   rows = 4;
-  isDisabled = true;
 
   createForm = new FormGroup({
     name: new FormControl(null, [
@@ -44,10 +43,8 @@ export class CreateAdvertisementComponent implements OnInit {
   async createAdv() {
     if (this.createForm.valid) {
       const { name, desc, price, category } = this.createForm.value;
-      this.isDisabled = true;
       await this.announcementsService.createAdv(name, desc, this.localImage, price, category);
       this.createFormService.toggle();
-      this.isDisabled = false;
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!');
     }
@@ -61,14 +58,6 @@ export class CreateAdvertisementComponent implements OnInit {
       reader.onload = () => {
         this.localImageUrl = reader.result;
       };
-    }
-  }
-
-  handleChange() {
-    if (this.createForm.invalid) {
-      this.isDisabled = true;
-    } else {
-      this.isDisabled = false;
     }
   }
 
