@@ -7,15 +7,23 @@
                     <h5 class="card-title title text-center">Edit Userdata</h5>
                 </div>
                 <div class="card-body">
-                    <form class="form-edit" [formGroup]="editForm" (ngSubmit)="editProfile()" (change)="handleChange()">
+                    <form class="form-edit" [formGroup]="editForm" (ngSubmit)="editProfile()">
                         <div class="form-label-group">
                             <img src="{{localImageUrl || defaultImage}}" class="rounded mx-auto d-block adImage"
                                 alt="profileImg" />
                         </div>
                         <div class="form-label-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" placeholder="Username"
-                                formControlName="username">
+                            <input type="text" class="form-control" placeholder="Username" formControlName="username">
+
+                            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">
+                                <div *ngIf="username.errors.required">
+                                    Username is required.
+                                </div>
+                                <div *ngIf="username.errors.minlength">
+                                    Username must be at least 4 characters long.
+                                </div>
+                            </div>
                         </div>
                         <div class="form-label-group">
                             <label>Summary</label>
@@ -23,6 +31,18 @@
                                 (keyup)="setTextAreaRow($event)"></textarea>
                             <blockquote class="blockquote">Use Ctrl+ArrowUp or Ctrl+ArrowDown to Resize TextArea
                             </blockquote>
+
+                            <div *ngIf="summary.invalid && (summary.dirty || summary.touched)" class="text-danger">
+                                <div *ngIf="summary.errors.required">
+                                    Summary is required.
+                                </div>
+                                <div *ngIf="summary.errors.minlength">
+                                    Summary must be at least 6 characters long.
+                                </div>
+                                <div *ngIf="summary.errors.maxlength">
+                                    Summary must be at least 1000 characters long.
+                                </div>
+                            </div>
                         </div>
                         <div class="form-label-group">
                             <label>Choose profile image</label>
@@ -32,8 +52,8 @@
                                 <label class="custom-file-label customInput" for="selectProfileImg">Choose file</label>
                             </div>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase borders"
-                            type="submit" [disabled]="isDisabled">Edit</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase borders" type="submit"
+                            [disabled]="editForm.invalid">Edit</button>
                     </form>
                 </div>
             </div>
