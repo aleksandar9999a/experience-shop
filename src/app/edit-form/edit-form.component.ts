@@ -15,11 +15,10 @@ import { NotifierService } from 'angular-notifier';
 export class EditFormComponent implements OnInit {
   editFormState = 'close';
   currentData: Item;
-  defaultImage = null;
+  defaultImage = '../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
   rows = 4;
-  isDisabled = false;
 
   editForm = new FormGroup({
     name: new FormControl(null, [
@@ -57,21 +56,10 @@ export class EditFormComponent implements OnInit {
     if (this.editForm.valid) {
       const { name, desc, price, category } = this.editForm.value;
       const image = this.localImage || this.defaultImage;
-      this.isDisabled = true;
       this.announcementsService.edit(this.currentData.id, name, desc, image, price, category);
       this.editFormService.toggle();
-      this.isDisabled = false;
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!');
-    }
-
-  }
-
-  handleChange() {
-    if (this.editForm.invalid) {
-      this.isDisabled = true;
-    } else {
-      this.isDisabled = false;
     }
   }
 
@@ -106,6 +94,7 @@ export class EditFormComponent implements OnInit {
       this.editFormState = 'open';
     } else {
       this.editFormState = 'close';
+      this.editForm.reset();
     }
   }
 
@@ -113,5 +102,11 @@ export class EditFormComponent implements OnInit {
     this.editFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
     this.editFormService.changeData.subscribe(this.loadData.bind(this));
   }
+
+  get name() { return this.editForm.get('name'); }
+  get desc() { return this.editForm.get('desc'); }
+  get image() { return this.editForm.get('image'); }
+  get price() { return this.editForm.get('price'); }
+  get category() { return this.editForm.get('category'); }
 
 }
