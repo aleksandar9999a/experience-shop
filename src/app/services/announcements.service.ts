@@ -3,19 +3,18 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { UserService } from './user.service';
 import { Item } from '../interfaces/item.interface';
 
 @Injectable()
 export class AnnouncementsService {
     collection: AngularFirestoreCollection<Item>;
+    uid: string;
 
     constructor(
         private readonly notifier: NotifierService,
         private firebaseStorage: AngularFireStorage,
         private firabaseAuth: AngularFireAuth,
-        private fireStore: AngularFirestore,
-        private userService: UserService
+        private fireStore: AngularFirestore
     ) {
         this.collection = this.fireStore.collection('allItems');
     }
@@ -38,8 +37,8 @@ export class AnnouncementsService {
             image = await this.uploadImage(image);
         }
 
-        const user = this.firabaseAuth.auth.currentUser;
-        const updatedItem = { id, creatorUid: user.uid, name, desc, image, price, category };
+        this.uid = this.firabaseAuth.auth.currentUser.uid;
+        const updatedItem = { id, creatorUid: this.uid, name, desc, image, price, category };
 
         await this.collection.doc(id).update(updatedItem)
             .then(_ => {
@@ -50,11 +49,11 @@ export class AnnouncementsService {
 
     async createAdv(name: string, desc: string, image: any, price: number, category: string) {
         name = name.toLocaleLowerCase();
+        this.uid = this.firabaseAuth.auth.currentUser.uid;
 
-        const user = this.firabaseAuth.auth.currentUser;
         const url = await this.uploadImage(image);
         const id = this.fireStore.createId();
-        const newItem = { id, creatorUid: user.uid, name, desc, image: url, price, category };
+        const newItem = { id, creatorUid: this.uid, name, desc, image: url, price, category };
 
         await this.collection.doc(id).set(newItem)
             .then(_ => {
@@ -64,7 +63,7 @@ export class AnnouncementsService {
     }
 
     delete(id: string) {
-        this.fireStore.collection('allItems').doc(id).delete()
+        this.collection.doc(id).delete()
             .then(_ => {
                 this.notifier.notify('success', 'Successful delete your announcement!');
             })
@@ -72,14 +71,13 @@ export class AnnouncementsService {
     }
 
     addItemToShoppingCard(item: Item) {
-        const uid = this.userService.getCurrentUid();
         const id = this.fireStore.createId();
-
+        this.uid = this.firabaseAuth.auth.currentUser.uid;
         const newItem = item;
         newItem.oldId = item.id;
         newItem.id = id;
 
-        this.fireStore.collection('userdata').doc(uid).collection('shoppingCard').doc(id).set(newItem)
+        this.fireStore.collection('userdata').doc(this.uid).collection('shoppingCard').doc(id).set(newItem)
             .then(_ => {
                 this.notifier.notify('success', 'Successful!');
             })
