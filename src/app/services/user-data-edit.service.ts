@@ -2,19 +2,22 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Profile } from '../interfaces/profile.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { UserService } from './user.service';
 import { NotifierService } from 'angular-notifier';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable()
 export class UserDataEditService {
   isOpen = false;
+  uid: string;
 
   constructor(
     private readonly notifier: NotifierService,
     private firebaseStorage: AngularFireStorage,
     private fireStore: AngularFirestore,
-    private userService: UserService
-  ) { }
+    private firabaseAuth: AngularFireAuth
+  ) {
+    this.firabaseAuth.auth.onAuthStateChanged(user => user ? this.uid = user.uid : this.uid = null);
+  }
 
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
   @Output() changeInfo: EventEmitter<Profile> = new EventEmitter();
@@ -40,19 +43,22 @@ export class UserDataEditService {
   }
 
   async updateUserData(username: string, summary: string, profileImg: any) {
-    const uid = this.userService.getCurrentUid();
+    if (this.uid) {
+      if (typeof profileImg !== 'string') {
+        profileImg = await this.uploadImage(profileImg);
+      }
+      const info = { username, summary, profileImg };
 
-    if (typeof profileImg !== 'string') {
-      profileImg = await this.uploadImage(profileImg);
+      await this.fireStore
+        .doc(`userdata/${this.uid}/userdata/info`)
+        .set(info)
+        .then(_ => {
+          this.notifier.notify('success', 'You successful update your information!');
+        })
+        .catch(err => this.notifier.notify('warning', err.message));
+    } else {
+      this.notifier.notify('warning', 'You must be registered to edit your data!');
     }
-    const info = { username, summary, profileImg };
-
-    await this.fireStore
-      .doc(`userdata/${uid}/userdata/info`)
-      .set(info)
-      .then(_ => {
-        this.notifier.notify('success', 'You successful update your information!');
-      })
-      .catch(err => this.notifier.notify('warning', err.message));
   }
+
 }
