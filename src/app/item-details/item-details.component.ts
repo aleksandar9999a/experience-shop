@@ -36,7 +36,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   deleteItem() {
-    this.announcementsService.delete(this.detailsData.id);
+    this.announcementsService.delete(this.detailsData.id, this.detailsData.creatorUid);
     this.close();
   }
 
