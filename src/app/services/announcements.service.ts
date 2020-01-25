@@ -17,7 +17,7 @@ export class AnnouncementsService {
         private fireStore: AngularFirestore
     ) {
         this.collection = this.fireStore.collection('allItems');
-        this.firabaseAuth.auth.onAuthStateChanged(user => this.uid = user.uid);
+        this.firabaseAuth.auth.onAuthStateChanged(user => user ? this.uid = user.uid : this.uid = null);
     }
 
     private async uploadImage(image: any) {
