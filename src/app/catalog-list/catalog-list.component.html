@@ -1,0 +1,13 @@
+<div>
+    <div *ngIf="isLoading" class="text-center">
+        <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
+    </div>
+    <div class="my-5">
+        <div *ngIf="!isLoading && !isItems" class="container noAnnouncementsContainer">
+            <p class="text-center my-5">Sorry, We don't have announcements...</p>
+        </div>
+        <div *ngFor="let item of items | async" class="d-flex list-group">
+            <app-item [item]="item"></app-item>
+        </div>
+    </div>
+</div>
