@@ -1,5 +1,4 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Item } from '../interfaces/item.interface';
 
 @Injectable()
@@ -10,12 +9,14 @@ export class DetailsFormService {
   constructor() { }
 
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
-  @Output() changeDataState: BehaviorSubject<any> = new BehaviorSubject({});
+  @Output() changeDataState: EventEmitter<Item> = new EventEmitter();
 
   toggle(data?: Item) {
     this.isOpen = !this.isOpen;
     this.changeFormState.emit(this.isOpen);
-    this.changeDataState.next(data || {});
+    if (data) {
+      this.changeDataState.emit(data);
+    }
   }
 
 }
