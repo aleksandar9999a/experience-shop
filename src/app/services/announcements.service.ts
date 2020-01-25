@@ -17,6 +17,7 @@ export class AnnouncementsService {
         private fireStore: AngularFirestore
     ) {
         this.collection = this.fireStore.collection('allItems');
+        this.firabaseAuth.auth.onAuthStateChanged(user => this.uid = user.uid);
     }
 
     private async uploadImage(image: any) {
@@ -31,48 +32,57 @@ export class AnnouncementsService {
     }
 
     async edit(id: string, name: string, desc: string, image: any, price: number, category: string) {
-        name = name.toLocaleLowerCase();
+        if (this.uid) {
+            name = name.toLocaleLowerCase();
 
-        if (typeof image === 'object') {
-            image = await this.uploadImage(image);
+            if (typeof image === 'object') {
+                image = await this.uploadImage(image);
+            }
+
+            const updatedItem = { id, creatorUid: this.uid, name, desc, image, price, category };
+
+            await this.collection.doc(id).update(updatedItem)
+                .then(_ => {
+                    this.notifier.notify('success', 'You successful edit your announcement!');
+                })
+                .catch(err => this.notifier.notify('warning', err.message));
+        } else {
+            this.notifier.notify('warning', 'You must be registered to share announcement!');
         }
-
-        this.uid = this.firabaseAuth.auth.currentUser.uid;
-        const updatedItem = { id, creatorUid: this.uid, name, desc, image, price, category };
-
-        await this.collection.doc(id).update(updatedItem)
-            .then(_ => {
-                this.notifier.notify('success', 'You successful edit your announcement!');
-            })
-            .catch(err => this.notifier.notify('warning', err.message));
     }
 
     async createAdv(name: string, desc: string, image: any, price: number, category: string) {
-        name = name.toLocaleLowerCase();
-        this.uid = this.firabaseAuth.auth.currentUser.uid;
+        if (this.uid) {
+            name = name.toLocaleLowerCase();
 
-        const url = await this.uploadImage(image);
-        const id = this.fireStore.createId();
-        const newItem = { id, creatorUid: this.uid, name, desc, image: url, price, category };
+            const url = await this.uploadImage(image);
+            const id = this.fireStore.createId();
+            const newItem = { id, creatorUid: this.uid, name, desc, image: url, price, category };
 
-        await this.collection.doc(id).set(newItem)
-            .then(_ => {
-                this.notifier.notify('success', 'You successful create new announcement!');
-            })
-            .catch(err => this.notifier.notify('warning', err.message));
+            await this.collection.doc(id).set(newItem)
+                .then(_ => {
+                    this.notifier.notify('success', 'You successful create new announcement!');
+                })
+                .catch(err => this.notifier.notify('warning', err.message));
+        } else {
+            this.notifier.notify('warning', 'You must be registered to share announcement!');
+        }
     }
 
-    delete(id: string) {
-        this.collection.doc(id).delete()
-            .then(_ => {
-                this.notifier.notify('success', 'Successful delete your announcement!');
-            })
-            .catch(err => this.notifier.notify('warning', err.message));
+    delete(id: string, creatorUid: string) {
+        if (creatorUid === this.uid) {
+            this.collection.doc(id).delete()
+                .then(_ => {
+                    this.notifier.notify('success', 'Successful delete your announcement!');
+                })
+                .catch(err => this.notifier.notify('warning', err.message));
+        } else {
+            this.notifier.notify('warning', 'This is not your announcement! You can not delete it!');
+        }
     }
 
     addItemToShoppingCard(item: Item) {
         const id = this.fireStore.createId();
-        this.uid = this.firabaseAuth.auth.currentUser.uid;
         const newItem = item;
         newItem.oldId = item.id;
         newItem.id = id;
