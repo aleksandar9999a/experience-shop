@@ -69,7 +69,7 @@ export class AnnouncementsService {
         }
     }
 
-    delete(id: string, creatorUid: string) {
+    delete({ id, creatorUid }) {
         if (creatorUid === this.uid) {
             this.collection.doc(id).delete()
                 .then(_ => {
