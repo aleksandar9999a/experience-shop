@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserDataEditComponent } from './user-data-edit/user-data-edit.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MyItemsComponent } from './my-items/my-items.component';
+import { CatalogListComponent } from './catalog-list/catalog-list.component';
 
 export const declarations = [
   AppComponent,
@@ -31,5 +32,6 @@ export const declarations = [
   ProfileComponent,
   UserDataEditComponent,
   UserInfoComponent,
-  MyItemsComponent
+  MyItemsComponent,
+  CatalogListComponent
 ];
