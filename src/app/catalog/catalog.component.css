@@ -1,13 +1,3 @@
 .container{
     min-height: 600px;
 }
-
-.loadingSpinner{
-    width: 50%;
-    height: auto;
-}
-
-.noAnnouncementsContainer{
-    font-weight: 300;
-    font-size: 2rem;
-}
