@@ -27,6 +27,11 @@ export class CatalogListComponent implements OnInit {
 
   setSearchFunction(fn?) {
     this.isLoading = true;
+
+    if (!fn) {
+      fn = (ref) => ref.limit(5);
+    }
+
     this.itemsCollection = this.afs.collection<Item>('allItems', fn);
     this.items = this.itemsCollection.valueChanges();
     this.items.subscribe(this.setItems.bind(this));
