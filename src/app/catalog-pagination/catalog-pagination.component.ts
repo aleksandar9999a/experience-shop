@@ -7,6 +7,8 @@ import { CatalogService } from '../services/catalog.service';
   styleUrls: ['./catalog-pagination.component.css']
 })
 export class CatalogPaginationComponent implements OnInit {
+  get items() { return this.catalogService.items; }
+
   constructor(
     private catalogService: CatalogService
   ) { }
