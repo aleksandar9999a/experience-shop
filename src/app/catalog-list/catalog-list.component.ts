@@ -10,36 +10,14 @@ import { CatalogService } from '../services/catalog.service';
   styleUrls: ['./catalog-list.component.css']
 })
 export class CatalogListComponent implements OnInit {
-  private itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
-  isItems = false;
-  isLoading = false;
+  get items() { return this.catalogService.items; }
 
   constructor(
-    private catalogService: CatalogService,
-    private afs: AngularFirestore
+    private catalogService: CatalogService
   ) { }
 
-  setItems(shots: Array<Item>) {
-    shots.length > 0 ? this.isItems = true : this.isItems = false;
-    this.isLoading = false;
-  }
-
-  setSearchFunction(fn?) {
-    this.isLoading = true;
-
-    if (!fn) {
-      fn = (ref) => ref.limit(5);
-    }
-
-    this.itemsCollection = this.afs.collection<Item>('allItems', fn);
-    this.items = this.itemsCollection.valueChanges();
-    this.items.subscribe(this.setItems.bind(this));
-  }
-
   ngOnInit() {
-    this.setSearchFunction();
-    this.catalogService.getItemsFunction.subscribe(this.setSearchFunction.bind(this));
+    this.catalogService.loadCategory('', 'all');
   }
 
 }
