@@ -6,5 +6,8 @@
 .noAnnouncementsContainer{
     font-weight: 300;
     font-size: 2rem;
+}
+
+.catalog-list{
     min-height: 500px;
 }
