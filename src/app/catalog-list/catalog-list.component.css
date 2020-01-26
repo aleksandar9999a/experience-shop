@@ -6,4 +6,5 @@
 .noAnnouncementsContainer{
     font-weight: 300;
     font-size: 2rem;
+    min-height: 500px;
 }
