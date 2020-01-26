@@ -111,13 +111,13 @@ export class CatalogService {
         this.currPage.get().then(shot => {
             if (shot.docs[0]) {
                 if (shot.docs[0].id === this.firstItemFromFirstPage.id) {
-                    this.notifier.notify('info', 'Sorry, This is first page!');
+                    this.notifier.notify('info', 'This is first page!');
                 } else {
                     this.setFirstAndLastItemInCurrPage(shot);
                     this.loadList('endBefore');
                 }
             } else {
-                this.notifier.notify('info', 'Sorry, This is first page!');
+                this.notifier.notify('info', 'This is first page!');
             }
         });
     }
