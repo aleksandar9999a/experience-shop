@@ -16,6 +16,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { MyItemsComponent } from './my-items/my-items.component';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
 import { CatalogPaginationComponent } from './catalog-pagination/catalog-pagination.component';
+import { CatalogItemsCounterComponent } from './catalog-items-counter/catalog-items-counter.component';
 
 export const declarations = [
   AppComponent,
@@ -35,5 +36,6 @@ export const declarations = [
   UserInfoComponent,
   MyItemsComponent,
   CatalogListComponent,
-  CatalogPaginationComponent
+  CatalogPaginationComponent,
+  CatalogItemsCounterComponent
 ];
