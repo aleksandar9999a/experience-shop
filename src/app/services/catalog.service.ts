@@ -13,6 +13,7 @@ export class CatalogService {
     private name: string;
     private category: string;
     private currPage;
+    private position: string;
 
     items: Observable<Item[]>;
     pageLimit = 5;
@@ -21,6 +22,11 @@ export class CatalogService {
         private afs: AngularFirestore,
         private readonly notifier: NotifierService
     ) { }
+
+    setPageLimit(limit) {
+        this.pageLimit = limit;
+        this.loadList();
+    }
 
     private setFirstItemFromFirstPage(shot) {
         this.firstItemFromFirstPage = shot.docs[0];
@@ -73,18 +79,25 @@ export class CatalogService {
         this.category = category;
     }
 
+    private setPositions(position?: string) {
+        if (position) {
+            this.position = position;
+        }
+    }
+
     loadCategory(name: string, category: string) {
         this.setData(name, category);
         this.loadList('firstPage');
     }
 
-    loadList(position: string) {
+    loadList(position?: string) {
         let currSearchFn;
+        this.setPositions(position);
 
         if (this.category === 'all') {
-            currSearchFn = this.searchByName()[position];
+            currSearchFn = this.searchByName()[this.position];
         } else {
-            currSearchFn = this.searchByNameAndCategoty()[position];
+            currSearchFn = this.searchByNameAndCategoty()[this.position];
         }
 
         this.itemsCollection = this.afs.collection<Item>('allItems', currSearchFn);
