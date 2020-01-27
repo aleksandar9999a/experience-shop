@@ -14,6 +14,9 @@ import { UserService } from '../services/user.service';
 export class SignComponent implements OnInit {
   formState = 'close';
 
+  signInState = 'show';
+  signUpState = 'hide';
+
   signInForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
@@ -30,6 +33,16 @@ export class SignComponent implements OnInit {
     private signFormService: SignFormService,
     private userService: UserService
   ) { }
+
+  moveToSignUpForm() {
+    this.signInState = 'hide';
+    this.signUpState = 'show';
+  }
+
+  moveToSignInForm() {
+    this.signInState = 'show';
+    this.signUpState = 'hide';
+  }
 
   signIn() {
     const { email, password } = this.signInForm.value;
