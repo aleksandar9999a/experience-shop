@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Profile } from 'src/app/interfaces/profile.interface';
+import { IProfile } from 'src/app/interfaces/profile.interface';
 import { UserService } from 'src/app/services/user.service';
 import { UserDataEditService } from '../services/user-data-edit.service';
 
@@ -10,8 +10,8 @@ import { UserDataEditService } from '../services/user-data-edit.service';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-  profileDoc: AngularFirestoreDocument<Profile>;
-  profile: Profile;
+  profileDoc: AngularFirestoreDocument<IProfile>;
+  profile: IProfile;
   isUnknown: boolean;
   isLoading: boolean;
 
@@ -22,12 +22,12 @@ export class UserInfoComponent implements OnInit {
   ) {
     const uid = this.userService.getCurrentUid();
     this.isLoading = true;
-    this.profileDoc = afs.doc<Profile>(`userdata/${uid}/userdata/info`);
+    this.profileDoc = afs.doc<IProfile>(`userdata/${uid}/userdata/info`);
     const data = this.profileDoc.valueChanges();
     data.subscribe(this.setData.bind(this));
   }
 
-  setData(shot: Profile) {
+  setData(shot: IProfile) {
     if (shot !== undefined) {
       this.profile = shot;
       this.isUnknown = false;

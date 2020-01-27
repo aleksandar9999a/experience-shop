@@ -3,11 +3,11 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Item } from 'src/app/interfaces/item.interface';
+import { IItem } from 'src/app/interfaces/item.interface';
 
 @Injectable()
 export class AnnouncementsService {
-    collection: AngularFirestoreCollection<Item>;
+    collection: AngularFirestoreCollection<IItem>;
     uid: string;
 
     constructor(
@@ -81,7 +81,7 @@ export class AnnouncementsService {
         }
     }
 
-    addItemToShoppingCard(item: Item) {
+    addItemToShoppingCard(item: IItem) {
         const id = this.fireStore.createId();
         const newItem = item;
         newItem.oldId = item.id;

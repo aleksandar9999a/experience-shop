@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
-import { Item } from '../interfaces/item.interface';
+import { IItem } from '../interfaces/item.interface';
 import { NotifierService } from 'angular-notifier';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { UserService } from '../services/user.service';
@@ -15,12 +15,12 @@ import { Observable } from 'rxjs';
 })
 export class ShoppingCardComponent implements OnInit {
   formState = 'close';
-  itemsForBuy: Array<Item>;
+  itemsForBuy: Array<IItem>;
   fullPrice = 0;
   isHaveProducts: boolean;
 
-  private itemsCollection: AngularFirestoreCollection<Item>;
-  itemsState: Observable<Item[]>;
+  private itemsCollection: AngularFirestoreCollection<IItem>;
+  itemsState: Observable<IItem[]>;
 
   constructor(
     private shoppingCardService: ShoppingCardService,
@@ -29,12 +29,12 @@ export class ShoppingCardComponent implements OnInit {
     private userService: UserService
   ) {
     const uid = this.userService.getCurrentUid();
-    this.itemsCollection = this.afs.collection<Item>(`userdata/${uid}/shoppingCard`);
+    this.itemsCollection = this.afs.collection<IItem>(`userdata/${uid}/shoppingCard`);
     this.itemsState = this.itemsCollection.valueChanges();
     this.itemsState.forEach(this.setItems.bind(this));
   }
 
-  setItems(items: Array<Item>) {
+  setItems(items: Array<IItem>) {
     this.itemsForBuy = items;
     this.fullPrice = items.reduce((r, x) => r += Number(x.price), 0);
     if (items.length > 0) {

@@ -3,7 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Profile } from 'src/app/interfaces/profile.interface';
+import { IProfile } from 'src/app/interfaces/profile.interface';
 
 @Injectable()
 export class UserDataEditService {
@@ -20,9 +20,9 @@ export class UserDataEditService {
   }
 
   @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
-  @Output() changeInfo: EventEmitter<Profile> = new EventEmitter();
+  @Output() changeInfo: EventEmitter<IProfile> = new EventEmitter();
 
-  toggle(data?: Profile) {
+  toggle(data?: IProfile) {
     this.isOpen = !this.isOpen;
     this.changeFormState.emit(this.isOpen);
 

@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { NotifierService } from 'angular-notifier';
-import { Item } from 'src/app/interfaces/item.interface';
+import { IItem } from 'src/app/interfaces/item.interface';
 
 @Injectable()
 export class CatalogService {
-    private itemsCollection: AngularFirestoreCollection<Item>;
-    private firstItemFromFirstPage: DocumentSnapshot<Item>;
-    private firstItem: Item;
-    private lastItem: Item;
+    private itemsCollection: AngularFirestoreCollection<IItem>;
+    private firstItemFromFirstPage: DocumentSnapshot<IItem>;
+    private firstItem: IItem;
+    private lastItem: IItem;
     private name: string;
     private category: string;
     private currPage;
     private position: string;
 
-    items: Observable<Item[]>;
+    items: Observable<IItem[]>;
     pageLimit = 5;
 
     constructor(
@@ -100,7 +100,7 @@ export class CatalogService {
             currSearchFn = this.searchByNameAndCategoty()[this.position];
         }
 
-        this.itemsCollection = this.afs.collection<Item>('allItems', currSearchFn);
+        this.itemsCollection = this.afs.collection<IItem>('allItems', currSearchFn);
         this.items = this.itemsCollection.valueChanges();
     }
 

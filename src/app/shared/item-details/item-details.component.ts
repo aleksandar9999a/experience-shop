@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Item } from 'src/app/interfaces/item.interface';
+import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
 import { EditFormService } from '../services/edit-form.service';
 import { AnnouncementsService } from '../services/announcements.service';
@@ -15,7 +15,7 @@ import { AnnouncementsService } from '../services/announcements.service';
 })
 export class ItemDetailsComponent implements OnInit {
   detailsFormState = 'close';
-  detailsData: Item;
+  detailsData: IItem;
   isHere = false;
 
   constructor(
@@ -58,7 +58,7 @@ export class ItemDetailsComponent implements OnInit {
     }
   }
 
-  private setData(data: Item) {
+  private setData(data: IItem) {
     this.detailsData = data;
   }
 

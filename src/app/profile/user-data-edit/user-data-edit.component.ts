@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { editProfileAnimations } from './user-data-edit.animations';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDataEditService } from '../services/user-data-edit.service';
-import { Profile } from 'src/app/interfaces/profile.interface';
+import { IProfile } from 'src/app/interfaces/profile.interface';
 
 @Component({
   selector: 'app-user-data-edit',
@@ -77,7 +77,7 @@ export class UserDataEditComponent implements OnInit {
     }
   }
 
-  setInfo(data: Profile) {
+  setInfo(data: IProfile) {
     this.editForm.patchValue({
       username: data.username,
       summary: data.summary

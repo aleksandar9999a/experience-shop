@@ -3,7 +3,7 @@ import { editFormAnimations } from './edit-form.animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditFormService } from '../services/edit-form.service';
 import { NotifierService } from 'angular-notifier';
-import { Item } from 'src/app/interfaces/item.interface';
+import { IItem } from 'src/app/interfaces/item.interface';
 import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { AnnouncementsService } from '../services/announcements.service';
 })
 export class EditFormComponent implements OnInit {
   editFormState = 'close';
-  currentData: Item;
+  currentData: IItem;
   defaultImage = '../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
@@ -63,7 +63,7 @@ export class EditFormComponent implements OnInit {
     }
   }
 
-  private loadData(data: Item) {
+  private loadData(data: IItem) {
     this.currentData = data;
     this.defaultImage = data.image;
     this.editForm.patchValue({

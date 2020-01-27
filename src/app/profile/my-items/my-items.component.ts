@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Item } from 'src/app/interfaces/item.interface';
+import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./my-items.component.css']
 })
 export class MyItemsComponent implements OnInit {
-  private itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
+  private itemsCollection: AngularFirestoreCollection<IItem>;
+  items: Observable<IItem[]>;
   isItems = false;
   isLoading = true;
 
@@ -21,12 +21,12 @@ export class MyItemsComponent implements OnInit {
   ) {
     this.isLoading = true;
     const uid = this.userService.getCurrentUid();
-    this.itemsCollection = this.afs.collection<Item>('allItems', (ref: any) => ref.where('creatorUid', '==', uid));
+    this.itemsCollection = this.afs.collection<IItem>('allItems', (ref: any) => ref.where('creatorUid', '==', uid));
     this.items = this.itemsCollection.valueChanges();
     this.items.subscribe(this.setItems.bind(this));
   }
 
-  setItems(shots: Array<Item>) {
+  setItems(shots: Array<IItem>) {
     shots.length > 0 ? this.isItems = true : this.isItems = false;
     this.isLoading = false;
   }
