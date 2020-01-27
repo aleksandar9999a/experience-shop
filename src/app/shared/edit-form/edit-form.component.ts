@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { editFormAnimations } from './edit-form.animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditFormService } from '../services/edit-form.service';
-import { Item } from '../interfaces/item.interface';
-import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
+import { Item } from 'src/app/interfaces/item.interface';
+import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
   selector: 'app-edit-form',

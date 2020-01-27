@@ -4,8 +4,8 @@ import { DetailsFormService } from '../services/item-details.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Item } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
-import { EditFormService } from 'src/app/services/edit-form.service';
-import { AnnouncementsService } from 'src/app/services/announcements.service';
+import { EditFormService } from '../services/edit-form.service';
+import { AnnouncementsService } from '../services/announcements.service';
 
 @Component({
   selector: 'app-item-details',

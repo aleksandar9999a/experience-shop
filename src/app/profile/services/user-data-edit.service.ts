@@ -1,9 +1,9 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { Profile } from '../interfaces/profile.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Profile } from 'src/app/interfaces/profile.interface';
 
 @Injectable()
 export class UserDataEditService {

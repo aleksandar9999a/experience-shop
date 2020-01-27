@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Profile } from 'src/app/interfaces/profile.interface';
 import { UserService } from 'src/app/services/user.service';
-import { UserDataEditService } from 'src/app/services/user-data-edit.service';
+import { UserDataEditService } from '../services/user-data-edit.service';
 
 @Component({
   selector: 'app-user-info',

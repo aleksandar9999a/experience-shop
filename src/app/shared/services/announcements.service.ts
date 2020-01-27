@@ -3,7 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { NotifierService } from 'angular-notifier';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Item } from '../interfaces/item.interface';
+import { Item } from 'src/app/interfaces/item.interface';
 
 @Injectable()
 export class AnnouncementsService {
