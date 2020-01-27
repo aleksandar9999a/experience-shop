@@ -1,5 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { Item } from '../interfaces/item.interface';
+import { Item } from 'src/app/interfaces/item.interface';
 
 @Injectable()
 export class DetailsFormService {

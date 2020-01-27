@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DetailsFormService } from '../services/item-details.service';
-import { Item } from '../interfaces/item.interface';
+import { Item } from 'src/app/interfaces/item.interface';
 
 @Component({
   selector: 'app-item',

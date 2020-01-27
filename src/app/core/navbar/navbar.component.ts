@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import { SignFormService } from '../services/signForm.service';
-import { UserService } from '../services/user.service';
-import { CreateFormService } from '../services/createForm.service';
-import { ShoppingCardService } from '../services/shopping-card.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { SignFormService } from 'src/app/services/signForm.service';
+import { UserService } from 'src/app/services/user.service';
+import { CreateFormService } from 'src/app/services/createForm.service';
+import { ShoppingCardService } from 'src/app/services/shopping-card.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +13,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class NavbarComponent implements OnInit {
   isHere: boolean;
   navBarIsOpen = 'hide';
-
 
   constructor(
     private signFormService: SignFormService,

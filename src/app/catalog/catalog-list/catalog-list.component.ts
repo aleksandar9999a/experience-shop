@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { Item } from '../interfaces/item.interface';
-import { Observable } from 'rxjs';
 import { CatalogService } from '../services/catalog.service';
 
 @Component({

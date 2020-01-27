@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { searchFormAnimations } from './search.animations';
-import { FormGroup, FormControl } from '@angular/forms';
 import { CatalogService } from '../services/catalog.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
-  animations: searchFormAnimations
+  styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Item } from '../interfaces/item.interface';
-import { UserService } from '../services/user.service';
 import { Observable } from 'rxjs';
+import { Item } from 'src/app/interfaces/item.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-my-items',

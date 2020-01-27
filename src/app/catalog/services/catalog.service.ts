@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
-import { Item } from '../interfaces/item.interface';
 import { Observable } from 'rxjs';
 import { NotifierService } from 'angular-notifier';
+import { Item } from 'src/app/interfaces/item.interface';
 
 @Injectable()
 export class CatalogService {
