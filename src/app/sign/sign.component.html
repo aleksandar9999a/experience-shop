@@ -17,7 +17,7 @@
                                 <button type="submit" class="btn btn-info btnSubmit borders">Sign In</button>
                             </div>
                         </form>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end mt-3">
                             <button class="btn btn-outline-success borders" (click)="moveToSignUpForm()">Move to sign
                                 up</button>
                         </div>
@@ -25,7 +25,7 @@
 
                     <div [@switch]="signUpState">
                         <form class="form-sign" [formGroup]="signUpForm" (ngSubmit)="signUp()">
-                            <input type="text" class="form-control form-group" placeholder="Your Email *"
+                            <input type="text" class="form-control form-group customInput" placeholder="Your Email *"
                                 formControlName="email" required />
                             <input type="password" class="form-control form-group customInput"
                                 placeholder="Your Password *" formControlName="password" required />
@@ -35,7 +35,7 @@
                                 <button type="submit" class="btn btn-primary btnSubmit borders">Sign Up</button>
                             </div>
                         </form>
-                        <div class="d-flex justify-content-start">
+                        <div class="d-flex justify-content-start mt-3">
                             <button class="btn btn-outline-success borders" (click)="moveToSignInForm()">Move to sign
                                 in</button>
                         </div>
