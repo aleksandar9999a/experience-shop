@@ -19,18 +19,24 @@ export class AuthenticationFormComponent implements OnInit {
     private authenticationFormService: AuthenticationFormService
   ) { }
 
+  setLogInAndRegState(logInState: string, regState: string) {
+    this.loginState = logInState;
+    this.registeredState = regState;
+  }
+
+  setBtnState(logInBtn: boolean, regBtn: boolean) {
+    this.moveToLogInBtn = logInBtn;
+    this.moveToRegBtn = regBtn;
+  }
+
   moveToLogIn() {
-    this.loginState = 'open';
-    this.registeredState = 'close';
-    this.moveToLogInBtn = true;
-    this.moveToRegBtn = false;
+    this.setLogInAndRegState('open', 'close');
+    this.setBtnState(true, false);
   }
 
   moveToRegistered() {
-    this.loginState = 'close';
-    this.registeredState = 'open';
-    this.moveToLogInBtn = false;
-    this.moveToRegBtn = true;
+    this.setLogInAndRegState('close', 'open');
+    this.setBtnState(false, true);
   }
 
   closeSignForm() {
