@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
-import { AuthenticationFormService } from '../services/authentication-form.service';
-import { ProfileSetUpFormService } from '../services/profile-set-up.service';
 
 @Component({
   selector: 'app-sign-up',
