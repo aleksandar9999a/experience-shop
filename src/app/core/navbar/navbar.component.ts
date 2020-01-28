@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { SignFormService } from 'src/app/services/signForm.service';
 import { UserService } from 'src/app/services/user.service';
 import { ShoppingCardService } from 'src/app/services/shopping-card.service';
 import { CreateFormService } from 'src/app/shared/services/createForm.service';
+import { AuthenticationFormService } from 'src/app/authentication/services/authentication-form.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   navBarIsOpen = 'hide';
 
   constructor(
-    private signFormService: SignFormService,
+    private authenticationFormService: AuthenticationFormService,
     private userService: UserService,
     private createFormService: CreateFormService,
     private shoppingCardService: ShoppingCardService,
@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openSignForm() {
-    this.signFormService.toggle();
+    this.authenticationFormService.toggle();
   }
 
   openCreateForm() {
