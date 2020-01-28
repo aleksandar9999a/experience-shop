@@ -15,17 +15,13 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private readonly notifier: NotifierService,
-    private userService: UserService,
-    private authenticationFormService: AuthenticationFormService,
-    private profileSetUpFormService: ProfileSetUpFormService
+    private userService: UserService
   ) { }
 
   signUp() {
     const { email, password, confirmPassword } = this.signUpForm.value;
     if (password === confirmPassword) {
       this.userService.createUser(email, password);
-      this.authenticationFormService.toggle();
-      this.profileSetUpFormService.toggle();
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
     }
