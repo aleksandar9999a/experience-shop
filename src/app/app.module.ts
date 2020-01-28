@@ -15,7 +15,6 @@ import { CoreModule } from './core/core.module';
 import { CatalogModule } from './catalog/catalog.module';
 import { SharedModule } from './shared/shared.module';
 import { ProfileModule } from './profile/profile.module';
-import { SignFormService } from './services/signForm.service';
 import { UserService } from './services/user.service';
 import { ShoppingCardService } from './services/shopping-card.service';
 import { AuthenticationModule } from './authentication/authentication.module';
@@ -43,7 +42,6 @@ import { AuthenticationModule } from './authentication/authentication.module';
     ProfileModule
   ],
   providers: [
-    SignFormService,
     UserService,
     ShoppingCardService
   ],
