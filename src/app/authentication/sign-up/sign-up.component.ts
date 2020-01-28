@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
 import { AuthenticationFormService } from '../services/authentication-form.service';
+import { ProfileSetUpFormService } from '../services/profile-set-up.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private readonly notifier: NotifierService,
     private userService: UserService,
-    private authenticationFormService: AuthenticationFormService
+    private authenticationFormService: AuthenticationFormService,
+    private profileSetUpFormService: ProfileSetUpFormService
   ) { }
 
   signUp() {
@@ -23,6 +25,7 @@ export class SignUpComponent implements OnInit {
     if (password === confirmPassword) {
       this.userService.createUser(email, password);
       this.authenticationFormService.toggle();
+      this.profileSetUpFormService.toggle();
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
     }
