@@ -13,7 +13,7 @@ export class CatalogService {
     private name: string;
     private category: string;
     private currPage;
-    private position: string;
+    private position = 'firstPage';
 
     items: Observable<IItem[]>;
     pageLimit = 5;
@@ -87,7 +87,7 @@ export class CatalogService {
 
     loadCategory(name: string, category: string) {
         this.setData(name, category);
-        this.loadList('firstPage');
+        this.loadList();
     }
 
     loadList(position?: string) {
