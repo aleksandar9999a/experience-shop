@@ -22,7 +22,7 @@ export class UserInfoComponent implements OnInit {
   ) {
     const uid = this.userService.getCurrentUid();
     this.isLoading = true;
-    this.profileDoc = afs.doc<IProfile>(`userdata/${uid}/userdata/info`);
+    this.profileDoc = afs.doc<IProfile>(`userdata/${uid}`);
     const data = this.profileDoc.valueChanges();
     data.subscribe(this.setData.bind(this));
   }

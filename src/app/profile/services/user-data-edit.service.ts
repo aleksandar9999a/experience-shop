@@ -47,10 +47,10 @@ export class UserDataEditService {
       if (typeof profileImg !== 'string') {
         profileImg = await this.uploadImage(profileImg);
       }
-      const info = { username, summary, profileImg };
+      const info = { id: this.uid, username, summary, profileImg };
 
       await this.fireStore
-        .doc(`userdata/${this.uid}/userdata/info`)
+        .doc(`userdata/${this.uid}`)
         .set(info)
         .then(_ => {
           this.notifier.notify('success', 'You successful update your information!');
