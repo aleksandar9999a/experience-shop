@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IProfile } from 'src/app/interfaces/profile.interface';
+import { UserDetailsService } from '../services/user-details.service';
 
 @Component({
   selector: 'app-user-item',
@@ -9,7 +10,13 @@ import { IProfile } from 'src/app/interfaces/profile.interface';
 export class UserItemComponent implements OnInit {
   @Input() profile: IProfile;
 
-  constructor() { }
+  constructor(
+    private userDetailsService: UserDetailsService
+  ) { }
+
+  openUserDetails(){
+    this.userDetailsService.toggle(this.profile);
+  }
 
   ngOnInit() {
   }
