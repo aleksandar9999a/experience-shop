@@ -1,6 +1,6 @@
 <div class="form-label-group mt-5">
-    <div class="input-group">
-        <select class="custom-select customInput" id="selectNumberOfUsers">
+    <div class="input-group" [formGroup]="pageLimitForm">
+        <select class="custom-select customInput" id="selectNumberOfUsers" formControlName="pageLimit" (change)="handleChange()">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="20">20</option>
