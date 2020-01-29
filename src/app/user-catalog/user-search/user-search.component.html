@@ -6,9 +6,9 @@
                     <h5 class="card-title title text-center">Search...</h5>
                 </div>
                 <div class="card-body">
-                    <form class="form-search">
+                    <form class="form-search" [formGroup]="searchForm" (ngSubmit)="search()">
                         <div class="input-group">
-                            <input type="text" class="form-control customInput" placeholder="Do you search something?">
+                            <input type="text" class="form-control customInput" placeholder="Do you search something?" formControlName="username">
                             <div class="input-group-append">
                                 <button class="btn btn-success borders" type="submit">Search</button>
                             </div>
