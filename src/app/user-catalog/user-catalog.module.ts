@@ -9,6 +9,7 @@ import { UserListControllerComponent } from './user-list-controller/user-list-co
 import { UserListNavigationComponent } from './user-list-navigation/user-list-navigation.component';
 import { UserCatalogService } from './services/user-catalog.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserDetailsService } from './services/user-details.service';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserListControllerComponent,
     UserListNavigationComponent
   ],
-  providers: [UserCatalogService],
+  providers: [UserCatalogService, UserDetailsService],
   imports: [
     CommonModule,
     FormsModule,
