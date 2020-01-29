@@ -1,0 +1,35 @@
+.searchForm{
+    position: relative;
+}
+.card-search {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.3), 0 9px 26px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-search .card-title {
+    font-weight: 300;
+    font-size: 2rem;
+  }
+  
+  .card-search .card-body {
+    padding: 1rem;
+    padding-top: 0;
+  }
+  
+  .form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .customInput{
+    border-radius: 2rem;
+  }
+  .customInput::after{
+    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 2rem;
+  }
+
+.title{
+  padding: 3%;
+}
