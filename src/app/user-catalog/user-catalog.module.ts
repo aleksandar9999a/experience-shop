@@ -7,10 +7,20 @@ import { UserItemComponent } from './user-item/user-item.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserListControllerComponent } from './user-list-controller/user-list-controller.component';
 import { UserListNavigationComponent } from './user-list-navigation/user-list-navigation.component';
+import { UserCatalogService } from './services/user-catalog.service';
 
 
 @NgModule({
-  declarations: [UserCatalogComponent, UserSearchComponent, UserListComponent, UserItemComponent, UserDetailsComponent, UserListControllerComponent, UserListNavigationComponent],
+  declarations: [
+    UserCatalogComponent,
+    UserSearchComponent,
+    UserListComponent,
+    UserItemComponent,
+    UserDetailsComponent,
+    UserListControllerComponent,
+    UserListNavigationComponent
+  ],
+  providers: [UserCatalogService],
   imports: [
     CommonModule
   ],
