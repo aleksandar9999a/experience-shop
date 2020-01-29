@@ -18,6 +18,7 @@ import { ProfileModule } from './profile/profile.module';
 import { UserService } from './services/user.service';
 import { ShoppingCardService } from './services/shopping-card.service';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { UserCatalogModule } from './user-catalog/user-catalog.module';
 
 @NgModule({
   declarations:  [
@@ -39,7 +40,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
     CoreModule,
     CatalogModule,
     SharedModule,
-    ProfileModule
+    ProfileModule,
+    UserCatalogModule
   ],
   providers: [
     UserService,
