@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
-import { IItem } from '../interfaces/item.interface';
 import { NotifierService } from 'angular-notifier';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { UserService } from '../services/user.service';
 import { Observable } from 'rxjs';
+import { IItem } from 'src/app/interfaces/item.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-shopping-card',

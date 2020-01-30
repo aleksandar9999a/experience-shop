@@ -12,6 +12,6 @@ const formAnimations = [
         })),
         transition('open <=> close', animate('0.5s'))
     ])
-]
+];
 
-export { formAnimations }
+export { formAnimations };
