@@ -10,17 +10,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditFormService } from './services/edit-form.service';
 import { CreateFormService } from './services/createForm.service';
 import { AnnouncementsService } from './services/announcements.service';
+import { ShoppingCardService } from './services/shopping-card.service';
+import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
 
 
 @NgModule({
-  declarations: [ItemDetailsComponent, ItemComponent, EditFormComponent, CreateAdvertisementComponent],
-  providers: [DetailsFormService, EditFormService, CreateFormService, AnnouncementsService],
+  declarations: [ItemDetailsComponent, ItemComponent, EditFormComponent, CreateAdvertisementComponent, ShoppingCardComponent],
+  providers: [DetailsFormService, EditFormService, CreateFormService, AnnouncementsService, ShoppingCardService],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [ItemDetailsComponent, ItemComponent, EditFormComponent, CreateAdvertisementComponent]
+  exports: [ItemDetailsComponent, ItemComponent, EditFormComponent, CreateAdvertisementComponent, ShoppingCardComponent]
 })
 export class SharedModule { }
