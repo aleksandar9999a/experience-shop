@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
-import { NotifierService } from 'angular-notifier';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { IItem } from 'src/app/interfaces/item.interface';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-shopping-card',
@@ -15,46 +10,19 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ShoppingCardComponent implements OnInit {
   formState = 'close';
-  itemsForBuy: Array<IItem>;
-  fullPrice = 0;
-  isHaveProducts: boolean;
-
-  private itemsCollection: AngularFirestoreCollection<IItem>;
-  itemsState: Observable<IItem[]>;
+  get items() { return this.shoppingCardService.items; }
+  get price() { return this.shoppingCardService.price; }
 
   constructor(
-    private shoppingCardService: ShoppingCardService,
-    private readonly notifier: NotifierService,
-    private afs: AngularFirestore,
-    private userService: UserService
-  ) {
-    const uid = this.userService.getCurrentUid();
-    this.itemsCollection = this.afs.collection<IItem>(`userdata/${uid}/shoppingCard`);
-    this.itemsState = this.itemsCollection.valueChanges();
-    this.itemsState.forEach(this.setItems.bind(this));
-  }
-
-  setItems(items: Array<IItem>) {
-    this.itemsForBuy = items;
-    this.fullPrice = items.reduce((r, x) => r += Number(x.price), 0);
-    if (items.length > 0) {
-      this.isHaveProducts = true;
-    } else {
-      this.isHaveProducts = false;
-    }
-  }
-
-  deleteDoc({ id }) {
-    this.itemsCollection.doc(id).delete();
-  }
+    private shoppingCardService: ShoppingCardService
+  ) { }
 
   clearShoppingCard() {
-    this.itemsForBuy.map(this.deleteDoc.bind(this));
+    this.shoppingCardService.deleteAllItems();
   }
 
   buyAllProducts() {
-    this.clearShoppingCard();
-    this.notifier.notify('success', 'You successful buy all products in your card!');
+    this.shoppingCardService.buyAllProducts();
     this.close();
   }
 
@@ -72,6 +40,7 @@ export class ShoppingCardComponent implements OnInit {
 
   ngOnInit() {
     this.shoppingCardService.changeFormState.subscribe(this.setIsOpen.bind(this));
+    this.shoppingCardService.loadItems();
   }
 
 }
