@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from 'src/app/services/user.service';
-import { ShoppingCardService } from 'src/app/services/shopping-card.service';
 import { CreateFormService } from 'src/app/shared/services/createForm.service';
 import { AuthenticationFormService } from 'src/app/authentication/services/authentication-form.service';
+import { ShoppingCardService } from 'src/app/shared/services/shopping-card.service';
 
 @Component({
   selector: 'app-navbar',
