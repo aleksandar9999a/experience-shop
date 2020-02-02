@@ -7,6 +7,7 @@ import { ProfileSetUpFormService } from '../authentication/services/profile-set-
 
 @Injectable()
 export class UserService {
+    isHere: boolean;
 
     constructor(
         private fireBaseAuth: AngularFireAuth,
@@ -14,7 +15,16 @@ export class UserService {
         private routerService: Router,
         private authenticationFormService: AuthenticationFormService,
         private profileSetUpFormService: ProfileSetUpFormService
-    ) { }
+    ) {
+        this.fireBaseAuth.auth
+            .onAuthStateChanged(user => {
+                if (user) {
+                    this.isHere = true;
+                } else {
+                    this.isHere = false;
+                }
+            });
+    }
 
     logIn(email: string, password: string) {
         this.fireBaseAuth.auth
