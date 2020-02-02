@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,20 +7,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  isHere: boolean;
+  get isHere() { return this.userService.isHere; }
 
   constructor(
-    private fireBaseAuth: AngularFireAuth
+    private userService: UserService
   ) { }
 
-  ngOnInit() {
-    this.fireBaseAuth.auth
-    .onAuthStateChanged(user => {
-      if (user) {
-        this.isHere = true;
-      } else {
-        this.isHere = false;
-      }
-    });
-  }
+  ngOnInit() { }
 }

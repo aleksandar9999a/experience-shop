@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from 'src/app/services/user.service';
 import { CreateFormService } from 'src/app/shared/services/createForm.service';
 import { AuthenticationFormService } from 'src/app/authentication/services/authentication-form.service';
@@ -11,15 +10,14 @@ import { ShoppingCardService } from 'src/app/shared/services/shopping-card.servi
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isHere: boolean;
+  get isHere() { return this.userService.isHere; }
   navBarIsOpen = 'hide';
 
   constructor(
     private authenticationFormService: AuthenticationFormService,
     private userService: UserService,
     private createFormService: CreateFormService,
-    private shoppingCardService: ShoppingCardService,
-    private fireBaseAuth: AngularFireAuth
+    private shoppingCardService: ShoppingCardService
   ) { }
 
   logOut() {
@@ -46,15 +44,6 @@ export class NavbarComponent implements OnInit {
     this.shoppingCardService.toggle();
   }
 
-  ngOnInit() {
-    this.fireBaseAuth.auth
-      .onAuthStateChanged(user => {
-        if (user) {
-          this.isHere = true;
-        } else {
-          this.isHere = false;
-        }
-      });
-  }
+  ngOnInit() { }
 
 }
