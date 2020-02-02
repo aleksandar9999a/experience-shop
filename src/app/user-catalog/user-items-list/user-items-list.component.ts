@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IProfile } from 'src/app/interfaces/profile.interface';
+import { Component, OnInit } from '@angular/core';
 import { UserItemsListService } from '../services/user-items-list.service';
 
 @Component({
@@ -8,14 +7,12 @@ import { UserItemsListService } from '../services/user-items-list.service';
   styleUrls: ['./user-items-list.component.css']
 })
 export class UserItemsListComponent implements OnInit {
-  @Input() user: IProfile;
   get items() { return this.userItemsListService.items; }
   constructor(
     private userItemsListService: UserItemsListService
   ) { }
 
   ngOnInit() {
-    this.userItemsListService.searchByUserUID(this.user.id);
   }
 
 }
