@@ -2,7 +2,7 @@
 <app-profile-set-up></app-profile-set-up>
 <app-create-advertisement *ngIf="isHere"></app-create-advertisement>
 <app-item-details></app-item-details>
-<app-user-details></app-user-details>
+<app-user-details *ngIf="isHere"></app-user-details>
 <app-shopping-card *ngIf="isHere"></app-shopping-card>
 <app-edit-form *ngIf="isHere"></app-edit-form>
 <app-user-data-edit *ngIf="isHere"></app-user-data-edit>
