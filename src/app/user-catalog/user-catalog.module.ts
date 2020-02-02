@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDetailsService } from './services/user-details.service';
 import { UserItemsListComponent } from './user-items-list/user-items-list.component';
 import { UserItemsListService } from './services/user-items-list.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -29,8 +30,9 @@ import { UserItemsListService } from './services/user-items-list.service';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
-  exports: [UserCatalogComponent]
+  exports: [UserCatalogComponent, UserDetailsComponent]
 })
 export class UserCatalogModule { }
