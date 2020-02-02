@@ -1,0 +1,13 @@
+.loadingSpinner{
+    width: 50%;
+    height: auto;
+}
+
+.noAnnouncementsContainer{
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+.catalog-list{
+    max-height: 50%;
+}
