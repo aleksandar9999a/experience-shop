@@ -87,7 +87,7 @@ export class CatalogService {
 
     loadCategory(name: string, category: string) {
         this.setData(name, category);
-        this.loadList();
+        this.loadList('firstPage');
     }
 
     loadList(position?: string) {
