@@ -70,5 +70,9 @@
 }
 
 .list{
-  height: 100%;
+  height: 90%;
+}
+
+.navigation-bar{
+  height: 10%;
 }
