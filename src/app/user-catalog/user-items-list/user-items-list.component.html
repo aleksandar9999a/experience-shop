@@ -1,16 +1,21 @@
-<div class="catalog-list">
-    <div class="my-5" *ngIf="(items | async) as newItems; else loading">
-        <div *ngFor="let item of newItems" class="d-flex list-group">
-            <app-item [item]="item"></app-item>
+<div class="heightOnMax">
+    <div class="heightOnMax" *ngIf="(items | async) as newItems; else loading">
+        <div *ngIf="newItems.length > 0; else noItems" class="mt-5">
+            <div *ngFor="let item of newItems" class="d-flex list-group">
+                <app-item [item]="item"></app-item>
+            </div>
         </div>
-        <div *ngIf="newItems.length === 0" class="noAnnouncementsContainer">
-            <p class="text-center">No announcements!</p>
-        </div>
+
+        <ng-template #noItems>
+            <div class="noAnnouncementsContainer heightOnMax d-flex">
+                <p class="mx-auto my-auto">No announcements!</p>
+            </div>
+        </ng-template>
     </div>
 
     <ng-template #loading>
-        <div class="text-center">
-            <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
+        <div class="text-center heightOnMax d-flex">
+            <img src="./../../assets/images/progresbar.gif" class="loadingSpinner my-auto">
         </div>
     </ng-template>
 </div>

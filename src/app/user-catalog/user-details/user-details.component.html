@@ -7,17 +7,21 @@
                     <h5 class="card-title title text-center">{{user.username | uppercase}}</h5>
                 </div>
                 <div class="card-body">
-                    <form class="form-details">
+                    <div class="form-details">
                         <div class="row justify-content-center">
                             <div class="col-5 itemImg">
                                 <img  *ngIf="user.profileImg" src="{{user.profileImg}}" class="card-img itemImg" alt="...">
                             </div>
                             <div class="col-5">
-                                <pre class="card-text">{{user.summary}}</pre>
-                                <app-user-items-list></app-user-items-list>
+                                <div>
+                                    <pre class="card-text">{{user.summary}}</pre>
+                                </div>
+                                <div class="col list">
+                                    <app-user-items-list></app-user-items-list>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
