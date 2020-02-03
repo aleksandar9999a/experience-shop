@@ -10,14 +10,15 @@
                     <div class="form-details">
                         <div class="row justify-content-center">
                             <div class="col-md-5 itemImg">
-                                <img  *ngIf="user.profileImg" src="{{user.profileImg}}" class="card-img itemImg" alt="...">
+                                <img *ngIf="user.profileImg" src="{{user.profileImg}}" class="card-img itemImg"
+                                    alt="...">
                             </div>
                             <div class="col-md-5">
-                                <div>
-                                    <pre class="card-text">{{user.summary}}</pre>
-                                </div>
-                                <div class="col list">
+                                <div class="col-md list">
                                     <app-user-items-list></app-user-items-list>
+                                </div>
+                                <div class="col-md navigation-bar">
+                                    <app-user-details-list-navigation></app-user-details-list-navigation>
                                 </div>
                             </div>
                         </div>
