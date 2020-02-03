@@ -1,6 +1,6 @@
 <div class="heightOnMax">
     <div class="heightOnMax" *ngIf="(items | async) as newItems; else loading">
-        <div *ngIf="newItems.length > 0; else noItems" class="mt-5">
+        <div *ngIf="newItems.length > 0; else noItems">
             <div *ngFor="let item of newItems" class="d-flex list-group">
                 <app-item [item]="item"></app-item>
             </div>
@@ -14,8 +14,8 @@
     </div>
 
     <ng-template #loading>
-        <div class="text-center heightOnMax d-flex">
-            <img src="./../../assets/images/progresbar.gif" class="loadingSpinner my-auto">
+        <div class="heightOnMax d-flex">
+            <img src="./../../assets/images/progresbar.gif" class="loadingSpinner mx-auto my-auto">
         </div>
     </ng-template>
 </div>
