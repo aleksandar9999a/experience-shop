@@ -13,6 +13,7 @@ import { UserDetailsService } from './services/user-details.service';
 import { UserItemsListComponent } from './user-items-list/user-items-list.component';
 import { UserItemsListService } from './services/user-items-list.service';
 import { SharedModule } from '../shared/shared.module';
+import { UserDetailsListNavigationComponent } from './user-details-list-navigation/user-details-list-navigation.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SharedModule } from '../shared/shared.module';
     UserDetailsComponent,
     UserListControllerComponent,
     UserListNavigationComponent,
-    UserItemsListComponent
+    UserItemsListComponent,
+    UserDetailsListNavigationComponent
   ],
   providers: [UserCatalogService, UserDetailsService, UserItemsListService],
   imports: [
