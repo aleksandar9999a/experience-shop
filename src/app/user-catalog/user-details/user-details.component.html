@@ -1,7 +1,7 @@
 <div class="detailsForm" *ngIf="user" [@detailsForm]="detailsFormState">
     <div class="container cardContainer mx-auto">
-        <div class="col-lg-10 mx-auto">
-            <div class="card card-details my-5">
+        <div class="col-md-lg-10 mx-auto">
+            <div class="card card-details my-5 no-gutters">
                 <div class="closeDiv">
                     <button type="button" class="close" (click)="close()">&times;</button>
                     <h5 class="card-title title text-center">{{user.username | uppercase}}</h5>
@@ -9,10 +9,10 @@
                 <div class="card-body">
                     <div class="form-details">
                         <div class="row justify-content-center">
-                            <div class="col-5 itemImg">
+                            <div class="col-md-5 itemImg">
                                 <img  *ngIf="user.profileImg" src="{{user.profileImg}}" class="card-img itemImg" alt="...">
                             </div>
-                            <div class="col-5">
+                            <div class="col-md-5">
                                 <div>
                                     <pre class="card-text">{{user.summary}}</pre>
                                 </div>

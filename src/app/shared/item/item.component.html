@@ -1,12 +1,12 @@
-<div class="list-group-item list-group-item-action" (click)="openDetails()">
+<div class="list-group-item list-group-item-action no-gutters" (click)="openDetails()">
     <div class="row">
-        <div class="col-2 item-img my-auto">
+        <div class="col-md-2 item-img my-auto">
             <img src="{{item.image}}" class="item-img">
         </div>
-        <div class="col my-auto">
+        <div class="col-md my-auto">
             <p>{{item.name | uppercase}}</p>
         </div>
-        <div class="col my-auto">
+        <div class="col-md my-auto">
             <p class="float-right font-weight-bold">Price: <span>{{item.price}}lv.</span></p>
         </div>
     </div>
