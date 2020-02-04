@@ -16,6 +16,10 @@
                                 <pre class="card-text">{{detailsData.desc}}</pre>
                             </div>
                         </div>
+                        <div *ngIf="(profile | async) as currUser">
+                            <app-user-item [profile]="currUser"></app-user-item>
+                        </div>
+                        
                         <div *ngIf="isHere" class="row d-flex justify-content-center mt-5">
                             <button *ngIf="isCreator()" class="btn btn-primary btn-lg borders detailsButtons" (click)="openEditForm()">Edit</button>
                             <button *ngIf="isCreator()" class="btn btn-danger btn-lg borders detailsButtons" (click)="deleteItem()">Delete</button>
