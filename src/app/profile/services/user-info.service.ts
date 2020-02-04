@@ -19,4 +19,9 @@ export class UserInfoService {
         this.profile = this.profileDoc.valueChanges();
     }
 
+    refreshUserInfo() {
+        this.profileDoc = this.afs.doc<IProfile>(`userdata/${this.uid}`);
+        this.profile = this.profileDoc.valueChanges();
+    }
+
 }

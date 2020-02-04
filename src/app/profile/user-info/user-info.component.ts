@@ -21,6 +21,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userInfoService.refreshUserInfo();
   }
 
 }
