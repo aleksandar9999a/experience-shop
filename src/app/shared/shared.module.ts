@@ -4,25 +4,23 @@ import { ItemComponent } from './item/item.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { DetailsFormService } from './services/item-details.service';
 import { AppRoutingModule } from '../app-routing.module';
-import { EditFormComponent } from './edit-form/edit-form.component';
-import { CreateAdvertisementComponent } from './create-advertisement/create-advertisement.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditFormService } from './services/edit-form.service';
-import { CreateFormService } from './services/createForm.service';
 import { AnnouncementsService } from './services/announcements.service';
 import { ShoppingCardService } from './services/shopping-card.service';
 import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
+import { AnnouncementFormComponent } from './announcement-form/announcement-form.component';
+import { AnnouncementsFormService } from './services/announcements-form.service';
 
 
 @NgModule({
-  declarations: [ItemDetailsComponent, ItemComponent, EditFormComponent, CreateAdvertisementComponent, ShoppingCardComponent],
-  providers: [DetailsFormService, EditFormService, CreateFormService, AnnouncementsService, ShoppingCardService],
+  declarations: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent],
+  providers: [DetailsFormService, AnnouncementsService, ShoppingCardService, AnnouncementsFormService],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [ItemDetailsComponent, ItemComponent, EditFormComponent, CreateAdvertisementComponent, ShoppingCardComponent]
+  exports: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent]
 })
 export class SharedModule { }
