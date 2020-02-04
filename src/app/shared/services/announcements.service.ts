@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { NotifierService } from 'angular-notifier';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { IItem } from 'src/app/interfaces/item.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Injectable()
 export class AnnouncementsService {
     collection: AngularFirestoreCollection<IItem>;
-    uid: string;
+    get uid() { return this.userService.uid; }
 
     constructor(
         private readonly notifier: NotifierService,
         private firebaseStorage: AngularFireStorage,
-        private firabaseAuth: AngularFireAuth,
-        private fireStore: AngularFirestore
+        private fireStore: AngularFirestore,
+        private userService: UserService
     ) {
         this.collection = this.fireStore.collection('allItems');
-        this.firabaseAuth.auth.onAuthStateChanged(user => user ? this.uid = user.uid : this.uid = null);
     }
 
     private async uploadImage(image: any) {
@@ -31,7 +30,7 @@ export class AnnouncementsService {
         return await snapshot.ref.getDownloadURL().catch(err => this.notifier.notify('warning', err.message));
     }
 
-    async edit(id: string, name: string, desc: string, image: any, price: number, category: string) {
+    async setAnnouncement(name: string, desc: string, image: any, price: number, category: string, id?: string) {
         if (this.uid) {
             name = name.toLocaleLowerCase();
 
@@ -39,29 +38,15 @@ export class AnnouncementsService {
                 image = await this.uploadImage(image);
             }
 
+            if (!id) {
+                id = this.fireStore.createId();
+            }
+
             const updatedItem = { id, creatorUid: this.uid, name, desc, image, price, category };
 
-            await this.collection.doc(id).update(updatedItem)
+            await this.collection.doc(id).set(updatedItem)
                 .then(_ => {
-                    this.notifier.notify('success', 'You successful edit your announcement!');
-                })
-                .catch(err => this.notifier.notify('warning', err.message));
-        } else {
-            this.notifier.notify('warning', 'You must be registered to share announcement!');
-        }
-    }
-
-    async createAdv(name: string, desc: string, image: any, price: number, category: string) {
-        if (this.uid) {
-            name = name.toLocaleLowerCase();
-
-            const url = await this.uploadImage(image);
-            const id = this.fireStore.createId();
-            const newItem = { id, creatorUid: this.uid, name, desc, image: url, price, category };
-
-            await this.collection.doc(id).set(newItem)
-                .then(_ => {
-                    this.notifier.notify('success', 'You successful create new announcement!');
+                    this.notifier.notify('success', 'Successful operation!');
                 })
                 .catch(err => this.notifier.notify('warning', err.message));
         } else {
