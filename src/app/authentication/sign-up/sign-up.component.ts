@@ -16,10 +16,11 @@ export class SignUpComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  signUp() {
+  async signUp() {
     const { email, password, confirmPassword } = this.signUpForm.value;
     if (password === confirmPassword) {
-      this.userService.createUser(email, password);
+      await this.userService.createUser(email, password);
+      await this.userService.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg');
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
     }
