@@ -3,6 +3,7 @@ import { editProfileAnimations } from './user-data-edit.animations';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDataEditService } from '../services/user-data-edit.service';
 import { IProfile } from 'src/app/interfaces/profile.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-data-edit',
@@ -31,7 +32,8 @@ export class UserDataEditComponent implements OnInit {
   });
 
   constructor(
-    private userDataEditService: UserDataEditService
+    private userDataEditService: UserDataEditService,
+    private userService: UserService
   ) { }
 
   previewImg(e) {
@@ -60,11 +62,10 @@ export class UserDataEditComponent implements OnInit {
     this.userDataEditService.toggle();
   }
 
-  editProfile() {
+  async editProfile() {
     if (this.editForm.valid) {
-      const { username, summary } = this.editForm.value;
       const profileImg = this.localImage || this.defaultImage;
-      this.userDataEditService.updateUserData(username, summary, profileImg);
+      await this.userService.updateUserData(this.username.value, this.summary.value, profileImg);
       this.userDataEditService.toggle();
     }
   }
