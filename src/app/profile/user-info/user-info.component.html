@@ -6,28 +6,33 @@
                     <h5 class="card-title title text-center my-3">User Info</h5>
                 </div>
                 <div class="card-body">
-                    <div *ngIf="isLoading">
-                        <img src="./../../assets/images/progresbar.gif" class="loadingSpinner mx-auto d-block">
-                    </div>
-                    <div *ngIf="!isLoading" class="row">
-                        <div *ngIf="!isUnknown" class="col-3 itemImg mr-3">
-                            <img src="{{profile.profileImg}}" class="card-img itemImg" alt="...">
+                    <div *ngIf="(profile | async) as myProfile; else loading">
+
+                        <div class="row">
+                            <div class="col-3 itemImg mr-3">
+                                <img [src]="myProfile.profileImg" class="card-img itemImg" alt="...">
+                            </div>
+
+                            <div class="col">
+                                <p class="card-title">Username</p>
+                                <pre>{{myProfile.username}}</pre>
+                                <p class="card-title">Summary</p>
+                                <pre>{{myProfile.summary}}</pre>
+                            </div>
                         </div>
-                        <div *ngIf="!isUnknown" class="col">
-                            <p class="card-title">Username</p>
-                            <pre>{{profile.username}}</pre>
-                            <p class="card-title">Summary</p>
-                            <pre>{{profile.summary}}</pre>
-                        </div>
-                        <div *ngIf="isUnknown" class="col my-auto pb-5">
-                            <p class="text-center no-data">Unknown</p>
-                            <p class="text-center no-data">Please, Edit your user info!</p>
+
+                        <div class="row d-flex justify-content-center my-3">
+                            <button class="btn btn-success btn-lg borders editButtons"
+                                (click)="openEditForm(myProfile)">Edit</button>
                         </div>
                     </div>
-                    <div *ngIf="!isLoading" class="row d-flex justify-content-center my-3">
-                        <button class="btn btn-success btn-lg borders editButtons"
-                            (click)="openEditForm()">Edit</button>
-                    </div>
+
+                    <ng-template #loading>
+                        <div class="text-center">
+                            <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
+                        </div>
+                    </ng-template>
+
                 </div>
             </div>
         </div>
