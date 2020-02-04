@@ -13,6 +13,8 @@ export class ShoppingCardService {
   arrFromItems: Array<IItem>;
   price = 0;
 
+  get uid() { return this.userService.uid; }
+
   constructor(
     private readonly notifier: NotifierService,
     private afs: AngularFirestore,
@@ -45,8 +47,7 @@ export class ShoppingCardService {
   }
 
   loadItems() {
-    const uid = this.userService.getCurrentUid();
-    this.itemsCollection = this.afs.collection<IItem>(`userdata/${uid}/shoppingCard`);
+    this.itemsCollection = this.afs.collection<IItem>(`userdata/${this.uid}/shoppingCard`);
     this.items = this.itemsCollection.valueChanges();
     this.items.forEach(this.setArrOfItems.bind(this));
   }

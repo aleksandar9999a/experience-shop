@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
 import { EditFormService } from '../services/edit-form.service';
@@ -16,14 +15,15 @@ import { AnnouncementsService } from '../services/announcements.service';
 export class ItemDetailsComponent implements OnInit {
   detailsFormState = 'close';
   detailsData: IItem;
-  isHere = false;
+
+  get uid() { return this.userService.uid; }
+  get isHere() { return this.userService.isHere; }
 
   constructor(
     private detailsFormService: DetailsFormService,
     private userService: UserService,
     private editFormService: EditFormService,
-    private announcementsService: AnnouncementsService,
-    private fireBaseAuth: AngularFireAuth
+    private announcementsService: AnnouncementsService
   ) { }
 
   close() {
@@ -41,8 +41,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   isCreator() {
-    const currentUid = this.userService.getCurrentUid();
-    return currentUid === this.detailsData.creatorUid;
+    return this.uid === this.detailsData.creatorUid;
   }
 
   addToShoppingCard() {
@@ -65,14 +64,6 @@ export class ItemDetailsComponent implements OnInit {
   ngOnInit() {
     this.detailsFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
     this.detailsFormService.changeDataState.subscribe(this.setData.bind(this));
-    this.fireBaseAuth.auth
-      .onAuthStateChanged(user => {
-        if (user) {
-          this.isHere = true;
-        } else {
-          this.isHere = false;
-        }
-      });
   }
 
 }

@@ -15,13 +15,14 @@ export class MyItemsComponent implements OnInit {
   isItems = false;
   isLoading = true;
 
+  get uid() { return this.userService.uid; }
+
   constructor(
     private afs: AngularFirestore,
     private userService: UserService
   ) {
     this.isLoading = true;
-    const uid = this.userService.getCurrentUid();
-    this.itemsCollection = this.afs.collection<IItem>('allItems', (ref: any) => ref.where('creatorUid', '==', uid));
+    this.itemsCollection = this.afs.collection<IItem>('allItems', (ref: any) => ref.where('creatorUid', '==', this.uid));
     this.items = this.itemsCollection.valueChanges();
     this.items.subscribe(this.setItems.bind(this));
   }

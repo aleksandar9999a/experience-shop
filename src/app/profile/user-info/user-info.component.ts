@@ -15,14 +15,15 @@ export class UserInfoComponent implements OnInit {
   isUnknown: boolean;
   isLoading: boolean;
 
+  get uid() { return this.userService.uid; }
+
   constructor(
     private afs: AngularFirestore,
     private userService: UserService,
     private userDataEditService: UserDataEditService
   ) {
-    const uid = this.userService.getCurrentUid();
     this.isLoading = true;
-    this.profileDoc = afs.doc<IProfile>(`userdata/${uid}`);
+    this.profileDoc = afs.doc<IProfile>(`userdata/${this.uid}`);
     const data = this.profileDoc.valueChanges();
     data.subscribe(this.setData.bind(this));
   }
