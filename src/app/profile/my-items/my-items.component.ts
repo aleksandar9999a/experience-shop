@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { IItem } from 'src/app/interfaces/item.interface';
-import { UserService } from 'src/app/services/user.service';
+import { MyItemsService } from '../services/my-items.service';
 
 @Component({
   selector: 'app-my-items',
@@ -10,27 +7,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./my-items.component.css']
 })
 export class MyItemsComponent implements OnInit {
-  private itemsCollection: AngularFirestoreCollection<IItem>;
-  items: Observable<IItem[]>;
-  isItems = false;
-  isLoading = true;
-
-  get uid() { return this.userService.uid; }
+  get items() { return this.myItemsService.items; }
 
   constructor(
-    private afs: AngularFirestore,
-    private userService: UserService
-  ) {
-    this.isLoading = true;
-    this.itemsCollection = this.afs.collection<IItem>('allItems', (ref: any) => ref.where('creatorUid', '==', this.uid));
-    this.items = this.itemsCollection.valueChanges();
-    this.items.subscribe(this.setItems.bind(this));
-  }
-
-  setItems(shots: Array<IItem>) {
-    shots.length > 0 ? this.isItems = true : this.isItems = false;
-    this.isLoading = false;
-  }
+    private myItemsService: MyItemsService
+  ) { }
 
   ngOnInit() {
   }
