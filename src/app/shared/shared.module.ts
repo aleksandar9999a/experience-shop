@@ -10,10 +10,11 @@ import { ShoppingCardService } from './services/shopping-card.service';
 import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
 import { AnnouncementFormComponent } from './announcement-form/announcement-form.component';
 import { AnnouncementsFormService } from './services/announcements-form.service';
+import { UserItemComponent } from './user-item/user-item.component';
 
 
 @NgModule({
-  declarations: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent],
+  declarations: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent, UserItemComponent],
   providers: [DetailsFormService, AnnouncementsService, ShoppingCardService, AnnouncementsFormService],
   imports: [
     CommonModule,
@@ -21,6 +22,6 @@ import { AnnouncementsFormService } from './services/announcements-form.service'
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent]
+  exports: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent, UserItemComponent]
 })
 export class SharedModule { }
