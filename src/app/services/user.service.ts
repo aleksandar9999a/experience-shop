@@ -94,11 +94,4 @@ export class UserService {
         return await snapshot.ref.getDownloadURL().catch(err => this.notifier.notify('warning', err.message));
     }
 
-    getCurrentUid() {
-        if (this.fireBaseAuth.auth.currentUser) {
-            return this.fireBaseAuth.auth.currentUser.uid;
-        }
-        return null;
-    }
-
 }
