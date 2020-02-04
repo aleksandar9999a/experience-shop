@@ -13,7 +13,7 @@ export class UserItemsListService {
     private lastItem: IItem;
     private firstItemFromFirstPage: IItem;
     private position: string;
-    private pageLimit = 3;
+    private pageLimit = 4;
     private currPage;
 
     constructor(
