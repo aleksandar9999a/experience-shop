@@ -70,6 +70,7 @@ export class UserService {
                 profileImg = await this.uploadImage(profileImg);
             }
             const info = { id: this.uid, username, summary, profileImg };
+            username = username.toLocaleLowerCase();
 
             await this.fireStore
                 .doc(`userdata/${this.uid}`)
