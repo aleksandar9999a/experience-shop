@@ -73,3 +73,8 @@
   font-weight: 300;
   font-size: 2rem;
 }
+
+.loadingSpinner{
+  width: 50%;
+  height: auto;
+}
