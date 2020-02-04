@@ -18,4 +18,9 @@ export class MyItemsService {
         this.items = this.itemsCollection.valueChanges();
     }
 
+    refreshItems() {
+        this.itemsCollection = this.afs.collection<IItem>('allItems', (ref: any) => ref.where('creatorUid', '==', this.uid));
+        this.items = this.itemsCollection.valueChanges();
+    }
+
 }

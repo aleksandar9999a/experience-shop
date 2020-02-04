@@ -14,6 +14,7 @@ export class MyItemsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.myItemsService.refreshItems();
   }
 
 }
