@@ -3,8 +3,8 @@ import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
-import { EditFormService } from '../services/edit-form.service';
 import { AnnouncementsService } from '../services/announcements.service';
+import { AnnouncementsFormService } from '../services/announcements-form.service';
 
 @Component({
   selector: 'app-item-details',
@@ -22,8 +22,8 @@ export class ItemDetailsComponent implements OnInit {
   constructor(
     private detailsFormService: DetailsFormService,
     private userService: UserService,
-    private editFormService: EditFormService,
-    private announcementsService: AnnouncementsService
+    private announcementsService: AnnouncementsService,
+    private announcementsFormService: AnnouncementsFormService
   ) { }
 
   close() {
@@ -31,7 +31,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   openEditForm() {
-    this.editFormService.toggle(this.detailsData);
+    this.announcementsFormService.toggle(this.detailsData);
     this.close();
   }
 

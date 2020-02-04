@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { CreateFormService } from 'src/app/shared/services/createForm.service';
 import { AuthenticationFormService } from 'src/app/authentication/services/authentication-form.service';
 import { ShoppingCardService } from 'src/app/shared/services/shopping-card.service';
+import { AnnouncementsFormService } from 'src/app/shared/services/announcements-form.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +16,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authenticationFormService: AuthenticationFormService,
     private userService: UserService,
-    private createFormService: CreateFormService,
-    private shoppingCardService: ShoppingCardService
+    private shoppingCardService: ShoppingCardService,
+    private announcementsFormService: AnnouncementsFormService
   ) { }
 
   logOut() {
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openCreateForm() {
-    this.createFormService.toggle();
+    this.announcementsFormService.toggle();
   }
 
   openShoppingCard() {
