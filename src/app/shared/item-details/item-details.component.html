@@ -13,11 +13,13 @@
                                 <img  *ngIf="detailsData.image" src="{{detailsData.image}}" class="card-img itemImg" alt="...">
                             </div>
                             <div class="col-md-5">
-                                <pre class="card-text">{{detailsData.desc}}</pre>
+                                <div class="desc">
+                                    <pre class="card-text">{{detailsData.desc}}</pre>
+                                </div>
+                                <div *ngIf="(profile | async) as currUser" class="info d-flex align-items-end" (click)="close()">
+                                    <app-user-item [profile]="currUser"></app-user-item>
+                                </div>
                             </div>
-                        </div>
-                        <div *ngIf="(profile | async) as currUser">
-                            <app-user-item [profile]="currUser"></app-user-item>
                         </div>
                         
                         <div *ngIf="isHere" class="row d-flex justify-content-center mt-5">
