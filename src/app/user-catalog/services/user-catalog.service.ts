@@ -84,7 +84,7 @@ export class UserCatalogService {
                 this.setFirstAndLastItemInCurrPage(shot);
                 this.loadList('startAfter');
             } else {
-                this.notifier.notify('info', 'Sorry, We do not have more announcements.');
+                this.notifier.notify('info', 'Sorry, We do not have more users.');
             }
         });
     }
