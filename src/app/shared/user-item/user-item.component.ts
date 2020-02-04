@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IProfile } from 'src/app/interfaces/profile.interface';
-import { UserDetailsService } from '../services/user-details.service';
-import { UserItemsListService } from '../services/user-items-list.service';
+import { UserDetailsService } from 'src/app/user-catalog/services/user-details.service';
+import { UserItemsListService } from 'src/app/user-catalog/services/user-items-list.service';
 
 @Component({
   selector: 'app-user-item',
