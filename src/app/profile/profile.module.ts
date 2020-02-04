@@ -7,11 +7,12 @@ import { SharedModule } from '../shared/shared.module';
 import { UserDataEditService } from './services/user-data-edit.service';
 import { UserDataEditComponent } from './user-data-edit/user-data-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MyItemsService } from './services/my-items.service';
 
 
 @NgModule({
   declarations: [UserInfoComponent, ProfileComponent, MyItemsComponent, UserDataEditComponent],
-  providers: [UserDataEditService],
+  providers: [UserDataEditService, MyItemsService],
   imports: [
     CommonModule,
     SharedModule,
