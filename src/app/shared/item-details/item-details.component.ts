@@ -18,6 +18,7 @@ export class ItemDetailsComponent implements OnInit {
 
   get uid() { return this.userService.uid; }
   get isHere() { return this.userService.isHere; }
+  get profile() { return this.detailsFormService.profile; }
 
   constructor(
     private detailsFormService: DetailsFormService,
@@ -59,6 +60,7 @@ export class ItemDetailsComponent implements OnInit {
 
   private setData(data: IItem) {
     this.detailsData = data;
+    this.detailsFormService.getItemCreatorData(this.detailsData.creatorUid);
   }
 
   ngOnInit() {
