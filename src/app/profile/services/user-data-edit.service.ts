@@ -1,8 +1,4 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { NotifierService } from 'angular-notifier';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { IProfile } from 'src/app/interfaces/profile.interface';
 
 @Injectable()
