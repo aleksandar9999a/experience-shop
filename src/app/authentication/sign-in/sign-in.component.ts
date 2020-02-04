@@ -16,9 +16,9 @@ export class SignInComponent implements OnInit {
     private authenticationFormService: AuthenticationFormService
   ) { }
 
-  signIn() {
+  async signIn() {
     const { email, password } = this.signInForm.value;
-    this.userService.logIn(email, password);
+    await this.userService.logIn(email, password);
     this.authenticationFormService.toggle();
   }
 
