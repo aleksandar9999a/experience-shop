@@ -23,7 +23,7 @@ export class CatalogService {
         private readonly notifier: NotifierService
     ) { }
 
-    setPageLimit(limit) {
+    setPageLimit(limit: number) {
         this.pageLimit = limit;
         this.loadList();
     }
