@@ -14,7 +14,7 @@ export class MyItemsListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.myItemsService.refreshItems();
+    this.myItemsService.refreshItems('firstPage');
   }
 
 }
