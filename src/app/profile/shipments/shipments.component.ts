@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShipmentsService } from '../services/shipments.service';
 
 @Component({
   selector: 'app-shipments',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shipments.component.css']
 })
 export class ShipmentsComponent implements OnInit {
+  get shipments() { return this.shipmentsService.shipments; }
 
-  constructor() { }
+  constructor(
+    private shipmentsService: ShipmentsService
+  ) { }
 
   ngOnInit() {
+    this.shipmentsService.refresh();
+    this.shipments.subscribe(console.log);
   }
 
 }
