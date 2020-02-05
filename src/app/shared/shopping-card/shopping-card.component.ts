@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
+import { IItem } from 'src/app/interfaces/item.interface';
 
 @Component({
   selector: 'app-shopping-card',
@@ -21,8 +22,8 @@ export class ShoppingCardComponent implements OnInit {
     this.shoppingCardService.deleteAllItems();
   }
 
-  buyAllProducts() {
-    this.shoppingCardService.buyAllProducts();
+  buyAllProducts(newItems: Array<IItem>) {
+    this.shoppingCardService.buyAllProducts(newItems);
     this.close();
   }
 
