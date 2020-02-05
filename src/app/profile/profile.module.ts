@@ -12,16 +12,19 @@ import { UserInfoService } from './services/user-info.service';
 import { MyItemsListComponent } from './my-items-list/my-items-list.component';
 import { MyItemsNavigatorComponent } from './my-items-navigator/my-items-navigator.component';
 import { ItemsListComponent } from './items-list/items-list.component';
+import { ProfileNavigationComponent } from './profile-navigation/profile-navigation.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
-  declarations: [UserInfoComponent, ProfileComponent, MyItemsComponent, UserDataEditComponent, MyItemsListComponent, MyItemsNavigatorComponent, ItemsListComponent],
+  declarations: [UserInfoComponent, ProfileComponent, MyItemsComponent, UserDataEditComponent, MyItemsListComponent, MyItemsNavigatorComponent, ItemsListComponent, ProfileNavigationComponent],
   providers: [UserDataEditService, MyItemsService, UserInfoService],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   exports: [ProfileComponent, UserDataEditComponent]
 })
