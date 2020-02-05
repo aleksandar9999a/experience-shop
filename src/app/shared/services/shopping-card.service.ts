@@ -28,7 +28,7 @@ export class ShoppingCardService {
     this.changeFormState.emit(this.isOpen);
   }
 
-  deleteDoc({id}) {
+  deleteDoc({ id }) {
     this.itemsCollection.doc(id).delete();
   }
 
@@ -36,7 +36,50 @@ export class ShoppingCardService {
     this.arrFromItems.map(this.deleteDoc.bind(this));
   }
 
-  buyAllProducts() {
+  private createListOfOrders(itemsForBuy: Array<IItem>) {
+    function getCreatorUid(x: IItem) { return x.creatorUid; }
+    function getOldId(x: IItem) {  return x.oldId; }
+    function filterSenders(senderUid: string, { creatorUid }) { return creatorUid === senderUid; }
+
+    function reduceRepeatedUid(acc: Array<string>, uid: string) {
+      if (acc.includes(uid)) {
+        return acc;
+      }
+      return acc.concat(uid);
+    }
+
+    function createSenderList(sender: string) {
+      const listOfItems = itemsForBuy.filter(filterSenders.bind(undefined, sender)).map(getOldId);
+      const shipmentId = this.afs.createId();
+
+      return {
+        shipmentId,
+        sender,
+        listOfItems,
+        receiver: this.uid,
+        status: 'Not Confirmed!'
+      };
+    }
+
+    return itemsForBuy.map(getCreatorUid).reduce((acc, x) => reduceRepeatedUid(acc, x), []).map(createSenderList.bind(this));
+  }
+
+  private sentOrders(order: any) {
+    this.afs.collection(`userdata/${order.sender}/orders`).doc(order.shipmentId).set(order);
+  }
+
+  private addToShipments(order: any) {
+    this.afs.collection(`userdata/${order.receiver}/shipments`).doc(order.shipmentId).set(order);
+  }
+
+  private makeOrder(order: any) {
+    this.sentOrders(order);
+    this.addToShipments(order);
+  }
+
+  buyAllProducts(itemsForBuy: Array<IItem>) {
+    const listOfOrders = this.createListOfOrders(itemsForBuy);
+    listOfOrders.forEach(this.makeOrder.bind(this));
     this.deleteAllItems();
     this.notifier.notify('success', 'You successful buy all products in your card!');
   }
