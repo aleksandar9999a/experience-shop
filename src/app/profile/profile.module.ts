@@ -10,10 +10,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyItemsService } from './services/my-items.service';
 import { UserInfoService } from './services/user-info.service';
 import { MyItemsListComponent } from './my-items-list/my-items-list.component';
+import { MyItemsNavigatorComponent } from './my-items-navigator/my-items-navigator.component';
 
 
 @NgModule({
-  declarations: [UserInfoComponent, ProfileComponent, MyItemsComponent, UserDataEditComponent, MyItemsListComponent],
+  declarations: [UserInfoComponent, ProfileComponent, MyItemsComponent, UserDataEditComponent, MyItemsListComponent, MyItemsNavigatorComponent],
   providers: [UserDataEditService, MyItemsService, UserInfoService],
   imports: [
     CommonModule,
