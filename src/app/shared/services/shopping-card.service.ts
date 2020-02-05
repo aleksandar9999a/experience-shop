@@ -78,8 +78,7 @@ export class ShoppingCardService {
   }
 
   buyAllProducts(itemsForBuy: Array<IItem>) {
-    const listOfOrders = this.createListOfOrders(itemsForBuy);
-    listOfOrders.forEach(this.makeOrder.bind(this));
+    this.createListOfOrders(itemsForBuy).forEach(this.makeOrder.bind(this));
     this.deleteAllItems();
     this.notifier.notify('success', 'You successful buy all products in your card!');
   }
