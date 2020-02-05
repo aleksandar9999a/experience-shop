@@ -6,21 +6,7 @@
                     <h5 class="card-title title text-center my-3">Your Items</h5>
                 </div>
                 <div class="card-body">
-                    <div *ngIf="(items | async) as newItems; else loading">
-                        <div *ngFor="let item of newItems" class="list-group">
-                            <app-item [item]="item"></app-item>
-                        </div>
-
-                        <div *ngIf="newItems.length === 0" class="mb-5">
-                            <p class="text-center no-data">Empty!</p>
-                        </div>
-                    </div>
-
-                    <ng-template #loading>
-                        <div class="text-center">
-                            <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
-                        </div>
-                    </ng-template>
+                    <app-my-items-list></app-my-items-list>
                 </div>
             </div>
         </div>
