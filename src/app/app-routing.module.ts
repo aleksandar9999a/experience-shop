@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { HomeComponent } from './core/home/home.component';
 import { UserCatalogComponent } from './user-catalog/user-catalog/user-catalog.component';
 import { AuthGuard } from './auth.guard';
+import { MyItemsComponent } from './profile/my-items/my-items.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'catalog',
-    component: CatalogComponent,
+    component: CatalogComponent
   },
   {
     path: 'users',
@@ -25,7 +26,11 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard],
-    data: { isHere: true }
+    data: { isHere: true },
+    children: [
+      { path: '', component: ProfileComponent, pathMatch: 'full'},
+      { path: 'my-items', component: MyItemsComponent, outlet: 'profileOutlet'}
+    ]
   }
 ];
 
