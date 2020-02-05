@@ -16,6 +16,8 @@ import { ProfileNavigationComponent } from './profile-navigation/profile-navigat
 import { AppRoutingModule } from '../app-routing.module';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import { OrdersComponent } from './orders/orders.component';
+import { ShipmentsService } from './services/shipments.service';
+import { ShipmentItemComponent } from './shipment-item/shipment-item.component';
 
 
 @NgModule({
@@ -29,9 +31,10 @@ import { OrdersComponent } from './orders/orders.component';
     ItemsListComponent,
     ProfileNavigationComponent,
     ShipmentsComponent,
-    OrdersComponent
+    OrdersComponent,
+    ShipmentItemComponent
   ],
-  providers: [UserDataEditService, MyItemsService, UserInfoService],
+  providers: [UserDataEditService, MyItemsService, UserInfoService, ShipmentsService],
   imports: [
     CommonModule,
     SharedModule,
