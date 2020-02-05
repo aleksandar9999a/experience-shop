@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserDataEditComponent implements OnInit {
   editFormState = 'close';
-  defaultImage = './../../assets/images/unkItem.svg';
+  defaultImage = './../../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
   rows = 4;

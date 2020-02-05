@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileSetUpAnimations } from './profile-set-up.animations';
 import { ProfileSetUpFormService } from './../services/profile-set-up.service';
-import { UserDataEditService } from 'src/app/profile/services/user-data-edit.service';
+import { UserDataEditService } from 'src/app/profile/user-info/services/user-data-edit.service';
 
 @Component({
   selector: 'app-profile-set-up',
