@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersService } from '../services/orders.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,14 +6,10 @@ import { OrdersService } from '../services/orders.service';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  get orders() { return this.ordersService.orders; }
 
-  constructor(
-    private ordersService: OrdersService
-  ) { }
+  constructor( ) { }
 
   ngOnInit() {
-    this.ordersService.refresh();
   }
 
 }
