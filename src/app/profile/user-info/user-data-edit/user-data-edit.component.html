@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <form class="form-edit" [formGroup]="editForm" (ngSubmit)="editProfile()">
                         <div class="form-label-group">
-                            <img src="{{localImageUrl || defaultImage}}" class="rounded mx-auto d-block adImage"
+                            <img [src]="localImageUrl || defaultImage" class="rounded mx-auto d-block adImage"
                                 alt="profileImg" />
                         </div>
                         <div class="form-label-group">
