@@ -30,8 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { isHere: true },
     children: [
-      { path: '', component: ProfileComponent, pathMatch: 'full'},
-      { path: 'my-items', component: MyItemsComponent, outlet: 'profileOutlet'},
+      { path: '', component: MyItemsComponent, outlet: 'profileOutlet'},
       { path: 'shipments', component: ShipmentsComponent, outlet: 'profileOutlet'},
       { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet'}
     ]
