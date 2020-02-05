@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,13 +13,25 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private readonly notifier: NotifierService,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {
+    this.signUpForm = fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      passwords: fb.group({
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+      })
+    });
+  }
+
+  get email() { return this.signUpForm.get('email'); }
+  get password() { return this.signUpForm.get('passwords').get('password'); }
+  get confirmPassword() { return this.signUpForm.get('passwords').get('confirmPassword'); }
 
   async signUp() {
-    const { email, password, confirmPassword } = this.signUpForm.value;
-    if (password === confirmPassword) {
-      await this.userService.createUser(email, password);
+    if (this.password.value === this.confirmPassword.value) {
+      await this.userService.createUser(this.email.value, this.password.value);
       await this.userService.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg');
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
@@ -27,11 +39,6 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.signUpForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
-      confirmPassword: new FormControl('')
-    });
   }
 
 }
