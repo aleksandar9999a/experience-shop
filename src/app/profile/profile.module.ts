@@ -18,6 +18,7 @@ import { ShipmentsComponent } from './shipments/shipments.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ShipmentsService } from './services/shipments.service';
 import { ShipmentItemComponent } from './shipment-item/shipment-item.component';
+import { OrdersService } from './services/orders.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { ShipmentItemComponent } from './shipment-item/shipment-item.component';
     OrdersComponent,
     ShipmentItemComponent
   ],
-  providers: [UserDataEditService, MyItemsService, UserInfoService, ShipmentsService],
+  providers: [UserDataEditService, MyItemsService, UserInfoService, ShipmentsService, OrdersService],
   imports: [
     CommonModule,
     SharedModule,
