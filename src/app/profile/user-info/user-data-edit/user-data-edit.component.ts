@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { editProfileAnimations } from './user-data-edit.animations';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserDataEditService } from '../services/user-data-edit.service';
 import { IProfile } from 'src/app/interfaces/profile.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -18,23 +18,23 @@ export class UserDataEditComponent implements OnInit {
   localImage = null;
   rows = 4;
 
-  editForm = new FormGroup({
-    username: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4)
-    ]),
-    summary: new FormControl(null, [
-      Validators.minLength(6),
-      Validators.maxLength(1000),
-      Validators.required
-    ]),
-    profileImg: new FormControl(null),
-  });
+  editForm: FormGroup;
 
   constructor(
     private userDataEditService: UserDataEditService,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private fb: FormBuilder
+  ) {
+    this.editForm = fb.group({
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      summary: ['', [Validators.minLength(6), Validators.maxLength(1000), Validators.required]],
+      profileImg: ['']
+    });
+  }
+
+  get username() { return this.editForm.get('username'); }
+  get summary() { return this.editForm.get('summary'); }
+  get profileImg() { return this.editForm.get('profileImg'); }
 
   previewImg(e) {
     if (e.target.files[0]) {
@@ -93,9 +93,5 @@ export class UserDataEditComponent implements OnInit {
     this.userDataEditService.changeFormState.subscribe(this.setFormState.bind(this));
     this.userDataEditService.changeInfo.subscribe(this.setInfo.bind(this));
   }
-
-  get username() { return this.editForm.get('username'); }
-  get summary() { return this.editForm.get('summary'); }
-  get profileImg() { return this.editForm.get('profileImg'); }
 
 }
