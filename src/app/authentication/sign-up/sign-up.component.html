@@ -8,14 +8,15 @@
     <div formGroupName="passwords">
         <input type="password" class="form-control form-group customInput" placeholder="Your Password *"
             formControlName="password" />
-        <div *ngIf="password.invalid && password.touched" class="text-danger mb-3">
-            Password is required and should have more than 8 chars!
-        </div>
         <input type="password" class="form-control form-group customInput" placeholder="Confirm Password *"
             formControlName="confirmPassword" />
-        <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="text-danger mb-3">
-            Password is required and should have more than 8 chars!
-        </div>
+    </div>
+
+    <div *ngIf="passwords?.errors?.passwordsMatch && confirmPassword.touched && password.touched" class="text-danger mb-3">
+        Two passwords must match!
+    </div>
+    <div *ngIf="(confirmPassword.invalid && confirmPassword.touched) || password.invalid && password.touched" class="text-danger mb-3">
+        Password is required and should have more than 8 chars!
     </div>
 
     <div class="d-flex justify-content-center">

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
+
+function passwordsMatch(c: AbstractControl) {
+  return c.value.password === c.value.confirmPassword ? null : { passwordsMatch: true };
+}
 
 @Component({
   selector: 'app-sign-up',
@@ -21,11 +25,12 @@ export class SignUpComponent implements OnInit {
       passwords: fb.group({
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-      })
+      }, { validators: [passwordsMatch] })
     });
   }
 
   get email() { return this.signUpForm.get('email'); }
+  get passwords() { return this.signUpForm.get('passwords'); }
   get password() { return this.signUpForm.get('passwords').get('password'); }
   get confirmPassword() { return this.signUpForm.get('passwords').get('confirmPassword'); }
 
