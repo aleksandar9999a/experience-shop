@@ -6,6 +6,8 @@ import { HomeComponent } from './core/home/home.component';
 import { UserCatalogComponent } from './user-catalog/user-catalog/user-catalog.component';
 import { AuthGuard } from './auth.guard';
 import { MyItemsComponent } from './profile/my-items/my-items.component';
+import { ShipmentsComponent } from './profile/shipments/shipments.component';
+import { OrdersComponent } from './profile/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -29,7 +31,9 @@ const routes: Routes = [
     data: { isHere: true },
     children: [
       { path: '', component: ProfileComponent, pathMatch: 'full'},
-      { path: 'my-items', component: MyItemsComponent, outlet: 'profileOutlet'}
+      { path: 'my-items', component: MyItemsComponent, outlet: 'profileOutlet'},
+      { path: 'shipments', component: ShipmentsComponent, outlet: 'profileOutlet'},
+      { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet'}
     ]
   }
 ];
