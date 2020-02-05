@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { IItem } from 'src/app/interfaces/item.interface';
 import { Observable } from 'rxjs';
-import { UserService } from 'src/app/services/user.service';
 import { NotifierService } from 'angular-notifier';
+import { IItem } from 'src/app/interfaces/item.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Injectable()
 export class MyItemsService {
