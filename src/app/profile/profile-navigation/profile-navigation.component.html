@@ -2,13 +2,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link">Shipments</a>
+          <a class="nav-link" [routerLink]='[{ outlets: { profileOutlet: ["shipments"] } }]'>Shipments</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]='[{ outlets: { profileOutlet: ["my-items"] } }]' >My Items</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link">Orders</a>
+            <a class="nav-link" [routerLink]='[{ outlets: { profileOutlet: ["orders"] } }]'>Orders</a>
           </li>
       </ul>
     </div>
