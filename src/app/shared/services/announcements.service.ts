@@ -30,21 +30,21 @@ export class AnnouncementsService {
         return await snapshot.ref.getDownloadURL().catch(err => this.notifier.notify('warning', err.message));
     }
 
-    async setAnnouncement(name: string, desc: string, image: any, price: number, category: string, id?: string) {
+    async setAnnouncement(announcement) {
         if (this.uid) {
-            name = name.toLocaleLowerCase();
+            announcement.name = announcement.name.toLocaleLowerCase();
 
-            if (typeof image === 'object') {
-                image = await this.uploadImage(image);
+            if (typeof announcement.image === 'object') {
+                announcement.image = await this.uploadImage(announcement.image);
             }
 
-            if (!id) {
-                id = this.fireStore.createId();
+            if (!announcement.id) {
+                announcement.id = this.fireStore.createId();
             }
 
-            const updatedItem = { id, creatorUid: this.uid, name, desc, image, price, category };
+            announcement.creatorUid = this.uid;
 
-            await this.collection.doc(id).set(updatedItem)
+            await this.collection.doc(announcement.id).set(announcement)
                 .then(_ => {
                     this.notifier.notify('success', 'Successful operation!');
                 })

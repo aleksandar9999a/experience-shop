@@ -49,10 +49,8 @@
                             <label>Price</label>
                             <input type="text" class="form-control" placeholder="Price" formControlName="price">
 
-                            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-danger">
-                                <div *ngIf="price.errors.required">
-                                    Price is required.
-                                </div>
+                            <div *ngIf="price.invalid && price.touched" class="text-danger">
+                                Price is required.
                             </div>
                         </div>
                         <div class="form-label-group">
@@ -76,11 +74,8 @@
                                     <label class="input-group-text customInput" for="selectEditType">Categories</label>
                                 </div>
 
-                                <div *ngIf="category.invalid && (category.dirty || category.touched)"
-                                    class="text-danger">
-                                    <div *ngIf="category.errors.required">
-                                        Category is required.
-                                    </div>
+                                <div *ngIf="category.invalid && category.touched" class="text-danger">
+                                    Category is required.
                                 </div>
                             </div>
                         </div>
@@ -92,10 +87,8 @@
                                 <label class="custom-file-label customInput" for="selectEditImg">Choose file</label>
                             </div>
 
-                            <div *ngIf="image.invalid && (image.dirty || image.touched)" class="text-danger">
-                                <div *ngIf="image.errors.required">
-                                    Image is required.
-                                </div>
+                            <div *ngIf="image.invalid && image.touched" class="text-danger">
+                                Image is required.
                             </div>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase borders" type="submit"
