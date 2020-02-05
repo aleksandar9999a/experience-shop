@@ -10,10 +10,9 @@ import { UserInfoService } from './services/user-info.service';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { ProfileNavigationComponent } from './profile-navigation/profile-navigation.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { OrdersComponent } from './orders/orders.component';
-import { OrdersService } from './services/orders.service';
 import { MyItemsModule } from './my-items/my-items.module';
 import { ShipmentsModule } from './shipments/shipments.module';
+import { OrdersModule } from './orders/orders.module';
 
 
 @NgModule({
@@ -22,10 +21,9 @@ import { ShipmentsModule } from './shipments/shipments.module';
     ProfileComponent,
     UserDataEditComponent,
     ItemsListComponent,
-    ProfileNavigationComponent,
-    OrdersComponent
+    ProfileNavigationComponent
   ],
-  providers: [UserDataEditService, UserInfoService, OrdersService],
+  providers: [UserDataEditService, UserInfoService],
   imports: [
     CommonModule,
     SharedModule,
@@ -33,7 +31,8 @@ import { ShipmentsModule } from './shipments/shipments.module';
     ReactiveFormsModule,
     AppRoutingModule,
     MyItemsModule,
-    ShipmentsModule
+    ShipmentsModule,
+    OrdersModule
   ],
   exports: [ProfileComponent, UserDataEditComponent]
 })

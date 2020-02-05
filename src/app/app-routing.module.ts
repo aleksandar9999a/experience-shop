@@ -5,9 +5,9 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { HomeComponent } from './core/home/home.component';
 import { UserCatalogComponent } from './user-catalog/user-catalog/user-catalog.component';
 import { AuthGuard } from './auth.guard';
-import { OrdersComponent } from './profile/orders/orders.component';
 import { MyItemsComponent } from './profile/my-items/my-items/my-items.component';
 import { ShipmentsComponent } from './profile/shipments/shipments/shipments.component';
+import { OrdersComponent } from './profile/orders/orders/orders.component';
 
 const routes: Routes = [
   {
