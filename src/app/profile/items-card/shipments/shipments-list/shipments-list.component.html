@@ -1,0 +1,15 @@
+<div *ngIf="(shipments | async) as newShipments; else loading">
+    <div *ngFor="let shipment of newShipments" class="list-group">
+        <app-shipment-item [shipment]="shipment"></app-shipment-item>
+    </div>
+
+    <div *ngIf="newShipments.length === 0" class="mb-5">
+        <p class="text-center no-data">You don't have more shipments!</p>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="text-center">
+        <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
+    </div>
+</ng-template>
