@@ -15,7 +15,6 @@ export class ShipmentsComponent implements OnInit {
 
   ngOnInit() {
     this.shipmentsService.refresh();
-    this.shipments.subscribe(console.log);
   }
 
 }
