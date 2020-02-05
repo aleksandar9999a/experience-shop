@@ -2,11 +2,11 @@
     <div class="container">
         <div class="col-20">
             <div class="card card-form">
-                <div>
-                    <h5 class="card-title title text-center my-3">Your Items</h5>
+                <div class="card-header">
+                    <app-profile-navigation></app-profile-navigation>
                 </div>
-                <div class="card-body">
-                    <app-my-items></app-my-items>
+                <div class="card-body mt-3">
+                    <router-outlet name="profileOutlet"></router-outlet>
                 </div>
             </div>
         </div>
