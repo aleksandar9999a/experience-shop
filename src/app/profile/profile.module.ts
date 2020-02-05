@@ -14,10 +14,23 @@ import { MyItemsNavigatorComponent } from './my-items-navigator/my-items-navigat
 import { ItemsListComponent } from './items-list/items-list.component';
 import { ProfileNavigationComponent } from './profile-navigation/profile-navigation.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { ShipmentsComponent } from './shipments/shipments.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
-  declarations: [UserInfoComponent, ProfileComponent, MyItemsComponent, UserDataEditComponent, MyItemsListComponent, MyItemsNavigatorComponent, ItemsListComponent, ProfileNavigationComponent],
+  declarations: [
+    UserInfoComponent,
+    ProfileComponent,
+    MyItemsComponent,
+    UserDataEditComponent,
+    MyItemsListComponent,
+    MyItemsNavigatorComponent,
+    ItemsListComponent,
+    ProfileNavigationComponent,
+    ShipmentsComponent,
+    OrdersComponent
+  ],
   providers: [UserDataEditService, MyItemsService, UserInfoService],
   imports: [
     CommonModule,
