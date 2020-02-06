@@ -11,12 +11,25 @@ import { ShipmentDetailsService } from '../services/shipment-details.service';
 export class ShipmentDetailsComponent implements OnInit {
   detailsFormState = 'close';
 
+  get items() { return this.shipmentDetailsService.items; }
+  get title() { return this.shipmentDetailsService.title; }
+  get status() { return this.shipmentDetailsService.status; }
+  get receiver() { return this.shipmentDetailsService.receiver; }
+  get sender() { return this.shipmentDetailsService.sender; }
+  get isSender() { return this.shipmentDetailsService.isSender; }
+
+  isSended = this.status !== 'Sended';
+
   constructor(
     private shipmentDetailsService: ShipmentDetailsService
   ) { }
 
   close() {
     this.shipmentDetailsService.toggle();
+  }
+
+  changeStatus(newStatus: string) {
+    this.shipmentDetailsService.changeStatus(newStatus);
   }
 
   private setIsOpen(currState: boolean) {
