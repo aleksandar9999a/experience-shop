@@ -12,17 +12,40 @@ import { AnnouncementFormComponent } from './announcement-form/announcement-form
 import { AnnouncementsFormService } from './services/announcements-form.service';
 import { UserItemComponent } from './user-item/user-item.component';
 import { ShipmentItemComponent } from './shipment-item/shipment-item.component';
+import { ShipmentDetailsComponent } from './shipment-details/shipment-details.component';
+import { ShipmentDetailsService } from './services/shipment-details.service';
 
 
 @NgModule({
-  declarations: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent, UserItemComponent, ShipmentItemComponent],
-  providers: [DetailsFormService, AnnouncementsService, ShoppingCardService, AnnouncementsFormService],
+  declarations: [
+    ItemDetailsComponent,
+    ItemComponent,
+    ShoppingCardComponent,
+    AnnouncementFormComponent,
+    UserItemComponent,
+    ShipmentItemComponent,
+    ShipmentDetailsComponent
+  ],
+  providers: [
+    DetailsFormService,
+    AnnouncementsService,
+    ShoppingCardService,
+    AnnouncementsFormService,
+    ShipmentDetailsService
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [ItemDetailsComponent, ItemComponent, ShoppingCardComponent, AnnouncementFormComponent, UserItemComponent, ShipmentItemComponent]
+  exports: [
+    ItemDetailsComponent,
+    ItemComponent,
+    ShoppingCardComponent,
+    AnnouncementFormComponent,
+    UserItemComponent,
+    ShipmentItemComponent,
+    ShipmentDetailsComponent]
 })
 export class SharedModule { }
