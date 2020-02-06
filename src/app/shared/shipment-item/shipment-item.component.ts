@@ -15,7 +15,7 @@ export class ShipmentItemComponent implements OnInit {
   ) { }
 
   openShipmentDetails() {
-    this.shipmentDetailsService.toggle();
+    this.shipmentDetailsService.toggle(this.shipment);
   }
 
   ngOnInit() {
