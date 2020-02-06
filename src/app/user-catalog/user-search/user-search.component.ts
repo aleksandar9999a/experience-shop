@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { UserCatalogService } from '../services/user-catalog.service';
 
 @Component({
@@ -11,16 +11,18 @@ export class UserSearchComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor(
-    private userCatalogService: UserCatalogService
+    private userCatalogService: UserCatalogService,
+    private fb: FormBuilder
   ) {
-    this.searchForm = new FormGroup({
-      username: new FormControl('')
+    this.searchForm = fb.group({
+      username: ['']
     });
   }
 
+  get username() { return this.searchForm.get('username'); }
+
   search() {
-    const { username } = this.searchForm.value;
-    this.userCatalogService.search(username);
+    this.userCatalogService.search(this.username.value);
   }
 
   ngOnInit() {
