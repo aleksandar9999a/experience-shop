@@ -1,13 +1,13 @@
 <div class="list-group-item list-group-item-action no-gutters">
     <div class="row d-flex">
         <div class="col mr-1 my-auto">
-            <p>Shipment: {{shipment.shipmentId}}</p>
+            <p>Shipment: {{shipment?.shipmentId}}</p>
         </div>
         <div class="col ml-1 my-auto">
-            <p>Number of items: {{shipment.listOfItems.length}}</p>
+            <p>Number of items: {{shipment?.listOfItems?.length}}</p>
         </div>
         <div class="col my-auto">
-            <p class="float-right font-weight-bold">Status: <span>{{shipment.status}}</span></p>
+            <p class="float-right font-weight-bold">Status: <span>{{shipment?.status}}</span></p>
         </div>
     </div>
 </div>
