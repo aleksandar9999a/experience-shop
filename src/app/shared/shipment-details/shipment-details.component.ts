@@ -37,10 +37,11 @@ export class ShipmentDetailsComponent implements OnInit {
   }
 
   updateBtnStatus() {
-    this.isSended = this.status === 'Sended';
-    this.deniedBtn = this.status === 'Confirmed' || this.status === 'Sended' || this.status === 'Delivered' || this.status === 'Denied';
-    this.confirmedBtn = this.status === 'Confirmed' || this.status === 'Sended' || this.status === 'Delivered' || this.status === 'Denied';
-    this.sendBtn = this.status === 'Sended' || this.status === 'Delivered' || this.status === 'Denied';
+    const between = this.status === 'Delivered' || this.status === 'Denied';
+    this.sendBtn = this.status === 'Sended' || between;
+    this.deniedBtn = this.status === 'Confirmed' || this.sendBtn;
+    this.confirmedBtn = this.deniedBtn;
+    this.isSended = this.status !== 'Sended' || between;
   }
 
   private setIsOpen(currState: boolean) {

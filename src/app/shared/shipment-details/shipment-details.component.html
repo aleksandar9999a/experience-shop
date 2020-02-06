@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div *ngIf="!isSender" class="row d-flex justify-content-center mt-5">
-                                    <button [disabled]="!isSended || isDenied" class="btn btn-success btn-lg borders detailsButtons" (click)="changeStatus('Delivered')">Delivered</button>
+                                    <button [disabled]="isSended" class="btn btn-success btn-lg borders detailsButtons" (click)="changeStatus('Delivered')">Delivered</button>
                                 </div>
                             </div>
                         </div>
