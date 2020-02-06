@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IShipment } from 'src/app/interfaces/shipment.interface';
+import { ShipmentDetailsService } from '../services/shipment-details.service';
 
 @Component({
   selector: 'app-shipment-item',
@@ -9,7 +10,13 @@ import { IShipment } from 'src/app/interfaces/shipment.interface';
 export class ShipmentItemComponent implements OnInit {
   @Input() shipment: IShipment;
 
-  constructor() { }
+  constructor(
+    private shipmentDetailsService: ShipmentDetailsService
+  ) { }
+
+  openShipmentDetails() {
+    this.shipmentDetailsService.toggle();
+  }
 
   ngOnInit() {
   }
