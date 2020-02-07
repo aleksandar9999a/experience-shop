@@ -6,8 +6,6 @@ import { DetailsFormService } from './services/item-details.service';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnnouncementsService } from './services/announcements.service';
-import { ShoppingCardService } from './services/shopping-card.service';
-import { ShoppingCardComponent } from './shopping-card/shopping-card.component';
 import { AnnouncementFormComponent } from './announcement-form/announcement-form.component';
 import { AnnouncementsFormService } from './services/announcements-form.service';
 import { UserItemComponent } from './user-item/user-item.component';
@@ -20,7 +18,6 @@ import { ShipmentDetailsService } from './services/shipment-details.service';
   declarations: [
     ItemDetailsComponent,
     ItemComponent,
-    ShoppingCardComponent,
     AnnouncementFormComponent,
     UserItemComponent,
     ShipmentItemComponent,
@@ -29,7 +26,6 @@ import { ShipmentDetailsService } from './services/shipment-details.service';
   providers: [
     DetailsFormService,
     AnnouncementsService,
-    ShoppingCardService,
     AnnouncementsFormService,
     ShipmentDetailsService
   ],
@@ -42,10 +38,10 @@ import { ShipmentDetailsService } from './services/shipment-details.service';
   exports: [
     ItemDetailsComponent,
     ItemComponent,
-    ShoppingCardComponent,
     AnnouncementFormComponent,
     UserItemComponent,
     ShipmentItemComponent,
-    ShipmentDetailsComponent]
+    ShipmentDetailsComponent
+  ]
 })
 export class SharedModule { }
