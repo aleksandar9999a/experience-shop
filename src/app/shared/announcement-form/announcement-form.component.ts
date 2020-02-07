@@ -18,7 +18,6 @@ export class AnnouncementFormComponent implements OnInit {
   defaultImage = '../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
-  rows = 4;
 
   announcementsFormGroup: FormGroup;
 
@@ -90,17 +89,6 @@ export class AnnouncementFormComponent implements OnInit {
 
   close() {
     this.announcementsFormService.toggle();
-  }
-
-  setTextAreaRow(e) {
-    const key = e.key;
-    const ctrl = e.ctrlKey;
-
-    if (key === 'ArrowUp' && ctrl) {
-      this.rows++;
-    } else if (key === 'ArrowDown' && ctrl) {
-      this.rows--;
-    }
   }
 
   private setIsOpen(currState: boolean) {

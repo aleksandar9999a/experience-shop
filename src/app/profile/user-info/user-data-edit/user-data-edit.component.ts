@@ -16,7 +16,6 @@ export class UserDataEditComponent implements OnInit {
   defaultImage = './../../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
-  rows = 4;
 
   editForm: FormGroup;
 
@@ -27,7 +26,7 @@ export class UserDataEditComponent implements OnInit {
   ) {
     this.editForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
-      summary: ['', [Validators.minLength(6), Validators.maxLength(1000), Validators.required]],
+      summary: ['', [Validators.minLength(6), Validators.maxLength(100), Validators.required]],
       profileImg: ['']
     });
   }
@@ -44,17 +43,6 @@ export class UserDataEditComponent implements OnInit {
       reader.onload = () => {
         this.localImageUrl = reader.result;
       };
-    }
-  }
-
-  setTextAreaRow(e) {
-    const key = e.key;
-    const ctrl = e.ctrlKey;
-
-    if (key === 'ArrowUp' && ctrl) {
-      this.rows++;
-    } else if (key === 'ArrowDown' && ctrl) {
-      this.rows--;
     }
   }
 

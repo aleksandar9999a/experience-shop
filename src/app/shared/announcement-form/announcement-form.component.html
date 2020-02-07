@@ -29,9 +29,7 @@
                         <div class="form-label-group">
                             <label>Description</label>
                             <textarea class="form-control" placeholder="Description" formControlName="desc"
-                                [rows]="rows" (keyup)="setTextAreaRow($event)"></textarea>
-                            <blockquote class="blockquote">Use Ctrl+ArrowUp or Ctrl+ArrowDown to Resize TextArea
-                            </blockquote>
+                                rows="4"></textarea>
 
                             <div *ngIf="desc.invalid && (desc.dirty || desc.touched)" class="text-danger">
                                 <div *ngIf="desc.errors.required">
@@ -41,7 +39,7 @@
                                     Description must be at least 6 characters long.
                                 </div>
                                 <div *ngIf="desc.errors.maxlength">
-                                    Description must be at least 1000 characters long.
+                                    Description must be at least 300 characters long.
                                 </div>
                             </div>
                         </div>

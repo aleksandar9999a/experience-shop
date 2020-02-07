@@ -27,11 +27,7 @@
                         </div>
                         <div class="form-label-group">
                             <label>Summary</label>
-                            <textarea class="form-control" placeholder="Summary" formControlName="summary" [rows]="rows"
-                                (keyup)="setTextAreaRow($event)"></textarea>
-                            <blockquote class="blockquote">Use Ctrl+ArrowUp or Ctrl+ArrowDown to Resize TextArea
-                            </blockquote>
-
+                            <textarea class="form-control" placeholder="Summary" formControlName="summary" rows="4"></textarea>
                             <div *ngIf="summary.invalid && (summary.dirty || summary.touched)" class="text-danger">
                                 <div *ngIf="summary.errors.required">
                                     Summary is required.
@@ -40,7 +36,7 @@
                                     Summary must be at least 6 characters long.
                                 </div>
                                 <div *ngIf="summary.errors.maxlength">
-                                    Summary must be at least 1000 characters long.
+                                    Summary must be at least 100 characters long.
                                 </div>
                             </div>
                         </div>
