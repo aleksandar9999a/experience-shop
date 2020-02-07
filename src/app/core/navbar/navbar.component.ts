@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { AuthenticationFormService } from 'src/app/authentication/services/authentication-form.service';
-import { ShoppingCardService } from 'src/app/shared/services/shopping-card.service';
 import { AnnouncementsFormService } from 'src/app/shared/services/announcements-form.service';
+import { ShoppingCardService } from 'src/app/shopping-card/services/shopping-card.service';
 
 @Component({
   selector: 'app-navbar',
