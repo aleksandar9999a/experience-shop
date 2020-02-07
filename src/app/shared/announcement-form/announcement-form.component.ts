@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { formAnimations } from '../shopping-card/shopping-card.animations';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AnnouncementsFormService } from '../services/announcements-form.service';
 import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
+import { formAnimations } from './announcement-form.animations';
 
 @Component({
   selector: 'app-announcement-form',

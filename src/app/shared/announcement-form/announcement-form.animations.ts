@@ -1,7 +1,7 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 const formAnimations = [
-    trigger('editForm', [
+    trigger('formAnimations', [
         state('open', style({
             display: 'block',
             opacity: 1
