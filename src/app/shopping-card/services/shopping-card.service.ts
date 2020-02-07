@@ -38,7 +38,7 @@ export class ShoppingCardService {
 
   private createListOfOrders(itemsForBuy: Array<IItem>) {
     function getCreatorUid(x: IItem) { return x.creatorUid; }
-    function getOldId(x: IItem) {  return x.oldId; }
+    function getOldId(x: IItem) { return x.oldId; }
     function filterSenders(senderUid: string, { creatorUid }) { return creatorUid === senderUid; }
 
     function reduceRepeatedUid(acc: Array<string>, uid: string) {
@@ -64,23 +64,17 @@ export class ShoppingCardService {
     return itemsForBuy.map(getCreatorUid).reduce((acc, x) => reduceRepeatedUid(acc, x), []).map(createSenderList.bind(this));
   }
 
-  private sentOrders(order: any) {
-    this.afs.collection(`userdata/${order.sender}/orders`).doc(order.shipmentId).set(order);
-  }
-
-  private addToShipments(order: any) {
-    this.afs.collection(`userdata/${order.receiver}/shipments`).doc(order.shipmentId).set(order);
-  }
-
   private makeOrder(order: any) {
-    this.sentOrders(order);
-    this.addToShipments(order);
+    this.afs.collection(`orders`)
+      .doc(order.shipmentId)
+      .set(order)
+      .then(_ => this.notifier.notify('success', `You successful make order with number ${order.shipmentId}`))
+      .catch(err => this.notifier.notify('warning', err.message));
   }
 
   buyAllProducts(itemsForBuy: Array<IItem>) {
     this.createListOfOrders(itemsForBuy).forEach(this.makeOrder.bind(this));
     this.deleteAllItems();
-    this.notifier.notify('success', 'You successful buy all products in your card!');
   }
 
   setArrOfItems(arr: Array<IItem>) {
