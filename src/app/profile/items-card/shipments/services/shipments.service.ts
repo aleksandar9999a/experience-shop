@@ -27,7 +27,7 @@ export class ShipmentsService {
     refresh(position?: string) {
         this.setPositions(position);
         const currSearchFn = this.searchFn()[this.position];
-        this.shipmentsCollection = this.afs.collection<IShipment>(`userdata/${this.uid}/shipments`, currSearchFn);
+        this.shipmentsCollection = this.afs.collection<IShipment>(`orders`, currSearchFn);
         this.shipments = this.shipmentsCollection.valueChanges();
     }
 
@@ -39,17 +39,17 @@ export class ShipmentsService {
 
     private searchFn() {
         const startAfter = (ref: any) => {
-            this.currPage = ref.startAfter(this.lastShipment).limit(this.pageLimit);
+            this.currPage = ref.where('receiver', '==', this.uid).startAfter(this.lastShipment).limit(this.pageLimit);
             return this.currPage;
         };
 
         const endBefore = (ref: any) => {
-            this.currPage = ref.endBefore(this.firstShipment).limit(this.pageLimit);
+            this.currPage = ref.where('receiver', '==', this.uid).endBefore(this.firstShipment).limit(this.pageLimit);
             return this.currPage;
         };
 
         const firstPage = (ref: any) => {
-            this.currPage = ref.limit(this.pageLimit);
+            this.currPage = ref.where('receiver', '==', this.uid).limit(this.pageLimit);
             this.currPage.get().then(this.setFirstShipmentFromFirstPage.bind(this));
             return this.currPage;
         };
