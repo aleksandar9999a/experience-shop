@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
 import { formAnimations } from './shopping-card.animations';
 import { IItem } from 'src/app/interfaces/item.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-card',
@@ -10,12 +11,12 @@ import { IItem } from 'src/app/interfaces/item.interface';
   animations: formAnimations
 })
 export class ShoppingCardComponent implements OnInit {
-  formState = 'close';
   get items() { return this.shoppingCardService.items; }
   get price() { return this.shoppingCardService.price; }
 
   constructor(
-    private shoppingCardService: ShoppingCardService
+    private shoppingCardService: ShoppingCardService,
+    private router: Router
   ) { }
 
   clearShoppingCard() {
@@ -28,19 +29,10 @@ export class ShoppingCardComponent implements OnInit {
   }
 
   close() {
-    this.shoppingCardService.toggle();
-  }
-
-  private setIsOpen(currState: boolean) {
-    if (currState) {
-      this.formState = 'open';
-    } else {
-      this.formState = 'close';
-    }
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   ngOnInit() {
-    this.shoppingCardService.changeFormState.subscribe(this.setIsOpen.bind(this));
     this.shoppingCardService.loadItems();
   }
 

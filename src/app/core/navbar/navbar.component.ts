@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { ShoppingCardService } from 'src/app/shopping-card/services/shopping-card.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private shoppingCardService: ShoppingCardService
+    private router: Router
   ) { }
 
   logOut() {
@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openShoppingCard() {
-    this.shoppingCardService.toggle();
+    this.router.navigate([{ outlets: { formsOutlet: 'shopping_card' } }]);
   }
 
   ngOnInit() { }

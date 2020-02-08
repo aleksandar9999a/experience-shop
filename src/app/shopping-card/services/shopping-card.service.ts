@@ -1,4 +1,4 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { Observable } from 'rxjs';
@@ -7,7 +7,6 @@ import { UserService } from 'src/app/services/user.service';
 
 @Injectable()
 export class ShoppingCardService {
-  isOpen: boolean;
   private itemsCollection: AngularFirestoreCollection<IItem>;
   items: Observable<IItem[]>;
   arrFromItems: Array<IItem>;
@@ -20,13 +19,6 @@ export class ShoppingCardService {
     private afs: AngularFirestore,
     private userService: UserService
   ) { }
-
-  @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-    this.changeFormState.emit(this.isOpen);
-  }
 
   deleteDoc({ id }) {
     this.itemsCollection.doc(id).delete();
