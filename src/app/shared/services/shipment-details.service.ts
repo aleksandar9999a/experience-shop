@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { IProfile } from 'src/app/interfaces/profile.interface';
 import { UserService } from 'src/app/services/user.service';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable()
 export class ShipmentDetailsService {
@@ -21,6 +22,7 @@ export class ShipmentDetailsService {
   get uid() { return this.userService.uid; }
 
   constructor(
+    private readonly notifier: NotifierService,
     private afs: AngularFirestore,
     private userService: UserService
   ) { }
@@ -83,13 +85,15 @@ export class ShipmentDetailsService {
     this.loadStatus(status);
   }
 
-  private updateCollections() {
-    this.afs.collection(`userdata/${this.data.sender}/orders`).doc(this.data.shipmentId).set(this.data);
-    this.afs.collection(`userdata/${this.data.receiver}/shipments`).doc(this.data.shipmentId).set(this.data);
+  private updateCollectionsStatus(status: string) {
+    this.afs.doc(`/orders/${this.data.shipmentId}`)
+      .update({ status })
+      .then(_ => this.notifier.notify('success', 'Successful updated status!'))
+      .catch(err => this.notifier.notify('warning', err.message));
   }
 
   changeStatus(newStatus: string) {
     this.setNewStatus(newStatus);
-    this.updateCollections();
+    this.updateCollectionsStatus(newStatus);
   }
 }
