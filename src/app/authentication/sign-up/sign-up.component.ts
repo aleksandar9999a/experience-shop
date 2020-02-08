@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
 
 
 function passwordsMatch(c: AbstractControl) {
@@ -20,8 +19,7 @@ export class SignUpComponent implements OnInit {
   constructor(
     private readonly notifier: NotifierService,
     private userService: UserService,
-    private fb: FormBuilder,
-    private router: Router
+    private fb: FormBuilder
   ) {
     this.signUpForm = fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -37,11 +35,9 @@ export class SignUpComponent implements OnInit {
   get password() { return this.signUpForm.get('passwords').get('password'); }
   get confirmPassword() { return this.signUpForm.get('passwords').get('confirmPassword'); }
 
-  async signUp() {
+  signUp() {
     if (this.password.value === this.confirmPassword.value) {
-      await this.userService.createUser(this.email.value, this.password.value);
-      await this.userService.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg');
-      this.router.navigate([{ outlets: { formsOutlet: 'profile_setup' } }]);
+      this.userService.createUser(this.email.value, this.password.value);
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
     }
