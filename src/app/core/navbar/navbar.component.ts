@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -8,12 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  get isHere() { return this.userService.isHere; }
+  isHere: boolean;
   navBarIsOpen = 'hide';
 
   constructor(
+    private fireBaseAuth: AngularFireAuth,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private zone: NgZone
   ) { }
 
   logOut() {
@@ -32,6 +35,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([{ outlets: { formsOutlet: 'shopping_card' } }]);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.fireBaseAuth.auth.onAuthStateChanged(user => this.zone.run(() => this.isHere = !!user));
+  }
 
 }
