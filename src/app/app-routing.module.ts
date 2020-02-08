@@ -11,6 +11,7 @@ import { OrdersComponent } from './profile/items-card/orders/orders/orders.compo
 import { AnnouncementFormComponent } from './shared/announcement-form/announcement-form.component';
 import { ItemDetailsComponent } from './shared/item-details/item-details.component';
 import { ShipmentDetailsComponent } from './shared/shipment-details/shipment-details.component';
+import { AuthenticationFormComponent } from './authentication/authentication-form/authentication-form.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet' }
     ]
   },
+  { path: 'authentication', component: AuthenticationFormComponent, outlet: 'formsOutlet' },
   { path: 'shipments_details/:id', component: ShipmentDetailsComponent, outlet: 'formsOutlet' },
   { path: 'item_details/:id/:creatorUid', component: ItemDetailsComponent, outlet: 'formsOutlet' },
   { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },

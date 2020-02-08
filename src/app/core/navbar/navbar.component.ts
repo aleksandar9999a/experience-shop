@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { AuthenticationFormService } from 'src/app/authentication/services/authentication-form.service';
 import { ShoppingCardService } from 'src/app/shopping-card/services/shopping-card.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class NavbarComponent implements OnInit {
   navBarIsOpen = 'hide';
 
   constructor(
-    private authenticationFormService: AuthenticationFormService,
     private userService: UserService,
     private shoppingCardService: ShoppingCardService
   ) { }
@@ -28,10 +26,6 @@ export class NavbarComponent implements OnInit {
     } else {
       this.navBarIsOpen = 'show';
     }
-  }
-
-  openSignForm() {
-    this.authenticationFormService.toggle();
   }
 
   openShoppingCard() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationFormAnimations } from './authentication-form.animations';
-import { AuthenticationFormService } from '../services/authentication-form.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-authentication-form',
@@ -9,14 +9,13 @@ import { AuthenticationFormService } from '../services/authentication-form.servi
   animations: [AuthenticationFormAnimations]
 })
 export class AuthenticationFormComponent implements OnInit {
-  formState = 'close';
   loginState = 'open';
   registeredState = 'close';
   moveToLogInBtn = true;
   moveToRegBtn = false;
 
   constructor(
-    private authenticationFormService: AuthenticationFormService
+    private location: Location
   ) { }
 
   setLogInAndRegState(logInState: string, regState: string) {
@@ -40,17 +39,10 @@ export class AuthenticationFormComponent implements OnInit {
   }
 
   closeSignForm() {
-    this.authenticationFormService.toggle();
-  }
-
-  setFormState(isOpen: boolean) {
-    isOpen
-      ? this.formState = 'open'
-      : this.formState = 'close';
+    this.location.back();
   }
 
   ngOnInit() {
-    this.authenticationFormService.changeFormState.subscribe(this.setFormState.bind(this));
   }
 
 }

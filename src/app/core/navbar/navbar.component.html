@@ -32,6 +32,6 @@
                 <button (click)="logOut()" class="btn btn-outline-danger borders">Log Out</button>
             </li>
         </ul>
-        <button *ngIf="!isHere" class="btn btn-outline-primary borders" (click)="openSignForm()">SignUp/SignIn</button>
+        <button *ngIf="!isHere" class="btn btn-outline-primary borders" [routerLink]='[{ outlets: { formsOutlet: ["authentication"] } }]'>SignUp/SignIn</button>
     </div>
 </nav>

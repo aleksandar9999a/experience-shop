@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NotifierService } from 'angular-notifier';
 import { Router } from '@angular/router';
-import { AuthenticationFormService } from '../authentication/services/authentication-form.service';
-import { ProfileSetUpFormService } from '../authentication/services/profile-set-up.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -17,9 +15,7 @@ export class UserService {
         private readonly notifier: NotifierService,
         private firebaseStorage: AngularFireStorage,
         private fireStore: AngularFirestore,
-        private routerService: Router,
-        private authenticationFormService: AuthenticationFormService,
-        private profileSetUpFormService: ProfileSetUpFormService
+        private routerService: Router
     ) {
         this.fireBaseAuth.auth
             .onAuthStateChanged(user => {
@@ -48,8 +44,6 @@ export class UserService {
             .createUserWithEmailAndPassword(email, password)
             .then(_ => {
                 this.notifier.notify('success', 'Successful create new account!');
-                this.authenticationFormService.toggle();
-                this.profileSetUpFormService.toggle();
             })
             .catch(err => this.notifier.notify('warning', err.message));
     }
@@ -75,9 +69,6 @@ export class UserService {
             await this.fireStore
                 .doc(`userdata/${this.uid}`)
                 .set(info)
-                .then(_ => {
-                    this.notifier.notify('success', 'You successful update your information!');
-                })
                 .catch(err => this.notifier.notify('warning', err.message));
         } else {
             this.notifier.notify('warning', 'You must be registered to edit your data!');
