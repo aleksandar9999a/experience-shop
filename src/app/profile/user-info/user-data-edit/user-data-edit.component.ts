@@ -5,6 +5,7 @@ import { UserDataEditService } from '../services/user-data-edit.service';
 import { UserService } from 'src/app/services/user.service';
 import { IProfile } from 'src/app/interfaces/profile.interface';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-user-data-edit',
@@ -20,6 +21,7 @@ export class UserDataEditComponent implements OnInit {
   editForm: FormGroup;
 
   constructor(
+    private readonly notifier: NotifierService,
     private userDataEditService: UserDataEditService,
     private userService: UserService,
     private fb: FormBuilder,
@@ -56,8 +58,12 @@ export class UserDataEditComponent implements OnInit {
   async editProfile() {
     if (this.editForm.valid) {
       const profileImg = this.localImage || this.defaultImage;
-      await this.userService.updateUserData(this.username.value, this.summary.value, profileImg);
-      this.close();
+      this.userService
+      .updateUserData(this.username.value, this.summary.value, profileImg)
+      .then(d => {
+        this.notifier.notify('success', 'Successful updated account!');
+        this.close();
+      });
     }
   }
 
