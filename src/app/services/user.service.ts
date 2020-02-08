@@ -29,10 +29,16 @@ export class UserService {
             });
     }
 
+    setUserIsHere(data) {
+        this.isHere = true;
+        this.uid = data.user.uid;
+    }
+
     async logIn(email: string, password: string) {
         await this.fireBaseAuth.auth
             .signInWithEmailAndPassword(email, password)
-            .then(_ => {
+            .then(d => {
+                this.setUserIsHere(d);
                 this.notifier.notify('success', 'Successful Log In!');
                 this.routerService.navigate(['/catalog']);
             })
@@ -42,8 +48,12 @@ export class UserService {
     async createUser(email: string, password: string) {
         await this.fireBaseAuth.auth
             .createUserWithEmailAndPassword(email, password)
-            .then(_ => {
-                this.notifier.notify('success', 'Successful create new account!');
+            .then(d => {
+                this.setUserIsHere(d);
+                this.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg').then(() => {
+                    this.notifier.notify('success', 'Successful create new account!');
+                    this.routerService.navigate([{ outlets: { formsOutlet: 'profile_setup' } }]);
+                });
             })
             .catch(err => this.notifier.notify('warning', err.message));
     }
@@ -66,7 +76,7 @@ export class UserService {
             const info = { id: this.uid, username, summary, profileImg };
             username = username.toLocaleLowerCase();
 
-            await this.fireStore
+            return this.fireStore
                 .doc(`userdata/${this.uid}`)
                 .set(info)
                 .catch(err => this.notifier.notify('warning', err.message));
