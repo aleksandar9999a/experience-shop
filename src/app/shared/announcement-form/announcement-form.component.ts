@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
 import { formAnimations } from './announcement-form.animations';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-announcement-form',
@@ -27,8 +26,8 @@ export class AnnouncementFormComponent implements OnInit {
     private announcementsService: AnnouncementsService,
     private readonly notifier: NotifierService,
     private fb: FormBuilder,
-    private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.announcementsFormGroup = fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -71,14 +70,14 @@ export class AnnouncementFormComponent implements OnInit {
     if (this.announcementsFormGroup.valid) {
       const announcement = this.createAnnouncement();
       await this.announcementsService.setAnnouncement(announcement);
-      this.location.back();
+      this.close();
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!');
     }
   }
 
   close() {
-    this.location.back();
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   get name() { return this.announcementsFormGroup.get('name'); }

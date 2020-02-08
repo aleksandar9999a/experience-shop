@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserDataEditService } from '../services/user-data-edit.service';
 import { UserService } from 'src/app/services/user.service';
 import { IProfile } from 'src/app/interfaces/profile.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-data-edit',
@@ -21,7 +22,8 @@ export class UserDataEditComponent implements OnInit {
   constructor(
     private userDataEditService: UserDataEditService,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.editForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -48,7 +50,7 @@ export class UserDataEditComponent implements OnInit {
   }
 
   close() {
-
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   async editProfile() {

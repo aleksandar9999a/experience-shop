@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileSetUpAnimations } from './profile-set-up.animations';
-import { ProfileSetUpFormService } from './../services/profile-set-up.service';
-import { UserDataEditService } from 'src/app/profile/user-info/services/user-data-edit.service';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 
@@ -23,7 +20,7 @@ export class ProfileSetUpComponent implements OnInit {
   }
 
   close() {
-
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   ngOnInit() {

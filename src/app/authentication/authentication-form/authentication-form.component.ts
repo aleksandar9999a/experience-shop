@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationFormAnimations } from './authentication-form.animations';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication-form',
@@ -15,7 +15,7 @@ export class AuthenticationFormComponent implements OnInit {
   moveToRegBtn = false;
 
   constructor(
-    private location: Location
+    private router: Router
   ) { }
 
   setLogInAndRegState(logInState: string, regState: string) {
@@ -39,7 +39,7 @@ export class AuthenticationFormComponent implements OnInit {
   }
 
   closeSignForm() {
-    this.location.back();
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   ngOnInit() {

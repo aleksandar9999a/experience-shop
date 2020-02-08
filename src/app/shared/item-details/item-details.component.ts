@@ -32,7 +32,7 @@ export class ItemDetailsComponent implements OnInit {
   ) { }
 
   close() {
-    this.location.back();
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   edit(item: IItem) {

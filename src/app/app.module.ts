@@ -18,10 +18,12 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { UserCatalogModule } from './user-catalog/user-catalog.module';
 import { UserInfoModule } from './profile/user-info/user-info.module';
 import { ShoppingCardModule } from './shopping-card/shopping-card.module';
+import { EmptyComponent } from './empty/empty.component';
 
 @NgModule({
   declarations:  [
-    AppComponent
+    AppComponent,
+    EmptyComponent
   ],
   imports: [
     BrowserModule,

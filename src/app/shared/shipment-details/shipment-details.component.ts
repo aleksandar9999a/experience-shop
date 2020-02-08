@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { shipmentFormAnimations } from './shipment-details.animations';
 import { ShipmentDetailsService } from '../services/shipment-details.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipment-details',
@@ -29,11 +28,11 @@ export class ShipmentDetailsComponent implements OnInit {
   constructor(
     private shipmentDetailsService: ShipmentDetailsService,
     private route: ActivatedRoute,
-    private location: Location
+    private router: Router
   ) { }
 
   close() {
-    this.location.back();
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   changeStatus(newStatus: string) {

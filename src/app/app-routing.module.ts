@@ -14,6 +14,7 @@ import { ShipmentDetailsComponent } from './shared/shipment-details/shipment-det
 import { AuthenticationFormComponent } from './authentication/authentication-form/authentication-form.component';
 import { ProfileSetUpComponent } from './authentication/profile-set-up/profile-set-up.component';
 import { UserDataEditComponent } from './profile/user-info/user-data-edit/user-data-edit.component';
+import { EmptyComponent } from './empty/empty.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet' }
     ]
   },
+  { path: '', component: EmptyComponent, outlet: 'formsOutlet' },
   { path: 'authentication', component: AuthenticationFormComponent, outlet: 'formsOutlet' },
   { path: 'profile_setup', component: ProfileSetUpComponent, outlet: 'formsOutlet' },
   { path: 'userdata_edit', component: UserDataEditComponent, outlet: 'formsOutlet' },
