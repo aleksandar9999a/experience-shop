@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
 import { IItem } from 'src/app/interfaces/item.interface';
@@ -26,7 +25,6 @@ export class ItemDetailsComponent implements OnInit {
     private detailsFormService: DetailsFormService,
     private userService: UserService,
     private announcementsService: AnnouncementsService,
-    private location: Location,
     private route: ActivatedRoute,
     private router: Router
   ) { }

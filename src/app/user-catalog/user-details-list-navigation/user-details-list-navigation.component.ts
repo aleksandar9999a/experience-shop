@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserItemsListService } from '../services/user-items-list.service';
+import { UserDetailsService } from '../services/user-details.service';
 
 @Component({
   selector: 'app-user-details-list-navigation',
@@ -7,18 +7,18 @@ import { UserItemsListService } from '../services/user-items-list.service';
   styleUrls: ['./user-details-list-navigation.component.css']
 })
 export class UserDetailsListNavigationComponent implements OnInit {
-  get items() { return this.userItemsListService.items; }
+  get items() { return this.userDetailsService.items; }
 
   constructor(
-    private userItemsListService: UserItemsListService
+    private userDetailsService: UserDetailsService
   ) { }
 
   nextPage() {
-    this.userItemsListService.loadNextPage();
+    this.userDetailsService.loadNextPage();
   }
 
   backPage() {
-    this.userItemsListService.loadBackPage();
+    this.userDetailsService.loadBackPage();
   }
 
   ngOnInit() {

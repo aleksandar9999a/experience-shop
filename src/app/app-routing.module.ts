@@ -15,6 +15,7 @@ import { AuthenticationFormComponent } from './authentication/authentication-for
 import { ProfileSetUpComponent } from './authentication/profile-set-up/profile-set-up.component';
 import { UserDataEditComponent } from './profile/user-info/user-data-edit/user-data-edit.component';
 import { EmptyComponent } from './empty/empty.component';
+import { UserDetailsComponent } from './user-catalog/user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'authentication', component: AuthenticationFormComponent, outlet: 'formsOutlet' },
   { path: 'profile_setup', component: ProfileSetUpComponent, outlet: 'formsOutlet' },
   { path: 'userdata_edit', component: UserDataEditComponent, outlet: 'formsOutlet' },
+  { path: 'user_details/:id', component: UserDetailsComponent, outlet: 'formsOutlet' },
   { path: 'shipments_details/:id', component: ShipmentDetailsComponent, outlet: 'formsOutlet' },
   { path: 'item_details/:id/:creatorUid', component: ItemDetailsComponent, outlet: 'formsOutlet' },
   { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },

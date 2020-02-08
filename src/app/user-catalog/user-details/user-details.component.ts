@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { detailsFormAnimations } from 'src/app/shared/item-details/item-details.animations';
 import { UserDetailsService } from '../services/user-details.service';
 import { IProfile } from 'src/app/interfaces/profile.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-details',
@@ -10,32 +11,22 @@ import { IProfile } from 'src/app/interfaces/profile.interface';
   animations: detailsFormAnimations
 })
 export class UserDetailsComponent implements OnInit {
-  detailsFormState = 'close';
-  user: IProfile;
+  get profile() { return this.userDetailsService.profile; }
 
   constructor(
-    private userDetailsService: UserDetailsService
+    private userDetailsService: UserDetailsService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   close() {
-    this.userDetailsService.toggle();
-  }
-
-  changeFormState(isOpen: boolean) {
-    isOpen
-    ?
-    this.detailsFormState = 'open'
-    :
-    this.detailsFormState = 'close';
-  }
-
-  setData(data: IProfile) {
-    this.user = data;
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
   }
 
   ngOnInit() {
-    this.userDetailsService.changeFormState.subscribe(this.changeFormState.bind(this));
-    this.userDetailsService.changeData.subscribe(this.setData.bind(this));
+    const id = this.route.snapshot.params.id;
+    this.userDetailsService.loadUserdata(id);
+    this.userDetailsService.searchByUserUID(id);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserItemsListService } from '../services/user-items-list.service';
+import { UserDetailsService } from '../services/user-details.service';
 
 @Component({
   selector: 'app-user-items-list',
@@ -7,9 +7,9 @@ import { UserItemsListService } from '../services/user-items-list.service';
   styleUrls: ['./user-items-list.component.css']
 })
 export class UserItemsListComponent implements OnInit {
-  get items() { return this.userItemsListService.items; }
+  get items() { return this.userDetailsService.items; }
   constructor(
-    private userItemsListService: UserItemsListService
+    private userDetailsService: UserDetailsService
   ) { }
 
   ngOnInit() {

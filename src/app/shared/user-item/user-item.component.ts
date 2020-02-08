@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IProfile } from 'src/app/interfaces/profile.interface';
-import { UserDetailsService } from 'src/app/user-catalog/services/user-details.service';
-import { UserItemsListService } from 'src/app/user-catalog/services/user-items-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-item',
@@ -12,13 +11,11 @@ export class UserItemComponent implements OnInit {
   @Input() profile: IProfile;
 
   constructor(
-    private userDetailsService: UserDetailsService,
-    private userItemsListService: UserItemsListService
+    private router: Router
   ) { }
 
   openUserDetails() {
-    this.userDetailsService.toggle(this.profile);
-    this.userItemsListService.searchByUserUID(this.profile.id);
+    this.router.navigate([{ outlets: { formsOutlet: ['user_details', this.profile.id] } }]);
   }
 
   ngOnInit() {
