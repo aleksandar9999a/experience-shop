@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IShipment } from 'src/app/interfaces/shipment.interface';
-import { ShipmentDetailsService } from '../services/shipment-details.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipment-item',
@@ -11,11 +11,11 @@ export class ShipmentItemComponent implements OnInit {
   @Input() shipment: IShipment;
 
   constructor(
-    private shipmentDetailsService: ShipmentDetailsService
+    private router: Router
   ) { }
 
   openShipmentDetails() {
-    this.shipmentDetailsService.toggle(this.shipment);
+    this.router.navigate([{ outlets: { formsOutlet: ['shipments_details', this.shipment.shipmentId] } }]);
   }
 
   ngOnInit() {

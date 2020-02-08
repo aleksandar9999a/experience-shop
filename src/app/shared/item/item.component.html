@@ -1,7 +1,7 @@
-<div class="list-group-item list-group-item-action no-gutters" (click)="openDetails()">
+<div class="list-group-item list-group-item-action no-gutters" (click)="loadDetails()">
     <div class="row d-flex">
         <div class="col-2 item-img mr-1 my-auto">
-            <img src="{{item.image}}" class="item-img">
+            <img [src]="item.image" class="item-img">
         </div>
         <div class="col ml-1 my-auto">
             <p class="">{{item.name | uppercase}}</p>

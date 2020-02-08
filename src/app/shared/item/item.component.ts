@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DetailsFormService } from '../services/item-details.service';
 import { IItem } from 'src/app/interfaces/item.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -11,11 +11,11 @@ export class ItemComponent implements OnInit {
   @Input() item: IItem;
 
   constructor(
-    private detailsAnimationsService: DetailsFormService
+    private router: Router
   ) { }
 
-  openDetails() {
-    this.detailsAnimationsService.toggle(this.item);
+  loadDetails() {
+    this.router.navigate([{ outlets: { formsOutlet: ['item_details', this.item.id, this.item.creatorUid] } }]);
   }
 
   ngOnInit() {

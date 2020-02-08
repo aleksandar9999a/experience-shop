@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { shipmentFormAnimations } from './shipment-details.animations';
 import { ShipmentDetailsService } from '../services/shipment-details.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shipment-details',
@@ -17,6 +19,7 @@ export class ShipmentDetailsComponent implements OnInit {
   get receiver() { return this.shipmentDetailsService.receiver; }
   get sender() { return this.shipmentDetailsService.sender; }
   get isSender() { return this.shipmentDetailsService.isSender; }
+  get btnStatus() { return this.shipmentDetailsService.btnStatus; }
 
   isSended: boolean;
   deniedBtn: boolean;
@@ -24,37 +27,22 @@ export class ShipmentDetailsComponent implements OnInit {
   sendBtn: boolean;
 
   constructor(
-    private shipmentDetailsService: ShipmentDetailsService
+    private shipmentDetailsService: ShipmentDetailsService,
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   close() {
-    this.shipmentDetailsService.toggle();
+    this.location.back();
   }
 
   changeStatus(newStatus: string) {
     this.shipmentDetailsService.changeStatus(newStatus);
-    this.updateBtnStatus();
-  }
-
-  updateBtnStatus() {
-    const between = this.status === 'Delivered' || this.status === 'Denied';
-    this.sendBtn = this.status === 'Sended' || between;
-    this.deniedBtn = this.status === 'Confirmed' || this.sendBtn;
-    this.confirmedBtn = this.deniedBtn;
-    this.isSended = this.status !== 'Sended' || between;
-  }
-
-  private setIsOpen(currState: boolean) {
-    if (currState) {
-      this.detailsFormState = 'open';
-      this.updateBtnStatus();
-    } else {
-      this.detailsFormState = 'close';
-    }
   }
 
   ngOnInit() {
-    this.shipmentDetailsService.changeFormState.subscribe(this.setIsOpen.bind(this));
+    const id = this.route.snapshot.params.id;
+    this.shipmentDetailsService.loadData(id);
   }
 
 }

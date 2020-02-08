@@ -1,11 +1,11 @@
+<router-outlet name="formsOutlet"></router-outlet>
+
 <app-authentication-form *ngIf="!isHere"></app-authentication-form>
-<app-announcement-form *ngIf="isHere"></app-announcement-form>
 <app-user-details *ngIf="isHere"></app-user-details>
 <app-shopping-card *ngIf="isHere"></app-shopping-card>
 <app-user-data-edit *ngIf="isHere"></app-user-data-edit>
-<app-shipment-details></app-shipment-details>
 <app-profile-set-up></app-profile-set-up>
-<app-item-details></app-item-details>
+
 <app-navbar></app-navbar>
 <router-outlet></router-outlet>
 <notifier-container></notifier-container>

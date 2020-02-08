@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { NotifierService } from 'angular-notifier';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AnnouncementsService {
     collection: AngularFirestoreCollection<IItem>;
+    private itemDoc: AngularFirestoreDocument<IItem>;
+    item: Observable<IItem>;
     get uid() { return this.userService.uid; }
 
     constructor(
@@ -77,6 +80,11 @@ export class AnnouncementsService {
                 this.notifier.notify('success', 'Successful!');
             })
             .catch(err => this.notifier.notify('warning', err.message));
+    }
+
+    loadCurrItem(id: string) {
+        this.itemDoc = this.fireStore.doc<IItem>(`allItems/${id}`);
+        this.item = this.itemDoc.valueChanges();
     }
 
 }

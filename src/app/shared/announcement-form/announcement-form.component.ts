@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AnnouncementsFormService } from '../services/announcements-form.service';
 import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
 import { formAnimations } from './announcement-form.animations';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-announcement-form',
@@ -13,19 +14,21 @@ import { formAnimations } from './announcement-form.animations';
   animations: formAnimations
 })
 export class AnnouncementFormComponent implements OnInit {
-  formState = 'close';
   currentData: IItem;
   defaultImage = '../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
 
+  get item() { return this.announcementsService.item; }
+
   announcementsFormGroup: FormGroup;
 
   constructor(
-    private announcementsFormService: AnnouncementsFormService,
     private announcementsService: AnnouncementsService,
     private readonly notifier: NotifierService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private location: Location,
+    private route: ActivatedRoute
   ) {
     this.announcementsFormGroup = fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -68,11 +71,21 @@ export class AnnouncementFormComponent implements OnInit {
     if (this.announcementsFormGroup.valid) {
       const announcement = this.createAnnouncement();
       await this.announcementsService.setAnnouncement(announcement);
-      this.announcementsFormService.toggle();
+      this.location.back();
     } else {
       this.notifier.notify('warning', 'Form data is incorrect!');
     }
   }
+
+  close() {
+    this.location.back();
+  }
+
+  get name() { return this.announcementsFormGroup.get('name'); }
+  get desc() { return this.announcementsFormGroup.get('desc'); }
+  get image() { return this.announcementsFormGroup.get('image'); }
+  get price() { return this.announcementsFormGroup.get('price'); }
+  get category() { return this.announcementsFormGroup.get('category'); }
 
   private loadData(data: IItem) {
     this.currentData = data;
@@ -87,28 +100,11 @@ export class AnnouncementFormComponent implements OnInit {
     }
   }
 
-  close() {
-    this.announcementsFormService.toggle();
-  }
-
-  private setIsOpen(currState: boolean) {
-    if (currState) {
-      this.formState = 'open';
-    } else {
-      this.formState = 'close';
-      this.defaultImage = '../../assets/images/unkItem.svg';
-      this.announcementsFormGroup.reset();
-    }
-  }
-
-  get name() { return this.announcementsFormGroup.get('name'); }
-  get desc() { return this.announcementsFormGroup.get('desc'); }
-  get image() { return this.announcementsFormGroup.get('image'); }
-  get price() { return this.announcementsFormGroup.get('price'); }
-  get category() { return this.announcementsFormGroup.get('category'); }
-
   ngOnInit() {
-    this.announcementsFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
-    this.announcementsFormService.changeData.subscribe(this.loadData.bind(this));
+    const id = this.route.snapshot.params.id;
+    if (id) {
+      this.announcementsService.loadCurrItem(id);
+      this.item.forEach(this.loadData.bind(this));
+    }
   }
 }

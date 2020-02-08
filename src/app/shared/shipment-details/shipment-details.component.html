@@ -1,4 +1,4 @@
-<div class="detailsForm" [@detailsForm]="detailsFormState">
+<div class="detailsForm">
     <div class="container cardContainer mx-auto">
         <div class="col-md-lg-10 mx-auto">
             <div class="card card-details my-5 no-gutters">
@@ -37,13 +37,13 @@
                                 </div>
 
                                 <div *ngIf="isSender" class="row d-flex justify-content-center mt-5">
-                                    <button class="btn btn-danger btn-lg borders detailsButtons" [disabled]="deniedBtn" (click)="changeStatus('Denied')">Denied</button>
-                                    <button class="btn btn-primary btn-lg borders detailsButtons" [disabled]="confirmedBtn" (click)="changeStatus('Confirmed')">Confirmed</button>
-                                    <button class="btn btn-warning btn-lg borders detailsButtons" [disabled]="sendBtn" (click)="changeStatus('Sended')">Send</button>
+                                    <button class="btn btn-danger btn-lg borders detailsButtons" [disabled]="btnStatus?.deniedBtn" (click)="changeStatus('Denied')">Denied</button>
+                                    <button class="btn btn-primary btn-lg borders detailsButtons" [disabled]="btnStatus?.confirmedBtn" (click)="changeStatus('Confirmed')">Confirmed</button>
+                                    <button class="btn btn-warning btn-lg borders detailsButtons" [disabled]="btnStatus?.sendBtn" (click)="changeStatus('Sended')">Send</button>
                                 </div>
 
                                 <div *ngIf="!isSender" class="row d-flex justify-content-center mt-5">
-                                    <button [disabled]="isSended" class="btn btn-success btn-lg borders detailsButtons" (click)="changeStatus('Delivered')">Delivered</button>
+                                    <button [disabled]="btnStatus?.isSended" class="btn btn-success btn-lg borders detailsButtons" (click)="changeStatus('Delivered')">Delivered</button>
                                 </div>
                             </div>
                         </div>

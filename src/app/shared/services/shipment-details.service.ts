@@ -9,7 +9,6 @@ import { NotifierService } from 'angular-notifier';
 
 @Injectable()
 export class ShipmentDetailsService {
-  private isOpen = false;
   private data: IShipment;
 
   items: Array<IItem>;
@@ -19,6 +18,8 @@ export class ShipmentDetailsService {
   status: string;
   isSender: boolean;
 
+  btnStatus: any;
+
   get uid() { return this.userService.uid; }
 
   constructor(
@@ -27,56 +28,52 @@ export class ShipmentDetailsService {
     private userService: UserService
   ) { }
 
-  @Output() changeFormState: EventEmitter<boolean> = new EventEmitter();
-
-  toggle(data?: IShipment) {
-    this.isOpen = !this.isOpen;
-    if (data) {
-      this.loadData(data);
-    }
-    this.changeFormState.emit(this.isOpen);
+  loadData(id: string) {
+    const shipmentDoc = this.afs.doc<IProfile>(`orders/${id}`);
+    shipmentDoc.valueChanges().forEach(this.setShipment.bind(this));
   }
 
-  private loadData(data: IShipment) {
+  private setShipment(data: IShipment) {
     this.data = data;
-    this.loadTitle(data.shipmentId);
-    this.loadStatus(data.status);
-    this.loadItems(data.listOfItems);
-    this.loadReceiver(data.receiver);
-    this.loadSender(data.sender);
-    this.checkUserStatus(data.sender);
+    this.loadTitle();
+    this.loadStatus(this.data.status);
+    this.loadItems();
+    this.loadReceiver();
+    this.loadSender();
+    this.checkUserStatus();
+    this.updateBtnStatus();
   }
 
-  private checkUserStatus(senderUid: string) {
-    if (this.uid === senderUid) {
+  private checkUserStatus() {
+    if (this.uid === this.data.sender) {
       this.isSender = true;
     } else {
       this.isSender = false;
     }
   }
 
-  private loadTitle(shipmentId: string) {
-    this.title = shipmentId;
+  private loadTitle() {
+    this.title = this.data.shipmentId;
   }
 
   private loadStatus(status: string) {
     this.status = status;
   }
 
-  private loadItems(listOfItems: Array<string>) {
+  private loadItems() {
     this.items = [];
-    listOfItems.forEach(item => {
+    this.data.listOfItems.forEach(item => {
       this.afs.doc<IItem>(`allItems/${item}`).valueChanges().forEach(i => this.items.push(i));
     });
   }
 
-  private loadReceiver(receiverUid: string) {
-    const profileDoc = this.afs.doc<IProfile>(`userdata/${receiverUid}`);
+  private loadReceiver() {
+    const profileDoc = this.afs.doc<IProfile>(`userdata/${this.data.receiver}`);
     this.receiver = profileDoc.valueChanges();
   }
 
-  private loadSender(senderUid: string) {
-    const profileDoc = this.afs.doc<IProfile>(`userdata/${senderUid}`);
+  private loadSender() {
+    const profileDoc = this.afs.doc<IProfile>(`userdata/${this.data.sender}`);
     this.sender = profileDoc.valueChanges();
   }
 
@@ -95,5 +92,15 @@ export class ShipmentDetailsService {
   changeStatus(newStatus: string) {
     this.setNewStatus(newStatus);
     this.updateCollectionsStatus(newStatus);
+  }
+
+  private updateBtnStatus() {
+    const between = this.status === 'Delivered' || this.status === 'Denied';
+    const sendBtn = this.status === 'Sended' || between;
+    const deniedBtn = this.status === 'Confirmed' || sendBtn;
+    const confirmedBtn = deniedBtn;
+    const isSended = this.status !== 'Sended' || between;
+
+    this.btnStatus = { sendBtn, deniedBtn, confirmedBtn, isSended };
   }
 }

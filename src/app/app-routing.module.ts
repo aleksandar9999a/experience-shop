@@ -8,6 +8,9 @@ import { AuthGuard } from './auth.guard';
 import { MyItemsComponent } from './profile/items-card/my-items/my-items/my-items.component';
 import { ShipmentsComponent } from './profile/items-card/shipments/shipments/shipments.component';
 import { OrdersComponent } from './profile/items-card/orders/orders/orders.component';
+import { AnnouncementFormComponent } from './shared/announcement-form/announcement-form.component';
+import { ItemDetailsComponent } from './shared/item-details/item-details.component';
+import { ShipmentDetailsComponent } from './shared/shipment-details/shipment-details.component';
 
 const routes: Routes = [
   {
@@ -30,11 +33,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { isHere: true },
     children: [
-      { path: '', component: MyItemsComponent, outlet: 'profileOutlet'},
-      { path: 'shipments', component: ShipmentsComponent, outlet: 'profileOutlet'},
-      { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet'}
+      { path: '', component: MyItemsComponent, outlet: 'profileOutlet' },
+      { path: 'shipments', component: ShipmentsComponent, outlet: 'profileOutlet' },
+      { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet' }
     ]
-  }
+  },
+  { path: 'shipments_details/:id', component: ShipmentDetailsComponent, outlet: 'formsOutlet' },
+  { path: 'item_details/:id/:creatorUid', component: ItemDetailsComponent, outlet: 'formsOutlet' },
+  { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
+  { path: 'create_announcement', component: AnnouncementFormComponent, outlet: 'formsOutlet' }
 ];
 
 @NgModule({

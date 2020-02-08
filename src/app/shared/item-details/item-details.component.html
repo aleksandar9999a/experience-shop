@@ -1,33 +1,40 @@
-<div class="detailsForm" [@detailsForm]="detailsFormState" *ngIf="detailsData">
+<div class="detailsForm">
     <div class="container cardContainer mx-auto">
         <div class="col-md-lg-10 mx-auto">
             <div class="card card-details my-5 no-gutters">
-                <div class="closeDiv">
-                    <button type="button" class="close" (click)="close()">&times;</button>
-                    <h5 class="card-title title text-center">{{detailsData.name | uppercase}}</h5>
-                </div>
-                <div class="card-body">
-                    <form class="form-details">
-                        <div class="row justify-content-center">
-                            <div class="col-md-5 itemImg">
-                                <img  *ngIf="detailsData.image" src="{{detailsData.image}}" class="card-img itemImg" alt="...">
-                            </div>
-                            <div class="col-md-5">
-                                <div class="desc">
-                                    <pre class="card-text">{{detailsData.desc}}</pre>
+                <div *ngIf="(item | async) as currItem">
+                    <div class="closeDiv">
+                        <button type="button" class="close" (click)="close()">&times;</button>
+                        <h5 class="card-title title text-center">{{currItem.name | uppercase}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-details">
+                            <div class="row justify-content-center">
+                                <div class="col-md-5 itemImg">
+                                    <img *ngIf="currItem.image" [src]="currItem.image" class="card-img itemImg"
+                                        alt="...">
                                 </div>
-                                <div *ngIf="(profile | async) as currUser" class="info d-flex align-items-end" (click)="close()">
-                                    <app-user-item [profile]="currUser"></app-user-item>
+                                <div class="col-md-5">
+                                    <div class="desc">
+                                        <pre class="card-text">{{currItem.desc}}</pre>
+                                    </div>
+                                    <div *ngIf="(profile | async) as currUser" class="info d-flex align-items-end"
+                                        (click)="close()">
+                                        <app-user-item [profile]="currUser"></app-user-item>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div *ngIf="isHere" class="row d-flex justify-content-center mt-5">
-                            <button *ngIf="isCreator()" class="btn btn-primary btn-lg borders detailsButtons" (click)="openEditForm()">Edit</button>
-                            <button *ngIf="isCreator()" class="btn btn-danger btn-lg borders detailsButtons" (click)="deleteItem()">Delete</button>
-                            <button *ngIf="!isCreator()" class="btn btn-success btn-lg borders detailsButtons" (click)="addToShoppingCard()">Buy</button>
-                        </div>
-                    </form>
+
+                            <div *ngIf="isHere" class="row d-flex justify-content-center mt-5">
+                                <button *ngIf="isCreator()" class="btn btn-primary btn-lg borders detailsButtons"
+                                    (click)="edit(currItem)">Edit</button>
+                                <button *ngIf="isCreator()" class="btn btn-danger btn-lg borders detailsButtons"
+                                    (click)="deleteItem(currItem)">Delete</button>
+                                <button *ngIf="!isCreator()" class="btn btn-success btn-lg borders detailsButtons"
+                                    (click)="addToShoppingCard(currItem)">Buy</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,7 +7,6 @@ import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnnouncementsService } from './services/announcements.service';
 import { AnnouncementFormComponent } from './announcement-form/announcement-form.component';
-import { AnnouncementsFormService } from './services/announcements-form.service';
 import { UserItemComponent } from './user-item/user-item.component';
 import { ShipmentItemComponent } from './shipment-item/shipment-item.component';
 import { ShipmentDetailsComponent } from './shipment-details/shipment-details.component';
@@ -26,7 +25,6 @@ import { ShipmentDetailsService } from './services/shipment-details.service';
   providers: [
     DetailsFormService,
     AnnouncementsService,
-    AnnouncementsFormService,
     ShipmentDetailsService
   ],
   imports: [
