@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { editProfileAnimations } from './user-data-edit.animations';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserDataEditService } from '../services/user-data-edit.service';
-import { IProfile } from 'src/app/interfaces/profile.interface';
 import { UserService } from 'src/app/services/user.service';
+import { IProfile } from 'src/app/interfaces/profile.interface';
 
 @Component({
   selector: 'app-user-data-edit',
@@ -12,7 +12,6 @@ import { UserService } from 'src/app/services/user.service';
   animations: editProfileAnimations
 })
 export class UserDataEditComponent implements OnInit {
-  editFormState = 'close';
   defaultImage = './../../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
@@ -35,6 +34,8 @@ export class UserDataEditComponent implements OnInit {
   get summary() { return this.editForm.get('summary'); }
   get profileImg() { return this.editForm.get('profileImg'); }
 
+  get userdata() { return this.userDataEditService.userdata; }
+
   previewImg(e) {
     if (e.target.files[0]) {
       this.localImage = e.target.files[0];
@@ -47,39 +48,33 @@ export class UserDataEditComponent implements OnInit {
   }
 
   close() {
-    this.userDataEditService.toggle();
+
   }
 
   async editProfile() {
     if (this.editForm.valid) {
       const profileImg = this.localImage || this.defaultImage;
       await this.userService.updateUserData(this.username.value, this.summary.value, profileImg);
-      this.userDataEditService.toggle();
-    }
-  }
-
-  setFormState(state: boolean) {
-    if (state) {
-      this.editFormState = 'open';
-    } else {
-      this.editFormState = 'close';
+      this.close();
     }
   }
 
   setInfo(data: IProfile) {
-    this.editForm.patchValue({
-      username: data.username,
-      summary: data.summary
-    });
+    if (data) {
+      this.editForm.patchValue({
+        username: data.username,
+        summary: data.summary
+      });
 
-    if (data.profileImg) {
-      this.defaultImage = data.profileImg;
+      if (data.profileImg) {
+        this.defaultImage = data.profileImg;
+      }
     }
   }
 
   ngOnInit() {
-    this.userDataEditService.changeFormState.subscribe(this.setFormState.bind(this));
-    this.userDataEditService.changeInfo.subscribe(this.setInfo.bind(this));
+    this.userDataEditService.loadUserdata();
+    this.userdata.forEach(this.setInfo.bind(this));
   }
 
 }

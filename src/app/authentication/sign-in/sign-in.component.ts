@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,8 +12,7 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder,
-    private location: Location
+    private fb: FormBuilder
   ) {
     this.signInForm = fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,7 +26,6 @@ export class SignInComponent implements OnInit {
   async signIn() {
     if (this.signInForm.valid) {
       await this.userService.logIn(this.email.value, this.password.value);
-      this.location.back();
     }
   }
 

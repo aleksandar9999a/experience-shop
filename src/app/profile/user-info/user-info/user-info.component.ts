@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDataEditService } from '../services/user-data-edit.service';
 import { UserInfoService } from '../services/user-info.service';
-import { IProfile } from 'src/app/interfaces/profile.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-info',
@@ -13,11 +12,11 @@ export class UserInfoComponent implements OnInit {
 
   constructor(
     private userInfoService: UserInfoService,
-    private userDataEditService: UserDataEditService
+    private router: Router
   ) { }
 
-  openEditForm(data: IProfile) {
-    this.userDataEditService.toggle(data);
+  openEditForm() {
+    this.router.navigate([{ outlets: { formsOutlet: 'userdata_edit' } }]);
   }
 
   ngOnInit() {

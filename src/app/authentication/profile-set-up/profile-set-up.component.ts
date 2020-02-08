@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileSetUpAnimations } from './profile-set-up.animations';
 import { ProfileSetUpFormService } from './../services/profile-set-up.service';
 import { UserDataEditService } from 'src/app/profile/user-info/services/user-data-edit.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile-set-up',
@@ -10,32 +13,20 @@ import { UserDataEditService } from 'src/app/profile/user-info/services/user-dat
   animations: ProfileSetUpAnimations
 })
 export class ProfileSetUpComponent implements OnInit {
-  formState = 'close';
 
   constructor(
-    private profileSetUpFormService: ProfileSetUpFormService,
-    private userDataEditService: UserDataEditService
+    private router: Router
   ) { }
 
   loadUserEditForm() {
-    this.profileSetUpFormService.toggle();
-    this.userDataEditService.toggle();
+    this.router.navigate([{ outlets: { formsOutlet: 'userdata_edit' } }]);
   }
 
   close() {
-    this.profileSetUpFormService.toggle();
-  }
 
-  setIsOpen(isOpen: boolean) {
-    isOpen
-      ?
-      this.formState = 'open'
-      :
-      this.formState = 'close';
   }
 
   ngOnInit() {
-    this.profileSetUpFormService.changeFormState.subscribe(this.setIsOpen.bind(this));
   }
 
 }
