@@ -30,7 +30,7 @@ export class ShoppingCardService {
 
   private createListOfOrders(itemsForBuy: Array<IItem>) {
     function getCreatorUid(x: IItem) { return x.creatorUid; }
-    function getOldId(x: IItem) { return x.oldId; }
+    function getId(x: IItem) { return x.id; }
     function filterSenders(senderUid: string, { creatorUid }) { return creatorUid === senderUid; }
 
     function reduceRepeatedUid(acc: Array<string>, uid: string) {
@@ -41,7 +41,7 @@ export class ShoppingCardService {
     }
 
     function createSenderList(sender: string) {
-      const listOfItems = itemsForBuy.filter(filterSenders.bind(undefined, sender)).map(getOldId);
+      const listOfItems = itemsForBuy.filter(filterSenders.bind(undefined, sender)).map(getId);
       const shipmentId = this.afs.createId();
 
       return {
