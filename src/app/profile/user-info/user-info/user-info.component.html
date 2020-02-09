@@ -10,16 +10,16 @@
 
                         <div class="row">
                             <div class="col-3 itemImg mr-3">
-                                <img [src]="myProfile.profileImg" class="card-img itemImg" alt="...">
+                                <img *ngIf="myProfile.profileImg" [src]="myProfile.profileImg" class="card-img itemImg" alt="...">
                             </div>
 
                             <div class="col">
                                 <p class="card-title">Username</p>
-                                <pre>{{myProfile.username}}</pre>
+                                <pre>{{myProfile.username || 'Unknown'}}</pre>
                                 <p class="card-title">Summary</p>
-                                <pre>{{myProfile.summary}}</pre>
+                                <pre>{{myProfile.summary || 'Unknown'}}</pre>
                                 <p class="card-title">Location</p>
-                                <pre>{{myProfile.location}}</pre>
+                                <pre>{{myProfile.location || 'Unknown'}}</pre>
                             </div>
                         </div>
 
