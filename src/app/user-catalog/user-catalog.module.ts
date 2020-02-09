@@ -9,7 +9,6 @@ import { UserListNavigationComponent } from './user-list-navigation/user-list-na
 import { UserCatalogService } from './services/user-catalog.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDetailsService } from './services/user-details.service';
-import { UserItemsListComponent } from './user-items-list/user-items-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { UserDetailsListNavigationComponent } from './user-details-list-navigation/user-details-list-navigation.component';
 
@@ -22,7 +21,6 @@ import { UserDetailsListNavigationComponent } from './user-details-list-navigati
     UserDetailsComponent,
     UserListControllerComponent,
     UserListNavigationComponent,
-    UserItemsListComponent,
     UserDetailsListNavigationComponent
   ],
   providers: [UserCatalogService, UserDetailsService],

@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserDetailsComponent implements OnInit {
   get profile() { return this.userDetailsService.profile; }
+  get items() { return this.userDetailsService.items; }
 
   constructor(
     private userDetailsService: UserDetailsService,

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CatalogService } from './services/catalog.service';
 import { SearchComponent } from './search/search.component';
 import { CatalogPaginationComponent } from './catalog-pagination/catalog-pagination.component';
-import { CatalogListComponent } from './catalog-list/catalog-list.component';
 import { CatalogItemsCounterComponent } from './catalog-items-counter/catalog-items-counter.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,7 +12,6 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     SearchComponent,
     CatalogPaginationComponent,
-    CatalogListComponent,
     CatalogItemsCounterComponent,
     CatalogComponent
   ],

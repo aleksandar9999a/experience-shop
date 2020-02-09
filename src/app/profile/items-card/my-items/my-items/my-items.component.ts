@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MyItemsService } from '../services/my-items.service';
 
 @Component({
   selector: 'app-my-items',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-items.component.css']
 })
 export class MyItemsComponent implements OnInit {
+  get items() { return this.myItemsService.items; }
 
-  constructor() { }
+  constructor(
+    private myItemsService: MyItemsService
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.myItemsService.refreshItems('firstPage');
+   }
 
 }

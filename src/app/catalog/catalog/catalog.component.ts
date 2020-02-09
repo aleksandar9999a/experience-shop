@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogService } from '../services/catalog.service';
 
 @Component({
   selector: 'app-catalog',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
+  get items() { return this.catalogService.items; }
 
-  constructor() { }
+  constructor(
+    private catalogService: CatalogService
+  ) { }
 
   ngOnInit() {
+    this.catalogService.loadCategory('', 'all');
   }
 
 }
