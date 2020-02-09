@@ -81,7 +81,7 @@ export class ShipmentsService {
     loadBackPage() {
         this.currPage.get().then(shot => {
             if (shot.docs[0]) {
-                if (shot.docs[0].shipmentId === this.firstShipmentFromFirstPage.shipmentId) {
+                if (shot.docs[0].id === this.firstShipmentFromFirstPage.id) {
                     this.notifier.notify('info', 'This is first page!');
                 } else {
                     this.setFirstAndLastShipmentInCurrPage(shot);
