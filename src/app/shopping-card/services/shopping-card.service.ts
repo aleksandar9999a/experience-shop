@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
 import { IRecipientInformation } from 'src/app/interfaces/recipientInformation.interface';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ShoppingCardService {
@@ -18,6 +19,7 @@ export class ShoppingCardService {
 
   constructor(
     private readonly notifier: NotifierService,
+    private router: Router,
     private afs: AngularFirestore,
     private userService: UserService
   ) { }
@@ -63,16 +65,18 @@ export class ShoppingCardService {
     return this.arrFromItems.map(getCreatorUid).reduce((acc, x) => reduceRepeatedUid(acc, x), []).map(createSenderList.bind(this));
   }
 
-  private makeOrder(order: any) {
-    this.afs.collection(`orders`)
+  async makeOrder(order: any) {
+    await this.afs.collection(`orders`)
       .doc(order.shipmentId)
       .set(order)
       .then(_ => this.notifier.notify('success', `You successful make order with number ${order.shipmentId}`))
       .catch(err => this.notifier.notify('warning', err.message));
   }
 
-  buyAllProducts(recInfo: IRecipientInformation) {
+  async buyAllProducts(recInfo: IRecipientInformation) {
     this.createListOfOrders(recInfo).forEach(this.makeOrder.bind(this));
+    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
+    this.changeComponentState();
     this.deleteAllItems();
   }
 
