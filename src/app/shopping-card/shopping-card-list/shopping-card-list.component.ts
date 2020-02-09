@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../services/shopping-card.service';
-import { IItem } from 'src/app/interfaces/item.interface';
 
 @Component({
   selector: 'app-shopping-card-list',
