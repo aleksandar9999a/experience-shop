@@ -1,0 +1,19 @@
+.noItems{
+    font-weight: 300;
+    font-size: 2rem;
+  }
+  
+  .loadingSpinner{
+    width: 50%;
+    height: auto;
+  }
+
+  .shoppingBtn{
+    margin: 2%;
+    width: 23%;
+    height: 10%;
+    font-size: 80%;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+  }
