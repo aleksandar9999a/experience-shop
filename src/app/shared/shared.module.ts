@@ -11,6 +11,7 @@ import { UserItemComponent } from './user-item/user-item.component';
 import { ShipmentItemComponent } from './shipment-item/shipment-item.component';
 import { ShipmentDetailsComponent } from './shipment-details/shipment-details.component';
 import { ShipmentDetailsService } from './services/shipment-details.service';
+import { AutocompleteDirective } from './directives/autocomplete.directive';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ShipmentDetailsService } from './services/shipment-details.service';
     AnnouncementFormComponent,
     UserItemComponent,
     ShipmentItemComponent,
-    ShipmentDetailsComponent
+    ShipmentDetailsComponent,
+    AutocompleteDirective
   ],
   providers: [
     DetailsFormService,
@@ -39,7 +41,8 @@ import { ShipmentDetailsService } from './services/shipment-details.service';
     AnnouncementFormComponent,
     UserItemComponent,
     ShipmentItemComponent,
-    ShipmentDetailsComponent
+    ShipmentDetailsComponent,
+    AutocompleteDirective
   ]
 })
 export class SharedModule { }
