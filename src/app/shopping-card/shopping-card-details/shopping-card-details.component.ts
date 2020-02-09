@@ -29,6 +29,10 @@ export class ShoppingCardDetailsComponent implements OnInit {
   get requirements() { return this.orderDataForm.get('requirements'); }
   get location() { return this.orderDataForm.get('location'); }
 
+  backToList() {
+    this.shoppingCardService.changeComponentState();
+  }
+
   handleSubmit() {
     if (this.orderDataForm.valid) {
       const recInfo = {

@@ -1,52 +1,9 @@
-.editForm{
-    position: fixed;
-    overflow: scroll;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
+.card-form{
+  position: fixed;
+  overflow: scroll;
+  z-index: 10;
 }
-.card-edit {
-    border: 0;
-    border-radius: 1rem;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 1);
-  }
-  
-  .card-edit .card-title {
-    margin-bottom: 1rem;
-    font-weight: 300;
-    font-size: 1.5rem;
-  }
-  
-  .card-edit .card-body {
-    padding: 2rem;
-    padding-top: 0;
-  }
-  
-  .form-edit .btn {
-    font-size: 80%;
-    letter-spacing: .1rem;
-    font-weight: bold;
-    padding: 1rem;
-  }
-  
-  .form-label-group {
-    position: relative;
-    margin-bottom: 1rem;
-  }
 
-  .customInput{
-    border-radius: 2rem;
-  }
-  .customInput::after{
-    border-bottom-right-radius: 2rem;
-    border-top-right-radius: 2rem;
-  }
-
-  .form-label-group input {
-    height: auto;
-    border-radius: 2rem;
-  }
-  
 .adImage{
     width: 18rem;
     margin: 2rem;

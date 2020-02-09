@@ -8,10 +8,7 @@
     height: auto;
   }
 
-  .shoppingBtn{
-    margin: 2%;
-    width: 23%;
-    height: 10%;
+  .myBtn {
     font-size: 80%;
     letter-spacing: .1rem;
     font-weight: bold;

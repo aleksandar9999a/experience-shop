@@ -1,7 +1,7 @@
-<div class="detailsForm">
+<div class="card-form">
     <div class="container cardContainer mx-auto">
         <div class="col-md-lg-10 mx-auto">
-            <div *ngIf="(profile | async) as user" class="card card-details my-5 no-gutters">
+            <div *ngIf="(profile | async) as user" class="card card-edit my-5 no-gutters">
                 <div>
                     <button type="button" class="close" (click)="close()">&times;</button>
                     <h5 class="card-title title text-center">{{user.username | uppercase}}</h5>

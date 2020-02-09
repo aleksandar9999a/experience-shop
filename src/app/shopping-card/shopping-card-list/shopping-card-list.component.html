@@ -11,9 +11,9 @@
         <h5 class=" font-weight-bold">Full price: <span>{{price}}lv.</span></h5>
     </div>
     <div *ngIf="newItems.length > 0" class="d-flex justify-content-center">
-        <button class="btn btn-danger btn-lg borders shoppingBtn" (click)="clearShoppingCard()">Clear Shopping
+        <button class="btn btn-lg btn-danger text-uppercase borders mr-1 myBtn" (click)="clearShoppingCard()">Clear Shopping
             Card</button>
-        <button class="btn btn-success btn-lg borders shoppingBtn" (click)="makeOrder()">Make order</button>
+        <button class="btn btn-lg btn-success text-uppercase borders ml-1 myBtn" (click)="makeOrder()">Make order</button>
     </div>
 </div>
 

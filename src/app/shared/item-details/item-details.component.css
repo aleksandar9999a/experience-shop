@@ -1,35 +1,9 @@
-.detailsForm{
-      position: fixed;
-      overflow: scroll;
-      width: 100%;
-      height: 100%;
-      z-index: 15;
+.card-form{
+  position: fixed;
+  overflow: scroll;
+  z-index: 8;
 }
-  
-  .card-details {
-      border: 0;
-      border-radius: 1rem;
-      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 1);
-    }
-    
-    .card-details .card-title {
-      margin-bottom: 1rem;
-      font-weight: 500;
-      font-size: 3rem;
-    }
-    
-    .card-details .card-body {
-      padding: 2rem;
-      padding-top: 0;
-    }
-    
-    .form-details .btn {
-      font-size: 80%;
-      letter-spacing: .1rem;
-      font-weight: bold;
-      padding: 1rem;
-    }
-    
+
   .itemImg{
       width: 100%;
       height: auto;
