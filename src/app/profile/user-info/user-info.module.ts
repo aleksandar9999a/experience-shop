@@ -5,6 +5,7 @@ import { UserDataEditComponent } from './user-data-edit/user-data-edit.component
 import { UserDataEditService } from './services/user-data-edit.service';
 import { UserInfoService } from './services/user-info.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [UserInfoComponent, UserDataEditComponent]
 })
