@@ -14,6 +14,7 @@ export class ShipmentDetailsComponent implements OnInit {
 
   get items() { return this.shipmentDetailsService.items; }
   get title() { return this.shipmentDetailsService.title; }
+  get recInfo() { return this.shipmentDetailsService.recInfo; }
   get status() { return this.shipmentDetailsService.status; }
   get receiver() { return this.shipmentDetailsService.receiver; }
   get sender() { return this.shipmentDetailsService.sender; }
