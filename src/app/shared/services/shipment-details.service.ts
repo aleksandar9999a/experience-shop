@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { IProfile } from 'src/app/interfaces/profile.interface';
 import { UserService } from 'src/app/services/user.service';
 import { NotifierService } from 'angular-notifier';
+import { IRecipientInformation } from 'src/app/interfaces/recipientInformation.interface';
 
 @Injectable()
 export class ShipmentDetailsService {
@@ -17,6 +18,7 @@ export class ShipmentDetailsService {
   sender: Observable<IProfile>;
   status: string;
   isSender: boolean;
+  recInfo: IRecipientInformation;
 
   btnStatus: any;
 
@@ -36,6 +38,7 @@ export class ShipmentDetailsService {
   private setShipment(data: IShipment) {
     this.data = data;
     this.loadTitle();
+    this.loadRecInfo();
     this.loadStatus(this.data.status);
     this.loadItems();
     this.loadReceiver();
@@ -54,6 +57,10 @@ export class ShipmentDetailsService {
 
   private loadTitle() {
     this.title = this.data.shipmentId;
+  }
+
+  private loadRecInfo() {
+    this.recInfo = this.data.recInfo;
   }
 
   private loadStatus(status: string) {
