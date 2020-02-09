@@ -62,19 +62,3 @@
 .title{
   padding: 6%;
 }
-
-.shoppingBtn{
-  margin: 2%;
-  width: 23%;
-  height: 10%;
-}
-
-.noItems{
-  font-weight: 300;
-  font-size: 2rem;
-}
-
-.loadingSpinner{
-  width: 50%;
-  height: auto;
-}
