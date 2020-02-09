@@ -71,7 +71,8 @@ export class UserDataEditComponent implements OnInit {
     if (data) {
       this.editForm.patchValue({
         username: data.username,
-        summary: data.summary
+        summary: data.summary,
+        location: data.location
       });
 
       if (data.profileImg) {
