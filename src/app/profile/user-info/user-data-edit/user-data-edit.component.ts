@@ -17,7 +17,6 @@ export class UserDataEditComponent implements OnInit {
   defaultImage = './../../../assets/images/unkItem.svg';
   localImageUrl = null;
   localImage = null;
-
   editForm: FormGroup;
 
   constructor(
@@ -25,19 +24,20 @@ export class UserDataEditComponent implements OnInit {
     private userDataEditService: UserDataEditService,
     private userService: UserService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
   ) {
     this.editForm = fb.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       summary: ['', [Validators.minLength(6), Validators.maxLength(100), Validators.required]],
+      location: ['', [Validators.required, Validators.minLength(3)]],
       profileImg: ['']
     });
   }
 
   get username() { return this.editForm.get('username'); }
   get summary() { return this.editForm.get('summary'); }
+  get location() { return this.editForm.get('location'); }
   get profileImg() { return this.editForm.get('profileImg'); }
-
   get userdata() { return this.userDataEditService.userdata; }
 
   previewImg(e) {
@@ -59,11 +59,11 @@ export class UserDataEditComponent implements OnInit {
     if (this.editForm.valid) {
       const profileImg = this.localImage || this.defaultImage;
       this.userService
-      .updateUserData(this.username.value, this.summary.value, profileImg)
-      .then(d => {
-        this.notifier.notify('success', 'Successful updated account!');
-        this.close();
-      });
+        .updateUserData(this.username.value, this.summary.value, profileImg, this.location.value)
+        .then(d => {
+          this.notifier.notify('success', 'Successful updated account!');
+          this.close();
+        });
     }
   }
 
