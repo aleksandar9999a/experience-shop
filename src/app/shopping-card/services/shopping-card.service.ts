@@ -4,13 +4,15 @@ import { IItem } from 'src/app/interfaces/item.interface';
 import { Observable } from 'rxjs';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
+import { IRecipientInformation } from 'src/app/interfaces/recipientInformation.interface';
 
 @Injectable()
 export class ShoppingCardService {
   private itemsCollection: AngularFirestoreCollection<IItem>;
   items: Observable<IItem[]>;
-  arrFromItems: Array<IItem>;
+  private arrFromItems: Array<IItem>;
   price = 0;
+  componentState = false;
 
   get uid() { return this.userService.uid; }
 
@@ -20,6 +22,10 @@ export class ShoppingCardService {
     private userService: UserService
   ) { }
 
+  changeComponentState() {
+    this.componentState = !this.componentState;
+  }
+
   deleteDoc({ id }) {
     this.itemsCollection.doc(id).delete();
   }
@@ -28,7 +34,7 @@ export class ShoppingCardService {
     this.arrFromItems.map(this.deleteDoc.bind(this));
   }
 
-  private createListOfOrders(itemsForBuy: Array<IItem>) {
+  private createListOfOrders(recInfo: IRecipientInformation) {
     function getCreatorUid(x: IItem) { return x.creatorUid; }
     function getId(x: IItem) { return x.id; }
     function filterSenders(senderUid: string, { creatorUid }) { return creatorUid === senderUid; }
@@ -41,11 +47,12 @@ export class ShoppingCardService {
     }
 
     function createSenderList(sender: string) {
-      const listOfItems = itemsForBuy.filter(filterSenders.bind(undefined, sender)).map(getId);
+      const listOfItems = this.arrFromItems.filter(filterSenders.bind(undefined, sender)).map(getId);
       const shipmentId = this.afs.createId();
 
       return {
         shipmentId,
+        recInfo,
         sender,
         listOfItems,
         receiver: this.uid,
@@ -53,7 +60,7 @@ export class ShoppingCardService {
       };
     }
 
-    return itemsForBuy.map(getCreatorUid).reduce((acc, x) => reduceRepeatedUid(acc, x), []).map(createSenderList.bind(this));
+    return this.arrFromItems.map(getCreatorUid).reduce((acc, x) => reduceRepeatedUid(acc, x), []).map(createSenderList.bind(this));
   }
 
   private makeOrder(order: any) {
@@ -64,8 +71,8 @@ export class ShoppingCardService {
       .catch(err => this.notifier.notify('warning', err.message));
   }
 
-  buyAllProducts(itemsForBuy: Array<IItem>) {
-    this.createListOfOrders(itemsForBuy).forEach(this.makeOrder.bind(this));
+  buyAllProducts(recInfo: IRecipientInformation) {
+    this.createListOfOrders(recInfo).forEach(this.makeOrder.bind(this));
     this.deleteAllItems();
   }
 
