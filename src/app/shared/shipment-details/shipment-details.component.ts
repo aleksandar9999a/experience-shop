@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { shipmentFormAnimations } from './shipment-details.animations';
 import { ShipmentDetailsService } from '../services/shipment-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipment-details',
   templateUrl: './shipment-details.component.html',
-  styleUrls: ['./shipment-details.component.css'],
-  animations: shipmentFormAnimations
+  styleUrls: ['./shipment-details.component.css']
 })
 export class ShipmentDetailsComponent implements OnInit {
   detailsFormState = 'close';

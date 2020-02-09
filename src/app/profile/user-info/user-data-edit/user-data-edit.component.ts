@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { editProfileAnimations } from './user-data-edit.animations';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UserDataEditService } from '../services/user-data-edit.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,8 +9,7 @@ import { NotifierService } from 'angular-notifier';
 @Component({
   selector: 'app-user-data-edit',
   templateUrl: './user-data-edit.component.html',
-  styleUrls: ['./user-data-edit.component.css'],
-  animations: editProfileAnimations
+  styleUrls: ['./user-data-edit.component.css']
 })
 export class UserDataEditComponent implements OnInit {
   defaultImage = './../../../assets/images/unkItem.svg';

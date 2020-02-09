@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { detailsFormAnimations } from './item-details.animations';
 import { DetailsFormService } from '../services/item-details.service';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -9,8 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
-  styleUrls: ['./item-details.component.css'],
-  animations: detailsFormAnimations
+  styleUrls: ['./item-details.component.css']
 })
 export class ItemDetailsComponent implements OnInit {
   creatorUid: string;

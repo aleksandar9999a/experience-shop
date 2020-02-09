@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileSetUpAnimations } from './profile-set-up.animations';
 import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-profile-set-up',
   templateUrl: './profile-set-up.component.html',
-  styleUrls: ['./profile-set-up.component.css'],
-  animations: ProfileSetUpAnimations
+  styleUrls: ['./profile-set-up.component.css']
 })
 export class ProfileSetUpComponent implements OnInit {
 
