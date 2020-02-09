@@ -40,7 +40,7 @@ export class ShipmentDetailsService {
     this.loadTitle();
     this.loadRecInfo();
     this.loadStatus(this.data.status);
-    this.loadItems(data.listOfItems);
+    this.loadItems();
     this.loadReceiver();
     this.loadSender();
     this.checkUserStatus();
@@ -56,7 +56,7 @@ export class ShipmentDetailsService {
   }
 
   private loadTitle() {
-    this.title = this.data.shipmentId;
+    this.title = this.data.id;
   }
 
   private loadRecInfo() {
@@ -67,11 +67,8 @@ export class ShipmentDetailsService {
     this.status = status;
   }
 
-  private loadItems(list: Array<string>) {
-    this.items = [];
-    list.forEach(item => {
-      this.afs.doc<IItem>(`allItems/${item}`).valueChanges().forEach(i => this.items.push(i));
-    });
+  private loadItems() {
+    this.items = this.data.listOfItems;
   }
 
   private loadReceiver() {
@@ -90,7 +87,7 @@ export class ShipmentDetailsService {
   }
 
   private updateCollectionsStatus(status: string) {
-    this.afs.doc(`/orders/${this.data.shipmentId}`)
+    this.afs.doc(`/orders/${this.data.id}`)
       .update({ status })
       .then(_ => this.notifier.notify('success', 'Successful updated status!'))
       .catch(err => this.notifier.notify('warning', err.message));
