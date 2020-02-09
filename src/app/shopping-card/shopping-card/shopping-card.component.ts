@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { formAnimations } from './shopping-card.animations';
 import { Router } from '@angular/router';
+import { ShoppingCardService } from '../services/shopping-card.service';
 
 @Component({
   selector: 'app-shopping-card',
@@ -9,9 +10,11 @@ import { Router } from '@angular/router';
   animations: formAnimations
 })
 export class ShoppingCardComponent implements OnInit {
+  get componentState() { return this.shoppingCardService.componentState; }
 
   constructor(
-    private router: Router
+    private router: Router,
+    private shoppingCardService: ShoppingCardService
   ) { }
 
   close() {
