@@ -40,7 +40,7 @@ export class ShipmentDetailsService {
     this.loadTitle();
     this.loadRecInfo();
     this.loadStatus(this.data.status);
-    this.loadItems();
+    this.loadItems(data.listOfItems);
     this.loadReceiver();
     this.loadSender();
     this.checkUserStatus();
@@ -67,9 +67,9 @@ export class ShipmentDetailsService {
     this.status = status;
   }
 
-  private loadItems() {
+  private loadItems(list: Array<string>) {
     this.items = [];
-    this.data.listOfItems.forEach(item => {
+    list.forEach(item => {
       this.afs.doc<IItem>(`allItems/${item}`).valueChanges().forEach(i => this.items.push(i));
     });
   }
