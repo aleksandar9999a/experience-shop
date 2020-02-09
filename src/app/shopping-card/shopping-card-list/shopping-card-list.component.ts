@@ -19,8 +19,8 @@ export class ShoppingCardListComponent implements OnInit {
     this.shoppingCardService.deleteAllItems();
   }
 
-  buyAllProducts(newItems: Array<IItem>) {
-    this.shoppingCardService.buyAllProducts(newItems);
+  makeOrder() {
+    this.shoppingCardService.changeComponentState();
   }
 
   ngOnInit() {
