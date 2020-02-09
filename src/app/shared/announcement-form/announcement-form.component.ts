@@ -4,11 +4,13 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
 import { ActivatedRoute, Router } from '@angular/router';
+import { formFader } from '../animations/form.animations';
 
 @Component({
   selector: 'app-announcement-form',
   templateUrl: './announcement-form.component.html',
-  styleUrls: ['./announcement-form.component.css']
+  styleUrls: ['./announcement-form.component.css'],
+  animations: [formFader]
 })
 export class AnnouncementFormComponent implements OnInit {
   currentData: IItem;

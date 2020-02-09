@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetailsService } from '../services/user-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { formFader } from 'src/app/shared/animations/form.animations';
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.css'],
+  animations: [formFader]
 })
 export class UserDetailsComponent implements OnInit {
   get profile() { return this.userDetailsService.profile; }

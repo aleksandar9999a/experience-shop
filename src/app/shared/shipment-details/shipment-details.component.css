@@ -1,3 +1,9 @@
+.card-form{
+  position: fixed;
+  overflow: scroll;
+  z-index: 10;
+}
+
 .itemImg{
     width: 100%;
     height: auto;
@@ -13,6 +19,8 @@
 
 .title{
   padding: 6%;
+  font-size: 1.7rem;
+  font-weight: 500;
 }
 
 .detailsButtons{

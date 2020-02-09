@@ -4,11 +4,13 @@ import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
 import { AnnouncementsService } from '../services/announcements.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { formFader } from '../animations/form.animations';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
-  styleUrls: ['./item-details.component.css']
+  styleUrls: ['./item-details.component.css'],
+  animations: [formFader]
 })
 export class ItemDetailsComponent implements OnInit {
   creatorUid: string;

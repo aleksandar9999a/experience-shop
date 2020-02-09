@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationFormAnimations } from './authentication-form.animations';
 import { Router } from '@angular/router';
+import { formFader } from 'src/app/shared/animations/form.animations';
 
 @Component({
   selector: 'app-authentication-form',
   templateUrl: './authentication-form.component.html',
   styleUrls: ['./authentication-form.component.css'],
-  animations: [AuthenticationFormAnimations]
+  animations: [AuthenticationFormAnimations, formFader]
 })
 export class AuthenticationFormComponent implements OnInit {
   loginState = 'open';

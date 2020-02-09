@@ -5,11 +5,13 @@ import { UserService } from 'src/app/services/user.service';
 import { IProfile } from 'src/app/interfaces/profile.interface';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { formFader } from 'src/app/shared/animations/form.animations';
 
 @Component({
   selector: 'app-user-data-edit',
   templateUrl: './user-data-edit.component.html',
-  styleUrls: ['./user-data-edit.component.css']
+  styleUrls: ['./user-data-edit.component.css'],
+  animations: [formFader]
 })
 export class UserDataEditComponent implements OnInit {
   defaultImage = './../../../assets/images/unkItem.svg';
