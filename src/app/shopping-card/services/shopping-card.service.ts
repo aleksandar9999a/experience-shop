@@ -6,6 +6,7 @@ import { NotifierService } from 'angular-notifier';
 import { UserService } from 'src/app/services/user.service';
 import { IRecipientInformation } from 'src/app/interfaces/recipientInformation.interface';
 import { Router } from '@angular/router';
+import { IShipment } from 'src/app/interfaces/shipment.interface';
 
 @Injectable()
 export class ShoppingCardService {
@@ -38,7 +39,6 @@ export class ShoppingCardService {
 
   private createListOfOrders(recInfo: IRecipientInformation) {
     function getCreatorUid(x: IItem) { return x.creatorUid; }
-    function getId(x: IItem) { return x.id; }
     function filterSenders(senderUid: string, { creatorUid }) { return creatorUid === senderUid; }
 
     function reduceRepeatedUid(acc: Array<string>, uid: string) {
@@ -49,11 +49,11 @@ export class ShoppingCardService {
     }
 
     function createSenderList(sender: string) {
-      const listOfItems = this.arrFromItems.filter(filterSenders.bind(undefined, sender)).map(getId);
-      const shipmentId = this.afs.createId();
+      const listOfItems = this.arrFromItems.filter(filterSenders.bind(undefined, sender));
+      const id = this.afs.createId();
 
       return {
-        shipmentId,
+        id,
         recInfo,
         sender,
         listOfItems,
@@ -65,11 +65,11 @@ export class ShoppingCardService {
     return this.arrFromItems.map(getCreatorUid).reduce((acc, x) => reduceRepeatedUid(acc, x), []).map(createSenderList.bind(this));
   }
 
-  async makeOrder(order: any) {
+  async makeOrder(order: IShipment) {
     await this.afs.collection(`orders`)
-      .doc(order.shipmentId)
+      .doc(order.id)
       .set(order)
-      .then(_ => this.notifier.notify('success', `You successful make order with number ${order.shipmentId}`))
+      .then(_ => this.notifier.notify('success', `You successful make order with number ${order.id}`))
       .catch(err => this.notifier.notify('warning', err.message));
   }
 

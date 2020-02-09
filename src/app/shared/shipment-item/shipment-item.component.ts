@@ -15,7 +15,7 @@ export class ShipmentItemComponent implements OnInit {
   ) { }
 
   openShipmentDetails() {
-    this.router.navigate([{ outlets: { formsOutlet: ['shipments_details', this.shipment.shipmentId] } }]);
+    this.router.navigate([{ outlets: { formsOutlet: ['shipments_details', this.shipment.id] } }]);
   }
 
   ngOnInit() {
