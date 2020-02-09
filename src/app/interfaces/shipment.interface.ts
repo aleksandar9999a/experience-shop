@@ -1,10 +1,11 @@
 import { IRecipientInformation } from './recipientInformation.interface';
+import { IItem } from './item.interface';
 
 export interface IShipment {
-    listOfItems: Array<string>;
+    listOfItems: Array<IItem>;
     receiver: string;
     sender: string;
-    shipmentId: string;
+    id: string;
     status: string;
     recInfo: IRecipientInformation;
 }
