@@ -32,7 +32,7 @@ export class ShipmentDetailsService {
 
   loadData(id: string) {
     const shipmentDoc = this.afs.doc<IProfile>(`orders/${id}`);
-    shipmentDoc.valueChanges().forEach(this.setShipment.bind(this));
+    shipmentDoc.valueChanges().subscribe(this.setShipment.bind(this));
   }
 
   private setShipment(data: IShipment) {
