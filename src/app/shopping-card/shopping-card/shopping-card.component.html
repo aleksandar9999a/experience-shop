@@ -8,7 +8,8 @@
                 </div>
                 <div class="card-body">
                     <div class="form-shopping">
-                        <app-shopping-card-list></app-shopping-card-list>
+                        <app-shopping-card-list *ngIf="!componentState"></app-shopping-card-list>
+                        <app-shopping-card-details *ngIf="componentState"></app-shopping-card-details>
                     </div>
                 </div>
             </div>
