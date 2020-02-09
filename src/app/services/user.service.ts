@@ -50,7 +50,7 @@ export class UserService {
             .createUserWithEmailAndPassword(email, password)
             .then(d => {
                 this.setUserIsHere(d);
-                this.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg').then(() => {
+                this.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg', 'Unknown').then(() => {
                     this.notifier.notify('success', 'Successful create new account!');
                     this.routerService.navigate([{ outlets: { formsOutlet: 'profile_setup' } }]);
                 });
@@ -68,12 +68,12 @@ export class UserService {
             .catch(err => this.notifier.notify('warning', err.message));
     }
 
-    async updateUserData(username: string, summary: string, profileImg: any) {
+    async updateUserData(username: string, summary: string, profileImg: any, location: string) {
         if (this.uid) {
             if (typeof profileImg !== 'string') {
                 profileImg = await this.uploadImage(profileImg);
             }
-            const info = { id: this.uid, username, summary, profileImg };
+            const info = { id: this.uid, username, summary, profileImg, location };
             username = username.toLocaleLowerCase();
 
             return this.fireStore
