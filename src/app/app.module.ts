@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { EmptyComponent } from './empty/empty.component';
     AppRoutingModule,
     NotifierModule,
     BrowserAnimationsModule,
+    AgmCoreModule.forRoot(environment.agm),
     AngularFireModule.initializeApp(environment.firebase, 'experienceShop'),
     AngularFirestoreModule,
     AngularFireStorageModule,
