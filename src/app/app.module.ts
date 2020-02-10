@@ -20,11 +20,13 @@ import { UserCatalogModule } from './user-catalog/user-catalog.module';
 import { UserInfoModule } from './profile/user-info/user-info.module';
 import { ShoppingCardModule } from './shopping-card/shopping-card.module';
 import { EmptyComponent } from './empty/empty.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations:  [
     AppComponent,
-    EmptyComponent
+    EmptyComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

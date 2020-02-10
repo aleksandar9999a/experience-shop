@@ -1,0 +1,6 @@
+.not-found{
+    min-height: 500px;
+    background: url('./../../assets/images/404.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+}

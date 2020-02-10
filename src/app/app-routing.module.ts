@@ -17,6 +17,7 @@ import { UserDataEditComponent } from './profile/user-info/user-data-edit/user-d
 import { EmptyComponent } from './empty/empty.component';
 import { UserDetailsComponent } from './user-catalog/user-details/user-details.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card/shopping-card.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
   { path: 'create_announcement', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
   { path: 'shopping_card', component: ShoppingCardComponent, outlet: 'formsOutlet' },
+  {
+    path: '**',
+    component: NotFoundComponent
+  },
 ];
 
 @NgModule({
