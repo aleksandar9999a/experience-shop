@@ -45,10 +45,10 @@
                         </div>
                         <div class="form-label-group">
                             <label>Price</label>
-                            <input type="text" class="form-control" placeholder="Price" formControlName="price">
+                            <input type="text" class="form-control" placeholder="Price in lv." formControlName="price" pattern="[0-9.]+">
 
                             <div *ngIf="price.invalid && price.touched" class="text-danger">
-                                Price is required.
+                                Price is required and must be a number.
                             </div>
                         </div>
                         <div class="form-label-group">
