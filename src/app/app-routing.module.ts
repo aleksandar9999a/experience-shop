@@ -4,7 +4,6 @@ import { CatalogComponent } from './catalog/catalog/catalog.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { HomeComponent } from './core/home/home.component';
 import { UserCatalogComponent } from './user-catalog/user-catalog/user-catalog.component';
-import { AuthGuard } from './auth.guard';
 import { MyItemsComponent } from './profile/items-card/my-items/my-items/my-items.component';
 import { ShipmentsComponent } from './profile/items-card/shipments/shipments/shipments.component';
 import { OrdersComponent } from './profile/items-card/orders/orders/orders.component';
@@ -18,33 +17,17 @@ import { EmptyComponent } from './empty/empty.component';
 import { UserDetailsComponent } from './user-catalog/user-details/user-details.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card/shopping-card.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'catalog',
-    component: CatalogComponent
-  },
-  {
-    path: 'users',
-    component: UserCatalogComponent,
-    canActivate: [AuthGuard],
-    data: { isHere: true }
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
-    data: { isHere: true },
-    children: [
-      { path: '', component: MyItemsComponent, outlet: 'profileOutlet' },
-      { path: 'shipments', component: ShipmentsComponent, outlet: 'profileOutlet' },
-      { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet' }
-    ]
-  },
+const redirectUnauthorizedToCatalog = () => redirectUnauthorizedTo(['catalog']);
+
+const profileOutletRoutes: Routes = [
+  { path: '', component: MyItemsComponent, outlet: 'profileOutlet' },
+  { path: 'shipments', component: ShipmentsComponent, outlet: 'profileOutlet' },
+  { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet' }
+];
+
+const formsOutletRoutes: Routes = [
   { path: '', component: EmptyComponent, outlet: 'formsOutlet' },
   { path: 'authentication', component: AuthenticationFormComponent, outlet: 'formsOutlet' },
   { path: 'profile_setup', component: ProfileSetUpComponent, outlet: 'formsOutlet' },
@@ -54,11 +37,27 @@ const routes: Routes = [
   { path: 'item_details/:id/:creatorUid', component: ItemDetailsComponent, outlet: 'formsOutlet' },
   { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
   { path: 'create_announcement', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
-  { path: 'shopping_card', component: ShoppingCardComponent, outlet: 'formsOutlet' },
+  { path: 'shopping_card', component: ShoppingCardComponent, outlet: 'formsOutlet' }
+];
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'catalog', component: CatalogComponent },
   {
-    path: '**',
-    component: NotFoundComponent
+    path: 'users',
+    component: UserCatalogComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AngularFireAuthGuard],
+    children: [...profileOutletRoutes],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
+  },
+  ...formsOutletRoutes,
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
