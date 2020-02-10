@@ -19,6 +19,7 @@ export class ShoppingCardDetailsComponent implements OnInit {
     this.orderDataForm = fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.minLength(3)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
       requirements: [''],
       location: ['', [Validators.required, Validators.minLength(3)]]
     });
@@ -28,6 +29,7 @@ export class ShoppingCardDetailsComponent implements OnInit {
   get lastName() { return this.orderDataForm.get('lastName'); }
   get requirements() { return this.orderDataForm.get('requirements'); }
   get location() { return this.orderDataForm.get('location'); }
+  get phoneNumber() { return this.orderDataForm.get('phoneNumber'); }
 
   backToList() {
     this.shoppingCardService.changeComponentState();
@@ -38,6 +40,7 @@ export class ShoppingCardDetailsComponent implements OnInit {
       const recInfo = {
         firstName: this.firstName.value,
         lastName: this.lastName.value,
+        phoneNumber: this.phoneNumber.value,
         requirements: this.requirements.value,
         location: this.location.value
       };
