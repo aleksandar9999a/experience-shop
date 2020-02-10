@@ -1,3 +1,6 @@
+
+<img src="https://github.com/aleksandar9999a/experience-shop/blob/master/src/assets/images/logo.png" width="250" />
+
 # Experience Shop
 
 
