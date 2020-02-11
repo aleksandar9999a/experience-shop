@@ -12,7 +12,7 @@ export class CatalogService {
     private lastItem: IItem;
     private name: string;
     private category: string;
-    private currPage;
+    private currPage: any;
     private position = 'firstPage';
 
     items: Observable<IItem[]>;
@@ -28,45 +28,27 @@ export class CatalogService {
         this.loadList();
     }
 
-    private setFirstItemFromFirstPage(shot) {
+    private setFirstItemFromFirstPage(shot: any) {
         this.firstItemFromFirstPage = shot.docs[0];
     }
 
-    private searchByName() {
-        const startAfter = (ref: any) => {
-            this.currPage = ref.where('name', '>=', this.name).startAfter(this.lastItem).limit(this.pageLimit);
-            return this.currPage;
-        };
-
-        const endBefore = (ref: any) => {
-            this.currPage = ref.where('name', '>=', this.name).endBefore(this.firstItem).limit(this.pageLimit);
-            return this.currPage;
-        };
-
-        const firstPage = (ref: any) => {
-            this.currPage = ref.where('name', '>=', this.name).limit(this.pageLimit);
-            this.currPage.get().then(this.setFirstItemFromFirstPage.bind(this));
-            return this.currPage;
-        };
-
-        return { startAfter, endBefore, firstPage };
-    }
-
     private searchByNameAndCategoty() {
+        const getRef = (ref: any) => this.category === 'all' ? ref : ref.where('category', '==', this.category);
+
         const startAfter = (ref: any) => {
-            this.currPage = ref.where('category', '==', this.category).where('name', '>=', this.name)
+            this.currPage = getRef(ref).where('name', '>=', this.name)
                 .startAfter(this.lastItem).limit(this.pageLimit);
             return this.currPage;
         };
 
         const endBefore = (ref: any) => {
-            this.currPage = ref.where('category', '==', this.category).where('name', '>=', this.name)
+            this.currPage = getRef(ref).where('name', '>=', this.name)
                 .endBefore(this.firstItem).limit(this.pageLimit);
             return this.currPage;
         };
 
         const firstPage = (ref: any) => {
-            this.currPage = ref.where('category', '==', this.category).where('name', '>=', this.name).limit(this.pageLimit);
+            this.currPage = getRef(ref).where('name', '>=', this.name).limit(this.pageLimit);
             this.currPage.get().then(this.setFirstItemFromFirstPage.bind(this));
             return this.currPage;
         };
@@ -91,15 +73,9 @@ export class CatalogService {
     }
 
     loadList(position?: string) {
-        let currSearchFn;
+        let currSearchFn: any;
         this.setPositions(position);
-
-        if (this.category === 'all') {
-            currSearchFn = this.searchByName()[this.position];
-        } else {
-            currSearchFn = this.searchByNameAndCategoty()[this.position];
-        }
-
+        currSearchFn = this.searchByNameAndCategoty()[this.position];
         this.itemsCollection = this.afs.collection<IItem>('allItems', currSearchFn);
         this.items = this.itemsCollection.valueChanges();
     }
