@@ -35,6 +35,14 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([{ outlets: { formsOutlet: 'shopping_card' } }]);
   }
 
+  openAnnForm() {
+    this.router.navigate([{ outlets: { formsOutlet: 'create_announcement' } }]);
+  }
+
+  openAuthForm() {
+    this.router.navigate([{ outlets: { formsOutlet: 'authentication' } }]);
+  }
+
   ngOnInit() {
     this.fireBaseAuth.auth.onAuthStateChanged(user => this.zone.run(() => this.isHere = !!user));
   }
