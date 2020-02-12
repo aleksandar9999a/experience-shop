@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   get category() { return this.searchForm.get('category'); }
 
   search() {
-    this.collService.setOptions({ searchName: this.name.value, category: this.category.value });
+    this.collService.setOptions({ searchName: this.name.value, category: this.category.value, position: 'firstPage' });
   }
 
   ngOnInit() {
