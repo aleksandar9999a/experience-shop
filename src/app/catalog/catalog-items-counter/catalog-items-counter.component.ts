@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { CatalogService } from '../services/catalog.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-catalog-items-counter',
@@ -11,7 +11,7 @@ export class CatalogItemsCounterComponent implements OnInit {
   pageLimitForm: FormGroup;
 
   constructor(
-    private catalogService: CatalogService,
+    private collService: CollectionsService,
     private fb: FormBuilder
   ) {
     this.pageLimitForm = fb.group({
@@ -21,7 +21,8 @@ export class CatalogItemsCounterComponent implements OnInit {
 
   handleChange() {
     const pageLimit = Number(this.pageLimitForm.get('pageLimit').value);
-    this.catalogService.setPageLimit(pageLimit);
+    this.collService.setPageLimit(pageLimit);
+    this.collService.loadList();
   }
 
   ngOnInit() {
