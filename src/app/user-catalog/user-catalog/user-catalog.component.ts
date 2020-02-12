@@ -7,6 +7,7 @@ import { CollectionsService } from 'src/app/services/collections.service';
   styleUrls: ['./user-catalog.component.css']
 })
 export class UserCatalogComponent implements OnInit {
+  get profiles() { return this.collService.items; }
 
   constructor(
     private collService: CollectionsService
