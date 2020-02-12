@@ -4,9 +4,6 @@ import { CatalogComponent } from './catalog/catalog/catalog.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { HomeComponent } from './core/home/home.component';
 import { UserCatalogComponent } from './user-catalog/user-catalog/user-catalog.component';
-import { MyItemsComponent } from './profile/items-card/my-items/my-items/my-items.component';
-import { ShipmentsComponent } from './profile/items-card/shipments/shipments/shipments.component';
-import { OrdersComponent } from './profile/items-card/orders/orders/orders.component';
 import { AnnouncementFormComponent } from './shared/announcement-form/announcement-form.component';
 import { ItemDetailsComponent } from './shared/item-details/item-details.component';
 import { ShipmentDetailsComponent } from './shared/shipment-details/shipment-details.component';
@@ -18,6 +15,9 @@ import { UserDetailsComponent } from './user-catalog/user-details/user-details.c
 import { ShoppingCardComponent } from './shopping-card/shopping-card/shopping-card.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { MyItemsComponent } from './profile/items-card/my-items/my-items.component';
+import { OrdersComponent } from './profile/items-card/orders/orders.component';
+import { ShipmentsComponent } from './profile/items-card/shipments/shipments.component';
 
 const redirectUnauthorizedToCatalog = () => redirectUnauthorizedTo(['catalog']);
 
