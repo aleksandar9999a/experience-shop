@@ -1,2 +1,2 @@
 <app-catalog-list [items]="items"></app-catalog-list>
-<app-my-items-navigator></app-my-items-navigator>
+<app-my-items-navigator *ngIf="(items | async)?.length > 0"></app-my-items-navigator>
