@@ -2,5 +2,5 @@
     <app-search></app-search>
     <app-catalog-items-counter></app-catalog-items-counter>
     <app-catalog-list [items]="items"></app-catalog-list>
-    <app-catalog-pagination></app-catalog-pagination>
+    <app-catalog-pagination *ngIf="(items | async)?.length > 0"></app-catalog-pagination>
 </div>
