@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CatalogService } from '../services/catalog.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-catalog',
@@ -7,14 +7,22 @@ import { CatalogService } from '../services/catalog.service';
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
-  get items() { return this.catalogService.items; }
+  get items() { return this.collService.items; }
 
   constructor(
-    private catalogService: CatalogService
-  ) { }
+    private collService: CollectionsService
+  ) {
+    this.collService.setOptions({
+      searchName: '',
+      category: 'all',
+      position: 'firstPage',
+      pageLimit: 5,
+      collection: 'allItems'
+    });
+  }
+
 
   ngOnInit() {
-    this.catalogService.loadCategory('', 'all');
   }
 
 }
