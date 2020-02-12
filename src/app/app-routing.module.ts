@@ -15,17 +15,8 @@ import { UserDetailsComponent } from './user-catalog/user-details/user-details.c
 import { ShoppingCardComponent } from './shopping-card/shopping-card/shopping-card.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-import { MyItemsComponent } from './profile/items-card/my-items/my-items.component';
-import { OrdersComponent } from './profile/items-card/orders/orders.component';
-import { ShipmentsComponent } from './profile/items-card/shipments/shipments.component';
 
 const redirectUnauthorizedToCatalog = () => redirectUnauthorizedTo(['catalog']);
-
-const profileOutletRoutes: Routes = [
-  { path: '', component: MyItemsComponent, outlet: 'profileOutlet' },
-  { path: 'shipments', component: ShipmentsComponent, outlet: 'profileOutlet' },
-  { path: 'orders', component: OrdersComponent, outlet: 'profileOutlet' }
-];
 
 const formsOutletRoutes: Routes = [
   { path: '', component: EmptyComponent, outlet: 'formsOutlet' },
@@ -53,7 +44,6 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AngularFireAuthGuard],
-    children: [...profileOutletRoutes],
     data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
   ...formsOutletRoutes,
