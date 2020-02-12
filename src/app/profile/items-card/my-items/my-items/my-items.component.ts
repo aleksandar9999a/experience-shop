@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MyItemsService } from '../services/my-items.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-my-items',
@@ -7,14 +7,18 @@ import { MyItemsService } from '../services/my-items.service';
   styleUrls: ['./my-items.component.css']
 })
 export class MyItemsComponent implements OnInit {
-  get items() { return this.myItemsService.items; }
+  get items() { return this.collService.items; }
 
   constructor(
-    private myItemsService: MyItemsService
+    private collService: CollectionsService
   ) { }
 
   ngOnInit() {
-    this.myItemsService.refreshItems('firstPage');
+    this.collService.setOptions({
+      position: 'firstPage',
+      pageLimit: 5,
+      collection: 'myItems'
+    });
    }
 
 }
