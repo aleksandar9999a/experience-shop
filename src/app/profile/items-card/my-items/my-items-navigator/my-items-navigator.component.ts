@@ -7,7 +7,6 @@ import { MyItemsService } from '../services/my-items.service';
   styleUrls: ['./my-items-navigator.component.css']
 })
 export class MyItemsNavigatorComponent implements OnInit {
-  get items() { return this.myItemsService.items; }
 
   constructor(
     private myItemsService: MyItemsService
