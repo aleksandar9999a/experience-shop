@@ -1,2 +1,2 @@
 <app-orders-list [orders]="orders"></app-orders-list>
-<app-navigation></app-navigation>
+<app-page-controller *ngIf="(orders | async)?.length > 0"></app-page-controller>
