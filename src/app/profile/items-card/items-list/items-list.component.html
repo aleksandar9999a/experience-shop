@@ -1,14 +1,7 @@
-<div class="col card-form form">
-    <div class="container">
-        <div class="col-20">
-            <div class="card card-edit">
-                <div class="card-header">
-                    <app-profile-navigation></app-profile-navigation>
-                </div>
-                <div class="card-body mt-3">
-                    <router-outlet name="profileOutlet"></router-outlet>
-                </div>
-            </div>
-        </div>
-    </div>
+<div *ngIf="listType === 'myItems'; else orders">
+    <app-catalog-list [items]="items"></app-catalog-list>
 </div>
+<ng-template #orders>
+    <app-orders-list [orders]="items"></app-orders-list>
+</ng-template>
+<app-page-controller *ngIf="(items | async)?.length > 0"></app-page-controller>
