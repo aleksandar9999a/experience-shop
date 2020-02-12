@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CatalogService } from '../services/catalog.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-catalog-pagination',
@@ -7,17 +7,16 @@ import { CatalogService } from '../services/catalog.service';
   styleUrls: ['./catalog-pagination.component.css']
 })
 export class CatalogPaginationComponent implements OnInit {
-
   constructor(
-    private catalogService: CatalogService
+    private collService: CollectionsService
   ) { }
 
   nextPage() {
-    this.catalogService.loadNextPage();
+    this.collService.loadNextPage();
   }
 
   backPage() {
-    this.catalogService.loadBackPage();
+    this.collService.loadBackPage();
   }
 
   ngOnInit() {
