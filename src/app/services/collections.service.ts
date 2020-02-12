@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { DocumentSnapshot, AngularFirestore } from '@angular/fire/firestore';
 import { NotifierService } from 'angular-notifier';
 import { UserService } from './user.service';
