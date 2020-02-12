@@ -1,13 +1,13 @@
 <nav class="navbar navbar-light bg-light">
-      <ul class="nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]='[{ outlets: { profileOutlet: ["shipments"] } }]'>Shipments</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]='[{ outlets: { profileOutlet: [] } }]' >My Items</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]='[{ outlets: { profileOutlet: ["orders"] } }]'>Orders</a>
-          </li>
-      </ul>
-  </nav>
+  <ul class="nav mx-auto">
+    <li class="nav-item" (click)="changeItems('shipments')">
+      <a class="nav-link">Shipments</a>
+    </li>
+    <li class="nav-item" (click)="changeItems('myItems')">
+      <a class="nav-link">My Items</a>
+    </li>
+    <li class="nav-item" (click)="changeItems('orders')">
+      <a class="nav-link">Orders</a>
+    </li>
+  </ul>
+</nav>
