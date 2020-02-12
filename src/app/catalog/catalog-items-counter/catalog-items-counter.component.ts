@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CatalogService } from '../services/catalog.service';
 
 @Component({
@@ -10,8 +10,13 @@ import { CatalogService } from '../services/catalog.service';
 export class CatalogItemsCounterComponent implements OnInit {
   pageLimitForm: FormGroup;
 
-  constructor(private catalogService: CatalogService) {
-    this.pageLimitForm = new FormGroup({ pageLimit: new FormControl(5, Validators.required) });
+  constructor(
+    private catalogService: CatalogService,
+    private fb: FormBuilder
+  ) {
+    this.pageLimitForm = fb.group({
+      pageLimit: [5, Validators.required]
+    });
   }
 
   handleChange() {
