@@ -6,5 +6,4 @@ export interface IItem {
     creatorUid: string;
     image: string;
     id: string;
-    oldId?: string;
 }
