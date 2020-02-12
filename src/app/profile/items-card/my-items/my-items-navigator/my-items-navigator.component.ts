@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MyItemsService } from '../services/my-items.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-my-items-navigator',
@@ -9,15 +9,15 @@ import { MyItemsService } from '../services/my-items.service';
 export class MyItemsNavigatorComponent implements OnInit {
 
   constructor(
-    private myItemsService: MyItemsService
+    private collService: CollectionsService
   ) { }
 
   nextPage() {
-    this.myItemsService.loadNextPage();
+    this.collService.loadNextPage();
   }
 
   backPage() {
-    this.myItemsService.loadBackPage();
+    this.collService.loadBackPage();
   }
 
   ngOnInit() {
