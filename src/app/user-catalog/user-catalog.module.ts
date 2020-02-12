@@ -4,7 +4,6 @@ import { UserCatalogComponent } from './user-catalog/user-catalog.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { UserListControllerComponent } from './user-list-controller/user-list-controller.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDetailsService } from './services/user-details.service';
 import { SharedModule } from '../shared/shared.module';
@@ -17,7 +16,6 @@ import { UserDetailsListNavigationComponent } from './user-details-list-navigati
     UserSearchComponent,
     UserListComponent,
     UserDetailsComponent,
-    UserListControllerComponent,
     UserDetailsListNavigationComponent
   ],
   providers: [UserDetailsService],
