@@ -11,8 +11,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [NavbarComponent, FooterComponent, HomeComponent],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    SharedModule
+    AppRoutingModule
   ],
   exports: [NavbarComponent, FooterComponent, HomeComponent]
 })
