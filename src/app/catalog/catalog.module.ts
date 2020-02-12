@@ -5,7 +5,7 @@ import { SearchComponent } from './search/search.component';
 import { CatalogPaginationComponent } from './catalog-pagination/catalog-pagination.component';
 import { CatalogItemsCounterComponent } from './catalog-items-counter/catalog-items-counter.component';
 import { CatalogComponent } from './catalog/catalog.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -18,7 +18,6 @@ import { SharedModule } from '../shared/shared.module';
   providers: [CatalogService],
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule,
     SharedModule
   ],
