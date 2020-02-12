@@ -22,6 +22,7 @@ import { ShoppingCardModule } from './shopping-card/shopping-card.module';
 import { EmptyComponent } from './empty/empty.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { CollectionsService } from './services/collections.service';
 
 @NgModule({
   declarations:  [
@@ -50,7 +51,8 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
   ],
   providers: [
     UserService,
-    AngularFireAuthGuard
+    AngularFireAuthGuard,
+    CollectionsService
   ],
   bootstrap: [AppComponent]
 })
