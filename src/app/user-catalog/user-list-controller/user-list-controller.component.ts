@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserCatalogService } from '../services/user-catalog.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-user-list-controller',
@@ -9,13 +9,18 @@ import { UserCatalogService } from '../services/user-catalog.service';
 })
 export class UserListControllerComponent implements OnInit {
   pageLimitForm: FormGroup;
-  constructor(private userCatalogService: UserCatalogService) {
-    this.pageLimitForm = new FormGroup({ pageLimit: new FormControl(5, Validators.required) });
+
+  constructor(
+    private collService: CollectionsService,
+    private fb: FormBuilder
+  ) {
+    this.pageLimitForm = fb.group({ pageLimit: [5, Validators.required] });
   }
 
   handleChange() {
     const pageLimit = Number(this.pageLimitForm.get('pageLimit').value);
-    this.userCatalogService.setPageLimit(pageLimit);
+    this.collService.setPageLimit(pageLimit);
+    this.collService.loadList();
   }
 
   ngOnInit() {
