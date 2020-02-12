@@ -35,7 +35,7 @@ export class UserService {
     }
 
     async logIn(email: string, password: string) {
-        await this.fireBaseAuth.auth
+        return await this.fireBaseAuth.auth
             .signInWithEmailAndPassword(email, password)
             .then(d => {
                 this.setUserIsHere(d);
@@ -46,7 +46,7 @@ export class UserService {
     }
 
     async createUser(email: string, password: string) {
-        await this.fireBaseAuth.auth
+        return await this.fireBaseAuth.auth
             .createUserWithEmailAndPassword(email, password)
             .then(d => {
                 this.setUserIsHere(d);
@@ -59,7 +59,7 @@ export class UserService {
     }
 
     async logOut() {
-        await this.fireBaseAuth.auth
+        return await this.fireBaseAuth.auth
             .signOut()
             .then(_ => {
                 this.notifier.notify('success', 'Successful Log Out!');
@@ -76,12 +76,13 @@ export class UserService {
             const info = { id: this.uid, username, summary, profileImg, location };
             username = username.toLocaleLowerCase();
 
-            return this.fireStore
+            return await this.fireStore
                 .doc(`userdata/${this.uid}`)
                 .set(info)
                 .catch(err => this.notifier.notify('warning', err.message));
         } else {
             this.notifier.notify('warning', 'You must be registered to edit your data!');
+            return null;
         }
     }
 
