@@ -1,7 +1,0 @@
-.customInput{
-    border-radius: 2rem;
-  }
-  .customInput::after{
-    border-bottom-right-radius: 2rem;
-    border-top-right-radius: 2rem;
-  }

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
-  selector: 'app-catalog-items-counter',
-  templateUrl: './catalog-items-counter.component.html',
-  styleUrls: ['./catalog-items-counter.component.css']
+  selector: 'app-items-counter',
+  templateUrl: './items-counter.component.html',
+  styleUrls: ['./items-counter.component.css']
 })
-export class CatalogItemsCounterComponent implements OnInit {
+export class ItemsCounterComponent implements OnInit {
   pageLimitForm: FormGroup;
 
   constructor(
@@ -27,4 +27,5 @@ export class CatalogItemsCounterComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }
