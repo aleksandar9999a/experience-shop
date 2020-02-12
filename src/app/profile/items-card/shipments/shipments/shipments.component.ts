@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShipmentsService } from '../services/shipments.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-shipments',
@@ -7,14 +7,20 @@ import { ShipmentsService } from '../services/shipments.service';
   styleUrls: ['./shipments.component.css']
 })
 export class ShipmentsComponent implements OnInit {
-  get shipments() { return this.shipmentsService.shipments; }
+  get shipments() { return this.collService.items; }
 
   constructor(
-    private shipmentsService: ShipmentsService
+    private collService: CollectionsService
   ) { }
 
   ngOnInit() {
-    this.shipmentsService.refresh();
+    this.collService.setOptions({
+      searchName: '',
+      category: 'receiver',
+      position: 'firstPage',
+      pageLimit: 5,
+      collection: 'orders'
+    });
   }
 
 }
