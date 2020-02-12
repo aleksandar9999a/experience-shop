@@ -15,6 +15,7 @@ import { AutocompleteDirective } from './directives/autocomplete.directive';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
 import { PageControllerComponent } from './page-controller/page-controller.component';
+import { ItemsCounterComponent } from './items-counter/items-counter.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PageControllerComponent } from './page-controller/page-controller.compo
     AutocompleteDirective,
     CatalogListComponent,
     OrdersListComponent,
-    PageControllerComponent
+    PageControllerComponent,
+    ItemsCounterComponent
   ],
   providers: [
     DetailsFormService,
@@ -51,7 +53,8 @@ import { PageControllerComponent } from './page-controller/page-controller.compo
     AutocompleteDirective,
     CatalogListComponent,
     OrdersListComponent,
-    PageControllerComponent
+    PageControllerComponent,
+    ItemsCounterComponent
   ]
 })
 export class SharedModule { }
