@@ -5,7 +5,6 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserListControllerComponent } from './user-list-controller/user-list-controller.component';
-import { UserListNavigationComponent } from './user-list-navigation/user-list-navigation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDetailsService } from './services/user-details.service';
 import { SharedModule } from '../shared/shared.module';
@@ -19,7 +18,6 @@ import { UserDetailsListNavigationComponent } from './user-details-list-navigati
     UserListComponent,
     UserDetailsComponent,
     UserListControllerComponent,
-    UserListNavigationComponent,
     UserDetailsListNavigationComponent
   ],
   providers: [UserDetailsService],
