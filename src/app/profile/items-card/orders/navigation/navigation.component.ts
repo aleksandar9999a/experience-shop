@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdersService } from '../services/orders.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,18 +7,18 @@ import { OrdersService } from '../services/orders.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  get orders() { return this.ordersService.orders; }
+  get orders() { return this.collService.items; }
 
   constructor(
-    private ordersService: OrdersService
+    private collService: CollectionsService
   ) { }
 
   nextPage() {
-    this.ordersService.loadNextPage();
+    this.collService.loadNextPage();
   }
 
   backPage() {
-    this.ordersService.loadBackPage();
+    this.collService.loadBackPage();
   }
 
   ngOnInit() {
