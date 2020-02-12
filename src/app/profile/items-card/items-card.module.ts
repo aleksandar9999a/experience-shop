@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { ProfileNavigationComponent } from './profile-navigation/profile-navigation.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { MyItemsComponent } from './my-items/my-items.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { OrdersComponent } from './orders/orders.component';
-import { ShipmentsComponent } from './shipments/shipments.component';
+import { ItemsCardComponent } from './items-card/items-card.component';
+import { ListService } from './services/list.service';
 
 
 @NgModule({
-  declarations: [ItemsListComponent, ProfileNavigationComponent, MyItemsComponent, OrdersComponent, ShipmentsComponent],
+  declarations: [ItemsListComponent, ProfileNavigationComponent, ItemsCardComponent],
+  providers: [ListService],
   imports: [
     CommonModule,
     AppRoutingModule,
     SharedModule
   ],
-  exports: [ItemsListComponent]
+  exports: [ItemsCardComponent]
 })
 export class ItemsCardModule { }
