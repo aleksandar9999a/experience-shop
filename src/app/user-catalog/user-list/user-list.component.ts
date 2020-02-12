@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserCatalogService } from '../services/user-catalog.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-user-list',
@@ -7,14 +7,14 @@ import { UserCatalogService } from '../services/user-catalog.service';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  get profiles() { return this.userCatalogService.profiles; }
+  get profiles() { return this.collService.items; }
 
   constructor(
-    private userCatalogService: UserCatalogService
+    private collService: CollectionsService
   ) { }
 
+
   ngOnInit() {
-    this.userCatalogService.loadList();
   }
 
 }
