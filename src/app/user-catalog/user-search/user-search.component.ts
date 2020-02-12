@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { UserCatalogService } from '../services/user-catalog.service';
+import { CollectionsService } from 'src/app/services/collections.service';
 
 @Component({
   selector: 'app-user-search',
@@ -11,7 +11,7 @@ export class UserSearchComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor(
-    private userCatalogService: UserCatalogService,
+    private collService: CollectionsService,
     private fb: FormBuilder
   ) {
     this.searchForm = fb.group({
@@ -22,7 +22,10 @@ export class UserSearchComponent implements OnInit {
   get username() { return this.searchForm.get('username'); }
 
   search() {
-    this.userCatalogService.search(this.username.value);
+    this.collService.setOptions({
+      searchName: this.username.value,
+      position: 'firstPage'
+    });
   }
 
   ngOnInit() {
