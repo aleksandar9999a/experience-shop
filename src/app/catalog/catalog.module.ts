@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CatalogService } from './services/catalog.service';
 import { SearchComponent } from './search/search.component';
 import { CatalogPaginationComponent } from './catalog-pagination/catalog-pagination.component';
 import { CatalogItemsCounterComponent } from './catalog-items-counter/catalog-items-counter.component';
@@ -15,7 +14,6 @@ import { SharedModule } from '../shared/shared.module';
     CatalogItemsCounterComponent,
     CatalogComponent
   ],
-  providers: [CatalogService],
   imports: [
     CommonModule,
     ReactiveFormsModule,
