@@ -19,7 +19,6 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { UserCatalogModule } from './user-catalog/user-catalog.module';
 import { UserInfoModule } from './profile/user-info/user-info.module';
 import { ShoppingCardModule } from './shopping-card/shopping-card.module';
-import { EmptyComponent } from './empty/empty.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { CollectionsService } from './services/collections.service';
@@ -27,7 +26,6 @@ import { CollectionsService } from './services/collections.service';
 @NgModule({
   declarations:  [
     AppComponent,
-    EmptyComponent,
     NotFoundComponent
   ],
   imports: [

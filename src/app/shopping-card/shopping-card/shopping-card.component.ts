@@ -16,7 +16,7 @@ export class ShoppingCardComponent implements OnInit {
   ) { }
 
   close() {
-    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
+    this.router.navigate([{ outlets: { formsOutlet: null } }]);
   }
 
   ngOnInit() {

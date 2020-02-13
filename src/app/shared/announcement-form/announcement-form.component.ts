@@ -77,7 +77,7 @@ export class AnnouncementFormComponent implements OnInit {
   }
 
   close() {
-    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
+    this.router.navigate([{ outlets: { formsOutlet: null } }]);
   }
 
   get name() { return this.announcementsFormGroup.get('name'); }

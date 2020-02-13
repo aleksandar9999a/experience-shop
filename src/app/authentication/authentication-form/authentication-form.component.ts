@@ -40,7 +40,7 @@ export class AuthenticationFormComponent implements OnInit {
   }
 
   closeSignForm() {
-    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
+    this.router.navigate([{ outlets: { formsOutlet: null } }]);
   }
 
   ngOnInit() {

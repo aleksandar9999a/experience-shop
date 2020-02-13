@@ -75,7 +75,7 @@ export class ShoppingCardService {
 
   async buyAllProducts(recInfo: IRecipientInformation) {
     this.createListOfOrders(recInfo).forEach(this.makeOrder.bind(this));
-    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
+    this.router.navigate([{ outlets: { formsOutlet: null } }]);
     this.changeComponentState();
     this.deleteAllItems();
   }

@@ -10,26 +10,12 @@ import { ShipmentDetailsComponent } from './shared/shipment-details/shipment-det
 import { AuthenticationFormComponent } from './authentication/authentication-form/authentication-form.component';
 import { ProfileSetUpComponent } from './authentication/profile-set-up/profile-set-up.component';
 import { UserDataEditComponent } from './profile/user-info/user-data-edit/user-data-edit.component';
-import { EmptyComponent } from './empty/empty.component';
 import { UserDetailsComponent } from './user-catalog/user-details/user-details.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card/shopping-card.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToCatalog = () => redirectUnauthorizedTo(['catalog']);
-
-const formsOutletRoutes: Routes = [
-  { path: '', component: EmptyComponent, outlet: 'formsOutlet' },
-  { path: 'authentication', component: AuthenticationFormComponent, outlet: 'formsOutlet' },
-  { path: 'profile_setup', component: ProfileSetUpComponent, outlet: 'formsOutlet' },
-  { path: 'userdata_edit', component: UserDataEditComponent, outlet: 'formsOutlet' },
-  { path: 'user_details/:id', component: UserDetailsComponent, outlet: 'formsOutlet' },
-  { path: 'shipments_details/:id', component: ShipmentDetailsComponent, outlet: 'formsOutlet' },
-  { path: 'item_details/:id/:creatorUid', component: ItemDetailsComponent, outlet: 'formsOutlet' },
-  { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
-  { path: 'create_announcement', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
-  { path: 'shopping_card', component: ShoppingCardComponent, outlet: 'formsOutlet' }
-];
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,7 +32,15 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
-  ...formsOutletRoutes,
+  { path: 'authentication', component: AuthenticationFormComponent, outlet: 'formsOutlet' },
+  { path: 'profile_setup', component: ProfileSetUpComponent, outlet: 'formsOutlet' },
+  { path: 'userdata_edit', component: UserDataEditComponent, outlet: 'formsOutlet' },
+  { path: 'user_details/:id', component: UserDetailsComponent, outlet: 'formsOutlet' },
+  { path: 'shipments_details/:id', component: ShipmentDetailsComponent, outlet: 'formsOutlet' },
+  { path: 'item_details/:id/:creatorUid', component: ItemDetailsComponent, outlet: 'formsOutlet' },
+  { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
+  { path: 'create_announcement', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
+  { path: 'shopping_card', component: ShoppingCardComponent, outlet: 'formsOutlet' },
   { path: '**', component: NotFoundComponent }
 ];
 

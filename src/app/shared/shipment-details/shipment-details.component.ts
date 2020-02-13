@@ -10,8 +10,6 @@ import { formFader } from '../animations/form.animations';
   animations: [formFader]
 })
 export class ShipmentDetailsComponent implements OnInit {
-  detailsFormState = 'close';
-
   get items() { return this.shipmentDetailsService.items; }
   get title() { return this.shipmentDetailsService.title; }
   get recInfo() { return this.shipmentDetailsService.recInfo; }
@@ -33,7 +31,7 @@ export class ShipmentDetailsComponent implements OnInit {
   ) { }
 
   close() {
-    this.router.navigate([{ outlets: { formsOutlet: [] } }]);
+    this.router.navigate([{ outlets: { formsOutlet: null } }]);
   }
 
   changeStatus(newStatus: string) {
