@@ -52,12 +52,16 @@ const routes: Routes = [
   {
     path: 'user_details/:id',
     component: UserDetailsComponent,
-    outlet: 'formsOutlet'
+    outlet: 'formsOutlet',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
   {
     path: 'shipments_details/:id',
     component: ShipmentDetailsComponent,
-    outlet: 'formsOutlet'
+    outlet: 'formsOutlet',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
   {
     path: 'item_details/:id/:creatorUid',
@@ -67,17 +71,23 @@ const routes: Routes = [
   {
     path: 'create_announcement/:id',
     component: AnnouncementFormComponent,
-    outlet: 'formsOutlet'
+    outlet: 'formsOutlet',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
   {
     path: 'create_announcement',
     component: AnnouncementFormComponent,
-    outlet: 'formsOutlet'
+    outlet: 'formsOutlet',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
   {
     path: 'shopping_card',
     component: ShoppingCardComponent,
-    outlet: 'formsOutlet'
+    outlet: 'formsOutlet',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
   {
     path: '**',
