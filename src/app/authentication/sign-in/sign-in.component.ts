@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
   async signIn() {
     if (this.signInForm.valid) {
       await this.userService.logIn(this.email.value, this.password.value);
-      this.router.navigate([{ outlets: { formsOutlet: [] } }]);
+      this.router.navigate([{ outlets: { formsOutlet: null } }]);
     }
   }
 
