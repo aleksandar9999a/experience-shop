@@ -83,7 +83,6 @@ export class ShipmentDetailsService {
 
   private setNewStatus(status: string) {
     this.data.status = status;
-    this.loadStatus(status);
   }
 
   private updateCollectionsStatus(status: string) {
