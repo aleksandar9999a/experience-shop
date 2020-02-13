@@ -32,16 +32,57 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToCatalog }
   },
-  { path: 'authentication', component: AuthenticationFormComponent, outlet: 'formsOutlet' },
-  { path: 'profile_setup', component: ProfileSetUpComponent, outlet: 'formsOutlet' },
-  { path: 'userdata_edit', component: UserDataEditComponent, outlet: 'formsOutlet' },
-  { path: 'user_details/:id', component: UserDetailsComponent, outlet: 'formsOutlet' },
-  { path: 'shipments_details/:id', component: ShipmentDetailsComponent, outlet: 'formsOutlet' },
-  { path: 'item_details/:id/:creatorUid', component: ItemDetailsComponent, outlet: 'formsOutlet' },
-  { path: 'create_announcement/:id', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
-  { path: 'create_announcement', component: AnnouncementFormComponent, outlet: 'formsOutlet' },
-  { path: 'shopping_card', component: ShoppingCardComponent, outlet: 'formsOutlet' },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: 'authentication',
+    component: AuthenticationFormComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: 'profile_setup',
+    component: ProfileSetUpComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: 'userdata_edit',
+    component: UserDataEditComponent,
+    outlet: 'formsOutlet',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToCatalog }
+  },
+  {
+    path: 'user_details/:id',
+    component: UserDetailsComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: 'shipments_details/:id',
+    component: ShipmentDetailsComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: 'item_details/:id/:creatorUid',
+    component: ItemDetailsComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: 'create_announcement/:id',
+    component: AnnouncementFormComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: 'create_announcement',
+    component: AnnouncementFormComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: 'shopping_card',
+    component: ShoppingCardComponent,
+    outlet: 'formsOutlet'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
