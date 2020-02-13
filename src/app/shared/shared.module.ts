@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemComponent } from './item/item.component';
-import { ItemDetailsComponent } from './item-details/item-details.component';
-import { DetailsFormService } from './services/item-details.service';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AnnouncementsService } from './services/announcements.service';
-import { AnnouncementFormComponent } from './announcement-form/announcement-form.component';
 import { UserItemComponent } from './user-item/user-item.component';
 import { ShipmentItemComponent } from './shipment-item/shipment-item.component';
-import { ShipmentDetailsComponent } from './shipment-details/shipment-details.component';
-import { ShipmentDetailsService } from './services/shipment-details.service';
 import { AutocompleteDirective } from './directives/autocomplete.directive';
 import { CatalogListComponent } from './catalog-list/catalog-list.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
@@ -20,22 +14,14 @@ import { ItemsCounterComponent } from './items-counter/items-counter.component';
 
 @NgModule({
   declarations: [
-    ItemDetailsComponent,
     ItemComponent,
-    AnnouncementFormComponent,
     UserItemComponent,
     ShipmentItemComponent,
-    ShipmentDetailsComponent,
     AutocompleteDirective,
     CatalogListComponent,
     OrdersListComponent,
     PageControllerComponent,
     ItemsCounterComponent
-  ],
-  providers: [
-    DetailsFormService,
-    AnnouncementsService,
-    ShipmentDetailsService
   ],
   imports: [
     CommonModule,
@@ -44,12 +30,9 @@ import { ItemsCounterComponent } from './items-counter/items-counter.component';
     ReactiveFormsModule
   ],
   exports: [
-    ItemDetailsComponent,
     ItemComponent,
-    AnnouncementFormComponent,
     UserItemComponent,
     ShipmentItemComponent,
-    ShipmentDetailsComponent,
     AutocompleteDirective,
     CatalogListComponent,
     OrdersListComponent,

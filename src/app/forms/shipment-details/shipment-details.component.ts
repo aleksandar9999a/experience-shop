@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShipmentDetailsService } from '../services/shipment-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { formFader } from '../animations/form.animations';
+import { formFader } from 'src/app/shared/animations/form.animations';
 
 @Component({
   selector: 'app-shipment-details',

@@ -4,7 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
 import { ActivatedRoute, Router } from '@angular/router';
-import { formFader } from '../animations/form.animations';
+import { formFader } from 'src/app/shared/animations/form.animations';
 
 @Component({
   selector: 'app-announcement-form',

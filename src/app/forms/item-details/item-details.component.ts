@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DetailsFormService } from '../services/item-details.service';
 import { IItem } from 'src/app/interfaces/item.interface';
 import { UserService } from 'src/app/services/user.service';
-import { AnnouncementsService } from '../services/announcements.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { formFader } from '../animations/form.animations';
+import { AnnouncementsService } from 'src/app/forms/services/announcements.service';
+import { formFader } from 'src/app/shared/animations/form.animations';
 
 @Component({
   selector: 'app-item-details',

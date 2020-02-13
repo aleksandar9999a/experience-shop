@@ -22,6 +22,7 @@ import { ShoppingCardModule } from './shopping-card/shopping-card.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { CollectionsService } from './services/collections.service';
+import { FormsCardModule } from './forms/forms-card.module';
 
 @NgModule({
   declarations:  [
@@ -45,7 +46,8 @@ import { CollectionsService } from './services/collections.service';
     ProfileModule,
     UserCatalogModule,
     UserInfoModule,
-    ShoppingCardModule
+    ShoppingCardModule,
+    FormsCardModule
   ],
   providers: [
     UserService,

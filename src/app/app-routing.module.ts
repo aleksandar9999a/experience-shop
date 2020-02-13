@@ -4,16 +4,16 @@ import { CatalogComponent } from './catalog/catalog/catalog.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { HomeComponent } from './core/home/home.component';
 import { UserCatalogComponent } from './user-catalog/user-catalog/user-catalog.component';
-import { AnnouncementFormComponent } from './shared/announcement-form/announcement-form.component';
-import { ItemDetailsComponent } from './shared/item-details/item-details.component';
-import { ShipmentDetailsComponent } from './shared/shipment-details/shipment-details.component';
 import { AuthenticationFormComponent } from './authentication/authentication-form/authentication-form.component';
 import { ProfileSetUpComponent } from './authentication/profile-set-up/profile-set-up.component';
-import { UserDataEditComponent } from './profile/user-info/user-data-edit/user-data-edit.component';
-import { UserDetailsComponent } from './user-catalog/user-details/user-details.component';
 import { ShoppingCardComponent } from './shopping-card/shopping-card/shopping-card.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AnnouncementFormComponent } from './forms/announcement-form/announcement-form.component';
+import { ItemDetailsComponent } from './forms/item-details/item-details.component';
+import { ShipmentDetailsComponent } from './forms/shipment-details/shipment-details.component';
+import { UserDataEditComponent } from './forms/user-data-edit/user-data-edit.component';
+import { UserDetailsComponent } from './forms/user-details/user-details.component';
 
 const redirectUnauthorizedToCatalog = () => redirectUnauthorizedTo(['catalog']);
 
