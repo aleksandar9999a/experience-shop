@@ -18,9 +18,8 @@
                                     <div class="desc">
                                         <p class="card-text">{{currItem.desc}}</p>
                                     </div>
-                                    <div *ngIf="(profile | async) as currUser" class="info d-flex align-items-end"
-                                        (click)="close()">
-                                        <app-user-item [profile]="currUser"></app-user-item>
+                                    <div class="info d-flex align-items-end" (click)="close()">
+                                        <app-user-item [profile]="profile | async"></app-user-item>
                                     </div>
                                 </div>
                             </div>

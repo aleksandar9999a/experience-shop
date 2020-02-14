@@ -18,16 +18,12 @@
                                 <div class="row m-3">
                                     <div class="col-md-6">
                                         <h5 class="text-center m-2">Sender:</h5>
-                                        <div *ngIf="(sender | async) as profile">
-                                            <app-user-item [profile]="profile"></app-user-item>
-                                        </div>
+                                        <app-user-item [profile]="sender | async"></app-user-item>
                                     </div>
 
                                     <div class="col-md-6">
                                         <h5 class="text-center m-2">Receiver:</h5>
-                                        <div *ngIf="(receiver | async) as profile">
-                                            <app-user-item [profile]="profile"></app-user-item>
-                                        </div>
+                                        <app-user-item [profile]="receiver | async"></app-user-item>
                                     </div>
                                 </div>
 
