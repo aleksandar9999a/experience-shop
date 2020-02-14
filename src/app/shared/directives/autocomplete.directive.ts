@@ -6,7 +6,7 @@ import { NgControl } from '@angular/forms';
     selector: '[appAutocomplete]'
 })
 export class AutocompleteDirective {
-    autocomplete: any;
+    autocomplete: google.maps.places.Autocomplete;
     options = { types: ['address'], componentRestrictions: { country: 'bg' } };
 
     constructor(
