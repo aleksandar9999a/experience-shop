@@ -24,7 +24,9 @@ export class UserSearchComponent implements OnInit {
   search() {
     this.collService.setOptions({
       searchName: this.username.value,
-      position: 'firstPage'
+      position: 'firstPage',
+      collection: 'userdata',
+      sortBy: 'userdata'
     });
   }
 

@@ -22,7 +22,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.collService.setOptions({ position: 'firstPage', pageLimit: 5, collection: 'myItems' });
+    this.collService.setOptions({ position: 'firstPage', pageLimit: 5, collection: 'allItems', sortBy: 'myItems' });
     this.listEvents = this.listService.listType.subscribe(this.setListType.bind(this));
   }
 
