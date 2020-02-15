@@ -18,9 +18,9 @@ export class ProfileNavigationComponent implements OnInit {
 
   changeItems(type: string) {
     const types = {
-      myItems: {  position: 'firstPage', pageLimit: 5, collection: 'allItems', sortBy: 'myItems' },
-      shipments: { position: 'firstPage', pageLimit: 5, collection: 'orders', sortBy: 'receiver' },
-      orders: { position: 'firstPage', pageLimit: 5, collection: 'orders', sortBy: 'sender' },
+      myItems: {  position: 'firstPage', pageLimit: 5, collection: 'allItems', sortBy: 'myItems', category: '' },
+      shipments: { position: 'firstPage', pageLimit: 5, collection: 'orders', sortBy: 'receiver', category: '' },
+      orders: { position: 'firstPage', pageLimit: 5, collection: 'orders', sortBy: 'sender', category: '' },
     };
 
     if (types[type]) {
