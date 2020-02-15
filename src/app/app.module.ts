@@ -11,14 +11,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { CoreModule } from './core/core.module';
-import { CatalogModule } from './catalog/catalog.module';
 import { SharedModule } from './shared/shared.module';
-import { ProfileModule } from './profile/profile.module';
 import { UserService } from './services/user.service';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { UserCatalogModule } from './user-catalog/user-catalog.module';
-import { UserInfoModule } from './profile/user-info/user-info.module';
-import { ShoppingCardModule } from './shopping-card/shopping-card.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { CollectionsService } from './services/collections.service';
@@ -41,12 +36,7 @@ import { FormsCardModule } from './forms/forms-card.module';
     AngularFireAuthModule,
     AuthenticationModule,
     CoreModule,
-    CatalogModule,
     SharedModule,
-    ProfileModule,
-    UserCatalogModule,
-    UserInfoModule,
-    ShoppingCardModule,
     FormsCardModule
   ],
   providers: [

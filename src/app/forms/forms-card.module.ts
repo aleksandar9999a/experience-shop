@@ -14,6 +14,7 @@ import { UserDataEditComponent } from './user-data-edit/user-data-edit.component
 import { UserDetailsService } from './services/user-details.service';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserDetailsListNavigationComponent } from './user-details-list-navigation/user-details-list-navigation.component';
+import { ShoppingCardModule } from './shopping-card/shopping-card.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { UserDetailsListNavigationComponent } from './user-details-list-navigati
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ShoppingCardModule
   ],
   exports: [
     AnnouncementFormComponent,

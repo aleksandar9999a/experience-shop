@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CollectionsService } from 'src/app/services/collections.service';
 import { ListService } from '../services/list.service';
 
@@ -7,9 +7,10 @@ import { ListService } from '../services/list.service';
   templateUrl: './items-list.component.html',
   styleUrls: ['./items-list.component.css']
 })
-export class ItemsListComponent implements OnInit {
+export class ItemsListComponent implements OnInit, OnDestroy {
   get items() { return this.collService.items; }
   listType = 'myItems';
+  listEvents: any;
 
   constructor(
     private collService: CollectionsService,
@@ -22,7 +23,11 @@ export class ItemsListComponent implements OnInit {
 
   ngOnInit() {
     this.collService.setOptions({ position: 'firstPage', pageLimit: 5, collection: 'myItems' });
-    this.listService.listType.subscribe(this.setListType.bind(this));
+    this.listEvents = this.listService.listType.subscribe(this.setListType.bind(this));
+  }
+
+  ngOnDestroy() {
+    this.listEvents.unsubscribe();
   }
 
 }
