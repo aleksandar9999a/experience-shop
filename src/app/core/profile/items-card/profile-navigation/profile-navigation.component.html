@@ -1,13 +1,7 @@
 <nav class="navbar navbar-light bg-light">
-  <ul class="nav mx-auto">
-    <li class="nav-item" (click)="changeItems('shipments')">
-      <a class="nav-link">Shipments</a>
-    </li>
-    <li class="nav-item" (click)="changeItems('myItems')">
-      <a class="nav-link">My Items</a>
-    </li>
-    <li class="nav-item" (click)="changeItems('orders')">
-      <a class="nav-link">Orders</a>
-    </li>
-  </ul>
+  <div class="mx-auto">
+    <button class="btn btn-outline-dark borders" (click)="changeItems('shipments')">Shipments</button>
+    <button class="btn btn-outline-dark borders" (click)="changeItems('myItems')">My Items</button>
+    <button class="btn btn-outline-dark borders" (click)="changeItems('orders')">Orders</button>
+  </div>
 </nav>
