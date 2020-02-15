@@ -12,7 +12,8 @@ export class CollectionsService {
         searchName: '',
         category: '',
         position: 'firstPage',
-        pageLimit: 5
+        pageLimit: 5,
+        sortBy: ''
     };
 
     private fIFFP: DocumentSnapshot<any>; // first item from first page
@@ -60,6 +61,12 @@ export class CollectionsService {
         }
     }
 
+    private setSortBy(sortBy: string) {
+        if (sortBy) {
+            this.state.sortBy = sortBy;
+        }
+    }
+
     setPageLimit(pageLimit: number) {
         if (pageLimit) {
             this.state.pageLimit = pageLimit;
@@ -71,6 +78,7 @@ export class CollectionsService {
             return;
         }
 
+        this.setSortBy(options.sortBy);
         this.setPageLimit(options.pageLimit);
         this.setPosition(options.position);
         this.setCategory(options.category);
@@ -79,46 +87,39 @@ export class CollectionsService {
         this.loadList();
     }
 
-    private getCollection() {
-        if (this.state.collection === 'myItems') {
-            return 'allItems';
-        }
-        return this.state.collection;
-    }
-
     loadList() {
         let currSearchFn: any;
         currSearchFn = this.searchEngine()[this.state.position];
-        const coll = this.getCollection();
-        const itemsCollection = this.afs.collection(coll, currSearchFn);
+        const itemsCollection = this.afs.collection(this.state.collection, currSearchFn);
         this.items = itemsCollection.valueChanges();
     }
 
-    private getRef() {
+    private getSortRef() {
         const allItems = (ref: any) => this.state.category === 'all'
             ? ref.where('name', '>=', this.state.searchName)
             : ref.where('category', '==', this.state.category).where('name', '>=', this.state.searchName);
 
-        const orders = (ref: any) => ref.where(this.state.category, '==', this.uid);
+        const receiver = (ref: any) => ref.where('receiver', '==', this.uid);
+        const sender = (ref: any) => ref.where('sender', '==', this.uid);
         const userdata = (ref: any) => ref.where('username', '>=', this.state.searchName);
         const myItems = (ref: any) => ref.where('creatorUid', '==', this.uid);
 
-        return { allItems, orders, userdata, myItems };
+        return { allItems, receiver, sender, userdata, myItems };
     }
 
     private searchEngine() {
         const startAfter = (ref: any) => {
-            this.currPage = this.getRef()[this.state.collection](ref).startAfter(this.lastItem).limit(this.state.pageLimit);
+            this.currPage = this.getSortRef()[this.state.sortBy](ref).startAfter(this.lastItem).limit(this.state.pageLimit);
             return this.currPage;
         };
 
         const endBefore = (ref: any) => {
-            this.currPage = this.getRef()[this.state.collection](ref).endBefore(this.firstItem).limit(this.state.pageLimit);
+            this.currPage = this.getSortRef()[this.state.sortBy](ref).endBefore(this.firstItem).limit(this.state.pageLimit);
             return this.currPage;
         };
 
         const firstPage = (ref: any) => {
-            this.currPage = this.getRef()[this.state.collection](ref).limit(this.state.pageLimit);
+            this.currPage = this.getSortRef()[this.state.sortBy](ref).limit(this.state.pageLimit);
             this.currPage.get().then(this.setFIFFP.bind(this));
             return this.currPage;
         };
