@@ -4,16 +4,17 @@ import { NotifierService } from 'angular-notifier';
 import { UserService } from './user.service';
 import { ICollectionOptions } from '../interfaces/coll-options.interface';
 import { Observable } from 'rxjs';
+import { OptionsValidatior } from './options-validator';
 
 @Injectable()
 export class CollectionsService {
     private state: ICollectionOptions = {
-        collection: '',
+        collection: 'allItems',
         searchName: '',
-        category: '',
+        category: 'all',
         position: 'firstPage',
         pageLimit: 5,
-        sortBy: ''
+        sortBy: 'allItems'
     };
 
     private fIFFP: DocumentSnapshot<any>; // first item from first page
@@ -27,17 +28,9 @@ export class CollectionsService {
     constructor(
         private afs: AngularFirestore,
         private readonly notifier: NotifierService,
-        private userService: UserService
+        private userService: UserService,
+        private optionsValidatior: OptionsValidatior
     ) { }
-
-    private searchForErrors(options: ICollectionOptions) {
-        if (options.collection !== 'allItems' && !this.uid) {
-            this.notifier.notify('warning', 'You are not authorized!');
-            return true;
-        }
-
-        return false;
-    }
 
     private setColl(collection: string) {
         if (collection) {
@@ -74,7 +67,7 @@ export class CollectionsService {
     }
 
     setOptions(options: ICollectionOptions) {
-        if (this.searchForErrors(options)) {
+        if (this.optionsValidatior.searchErrors(options)) {
             return;
         }
 
