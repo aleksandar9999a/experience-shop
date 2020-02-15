@@ -3,5 +3,6 @@ export interface ICollectionOptions {
     category?: string;
     position?: string;
     pageLimit?: number;
-    collection?: string;
+    collection: string;
+    sortBy: string;
 }
