@@ -6,7 +6,7 @@
 
 .adImage{
     width: 18rem;
-    margin: 2rem;
+    margin: 1rem;
 }
 
 .close{
@@ -18,7 +18,8 @@
 }
 
 .title{
-  margin: 15%;
+  margin: 10%;
+  font-weight: 500;
 }
 
 .blockquote{

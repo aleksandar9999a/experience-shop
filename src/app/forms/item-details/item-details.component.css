@@ -16,9 +16,11 @@
   .closeDiv{
     height: 3%;
   }
-  
+
   .title{
-    padding: 6%;
+    padding: 5%;
+    font-weight: 500;
+    font-size: 3rem;
   }
 
   .detailsButtons{
