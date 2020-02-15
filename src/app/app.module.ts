@@ -18,6 +18,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { CollectionsService } from './services/collections.service';
 import { FormsCardModule } from './forms/forms-card.module';
+import { OptionsValidatior } from './services/options-validator';
+import { OptionsRestrinctions } from './config/collections-restrinctions';
 
 @NgModule({
   declarations:  [
@@ -42,7 +44,9 @@ import { FormsCardModule } from './forms/forms-card.module';
   providers: [
     UserService,
     AngularFireAuthGuard,
-    CollectionsService
+    CollectionsService,
+    OptionsValidatior,
+    OptionsRestrinctions
   ],
   bootstrap: [AppComponent]
 })
