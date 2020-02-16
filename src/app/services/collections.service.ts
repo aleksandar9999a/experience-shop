@@ -119,6 +119,7 @@ export class CollectionsService {
 
         const currentPage = (ref: any) => {
             this.currPage = this.getSortRef()[this.state.sortBy](ref).startAt(this.firstItem).limit(this.state.pageLimit);
+            this.currPage.get().then(this.setFirstAndLastItemInCurrPage.bind(this));
             return this.currPage;
         };
 
