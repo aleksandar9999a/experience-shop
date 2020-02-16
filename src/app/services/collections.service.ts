@@ -48,7 +48,7 @@ export class CollectionsService {
         }
     }
 
-    private setPosition(position: string) {
+    setPosition(position: string) {
         if (position) {
             this.state.position = position;
         }
@@ -117,11 +117,17 @@ export class CollectionsService {
             return this.currPage;
         };
 
-        return { startAfter, endBefore, firstPage };
+        const currentPage = (ref: any) => {
+            this.currPage = this.getSortRef()[this.state.sortBy](ref).startAt(this.firstItem).limit(this.state.pageLimit);
+            return this.currPage;
+        };
+
+        return { startAfter, endBefore, firstPage, currentPage };
     }
 
     private setFIFFP(data: any) {
         this.fIFFP = data.docs[0];
+        this.firstItem = data.docs[0];
     }
 
     private setFirstAndLastItemInCurrPage(shot: any) {
@@ -136,7 +142,7 @@ export class CollectionsService {
                 this.setPosition('startAfter');
                 this.loadList();
             } else {
-                this.notifier.notify('info', 'Sorry, We do not have more users.');
+                this.notifier.notify('info', 'Sorry, We do not have more items.');
             }
         });
     }

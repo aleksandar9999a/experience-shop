@@ -22,6 +22,7 @@ export class ItemsCounterComponent implements OnInit {
   handleChange() {
     const pageLimit = Number(this.pageLimitForm.get('pageLimit').value);
     this.collService.setPageLimit(pageLimit);
+    this.collService.setPosition('currentPage');
     this.collService.loadList();
   }
 

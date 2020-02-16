@@ -26,7 +26,8 @@ export class UserSearchComponent implements OnInit {
       searchName: this.username.value,
       position: 'firstPage',
       collection: 'userdata',
-      sortBy: 'userdata'
+      sortBy: 'userdata',
+      category: ''
     });
   }
 
