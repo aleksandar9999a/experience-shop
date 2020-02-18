@@ -34,7 +34,8 @@ export class UserService {
             .signInWithEmailAndPassword(email, password)
             .then(d => {
                 this.notifier.notify('success', 'Successful Log In!');
-                this.routerService.navigate(['/catalog']);
+                this.routerService.navigate([{ outlets: { formsOutlet: null } }])
+                    .then(() => this.routerService.navigate(['/catalog']));
             })
             .catch(err => this.notifier.notify('warning', err.message));
     }
@@ -63,9 +64,10 @@ export class UserService {
 
     async updateUserData(username: string, summary: string, profileImg: any, location: string) {
         if (this.uid) {
-            if (typeof profileImg !== 'string') {
+            if (typeof profileImg === 'object') {
                 profileImg = await this.uploadImage(profileImg);
             }
+
             username = username.toLocaleLowerCase();
             const info = { id: this.uid, username, summary, profileImg, location };
 
