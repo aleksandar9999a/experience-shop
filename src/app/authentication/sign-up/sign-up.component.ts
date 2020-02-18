@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit {
   get confirmPassword() { return this.signUpForm.get('passwords').get('confirmPassword'); }
 
   signUp() {
-    if (this.password.value === this.confirmPassword.value) {
+    if (this.password.value === this.confirmPassword.value && this.signUpForm.valid) {
       this.userService.createUser(this.email.value, this.password.value);
     } else {
       this.notifier.notify('warning', 'Confirm password is wrong!');
