@@ -32,7 +32,7 @@ export class AnnouncementsService {
         return await snapshot.ref.getDownloadURL().catch(err => this.notifier.notify('warning', err.message));
     }
 
-    async setAnnouncement(announcement) {
+    async setAnnouncement(announcement: IItem) {
         if (this.uid) {
             announcement.name = announcement.name.toLocaleLowerCase();
 
@@ -46,7 +46,7 @@ export class AnnouncementsService {
 
             announcement.creatorUid = this.uid;
 
-            await this.collection.doc(announcement.id).set(announcement)
+            return await this.collection.doc(announcement.id).set(announcement)
                 .then(_ => {
                     this.notifier.notify('success', 'Successful operation!');
                 })
@@ -56,9 +56,9 @@ export class AnnouncementsService {
         }
     }
 
-    delete({ id, creatorUid }) {
+    async delete({ id, creatorUid }) {
         if (creatorUid === this.uid) {
-            this.collection.doc(id).delete()
+            return await this.collection.doc(id).delete()
                 .then(_ => {
                     this.notifier.notify('success', 'Successful delete your announcement!');
                 })
@@ -68,8 +68,8 @@ export class AnnouncementsService {
         }
     }
 
-    addItemToShoppingCard(item: IItem) {
-        this.fireStore.collection('userdata').doc(this.uid).collection('shoppingCard').doc(item.id).set(item)
+    async addItemToShoppingCard(item: IItem) {
+        return await this.fireStore.collection('userdata').doc(this.uid).collection('shoppingCard').doc(item.id).set(item)
             .then(_ => {
                 this.notifier.notify('success', 'Successful!');
             })
