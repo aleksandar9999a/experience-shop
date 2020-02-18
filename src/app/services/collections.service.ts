@@ -4,7 +4,7 @@ import { NotifierService } from 'angular-notifier';
 import { UserService } from './user.service';
 import { ICollectionOptions } from '../interfaces/coll-options.interface';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { OptionsValidatior } from './options-validator';
 
 @Injectable()
@@ -93,7 +93,7 @@ export class CollectionsService {
         const itemsCollection = this.afs.collection(this.state.collection, currSearchFn);
 
         if (this.state.once) {
-            this.items = itemsCollection.valueChanges().pipe(take(1));
+            this.items = itemsCollection.valueChanges().pipe(first());
         } else {
             this.items = itemsCollection.valueChanges();
         }
