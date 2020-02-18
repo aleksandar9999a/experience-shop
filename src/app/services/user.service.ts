@@ -29,16 +29,10 @@ export class UserService {
             });
     }
 
-    setUserIsHere(data) {
-        this.isHere = true;
-        this.uid = data.user.uid;
-    }
-
     async logIn(email: string, password: string) {
         return await this.fireBaseAuth.auth
             .signInWithEmailAndPassword(email, password)
             .then(d => {
-                this.setUserIsHere(d);
                 this.notifier.notify('success', 'Successful Log In!');
                 this.routerService.navigate(['/catalog']);
             })
@@ -49,7 +43,6 @@ export class UserService {
         return await this.fireBaseAuth.auth
             .createUserWithEmailAndPassword(email, password)
             .then(d => {
-                this.setUserIsHere(d);
                 this.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg', 'Unknown').then(() => {
                     this.notifier.notify('success', 'Successful create new account!');
                     this.routerService.navigate([{ outlets: { formsOutlet: 'profile_setup' } }]);
@@ -73,17 +66,17 @@ export class UserService {
             if (typeof profileImg !== 'string') {
                 profileImg = await this.uploadImage(profileImg);
             }
-            const info = { id: this.uid, username, summary, profileImg, location };
             username = username.toLocaleLowerCase();
+            const info = { id: this.uid, username, summary, profileImg, location };
 
             return await this.fireStore
                 .doc(`userdata/${this.uid}`)
                 .set(info)
                 .catch(err => this.notifier.notify('warning', err.message));
-        } else {
-            this.notifier.notify('warning', 'You must be registered to edit your data!');
-            return null;
         }
+
+        this.notifier.notify('warning', 'You must be registered to edit your data!');
+        return null;
     }
 
     private async uploadImage(image: any) {
