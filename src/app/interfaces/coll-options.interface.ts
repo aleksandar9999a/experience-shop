@@ -5,4 +5,5 @@ export interface ICollectionOptions {
     pageLimit?: number;
     collection: string;
     sortBy: string;
+    once: boolean;
 }
