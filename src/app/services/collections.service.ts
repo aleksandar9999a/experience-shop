@@ -4,6 +4,7 @@ import { NotifierService } from 'angular-notifier';
 import { UserService } from './user.service';
 import { ICollectionOptions } from '../interfaces/coll-options.interface';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { OptionsValidatior } from './options-validator';
 
 @Injectable()
@@ -14,7 +15,8 @@ export class CollectionsService {
         category: 'all',
         position: 'firstPage',
         pageLimit: 5,
-        sortBy: 'allItems'
+        sortBy: 'allItems',
+        once: false
     };
 
     private fIFFP: DocumentSnapshot<any>; // first item from first page
@@ -66,6 +68,10 @@ export class CollectionsService {
         }
     }
 
+    private setOnce(once: boolean) {
+        this.state.once = once;
+    }
+
     setOptions(options: ICollectionOptions) {
         if (this.optionsValidatior.searchErrors(options)) {
             return;
@@ -77,6 +83,7 @@ export class CollectionsService {
         this.setCategory(options.category);
         this.setSearchName(options.searchName);
         this.setColl(options.collection);
+        this.setOnce(options.once);
         this.loadList();
     }
 
@@ -84,7 +91,12 @@ export class CollectionsService {
         let currSearchFn: any;
         currSearchFn = this.searchEngine()[this.state.position];
         const itemsCollection = this.afs.collection(this.state.collection, currSearchFn);
-        this.items = itemsCollection.valueChanges();
+
+        if (this.state.once) {
+            this.items = itemsCollection.valueChanges().pipe(take(1));
+        } else {
+            this.items = itemsCollection.valueChanges();
+        }
     }
 
     private getSortRef() {
