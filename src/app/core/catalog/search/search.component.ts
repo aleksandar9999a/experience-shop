@@ -29,7 +29,8 @@ export class SearchComponent implements OnInit {
       category: this.category.value,
       position: 'firstPage',
       collection: 'allItems',
-      sortBy: 'allItems'
+      sortBy: 'allItems',
+      once: true
     });
   }
 

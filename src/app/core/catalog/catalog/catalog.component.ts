@@ -18,7 +18,8 @@ export class CatalogComponent implements OnInit {
       position: 'firstPage',
       pageLimit: 5,
       collection: 'allItems',
-      sortBy: 'allItems'
+      sortBy: 'allItems',
+      once: true
     });
   }
 

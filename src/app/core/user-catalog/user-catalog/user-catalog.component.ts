@@ -20,7 +20,8 @@ export class UserCatalogComponent implements OnInit {
       position: 'firstPage',
       pageLimit: 5,
       collection: 'userdata',
-      sortBy: 'userdata'
+      sortBy: 'userdata',
+      once: true
     });
   }
 
