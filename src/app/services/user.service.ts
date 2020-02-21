@@ -29,6 +29,11 @@ export class UserService {
             });
     }
 
+    private setUid(data: any) {
+        this.uid = data.user.uid;
+        this.isHere = true;
+    }
+
     async logIn(email: string, password: string) {
         return await this.fireBaseAuth.auth
             .signInWithEmailAndPassword(email, password)
@@ -44,6 +49,7 @@ export class UserService {
         return await this.fireBaseAuth.auth
             .createUserWithEmailAndPassword(email, password)
             .then(d => {
+                this.setUid(d);
                 this.updateUserData('Unknown', 'Unknown', './../../assets/images/unkItem.svg', 'Unknown').then(() => {
                     this.notifier.notify('success', 'Successful create new account!');
                     this.routerService.navigate([{ outlets: { formsOutlet: 'profile_setup' } }]);
