@@ -115,16 +115,19 @@ export class CollectionsService {
     private searchEngine() {
         const startAfter = (ref: any) => {
             this.currPage = this.getSortRef()[this.state.sortBy](ref).startAfter(this.lastItem).limit(this.state.pageLimit);
+            this.currPage.get().then(this.setFirstAndLastItemInCurrPage.bind(this));
             return this.currPage;
         };
 
         const endBefore = (ref: any) => {
             this.currPage = this.getSortRef()[this.state.sortBy](ref).endBefore(this.firstItem).limit(this.state.pageLimit);
+            this.currPage.get().then(this.setFirstAndLastItemInCurrPage.bind(this));
             return this.currPage;
         };
 
         const firstPage = (ref: any) => {
             this.currPage = this.getSortRef()[this.state.sortBy](ref).limit(this.state.pageLimit);
+            this.currPage.get().then(this.setFirstAndLastItemInCurrPage.bind(this));
             this.currPage.get().then(this.setFIFFP.bind(this));
             return this.currPage;
         };
@@ -151,7 +154,6 @@ export class CollectionsService {
     loadNextPage() {
         this.currPage.get().then(shot => {
             if (shot.docs.length === this.state.pageLimit) {
-                this.setFirstAndLastItemInCurrPage(shot);
                 this.setPosition('startAfter');
                 this.loadList();
             } else {
@@ -166,7 +168,6 @@ export class CollectionsService {
                 if (shot.docs[0].id === this.fIFFP.id) {
                     this.notifier.notify('info', 'This is first page!');
                 } else {
-                    this.setFirstAndLastItemInCurrPage(shot);
                     this.setPosition('endBefore');
                     this.loadList();
                 }
