@@ -1,9 +1,0 @@
-<div *ngIf="listType === 'myItems'; else orders">
-    <app-catalog-list [items]="items"></app-catalog-list>
-</div>
-<ng-template #orders>
-    <app-orders-list [orders]="items"></app-orders-list>
-</ng-template>
-<div *ngIf="(items | async)?.length > 0" class="mt-2">
-    <app-page-controller></app-page-controller>
-</div>

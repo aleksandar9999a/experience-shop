@@ -1,6 +1,0 @@
-<div class="container">
-    <app-search></app-search>
-    <app-items-counter></app-items-counter>
-    <app-catalog-list [items]="items"></app-catalog-list>
-    <app-page-controller *ngIf="(items | async)?.length > 0"></app-page-controller>
-</div>
