@@ -5,6 +5,8 @@ import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
 import { ActivatedRoute, Router } from '@angular/router';
 import { formFader } from 'src/app/shared/animations/form.animations';
+import { Links } from 'src/app/config/links';
+
 
 @Component({
   selector: 'app-announcement-form',
@@ -14,7 +16,8 @@ import { formFader } from 'src/app/shared/animations/form.animations';
 })
 export class AnnouncementFormComponent implements OnInit {
   currentData: IItem;
-  defaultImage = '../../assets/images/unkItem.svg';
+  get defaultImage() { return this.links.unknown.link; }
+  defaultServerImage: string;
   localImageUrl = null;
   localImage = null;
 
@@ -27,7 +30,8 @@ export class AnnouncementFormComponent implements OnInit {
     private readonly notifier: NotifierService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private links: Links
   ) {
     this.announcementsFormGroup = fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -50,7 +54,7 @@ export class AnnouncementFormComponent implements OnInit {
   }
 
   private createAnnouncement() {
-    const image = this.localImage || this.defaultImage;
+    const image = this.localImage || this.defaultServerImage || this.defaultImage;
     const announcement: any = {
       name: this.name.value,
       desc: this.desc.value,
@@ -89,7 +93,7 @@ export class AnnouncementFormComponent implements OnInit {
   private loadData(data: IItem) {
     this.currentData = data;
     if (data) {
-      this.defaultImage = data.image;
+      this.defaultServerImage = data.image;
       this.announcementsFormGroup.patchValue({
         name: data.name,
         desc: data.desc,

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IShipment } from 'src/app/interfaces/shipment.interface';
 import { Observable } from 'rxjs';
+import { Links } from 'src/app/config/links';
+
 
 @Component({
   selector: 'app-orders-list',
@@ -9,8 +11,11 @@ import { Observable } from 'rxjs';
 })
 export class OrdersListComponent implements OnInit {
   @Input() orders: Observable<IShipment[]>;
+  get spinner() { return this.links.progresbar; }
 
-  constructor() { }
+  constructor(
+    private links: Links
+  ) { }
 
   ngOnInit() {
   }

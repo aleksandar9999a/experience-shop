@@ -20,6 +20,7 @@ import { CollectionsService } from './services/collections.service';
 import { FormsCardModule } from './forms/forms-card.module';
 import { OptionsValidatior } from './services/options-validator';
 import { OptionsRestrinctions } from './config/collections-restrinctions';
+import { Links } from './config/links';
 
 @NgModule({
   declarations:  [
@@ -46,7 +47,8 @@ import { OptionsRestrinctions } from './config/collections-restrinctions';
     AngularFireAuthGuard,
     CollectionsService,
     OptionsValidatior,
-    OptionsRestrinctions
+    OptionsRestrinctions,
+    Links
   ],
   bootstrap: [AppComponent]
 })

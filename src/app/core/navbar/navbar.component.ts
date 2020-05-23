@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Links } from 'src/app/config/links';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +12,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class NavbarComponent implements OnInit {
   isHere: boolean;
   navBarIsOpen = 'hide';
+  
+  get logo() { return this.links.logo; }
 
   constructor(
     private fireBaseAuth: AngularFireAuth,
     private userService: UserService,
     private router: Router,
-    private zone: NgZone
-  ) { }
+    private zone: NgZone,
+    private links: Links
+  ) {
+   }
 
   logOut() {
     this.userService.logOut();

@@ -1,25 +1,19 @@
 <footer class="py-5 d-flex justify-content-between">
-    <div class="col text-center my-auto"><img src="./../../assets/images/logo.png" class="w-100"></div>
+    <div class="col text-center my-auto"><img [src]="logo.link" class="w-100"></div>
     <div class="col mt-0">
         <h5>Dependencies</h5>
         <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="https://angular.io/" target="_blank">Angular</a></li>
-            <li><a class="text-muted" href="https://developers.google.com/maps/documentation/javascript/places" target="_blank">Google Maps Places</a></li>
-            <li><a class="text-muted" href="https://github.com/angular/angularfire" target="_blank">Firebase for
-                    Angular</a></li>
-            <li><a class="text-muted" href="https://www.npmjs.com/package/angular-notifier"
-                    target="_blank">Angular-Notifier</a></li>
-            <li><a class="text-muted" href="https://getbootstrap.com/" target="_blank">Bootstrap</a></li>
+            <li *ngFor="let dep of dependencies">
+                <a class="text-muted" [href]="dep.link" target="_blank">{{dep.title}}</a>
+            </li>
         </ul>
     </div>
     <div class="col mt-0">
         <h5>Connections</h5>
         <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="https://www.facebook.com/profile.php?id=100008368336139"
-                    target="_blank">Facebook</a></li>
-            <li><a class="text-muted" href="https://www.instagram.com/sandi9999a/" target="_blank">Instagram</a></li>
-            <li><a class="text-muted" href="https://www.linkedin.com/in/ak-exp/" target="_blank">LinkedIn</a></li>
-            <li><a class="text-muted" href="https://github.com/aleksandar9999a" target="_blank">Github</a></li>
+            <li *ngFor="let media of socialMedias">
+                <a class="text-muted" [href]="media.link" target="_blank">{{media.title}}</a>
+            </li>
         </ul>
     </div>
 </footer>
