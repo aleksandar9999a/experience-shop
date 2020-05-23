@@ -1,0 +1,28 @@
+.card-form{
+  position: fixed;
+  overflow: scroll;
+  z-index: 7;
+}
+  
+.itemImg{
+    width: 100%;
+    height: auto;
+}
+
+.close{
+  margin: 3%;
+}
+
+.title{
+  padding: 5%;
+  font-weight: 500;
+  font-size: 3rem;
+}
+
+.list{
+  height: 85%;
+}
+
+.navigation-bar{
+  height: 15%;
+}

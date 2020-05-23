@@ -1,0 +1,40 @@
+<div class="searchForm">
+    <div class="container">
+        <div class="col-lg-10 mx-auto">
+            <div class="card card-search my-3">
+                <div>
+                    <h5 class="card-title title text-center">Search...</h5>
+                </div>
+                <div class="card-body">
+                    <form class="form-search" [formGroup]="searchForm" (ngSubmit)="search()">
+                        <div class="input-group">
+                            <input type="text" class="form-control customInput" placeholder="Do you search something?" formControlName="name">
+                            <div class="input-group-append">
+                                <button class="btn btn-success borders" type="submit">Search</button>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3 my-3">
+                            <select class="custom-select customInput" id="selectCategory" formControlName="category">
+                                <option value="all">All</option>
+                                <option value="pc">Pc</option>
+                                <option value="phone">Phone</option>
+                                <option value="tablets">Tablets</option>
+                                <option value="laptops">Laptops</option>
+                                <option value="accForPC">Accessories for PC</option>
+                                <option value="accForPhone">Accessories for Phone</option>
+                                <option value="audio">Audio technique</option>
+                                <option value="photo">Photo, video</option>
+                                <option value="nav">Navigation</option>
+                                <option value="tv">TVs</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text customInput" for="selectCategory">Categories</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

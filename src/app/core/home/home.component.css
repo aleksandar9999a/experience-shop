@@ -1,0 +1,13 @@
+.masthead {
+    height: 50rem; 
+    margin-bottom: -50px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%),url("../../../assets/images/poster.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+  }
+  
+  .masthead h1 {
+    font-size: 4rem;
+  }

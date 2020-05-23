@@ -1,0 +1,42 @@
+<div class="col card-form form">
+    <div class="container">
+        <div class="col-20">
+            <div class="card card-edit my-3">
+                <div>
+                    <h5 class="card-title title text-center font-weight-bold">User Info</h5>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="(profile | async) as myProfile; else loading">
+
+                        <div class="row  d-flex">
+                            <div class="col-md-4 itemImg ml-auto">
+                                <img *ngIf="myProfile.profileImg" [src]="myProfile.profileImg" class="card-img itemImg" alt="...">
+                            </div>
+
+                            <div class="col-md-6 ml-auto">
+                                <h5 class="card-title">Username</h5>
+                                <p>{{myProfile.username || 'Unknown'}}</p>
+                                <h5 class="card-title">Summary</h5>
+                                <p>{{myProfile.summary || 'Unknown'}}</p>
+                                <h5 class="card-title">Location</h5>
+                                <p>{{myProfile.location || 'Unknown'}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row d-flex justify-content-center my-3">
+                            <button class="btn btn-success btn-lg borders editButtons"
+                                (click)="openEditForm()">Edit</button>
+                        </div>
+                    </div>
+
+                    <ng-template #loading>
+                        <div class="text-center">
+                            <img src="./../../assets/images/progresbar.gif" class="loadingSpinner">
+                        </div>
+                    </ng-template>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

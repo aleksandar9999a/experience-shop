@@ -1,0 +1,10 @@
+<div *ngIf="profile" class="list-group-item list-group-item-action" (click)="openUserDetails()" @itemState>
+    <div class="row">
+        <div class="col-2 item-img my-auto">
+            <img [src]="profile.profileImg" class="item-img">
+        </div>
+        <div class="col my-auto">
+            <p>{{profile.username | uppercase}}</p>
+        </div>
+    </div>
+</div>

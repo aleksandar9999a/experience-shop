@@ -1,0 +1,30 @@
+<div class="card-form" @formState>
+    <div class="container cardContainer mx-auto">
+        <div class="col-md-lg-10 mx-auto">
+            <div *ngIf="(profile | async) as user" class="card card-edit my-5 no-gutters">
+                <div>
+                    <button type="button" class="close" (click)="close()">&times;</button>
+                    <h5 class="card-title title text-center">{{user.username | uppercase}}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-details">
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 itemImg">
+                                <img *ngIf="user.profileImg" [src]="user.profileImg" class="card-img itemImg"
+                                    alt="users_profile_img">
+                            </div>
+                            <div class="col-md-5">
+                                <div class="col-md list">
+                                    <app-catalog-list [items]="items"></app-catalog-list>
+                                </div>
+                                <div class="col-md navigation-bar">
+                                    <app-user-details-list-navigation></app-user-details-list-navigation>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="signCard" @formState>
+    <div class="container">
+        <div class="col-lg-8 mx-auto">
+            <div class="card card-sign my-5">
+                <div class="closeDiv">
+                    <button type="button" class="close closeForm" (click)="close()">&times;</button>
+                </div>
+                <div class="card-body">
+                    <div class="form-sign">
+                        <h5 class="card-title text-center">Set Up</h5>
+                        <blockquote class="blockquote text-center">Do you want to set your userdata?</blockquote>
+                        <div class="p-3">
+                            <div class="m-2 d-flex justify-content-center">
+                                <button class="btn btn-outline-success borders" (click)="loadUserEditForm()">Yes, I want
+                                    now.</button>
+                            </div>
+                            <div class="m-2 d-flex justify-content-center">
+                                <button class="btn btn-outline-success borders" (click)="close()">No, I will make this
+                                    later.</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+.loadingSpinner{
+    width: 50%;
+    height: auto;
+}
+
+.noAnnouncementsContainer{
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.heightOnMax{
+    height: 100%;
+}
