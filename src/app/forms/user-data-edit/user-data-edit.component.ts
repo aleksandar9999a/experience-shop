@@ -14,11 +14,7 @@ import { formFader } from 'src/app/shared/animations/form.animations';
   animations: [formFader]
 })
 export class UserDataEditComponent implements OnInit {
-<<<<<<< HEAD
   defaultImage: string
-=======
-  defaultImage = './../../../assets/images/unkItem.svg';
->>>>>>> parent of 6249ca2... Deploy project
   localImageUrl = null;
   localImage = null;
   editForm: FormGroup;

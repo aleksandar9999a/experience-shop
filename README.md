@@ -25,11 +25,8 @@
 
 ## How to run it?
 
-<<<<<<< HEAD
 In order for the project to work, you need to register and make a new project in Firebase, as well as Google Places. You can read how this works on their websites. Once you have the necessary configurations, you need to copy them and paste them in src/environments/environment.ts.
 
-=======
->>>>>>> parent of 6249ca2... Deploy project
 ```bash
     npm install
 

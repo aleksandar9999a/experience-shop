@@ -20,10 +20,7 @@ import { CollectionsService } from './services/collections.service';
 import { FormsCardModule } from './forms/forms-card.module';
 import { OptionsValidatior } from './services/options-validator';
 import { OptionsRestrinctions } from './config/collections-restrinctions';
-<<<<<<< HEAD
 import { Links } from './config/links';
-=======
->>>>>>> parent of 6249ca2... Deploy project
 
 @NgModule({
   declarations:  [
@@ -50,12 +47,8 @@ import { Links } from './config/links';
     AngularFireAuthGuard,
     CollectionsService,
     OptionsValidatior,
-<<<<<<< HEAD
     OptionsRestrinctions,
     Links
-=======
-    OptionsRestrinctions
->>>>>>> parent of 6249ca2... Deploy project
   ],
   bootstrap: [AppComponent]
 })
