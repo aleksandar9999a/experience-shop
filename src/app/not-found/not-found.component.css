@@ -1,6 +1,10 @@
 .not-found{
     min-height: 500px;
+<<<<<<< HEAD
     background: url('https://firebasestorage.googleapis.com/v0/b/experience-shop.appspot.com/o/404.gif?alt=media&token=570857dd-2441-41e6-ad5c-b9d079079b6a');
+=======
+    background: url('./../../assets/images/404.gif');
+>>>>>>> parent of 6249ca2... Deploy project
     background-position: center;
     background-repeat: no-repeat;
 }

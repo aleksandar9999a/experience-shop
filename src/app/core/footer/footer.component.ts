@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Links } from '../../config/links';
+=======
+>>>>>>> parent of 6249ca2... Deploy project
 
 @Component({
   selector: 'app-footer',
@@ -7,6 +10,7 @@ import { Links } from '../../config/links';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+<<<<<<< HEAD
   socialMedias = [];
   dependencies = [];
   get logo() { return this.links.logo; }
@@ -17,6 +21,10 @@ export class FooterComponent implements OnInit {
     this.socialMedias = links.getSocialMedias();
     this.dependencies = links.getDependencies();
   }
+=======
+
+  constructor() { }
+>>>>>>> parent of 6249ca2... Deploy project
 
   ngOnInit() {
   }

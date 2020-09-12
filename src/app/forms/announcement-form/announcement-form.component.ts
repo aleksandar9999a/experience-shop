@@ -5,8 +5,11 @@ import { AnnouncementsService } from '../services/announcements.service';
 import { NotifierService } from 'angular-notifier';
 import { ActivatedRoute, Router } from '@angular/router';
 import { formFader } from 'src/app/shared/animations/form.animations';
+<<<<<<< HEAD
 import { Links } from 'src/app/config/links';
 
+=======
+>>>>>>> parent of 6249ca2... Deploy project
 
 @Component({
   selector: 'app-announcement-form',
@@ -16,8 +19,12 @@ import { Links } from 'src/app/config/links';
 })
 export class AnnouncementFormComponent implements OnInit {
   currentData: IItem;
+<<<<<<< HEAD
   get defaultImage() { return this.links.unknown.link; }
   defaultServerImage: string;
+=======
+  defaultImage = '../../assets/images/unkItem.svg';
+>>>>>>> parent of 6249ca2... Deploy project
   localImageUrl = null;
   localImage = null;
 
@@ -30,8 +37,12 @@ export class AnnouncementFormComponent implements OnInit {
     private readonly notifier: NotifierService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
+<<<<<<< HEAD
     private router: Router,
     private links: Links
+=======
+    private router: Router
+>>>>>>> parent of 6249ca2... Deploy project
   ) {
     this.announcementsFormGroup = fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
@@ -54,7 +65,11 @@ export class AnnouncementFormComponent implements OnInit {
   }
 
   private createAnnouncement() {
+<<<<<<< HEAD
     const image = this.localImage || this.defaultServerImage || this.defaultImage;
+=======
+    const image = this.localImage || this.defaultImage;
+>>>>>>> parent of 6249ca2... Deploy project
     const announcement: any = {
       name: this.name.value,
       desc: this.desc.value,
@@ -93,7 +108,11 @@ export class AnnouncementFormComponent implements OnInit {
   private loadData(data: IItem) {
     this.currentData = data;
     if (data) {
+<<<<<<< HEAD
       this.defaultServerImage = data.image;
+=======
+      this.defaultImage = data.image;
+>>>>>>> parent of 6249ca2... Deploy project
       this.announcementsFormGroup.patchValue({
         name: data.name,
         desc: data.desc,
